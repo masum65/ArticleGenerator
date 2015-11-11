@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=utf8">
+</head>
+<body bgcolor="#ffffff" background="backgroundimage.jpg">
+ <script language="JavaScript1.2">
+ 		function selectGrammar() {
+ 		    var vSelected  = document.fInputForm.tGrammarID.selectedIndex;
+ 			var vSectionID = document.fInputForm.tGrammarID.options[vSelected].value;
+ 				if (vSectionID == "--ALL--") {
+ 					top.vArticleGenerator.grammar.selectedID = "";
+ 				} else {
+ 					top.vArticleGenerator.grammar.selectedID = vSectionID;
+ 				};	
+ 				//alert("Selected Section: "+ vSectionID);
+ 		}
+ 
+ 		
+</script>
+<br>
+<br>
+<center>
+<table border="1">
+  <tbody>
+    <tr bgcolor="#ffffff">
+      <td>
+      <table border="0">
+        <tbody>
+          <tr bgcolor="#ffffff">
+            <td><br>
+            </td>
+            <td>
+            <center><br>
+            <br>
+            <font size="+2" face="Arial,Helvetica">
+            <b>(2) Update Grammar for Editing<br> 
+           </font>
+            <font face="Arial,Helvetica">
+            </b>
+	   		<font color="red">Please Wait!</font>
+            </font>
+            </center>
+            <center>
+            <p></p>
+            </center>
+            <br>
+ <script language="JavaScript1.2">
+	    //alert("displayobejct.html Start setting SourceText");
+		with (top.vArticleGenerator.rules) {
+			if (!is_sorted) {
+				sort();
+			}
+		}
+		//top.vArticleGenerator.updateGrammar();
+		//top.vArticleGenerator.grammar.sort();
+		//document.location.href = "grammarselect3.html";
+		top.vArticleGenerator.setTimeout("top.main.document.location.href = 'frames/grammarselect3.html'",100);	
+
+		//top.vArticleGenerator.grammar.selectedID = "";
+		//document.fInputForm.GenText.value = top.vArticleGenerator.rules.export_source();
+           		 	</script>
+            <br>
+            </td>
+            <td>&nbsp;&nbsp;
+<!--- inner input table ---></td>
+          </tr>
+        </tbody>
+      </table>
+<!--- outer table ---> </td>
+    </tr>
+  </tbody>
+</table>
+<font size="2" face="Arial,Helvetica"><b>It is recommended to use the Browser Firefox with this Application. It is necessary to enable Javascript.</font>
+</center>
+</body>
+</html>

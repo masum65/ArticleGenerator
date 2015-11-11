@@ -1,0 +1,184 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=utf8">
+</head>
+<body bgcolor="#ffffff" background="backgroundimage.jpg">
+<script language="JavaScript1.2">
+
+function removeComments()
+//###### removes Comments beginning with "#" in the column of line
+{
+	var vInput  = document.fInputForm.GenText.value;
+	var vTitle  = document.fInputForm.Title.value.toUpperCase();
+	document.fInputForm.Title.value = vTitle;
+	//alert("abstract.html:18 - removeComments()\nvTitle="+vTitle);
+	var vOutput = top.vArticleGenerator.import_grammar(vInput,vTitle);
+	top.vArticleGenerator.grammarfiles.set_loaded(top.vURL_Object.getName(document.location.href));
+	document.fInputForm.GenText.value = vOutput;
+	alert('Import Grammar "'+vTitle+'" done!');
+}	
+
+</script>
+<br>
+<br>
+<center>
+<table border="1">
+  <tbody>
+    <tr bgcolor="#ffffff">
+      <td>
+      <table border="0">
+        <tbody>
+          <tr bgcolor="#ffffff">
+            <td><br>
+            </td>
+            <td>
+            <center><br>
+            <br>
+            <font size="+2" face="Arial,Helvetica">
+            <b>Load 
+	<script language="JavaScript1.2">
+   	//----------------------------------------------------	
+         document.write(top.vURL_Object.getName(document.location.href).toUpperCase());
+	//----------------------------------------------------	
+    </script>
+            Grammar<br></b> <!-- action="#" -->
+	   			<form name="fInputForm"  onsubmit="document.location.href='showrules.html'">
+					<input type=button name="Import" value="Import Grammar" onchange="convertToUpperCase()" onclick="removeComments()"> 
+					<input type=text name="Title" value="SECTIONID"> 
+        			<textarea name="GenText" cols="125" rows="50" >
+# Enter the  Authors
+ 
+# Non enter NON-TERM 
+PAPER_AUTHOR {
+>AUTHOR_FIRSTNAME Martin
+>AUTHOR_LASTNAME Miller
+>AUTHOR_EMAIL miller@example.com
+>AUTHOR_AFFILIATION University of Nowhere
+ SYS_AUTHOR
+}
+PAPER_AUTHOR {
+>AUTHOR_FIRSTNAME Sarah
+>AUTHOR_LASTNAME Smith
+>AUTHOR_EMAIL smith@example.com
+>AUTHOR_AFFILIATION University of Somewhere
+ SYS_AUTHOR
+}
+PAPER_TITLE This is the Title of my Paper
+PAPER_TYPE ?TYPE_OF_PAPER 
+# New Author defined
+PAPER_MOTIVATION increasing number of people PAPER_LOCATION, that have PAPER_CONSTRAINT
+PAPER_LOCATION in rural areas
+PAPER_CONSTRAINT limited access to public health services
+PAPER_KEYWORD Rules,Segmentation,Aquisition,Network
+SCI_IMPROVED_SYSTEM public health service  
+# Classify the Quality of Improvement of your Publication:
+QUALITY_OF_IMPROVEMENT small
+
+TYPE_OF_PAPER Bitte wählen Sie den Typ der Publikation aus
+
+PAPER_SYSAREA adaptive representation of risk and resource
+
+PAPER_SYSNAME Pesticide Risk and Response System
+PAPER_SYSNAME_LONG  Pesticide Risk and Response System
+PAPER_SYSTYPE SDSS 
+PAPER_SYSTYPE_LONG Spatial Decision Support System
+PAPER_SYSTEM_VERSION prototyping version 
+PAPER_OBJECTIVE  conceptual design of links between risk, response and graphical user interface
+PAPER_OBJECTIVE  modelling the availability of resources as a response to spatial risk  
+PAPER_OBJECTIVE minimize public health risk in developing countries
+PAPER_PRECONDITION limited health and public health resources in rural areas  
+PAPER_PROBLEM major impact public health induced by pesticides
+PAPER_METHODOLOGY application of low-cost technology PAPER_SYSNAME
+SCI_A_PROBLEM_ADJ an ecotoxicological  
+SCI_MY_TODO decision making and resource distribution 
+SCI_MY_METHOD modelling of spatio-temporal distributions with PAPER_THEORY 
+SCI_MY_FIELD Fuzzy Logic for GUI-Design and spatio-temporal modelling of risk and resources
+PAPER_PROBLEM medical decision making under uncertainty in rural areas of SCI_COUNTRY
+PAPER_THEORY stochastic networks and mathematical measure theory
+#SCI_MY_RESULT didactic reduction
+SCI_MY_RESULT show usability of web based PAPER_SYSNAME_LONG
+SCI_SOLUTION integration of SCI_MY_TODO in SCI_IMPROVED_SYSTEM
+PAPER_METHODOLOGY paper methodology
+
+PAPER_METHOD_IMPROVEMENT an adaptive measure 
+PAPER_CLIENT_P mobile devices as decision support clients
+PAPER_SERVER_S decision support server
+SCI_OUR_OS Linux Smartphone OS
+SCI_COUNTRY Latin America
+
+####### language and license ################################################
+
+LANGUAGE_UM  UML (Unified Modelling Language)
+
+# LICENSE_TYPE  GPL Version 2
+#LICENSE_TYPE  Creative Commons
+LICENSE_TYPE  Open Source
+# LICENSE_TYPE  the Gnu Public License
+
+PROP_LICENSE_TYPE  very restrictive
+PROP_LICENSE_TYPE  proprietary license
+
+
+
+###### Used Open Source Software ############################################
+PAPER_SOFTWARE {
+>SOFTWARE_NAME GRASS in Version 6.3
+>SOFTWARE_TYPE Geographic Information System GIS
+>SOFTWARE_USED_TO store and visualize properties in space and time
+>SOFTWARE_URL http://www.grass.org
+ DEF_SOFTWARE_DISPLAY
+}
+
+ALL_SOFTWARE_NAMES {
+LOOP_DEF_AND_COMMA
+>DEF_SOFTWARE_DISPLAY SOFTWARE_NAME
+ *PAPER_SOFTWARE
+}
+ALL_SOFTWARE_TYPES {
+LOOP_DEF_AND_COMMA
+>DEF_SOFTWARE_DISPLAY SOFTWARE_TYPE
+ *PAPER_SOFTWARE
+}
+
+############################################################################
+
+           		 	</textarea>
+		    	</form>
+            </font>
+            </center>
+            <center>
+            <p></p>
+            </center>
+            <br>
+            </td>
+            <td>&nbsp;&nbsp;
+<!--- inner input table ---></td>
+          </tr>
+        </tbody>
+      </table>
+<!--- outer table ---> </td>
+    </tr>
+  </tbody>
+</table>
+<script language="JavaScript1.2">
+	//----------------------------------------------------	
+	document.fInputForm.Title.value = top.vURL_Object.getName(document.location.href).toUpperCase();
+	var vInput  = document.fInputForm.GenText.value;
+	var vTitle  = document.fInputForm.Title.value;
+	document.fInputForm.Title.value = vTitle;
+	if (top.vArticleGenerator.wizzard.active > 0) {
+			top.vArticleGenerator.wizzard.load(vInput,vTitle);
+	} else if (top.vArticleGenerator.grammarfiles.preload_index <= top.vArticleGenerator.grammarfiles.rows) {
+		var vOutput = top.vArticleGenerator.import_grammar(vInput,vTitle);
+		top.vArticleGenerator.setTimeout("top.vArticleGenerator.grammarfiles.preload()",100);
+	}
+	//----------------------------------------------------	
+</script>
+
+
+<font size="2" face="Arial,Helvetica"><b>It is recommended to use the Browser Firefox with this Application. It is necessary to enable Javascript.</font>
+</center>
+</body>
+</html>

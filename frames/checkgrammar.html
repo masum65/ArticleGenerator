@@ -1,0 +1,145 @@
+<HTML>
+<HEAD>
+   <TITLE>Check Generated Grammar - ArticleGenerator</TITLE>
+<!-- 
+################################################# 
+# Check Grammar - ArticleGenerator						
+# Javascript Software Package  				 
+# email: niehaus@uni-landau.de		
+# created               18.11.2013
+# last modifications    18.11.2013
+# Author:  My Name
+# GNU Public License 
+################################################# 
+-->
+<SCRIPT language="JavaScript1.2">
+	<!-- Begin Hiding
+		var vNextURL = "frames/applygrammar1.html";
+		function startWizzard(pMissingNonTerm) {
+	    	alert("GENERATOR-CALL: starting Wizzard for Missing Variables now!\n\ncheckgrammar.html:19");
+	        top.vArticleGenerator.wizzard.active = 1;
+ 			top.vArticleGenerator.wizzard.load(pMissingNonTerm,"MISSING");
+ 		}
+
+		function checkMissing() {
+			var vMissingNonTerm = "";
+			var vRules = top.vArticleGenerator.rules;
+			vMissingNonTerm += vRules.missing_nonterm();
+			//alert("checkgrammar.html:28\ntop.vArticleGenerator.textSource="+top.vArticleGenerator.textSource);
+			if (top.vArticleGenerator.textSource == "") {
+				top.vArticleGenerator.textSource = "% Generated File at SYS_DATE_NOW \n*STARTNODE_SECTIONS ";
+				top.vArticleGenerator.textGenerated = top.vArticleGenerator.textSource;
+			}
+			//alert("checkgrammar.html:31'"+top.vArticleGenerator.textSource+"'");
+			if (vMissingNonTerm != "") {
+				vMissingNonTerm += "\n";
+			}
+			var vCheckText = top.vArticleGenerator.textGenerated;
+			vCheckText += "LOOP_BEGIN LOOP_AFTER_FIRST LOOP__ITEM LOOP_BEFORE_LAST LOOP_END ";
+			vCheckText += "SYS_KEYWORDS SYS_CITATION SYS_TITLE_REFERENCES SYS_REFERENCES ";
+			vMissingNonTerm += vRules.parsenode.missing_nonterm(vCheckText,vRules);
+  			//alert("checkgrammar.html:33 - vMissingNonTerm=\n"+vMissingNonTerm);
+  			return top.vArticleGenerator.parsenode.remove_double_lines(vMissingNonTerm);
+		}
+ 	
+ 		function importGrammar()
+		{
+			var vInput  = document.fInputForm.ruletext.value;
+			var vGrammarID  = document.fInputForm.grammarid.value.toUpperCase();
+			//alert("parsing.html:18 - removeComments()\nvGrammarID="+vGrammarID);
+			var vOutput = top.vArticleGenerator.import_grammar(vInput,vGrammarID);
+			//top.vArticleGenerator.rules.sort_length();
+			alert("Grammar Imported Successfully!\n\ncheckgrammar.html:33 - importGrammar()-Call");
+			var vMissingNonTerm = checkMissing();
+			if (vMissingNonTerm != "") {
+				document.fInputForm.ruletext.value = vMissingNonTerm;
+				//alert("GENERATOR WARNING: Some Non-Terminal Symbols are undefined - Please use Wizzard to define them!");
+			} else {
+				document.fInputForm.ruletext.value = "";
+				//alert("GENERATOR: Grammar seems to be O.K. now - ! All Non-Terminal Symbols are defined");
+				var vEval ="top.main.document.location.href = '"+vNextURL+"'";
+				top.vArticleGenerator.setTimeout(vEval,100);
+			}
+			//----------------------------------------------------------
+		}	
+
+	// End Hiding -->
+</SCRIPT>
+
+</HEAD>
+<BODY bgcolor="#EEEEEE">
+<center>
+<font face="Arial,Helvetica">
+<!---Button: Start Wizzard ------- Button Link: startwizzard.html ----->
+<body bgcolor="#ffffff" background="backgroundimage.jpg">
+
+<br>
+<br>
+<center>
+<table border="1">
+  <tbody>
+    <tr bgcolor="#ffffff">
+      <td>
+      <table border="0">
+        <tbody>
+          <tr bgcolor="#ffffff">
+            <td><br>
+            </td>
+            <td>
+            <center><br>
+            <h1>Check Missing Variables</h1>
+           <form name="fInputForm" action="#" onsubmit="alert('Submit-Button')">
+            <b>Missing Definitions:</b> &nbsp; &nbsp; &nbsp; &nbsp; Grammar-ID: 
+           <input type="text" name="grammarid" size=15 value="MISSING"> <br/>
+				<textarea name="ruletext" cols="85" rows="10">
+# Currently there are no Missing non-terminal Symbols (i.e. Grammar Variables)</textarea><br/>
+ 
+ <SCRIPT LANGUAGE="JavaScript">
+ </SCRIPT>
+           		 	<input type="button" value="Create Document" onclick="document.location.href='applygrammar1.html'">
+           		 	&nbsp; - &nbsp; <input type="button" value="Import Missing" onclick="importGrammar()">
+           		 	<input type="button" value="Start Wizzard for Missing Variables" onclick="startWizzard(document.fInputForm.ruletext.value)">
+           		 	<input type="button" value="Cancel" onclick="document.location.href='empty.html'">
+
+            	</form>
+            </font>
+            </center>
+            <center>
+            <p></p>
+            </center>
+            <br>
+ <script language="JavaScript1.2">
+	<!-- Begin Hiding
+	    //alert("Check if vArticleGenerator exists");
+	    if (top.vArticleGenerator) {
+			var vMissingNonTerm = checkMissing();
+			//alert("checkgrammar.html:29\nvMissingNonTerm="+vMissingNonTerm+"'");
+			if (vMissingNonTerm != "") {
+				document.fInputForm.ruletext.value = vMissingNonTerm;
+				alert("GENERATOR WARNING: Some Non-Terminal Symbols are undefined - Please use Wizzard to define them!");
+			} else {
+				//top.main.document.location.href = "applygrammar.html";
+				var vEval ="top.main.document.location.href = '"+vNextURL+"'";
+				top.vArticleGenerator.setTimeout(vEval,100);	
+ 
+			}
+        } else {
+            alert("top.vArticleGenerator does not exist!\ncheckgrammar.html:98");
+        }
+	// End Hiding -->
+           		 	</script>
+            <br>
+            </td>
+            <td>&nbsp;&nbsp;
+<!--- inner input table ---></td>
+          </tr>
+        </tbody>
+      </table>
+<!--- outer table ---> </td>
+    </tr>
+  </tbody>
+</table>
+<font size="2" face="Arial,Helvetica"><b>It is recommended to use the Browser Firefox with this Application. It is necessary to enable Javascript.</font>
+</center>
+</body>
+</html>	

@@ -1,0 +1,381 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=utf8">
+</head>
+<body bgcolor="#ffffff" background="backgroundimage.jpg">
+<script language="JavaScript1.2">
+
+function removeComments()
+//###### removes Comments beginning with "#" in the column of line
+{
+	var vInput  = document.fInputForm.GenText.value;
+	var vTitle  = document.fInputForm.Title.value;
+	//alert("abstract.html:18 - removeComments()\nvTitle="+vTitle);
+	var vOutput = top.vArticleGenerator.import_grammar(vInput,vTitle);
+	top.vArticleGenerator.grammarfiles.set_loaded(top.vURL_Object.getName(document.location.href));
+	document.fInputForm.GenText.value = vOutput;
+	alert('Import Grammar "'+vTitle+'" done!');
+}	
+
+</script>
+<br>
+<br>
+<center>
+<table border="1">
+  <tbody>
+    <tr bgcolor="#ffffff">
+      <td>
+      <table border="0">
+        <tbody>
+          <tr bgcolor="#ffffff">
+            <td><br>
+            </td>
+            <td>
+            <center><br>
+            <br>
+            <font size="+2" face="Arial,Helvetica">
+            <b>Load 
+	<script language="JavaScript1.2">
+   	//----------------------------------------------------	
+         document.write(top.vURL_Object.getName(document.location.href).toUpperCase());
+	//----------------------------------------------------	
+    </script>
+            Grammar<br></b> <!-- action="#" -->
+	   			<form name="fInputForm"  onsubmit="document.location.href='showrules.html'">
+					<input type=button name="Import" value="Import Grammar" onchange="convertToUpperCase()" onclick="removeComments()"> 
+					<input type=text name="Title" value="abstract"> 
+        			<textarea name="GenText" cols="125" rows="50" >
+#############################################################################
+####### Intro #######
+#############################################################################
+# (1) Define new Variables 
+#     - If you want to define a variable start you must start in the first column of the line
+#     - Use capital letters for the variables (Non-Terminal-Symbols) and underscore '_'
+#     - If you want to use Comments you must use '#' in the first column of the line not second col
+#     - As in LaTeX after '#' the rest of the line is a comment
+# (2) Multiline Variable Definitions start with the non-terminal Symbol SCI_OBJECTIVE in the first 
+#     column with "{" as an opening of the multiline defintion. The end of the multiline definition 
+#     is "}" in the first  line of the column, e.g.
+#SCI_OBJECTIVE {
+#   first line
+#   second line
+#   third line
+#}
+#     if the non-terminal symbol is not starting in the first column it will be used as a variable
+#     for replacing the symbol with rules of the grammar.
+# (3) End of Grammar File
+#     - there should be at least two empty lines at the end of each this file
+#     - this file will be concated to the grammar-File 'grammar.in' anytime you run createpaper.pl
+# (4) If you want to overwrite a definition of a non-terminal Symbol e.g. BIB_KEYWORDS
+#     use a starting ">" before non-terminal Symbol e.g
+#>BIB_KEYWORDS Risk, Resource
+#     overwriting should be used for the following non-terminal symbols
+#         - BIB_KEYWORDS
+#     
+#############################################################################
+
+SCI_INTRO_HEADER \section{Introduction}
+
+SCI_INTRO {
+
+ SCI_INTRO_HEADER 
+
+ SCI_INTRO_PARAGRAPH_A 
+
+ SCI_INTRO_PARAGRAPH_GENERIC
+
+ SCI_INTRO_PARAGRAPH_THESIS
+
+ SCI_INTRO_PARAGRAPH_CONTR
+
+ SCI_INTRO_PARAGRAPH_FINAL
+
+}
+
+SCI_INTRO {
+
+ SCI_INTRO_HEADER 
+
+ SCI_INTRO_PARAGRAPH_A 
+
+ SCI_INTRO_PARAGRAPH_THESIS
+
+ SCI_INTRO_PARAGRAPH_CONTR
+
+ SCI_INTRO_PARAGRAPH_FINAL
+
+}
+
+SCI_INTRO {
+
+ SCI_INTRO_HEADER 
+
+ SCI_INTRO_PARAGRAPH_A 
+
+ SCI_INTRO_PARAGRAPH_THESIS
+
+ SCI_INTRO_PARAGRAPH_GENERIC
+
+ SCI_INTRO_PARAGRAPH_CONTR
+
+ SCI_INTRO_PARAGRAPH_FINAL
+
+}
+
+SCI_INTRO {
+
+ SCI_INTRO_HEADER 
+
+ SCI_INTRO_PARAGRAPH_A 
+
+ SCI_INTRO_PARAGRAPH_GENERIC
+
+ SCI_INTRO_PARAGRAPH_THESIS
+
+ SCI_INTRO_PARAGRAPH_GENERIC
+
+ SCI_INTRO_PARAGRAPH_FINAL
+
+}
+
+SCI_INTRO {
+
+ SCI_INTRO_HEADER 
+
+ SCI_INTRO_PARAGRAPH_A 
+
+ SCI_INTRO_PARAGRAPH_GENERIC
+
+ SCI_INTRO_PARAGRAPH_GENERIC
+
+ SCI_INTRO_PARAGRAPH_THESIS
+
+ SCI_INTRO_PARAGRAPH_FINAL
+
+}
+
+SCI_INTRO {
+
+ SCI_INTRO_HEADER 
+
+ SCI_INTRO_PARAGRAPH_A 
+
+ SCI_INTRO_PARAGRAPH_THESIS
+
+ SCI_INTRO_PARAGRAPH_FINAL
+
+}
+
+
+SCI_INTRO_PARAGRAPH_A SCI_INTRO_A SCI_INTRO_A SCI_INTRO_A SCI_INTRO_CLOSING
+SCI_INTRO_PARAGRAPH_THESIS SCI_INTRO_THESIS SCI_INTRO_GENERIC_MID_ANY SCI_INTRO_GENERIC_CLOSING
+SCI_INTRO_PARAGRAPH_GENERIC SCI_INTRO_GENERIC_FIRST SCI_INTRO_GENERIC_MID_ANY SCI_INTRO_GENERIC_CLOSING
+
+SCI_INTRO_PARAGRAPH_FINAL SCI_IPF_ORG SCI_IPF_FIRST SCI_IPF_MID SCI_IPF_FINAL
+
+SCI_IPF_ORG+3 the rest of this paper is organized as follows.
+SCI_IPF_ORG we proceed as follows.
+SCI_IPF_ORG the rest of the paper proceeds as follows.
+SCI_IPF_ORG the roadmap of the paper is as follows.
+
+SCI_IPF_FIRST LIT_FIRST we motivate the need for PAPER_SYSNAME for optimization of SCI_IMPROVED_SYSTEM.
+
+SCI_IPF_MID LIT_MIDDLE_TWO SCI_IPF_MID_B.
+SCI_IPF_MID LIT_MIDDLE SCI_IPF_MID_B.LIT_MIDDLE SCI_IPF_MID_B.
+SCI_IPF_MID LIT_MIDDLE_TWO SCI_IPF_MID_B.LIT_MIDDLE SCI_IPF_MID_B.LIT_MIDDLE SCI_IPF_MID_B.
+SCI_IPF_MID_B SCI_IPF_MID_REL
+SCI_IPF_MID_B we SCI_PROVE_VERB the SCI_ACT 
+SCI_IPF_MID_B to SCI_SOLVE_CLAUSE, SCI_GENERIC_THESIS 
+SCI_IPF_MID_REL we place our work in context with the WRD_RELATED work in this area
+
+# SCI_FOR_WHOM is also defined in paper.in and should be modified there
+SCI_FOR_WHOM decision maker
+
+SCI_IPF_FINAL SCI_B_LEADIN_C we conclude.
+
+
+SCI_ABSTRACT_INTRO SCI_INTRO_A 
+
+# SCI_INTRO_PROVE	SCI_PEOPLE would agree that, had it not been for SCI_GENERIC_NOUN , the SCI_ACT might never have occurred.
+SCI_INTRO_A	The PAPER_SYSNAME shows contributions to SCI_MY_FIELD for successful improvement for SCI_MY_TODO. The QUALITY_OF_IMPROVEMENT positive effects arise for SCI_FOR_WHOM but it has to be shown is this article that the effects can generalize the results for SCI_SOLUTION.
+SCI_INTRO_A	The development of PAPER_SYSTYPE_LONG for SCI_A_PROBLEM_ADJ problem have created LIT_GREAT interest shown by the BIB_CITATION and BIB_CITATION.
+SCI_INTRO_A	SCI_IN_THIS_PAPER it will be shown that PAPER_SYSNAME provides support for SCI_IMPROVED_SYSTEM.
+SCI_INTRO_A	In recent years, much research has been devoted to the SCI_ACT; LIT_REVERSAL, few have SCI_VERBED the SCI_ACT.
+SCI_INTRO_A	PAPER_SYSNAME and PAPER_TITLE were considered under with the focus on PAPER_THEORY.  Especially SCI_MY_FIELD was applied on SCI_IMPROVED_SYSTEM in the last few years.
+SCI_INTRO_A	The SCI_ACT is a SCI_ADJ SCI_PROBLEM.
+SCI_INTRO_A	The SCI_ACT has SCI_VERBED SCI_IMPROVED_SYSTEM, and current research suggests that the SCI_ACT will SCI_OPTIMIZE.
+SCI_INTRO_A	The results in this PAPER_TYPE show that SCI_BUZZWORD_ADJ SCI_BUZZWORD_NOUN are an interesting new topic in the field of SCI_FIELD..
+SCI_INTRO_A	The SCI_MY_FIELD with PAPER_METHODOLOGY lead to the development of PAPER_SYSNAME_LONG. The results will be defined not only by the PAPER_PROBLEM, but also by the need for the SCI_SOLUTION.
+SCI_INTRO_A	Recent advances in SCI_BUZZWORD_ADJ SCI_BUZZWORD_NOUN and SCI_BUZZWORD_ADJ SCI_BUZZWORD_NOUN SCI_INTRO_ACT SCI_THING.
+SCI_INTRO_A	Many results have shown that the problem of PAPER_PROBLEM can not be solved by PAPER_THEORY alone, but also an SCI_A_PROBLEM_ADJ representation of knowledge might contribute to the improvement of the system.
+SCI_INTRO_A	The implications of SCI_BUZZWORD_ADJ SCI_BUZZWORD_NOUN have been far-reaching and pervasive.
+SCI_INTRO_A	Unified SCI_BUZZWORD_ADJ SCI_BUZZWORD_NOUN have led to many SCI_ADJ advances, including SCI_THING and SCI_IMPROVED_SYSTEM .
+
+SCI_INTRO_ACT offer a viable alternative to
+SCI_INTRO_ACT have paved the way for
+SCI_INTRO_ACT provides the opportunity for
+SCI_INTRO_ACT SCI_VERB_PL in order to SCI_GOAL_ACHIEVE
+SCI_INTRO_ACT are LIT_OFTEN at odds with
+SCI_INTRO_ACT do not necessarily obviate the need for
+SCI_INTRO_ACT are based entirely on the assumption that SCI_OPTIMIZATION with SCI_MY_FIELD are not in conflict with
+
+SCI_INTRO_A SCI_ABSTRACT_A
+SCI_INTRO_A SCI_INTRO_FILLER
+SCI_INTRO_A SCI_INTRO_GENERIC_MID
+SCI_INTRO_A The notion of SCI_MY_FIELD that was mentioned by SCI_PEOPLE SCI_VERB_PL with SCI_GENERIC_NOUN is LIT_OFTEN SCI_REACTION.
+SCI_INTRO_A LIT_REVERSAL_MAYBE a SCI_ADJ SCI_PROBLEM in SCI_FIELD is the SCI_ACT_A SCI_GENERIC_NOUN.
+
+SCI_INTRO_A LIT_MIDDLE_MAYBE SCI_INTRO_A
+
+SCI_INTRO_CLOSING LIT_CONCLUSION, SCI_GENERIC_NOUN and SCI_GENERIC_NOUN SCI_INTRO_ACT the SCI_ACT.
+SCI_INTRO_CLOSING to what extent can SCI_MY_FIELD be SCI_VERBED to SCI_SOLVE_CLAUSE for SCI_IMPROVED_SYSTEM?
+SCI_INTRO_CLOSING LIT_REVERSAL, SCI_OPTIMIZATION  of SCI_IMPROVED_SYSTEM alone SCI_CAN fulfill the need for SCI_GENERIC_NOUN.
+SCI_INTRO_CLOSING the SCI_ACT would LIT_GREAT_ADV IMPROVE_VERB SCI_GENERIC_NOUN.
+
+SCI_INTRO_GENERIC_MID_ANY SCI_INTRO_GENERIC_MID
+SCI_INTRO_GENERIC_MID SCI_INTRO_GENERIC_MID SCI_INTRO_GENERIC_MID
+SCI_INTRO_GENERIC_MID LIT_LEADIN the SCI_DRAWBACK of this type of SCI_APPROACH, however, is that SCI_OVERALL_THESIS_PROVE.
+SCI_INTRO_GENERIC_MID LIT_LEADIN the basic mathematical theorem of this SCI_APPROACH is the SCI_ACT.
+SCI_INTRO_GENERIC_MID LIT_LEADIN LIT_ALTHOUGH conventional approaches that this SCI_PROBLEM is LIT_OFTEN SCI_PROBLEM_SOLVED by the SCI_ACT, we believe that a different SCI_APPROACH is necessary.
+SCI_INTRO_GENERIC_MID LIT_LEADIN indeed, SCI_OPTIMIZATION  of SCI_IMPROVED_SYSTEM and SCI_MY_FIELD have a long history of SCI_VERBING_PL in this manner.
+SCI_INTRO_GENERIC_MID LIT_LEADIN two properties make this SCI_APPROACH SCI_IDEAL:  SCI_SYSTEM_PROP, and also SCI_SYSTEM_PROP.
+SCI_INTRO_GENERIC_MID LIT_LEADIN SCI_SYSTEM_PROP.
+SCI_INTRO_GENERIC_MID LIT_LEADIN we view SCI_FIELD as following a cycle of four phases: SCI_SYS_VERBION, SCI_SYS_VERBION, SCI_SYS_VERBION, and SCI_SYS_VERBION.
+SCI_INTRO_GENERIC_MID LIT_LEADIN for example, many SCI_SYSTEM_PL SCI_SYS_VERB SCI_GENERIC_NOUN.
+SCI_INTRO_GENERIC_MID LIT_REVERSAL, this SCI_APPROACH is LIT_OFTEN SCI_REACTION.
+SCI_INTRO_GENERIC_MID LIT_REVERSAL, the results mentioned in SYS_CITATION might not be lead to the proposed solution for PAPER_PROBLEM. The results need to be generalized for the intended SCI_OPTIMIZATION of SCI_A_PROBLEM_ADJ problem. .
+SCI_INTRO_GENERIC_MID LIT_LEADIN it should be noted that SCI_SYSTEM_PROP.
+SCI_INTRO_GENERIC_MID LIT_LEADIN we emphasize that SCI_SYSTEM_PROP.
+SCI_INTRO_GENERIC_MID LIT_LEADIN existing SCI_BUZZWORD_ADJ and SCI_BUZZWORD_ADJ SCI_SYSTEM_PL use SCI_GENERIC_NOUN to SCI_SYS_VERB SCI_GENERIC_NOUN.
+SCI_INTRO_GENERIC_MID SCI_INTRO_FILLER
+
+SCI_SYSTEM_PROP we allow SCI_OPTIMIZATION  of SCI_IMPROVED_SYSTEM to SCI_SYS_VERB SCI_BUZZWORD_ADJ SCI_BUZZWORD_NOUN without the SCI_ACT
+SCI_SYSTEM_PROP+10 SCI_OUR_SYSTEM SCI_SYSTEM_ACTION
+SCI_SYSTEM_PROP SCI_OUR_SYSTEM SCI_SYSTEM_ACTION, without SCI_SYS_VERBING SCI_OPTIMIZATION  of SCI_IMPROVED_SYSTEM
+SCI_SYSTEM_PROP SCI_OUR_SYSTEM is LIT_BASED_ON the SCI_ACT
+SCI_SYSTEM_PROP SCI_OUR_SYSTEM turns the SCI_BUZZWORD_ADJ SCI_BUZZWORD_NOUN rough instrument of measurement into a tailored tool for PAPER_PROBLEM
+SCI_SYSTEM_PROP SCI_OUR_SYSTEM is LIT_BASED_ON the principles of SCI_MY_FIELD
+SCI_SYSTEM_PROP SCI_OUR_SYSTEM SCI_CAN be SCI_VERBED to SCI_SYS_VERB SCI_GENERIC_NOUN
+
+SCI_SYSTEM_ACTION+3 SCI_SYS_VERBS SCI_GENERIC_NOUN
+SCI_SYSTEM_ACTION SCI_PROOF_PROP
+
+SCI_GENERIC_NOUN+2 SCI_BUZZWORD_ADJ SCI_BUZZWORD_NOUN
+SCI_GENERIC_NOUN+2 SCI_OPTIMIZATION  of SCI_IMPROVED_SYSTEM
+SCI_GENERIC_NOUN the SCI_ACT
+
+SCI_INTRO_THESIS SCI_IN_THIS_PAPER, SCI_GENERIC_THESIS.
+SCI_INTRO_THESIS in order to SCI_SOLVE_CLAUSE, SCI_GENERIC_THESIS.
+SCI_INTRO_THESIS SCI_IN_THIS_PAPER SCI_GENERIC_THESIS.
+SCI_INTRO_THESIS SCI_GENERIC_THESIS.
+SCI_INTRO_THESIS PAPER_SYSNAME, our new SCI_SYSTEM for SCI_GENERIC_NOUN, is the solution to all of these SCI_PROBLEM_PL.
+SCI_INTRO_THESIS we SCI_PRESENT_VERB SCI_OVERALL_THESIS_THING, which we call PAPER_SYSNAME.
+SCI_INTRO_THESIS our focus SCI_IN_THIS_PAPER is not on whether SCI_OVERALL_THESIS_PROVE, but rather on SCI_PRESENT_VERBING SCI_OVERALL_THESIS_THING ({PAPER_SYSNAME}).
+
+SCI_GENERIC_THESIS we SCI_PROVE_VERB that SCI_OVERALL_THESIS_PROVE
+SCI_GENERIC_THESIS we use SCI_BUZZWORD_ADJ SCI_BUZZWORD_NOUN to SCI_PROVE_VERB that SCI_OVERALL_THESIS_PROVE
+SCI_GENERIC_THESIS we SCI_PRESENT_VERB SCI_OVERALL_THESIS_THING (PAPER_SYSNAME), SCI_PROVE_VERBING that SCI_OVERALL_THESIS_PROVE
+SCI_GENERIC_THESIS we SCI_PROVE_VERB not only that SCI_OVERALL_THESIS_PROVE, but that the same is true for SCI_OPTIMIZATION  of SCI_IMPROVED_SYSTEM 
+SCI_GENERIC_THESIS we PROBE_VERB how SCI_OPTIMIZATION  of SCI_IMPROVED_SYSTEM can be applied to the SCI_ACT
+SCI_GENERIC_THESIS we SCI_PROVE_VERB that LIT_ALTHOUGH SCI_OVERALL_THESIS_PROVE, SCI_OVERALL_THESIS_PROVE
+SCI_GENERIC_THESIS we concentrate our efforts on SCI_PROVE_VERBING that SCI_OVERALL_THESIS_PROVE
+SCI_GENERIC_THESIS we SCI_PRESENT_VERB SCI_OVERALL_THESIS_THING ({PAPER_SYSNAME}), which we use to SCI_PROVE_VERB that SCI_OVERALL_THESIS_PROVE
+
+SCI_OVERALL_THESIS_PROVE SCI_OPTIMIZATION  of SCI_IMPROVED_SYSTEM and SCI_MY_FIELD are LIT_OFTEN compatible to PAPER_OBJECTIVE  
+SCI_OVERALL_THESIS_PROVE SCI_OPTIMIZATION  of SCI_IMPROVED_SYSTEM and SCI_MY_FIELD are LIT_OFTEN compatible to PAPER_OBJECTIVE 
+SCI_OVERALL_THESIS_PROVE SCI_MY_FIELD and SCI_OPTIMIZATION  of SCI_IMPROVED_SYSTEM can SCI_VERB_PL to SCI_SOLVE_CLAUSE
+SCI_OVERALL_THESIS_PROVE SCI_MY_FIELD can be made sustainable SCI_IMPLEMENTATION EVAL_VERBED with PAPER_THEORY for SCI_MY_METHOD
+SCI_OVERALL_THESIS_PROVE the PAPER_SYSTEM_VERSION used for SCI_MY_TODO in SCI_MY_FIELD contributes to the objective of PAPER_OBJECTIVE SCI_PROOF_PROP.
+
+SCI_BY_WHO_SOMETIMES BIB_CITATION_LONG
+SCI_BY_WHO_SOMETIMES BIB_CITATION
+
+SCI_OVERALL_THESIS_THING new PAPER_OBJECTIVE
+SCI_OVERALL_THESIS_THING new PAPER_OBJECTIVE
+SCI_OVERALL_THESIS_THING a novel PAPER_SYSTYPE_LONG for SCI_MY_TODO
+SCI_OVERALL_THESIS_THING an analysis of SCI_IMPROVED_SYSTEM
+SCI_OVERALL_THESIS_THING a SCI_BUZZWORD_ADJ tool for SCI_VERBING SCI_OPTIMIZATION  of SCI_IMPROVED_SYSTEM
+SCI_OVERALL_THESIS_THING a PAPER_SYSTYPE_LONG for PAPER_PROBLEM
+
+SCI_INTRO_GENERIC_FIRST SCI_INTRO_GENERIC_MID
+SCI_INTRO_GENERIC_FIRST another SCI_ADJ SCI_GOAL_OR_PROBLEM in this area is the SCI_VERBION of PAPER_METHOD_IMPROVEMENT.
+SCI_INTRO_GENERIC_FIRST a SCI_ADJ SCI_APPROACH to SCI_SOLVE_CLAUSE is the SCI_ACT.
+SCI_INTRO_GENERIC_FIRST motivated by these observations, SCI_GENERIC_NOUN and SCI_GENERIC_NOUN have been extensively SCI_VERBED by SCI_PEOPLE.
+SCI_INTRO_GENERIC_FIRST SCI_PEOPLE LIT_OFTEN SCI_VERB SCI_GENERIC_NOUN in the place of SCI_GENERIC_NOUN.
+SCI_INTRO_GENERIC_FIRST SCI_BUZZWORD_ADJ SCI_SYSTEM_PL are particularly SCI_ADJ when it comes to SCI_GENERIC_NOUN.
+SCI_INTRO_GENERIC_FIRST To our knowledge, our work SCI_IN_THIS_PAPER marks the first SCI_SYSTEM SCI_VERBED specifically for SCI_GENERIC_NOUN.
+SCI_INTRO_GENERIC_FIRST LIT_REVERSAL, this SCI_APPROACH is fraught with difficulty, largely due to SCI_GENERIC_NOUN.
+SCI_INTRO_GENERIC_FIRST we question the need for SCI_GENERIC_NOUN.
+
+SCI_INTRO_GENERIC_CLOSING this combination of properties has not yet been SCI_VERBED in WRD_RELATED work.
+SCI_INTRO_GENERIC_CLOSING combined with SCI_GENERIC_NOUN, SCI_WHAT SCI_VERBS SCI_OVERALL_THESIS_THING.
+SCI_INTRO_GENERIC_CLOSING LIT_CONCLUSION, we see no reason not to use SCI_GENERIC_NOUN to SCI_VERB SCI_GENERIC_NOUN.
+SCI_INTRO_GENERIC_CLOSING LIT_CONCLUSION, SCI_GENERIC_THESIS.
+SCI_INTRO_GENERIC_CLOSING LIT_CONCLUSION, SCI_SYSTEM_PROP.
+SCI_INTRO_GENERIC_CLOSING LIT_ALTHOUGH similar SCI_SYSTEM_PL SCI_VERB SCI_GENERIC_NOUN, we SCI_SOLVE_CLAUSE without SCI_VERBING SCI_GENERIC_NOUN.
+SCI_INTRO_GENERIC_CLOSING SCI_INTRO_GENERIC_MID
+
+SCI_INTRO_FILLER FILLER_SENTENCE.
+SCI_INTRO_FILLER to put this in perspective, consider the fact that PAPER_SYSTEM_VERSION used by SCI_PEOPLE LIT_OFTEN leads to SCI_SOLVE_CLAUSE.
+SCI_INTRO_FILLER LIT_LEADIN the usual methods for the SCI_ACT do not apply in this area.
+SCI_INTRO_FILLER LIT_LEADIN the WRD_IMPACT  SCI_FIELD of this FINDING has been SCI_REACTION.
+SCI_INTRO_FILLER LIT_LEADIN this is a direct result of the SCI_ACT CITATION_SOMETIMES.
+SCI_INTRO_FILLER LIT_ALTHOUGH WRD_RELATED solutions to this SCI_PROBLEM are LIT_GOOD, none have taken the SCI_BUZZWORD_ADJ SCI_APPROACH we propose SCI_IN_THIS_PAPER.
+
+SCI_INTRO_PARAGRAPH_CONTR Our contributions are as follows.  SCI_CONTR_ANY 
+SCI_INTRO_PARAGRAPH_CONTR SCI_IN_THIS_PAPER we SCI_PRESENT_VERB the following contributions in detail.  SCI_CONTR_ANY 
+SCI_INTRO_PARAGRAPH_CONTR Our main contributions are as follows.  SCI_CONTR_ANY 
+SCI_INTRO_PARAGRAPH_CONTR The contributions of this work are as follows.  SCI_CONTR_ANY 
+SCI_INTRO_PARAGRAPH_CONTR This work presents advances above WRD_RELATED work.  SCI_CONTR 
+SCI_INTRO_PARAGRAPH_CONTR SCI_IN_THIS_PAPER, we make the following main contributions.  SCI_CONTR
+SCI_CONTR SCI_CONTR LIT_MIDDLE SCI_GENERIC_THESIS.
+SCI_CONTR SCI_CONTR LIT_LAST SCI_GENERIC_THESIS.
+SCI_CONTR LIT_FIRST SCI_GENERIC_THESIS.LIT_MIDDLE_TWO SCI_GENERIC_THESIS.
+SCI_CONTR_ANY SCI_CONTR, SCI_CONTR, SCI_CONTR
+SCI_CONTR_ANY SCI_CONTR, SCI_CONTR
+SCI_CONTR_ANY SCI_CONTR
+
+
+           		 	</textarea>
+		    	</form>
+            </font>
+            </center>
+            <center>
+            <p></p>
+            </center>
+            <br>
+            </td>
+            <td>&nbsp;&nbsp;
+<!--- inner input table ---></td>
+          </tr>
+        </tbody>
+      </table>
+<!--- outer table ---> </td>
+    </tr>
+  </tbody>
+</table>
+<script language="JavaScript1.2">
+	//----------------------------------------------------	
+	document.fInputForm.Title.value = top.vURL_Object.getName(document.location.href).toUpperCase();
+	var vInput  = document.fInputForm.GenText.value;
+	var vTitle  = document.fInputForm.Title.value;
+	document.fInputForm.Title.value = vTitle;
+	if (top.vArticleGenerator.grammarfiles.preload_index <= top.vArticleGenerator.grammarfiles.rows) {
+		var vOutput = top.vArticleGenerator.import_grammar(vInput,vTitle);
+		top.vArticleGenerator.setTimeout("top.vArticleGenerator.grammarfiles.preload()",100);
+	} else {
+		//alert("No preload");
+		if (top.vArticleGenerator.wizzard.active > 0) {
+			top.vArticleGenerator.wizzard.load(vInput,vTitle);
+		}
+	}
+	//----------------------------------------------------	
+</script>
+
+
+<font size="2" face="Arial,Helvetica"><b>It is recommended to use the Browser Firefox with this Application. It is necessary to enable Javascript.</font>
+</center>
+</body>
+</html>

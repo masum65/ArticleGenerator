@@ -1,0 +1,194 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=utf8">
+</head>
+<body bgcolor="#ffffff" background="backgroundimage.jpg">
+<script language="JavaScript1.2">
+
+function removeComments()
+//###### removes Comments beginning with "#" in the column of line
+{
+	var vInput  = document.fInputForm.GenText.value;
+	var vTitle  = document.fInputForm.Title.value;
+	//alert("abstract.html:18 - removeComments()\nvTitle="+vTitle);
+	var vOutput = top.vArticleGenerator.import_grammar(vInput,vTitle);
+	top.vArticleGenerator.grammarfiles.set_loaded(top.vURL_Object.getName(document.location.href));
+	document.fInputForm.GenText.value = vOutput;
+	alert('Import Grammar "'+vTitle+'" done!');
+}	
+
+</script>
+<br>
+<br>
+<center>
+<table border="1">
+  <tbody>
+    <tr bgcolor="#ffffff">
+      <td>
+      <table border="0">
+        <tbody>
+          <tr bgcolor="#ffffff">
+            <td><br>
+            </td>
+            <td>
+            <center><br>
+            <br>
+            <font size="+2" face="Arial,Helvetica">
+            <b>Load 
+	<script language="JavaScript1.2">
+   	//----------------------------------------------------	
+         document.write(top.vURL_Object.getName(document.location.href).toUpperCase());
+	//----------------------------------------------------	
+    </script>
+            Grammar<br></b> <!-- action="#" -->
+	   			<form name="fInputForm"  onsubmit="document.location.href='showrules.html'">
+					<input type=button name="Import" value="Import Grammar" onchange="convertToUpperCase()" onclick="removeComments()"> 
+					<input type=text name="Title" value="abstract"> 
+        			<textarea name="GenText" cols="125" rows="50" >
+#############################################################################
+####### Abstract #######
+#############################################################################
+# (1) Define new Variables 
+#     - If you want to define a variable start you must start in the first column of the line
+#     - Use capital letters for the variables (Non-Terminal-Symbols) and underscore '_'
+#     - If you want to use Comments you must use '#' in the first column of the line not second col
+#     - As in LaTeX after '#' the rest of the line is a comment
+# (2) Multiline Variable Definitions start with the non-terminal Symbol SCI_OBJECTIVE in the first 
+#     column with "{" as an opening of the multiline defintion. The end of the multiline definition 
+#     is "}" in the first  line of the column, e.g.
+#SCI_OBJECTIVE {
+#   first line
+#   second line
+#   third line
+#}
+#     if the non-terminal symbol is not starting in the first column it will be used as a variable
+#     for replacing the symbol with rules of the grammar.
+# (3) End of Grammar File
+#     - there should be at least two empty lines at the end of each this file
+#     - this file will be concated to the grammar-File 'grammar.in' anytime you run createpaper.pl
+# (4) If you want to overwrite a definition of a non-terminal Symbol e.g. BIB_KEYWORDS
+#     use a starting ">" before non-terminal Symbol e.g
+#>BIB_KEYWORDS Risk, Resource
+#     overwriting should be used for the following non-terminal symbols
+#         - BIB_KEYWORDS
+#     
+#############################################################################
+
+#############################################################################
+# SCI_IMPROVED_SYSTEM Health Service Delivery is defined in paper.in
+# PAPER_SYSNAME EWARS                                is defined in paper.in
+# PAPER_METHODOLOGY application of PAPER_SYSNAME      is defined in paper.in
+# SCI_MY_FIELD Stochastic Networks            is defined in paper.in
+# SCI_MY_RESULT  improvement of PAPER_SYSNAME       is defined in paper.in
+# PAPER_PRECONDITION emergency and disaster situations 
+# PAPER_PROBLEM a lack of human and medical resource 
+#############################################################################
+
+
+STARTNODE_SECTIONS SCI_ABSTRACT
+
+#  SCI_ABS_A defined in intro.in
+SCI_ABSTRACT { 
+  
+>TIT_SECTION TIT__ABSTRACT
+ SEC_SECTION_HEADER
+ 
+  SC_AB_SITUATION
+  
+  SCI_AB_A_START
+   
+  SCI_ABS_MISC
+
+  SCI_ABSTRACT_A  SCI_ABS_THESIS 
+
+}
+
+SCI_ABSTRACT_A SC_AB_SITUATION SCI_AB_A_START the SCI_ACT SCI_AB_A_END.
+# ----- main definitions of the paper can be found in paper.in
+# SCI_IN_THIS_PAPER is defined in phrasemath.in
+# SCI_PROVE_VERB is defined in words.in
+# SCI_IMPROVED_SYSTEM is defined in paper.in
+# PAPER_SYSNAME is defined in paper.in
+
+SC_AB_SITUATION PAPER_PRECONDITION CAN_BE_CHARACTERIZED_BY PAPER_PROBLEM.
+SC_AB_SITUATION Anbetracht PAPER_SYSAREA auf NOUN_PROBLEM wird an den SCI_DEVELOPMENT von PAPER_SYSTYPE_LONG (PAPER_SYSTYPE) verbunden.
+SC_AB_SITUATION NOUN_PROBLEM im Bereich der PAPER_SYSAREA muss verbessert werden, indem der SCI_DEVELOPMENT PAPER_SYSTYPE_LONG (PAPER_SYSTYPE).
+
+SCI_AB_A_START SCI_IN_THIS_PAPER, SCI_PROVE_VERB wir die WRD_EFFICIENCY von SCI_MY_FIELD
+SCI_AB_A_START SCI_IMPROVED_SYSTEM ist eine komplexe wissenschaftliche Gebiet der Optimierung für die PAPER_METHODOLOGY mit PAPER_SYSNAME angewendet könnten
+SCI_AB_A_START Bereitstellung SCI_IMPROVED_SYSTEM mit PAPER_SYSNAME ist ein Ansatz, für den die von SCI_FIELD abgeleitet ausgewählten Methoden angewendet werden
+SCI_AB_A_START In der Papier die Analyse der für die PAPER_PRECONDITION SCI_OPTIMIZATION von SCI_IMPROVED_SYSTEM bietet Hinweise für eine LIT_GOOD Anwendung für PAPER_SYSNAME.
+
+SCI_AB_A_CONSEQUENCE Gemäß der SCI_OBJECTIVE der Optimierung SCI_IMPROVED_SYSTEM SCI_PROVE_VERB wir PAPER_SYSNAME unterstützt
+
+SCI_AB_A_END, die für PAPER_PROBLEM PAPER_METHOD_IMPROVEMENT führt
+SCI_AB_A_END, die die Prinzipien der SCI_MATH_ADJ SCI_MY_FIELD verkörpert
+
+SCI_ABS_MISC SCI_ABS_A SCI_ABS_B
+SCI_ABS_MISC SCI_ABS_B SCI_ABS_A
+
+SCI_ABS_A SCI_IN_THIS_PAPER es wird gezeigt, dass PAPER_SYSNAME bietet Unterstützung für PAPER_OBJECTIVE.
+SCI_ABS_A In den letzten Jahren wurde viel Forschung auf SCI_MY_FIELD gewidmet. LIT_REVERSAL haben einige Ergebnisse für die SCI_OPTIMIZATION PAPER_OBJECTIVE SCI_VERBED.
+SCI_ABS_A PAPER_SYSNAME PAPER_TITLE und wurden mit dem Fokus auf PAPER_THEORY betrachtet. Besonders SCI_MY_FIELD wurde am SCI_IMPROVED_SYSTEM für PAPER_OBJECTIVE in den letzten Jahren angewendet.
+SCI_ABS_A Die SCI_ACT ist ein SCI_ADJ SCI_PROBLEM, die die SCI_OBJECTIVE PAPER_OBJECTIVE CAN_BE_CHARACTERIZED_BY.
+SCI_ABS_A Die Anforderungen für die Zielsetzung für PAPER_OBJECTIVE hat weitreichende Auswirkungen auf die PAPER_PROBLEM. Dies wird in diesem PAPER_TYPE betrachtet werden.
+SCI_ABS_A Verallgemeinerungen PAPER_OBJECTIVE haben viele Fortschritte in SCI_IMPROVED_SYSTEM mit PAPER_PRECONDITION, einschließlich SCI_MY_FIELD und SCI_A_PROBLEM_ADJ SCI_OPTIMIZATION geführt.
+SCI_ABS_A Die SCI_ACT hat SCI_IMPROVED_SYSTEM SCI_VERBED und aktuelle Forschung deutet darauf hin, dass die SCI_ACT wird PAPER_OBJECTIVE SCI_OPTIMIZE.
+SCI_ABS_B Die SCI_MY_FIELD mit PAPER_METHODOLOGY auf die Optimierung von PAPER_SYSNAME_LONG für PAPER_OBJECTIVE führen. Die Ergebnisse werden nicht nur durch die PAPER_PROBLEM, sondern auch durch die Notwendigkeit der SCI_SOLUTION definiert werden.
+SCI_ABS_B Jüngste Fortschritte in der SCI_MY_METHOD und SCI_MY_TODO SCI_ABS_ACT PAPER_OBJECTIVE.
+SCI_ABS_B Die Ergebnisse in diesem PAPER_TYPE SCI_MY_RESULT sind ein interessantes neues Thema im Bereich der SCI_MY_FIELD für PAPER_OBJECTIVE.
+SCI_ABS_B Viele Ergebnisse für PAPER_CLIENT_P haben gezeigt, dass das Problem der PAPER_PROBLEM nicht durch PAPER_THEORY allein gelöst werden, sondern auch ein SCI_A_PROBLEM_ADJ Repräsentation von Wissen könnte zu der PAPER_OBJECTIVE beitragen.
+SCI_ABS_B Die neuen Ziels PAPER_OBJECTIVE muss Beiträge für eine erfolgreiche Verbesserung für SCI_MY_TODO SCI_MY_FIELD. Die QUALITY_OF_IMPROVEMENT positiven Effekte für PAPER_OBJECTIVE ergeben sich aus PAPER_RESULT. Ferner hat sich auch gezeigt, dass die Effekte dieser Ergebnisse für SCI_SOLUTION noch verallgemeinert werden können.
+SCI_ABS_B Die Entwicklung der für die Erreichung des Ziels der PAPER_OBJECTIVE impliziert die Berücksichtigung von PAPER_METHOD_IMPROVEMENT für PAPER_CLIENT_P.
+
+
+SCI_ABST_ACT bieten eine echte Alternative zu
+SCI_ABST_ACT haben den Weg geebnet für
+SCI_ABST_ACT bietet die Möglichkeit,
+
+SCI_ABS_THESIS In diesem PAPER_TYPE SCI_ABST_ACT SCI_OVERALL_THESIS_PROVE
+SCI_ABS_THESIS In camparison zur vorherigen Ergebnisse werden wir beweisen, dass SCI_ABST_ACT SCI_OVERALL_THESIS_PROVE
+SCI_ABS_THESIS Die vorgestellte Konzeption und Auswertung des Piloten SCI_ABST_ACT SCI_OVERALL_THESIS_PROVE
+           		 	</textarea>
+		    	</form>
+            </font>
+            </center>
+            <center>
+            <p></p>
+            </center>
+            <br>
+            </td>
+            <td>&nbsp;&nbsp;
+<!--- inner input table ---></td>
+          </tr>
+        </tbody>
+      </table>
+<!--- outer table ---> </td>
+    </tr>
+  </tbody>
+</table>
+<script language="JavaScript1.2">
+	//----------------------------------------------------	
+	document.fInputForm.Title.value = top.vURL_Object.getName(document.location.href).toUpperCase();
+	var vInput  = document.fInputForm.GenText.value;
+	var vTitle  = document.fInputForm.Title.value;
+	document.fInputForm.Title.value = vTitle;
+	if (top.vArticleGenerator.grammarfiles.preload_index <= top.vArticleGenerator.grammarfiles.rows) {
+		var vOutput = top.vArticleGenerator.import_grammar(vInput,vTitle);
+		top.vArticleGenerator.setTimeout("top.vArticleGenerator.grammarfiles.preload()",100);
+	} else {
+		//alert("No preload");
+		if (top.vArticleGenerator.wizzard.active > 0) {
+			top.vArticleGenerator.wizzard.load(vInput,vTitle);
+		}
+	}
+	//----------------------------------------------------	
+</script>
+
+
+<font size="2" face="Arial,Helvetica"><b>It is recommended to use the Browser Firefox with this Application. It is necessary to enable Javascript.</font>
+</center>
+</body>
+</html>

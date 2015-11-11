@@ -1,0 +1,169 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=utf8">
+</head>
+<body bgcolor="#ffffff" background="backgroundimage.jpg">
+ <script language="JavaScript1.2">
+	<!-- Begin Hiding
+	    var vCountInteration = 0;
+	    var vBooleanOverwrite = false;
+	    
+		function mApplyGrammar() {
+			//var vCount = parseInt(document.fInputForm.tCount.value);
+			//top.vArticleGenerator.docgenerator.find_nonterms();
+			top.vArticleGenerator.docgenerator.apply_grammar();
+			var vLoopMax = parseInt(document.fInputForm.tLoopMax.value+"");
+			//alert("vLoopMax="+vLoopMax+"\napplygrammar.html:17");
+			top.vArticleGenerator.docgenerator.aLoopMax = vLoopMax;
+			document.fInputForm.tCount.value = top.vArticleGenerator.docgenerator.aCount;
+			document.fInputForm.tCycle.value = top.vArticleGenerator.docgenerator.aCycle;
+			mUpdateApply();
+			//alert("applygrammar.html:15 - mApplyGrammar()");			
+		}
+		
+
+		function mApplyGrammarStep() {
+			//alert("applygrammar.html:65 - mApplyGrammaStep()");
+			with (top.vArticleGenerator.docgenerator) {
+				if (aText != document.fInputForm.GenText.value) {
+					//alert("applygrammar.html:72 - Update the Text in the DocGenerator");
+				};
+				apply_nonterm();
+				document.fInputForm.tCount.value = aCount;
+				document.fInputForm.tCycle.value = aCycle;
+			}
+			mUpdateApply();
+			//alert("applygrammar.html:72 - mApplyGrammaStep()");
+		};
+
+		function mSwapOverwrite() {
+			vBooleanOverwrite = !(vBooleanOverwrite);
+			if (vBooleanOverwrite) {
+				//alert("vBooleanOverwrite=true") 
+			} else {
+				//alert("vBooleanOverwrite=false");
+			}
+			mUpdateApply();
+			//alert("applygrammar.html:85 - mSwapOverwrite");
+		};
+	
+		function mInitText() {
+			
+			top.vArticleGenerator.textGenerated = top.vArticleGenerator.textSource;
+			document.fInputForm.GenText.value = top.vArticleGenerator.textSource;
+			top.vArticleGenerator.docgenerator.aInitText = top.vArticleGenerator.textSource;
+			top.vArticleGenerator.docgenerator.aText = top.vArticleGenerator.textSource;
+			top.vArticleGenerator.docgenerator.init();
+			top.vArticleGenerator.docgenerator.aCount = 0;
+			top.vArticleGenerator.docgenerator.aCycle = 0;
+			document.fInputForm.tCount.value = 0;
+			document.fInputForm.tCycle.value = 0;
+			alert("Document Generation is now initialized!\napplygrammar.html:92 - mInitText()-Call");
+		};
+		
+		function mUpdateApply() {
+			with (top.vArticleGenerator.docgenerator) {
+				if (vBooleanOverwrite) {
+					document.fInputForm.GenText.value = export_with_overwrite();
+				} else {
+					document.fInputForm.GenText.value = export_text();
+				}
+				document.fInputForm.tCount.value = aCount;
+				document.fInputForm.tCycle.value = aCycle;
+				document.fInputForm.tNONTERM.value = get_current_nonterm();
+			}
+		};
+		
+		function mUpdateOnChange() {
+		    alert("REMARK: If you want to change/edit the source text for text generation,\nClick on Button [Edit Source]");
+		    document.location.href='sourcetext.html'
+		};
+		
+	    function mRemoveOverwrite() {
+	    	top.vArticleGenerator.textGenerated = top.vArticleGenerator.parsenode.remove_overwrite(document.fInputForm.GenText.value);
+			document.fInputForm.GenText.value = top.vArticleGenerator.textGenerated;
+			alert("applygrammar.html:99 - mRemoveOverwrite()");
+		};
+	//alert("appygrammar.html Start setting SourceText");
+		//document.write("TEST");
+		//document.write(top.vArticleGenerator.rules.show());
+	// End Hiding -->
+	</script>
+
+<br>
+<br>
+<center>
+<table border="1">
+  <tbody>
+    <tr bgcolor="#ffffff">
+      <td>
+      <table border="0">
+        <tbody>
+          <tr bgcolor="#ffffff">
+            <td><br>
+            </td>
+            <td>
+            <center><br>
+            <br>
+            <font size="+2" face="Arial,Helvetica">
+            <b>Article Generation<br>
+            </b>
+	   		</font>
+            <font  face="Arial,Helvetica">
+            	<form name="fInputForm" action="#" onsubmit="alert('Submit-Button')">
+	   			    <button type="button" bgcolor="#00FF00" onclick="mApplyGrammar()"><font size="+1"><b> Apply Grammar </b></font></button>
+					<input type="text" name="tLoopMax" size="4" value="1000">
+					 <input type="button" name="bApplyRulesStep" onclick="mApplyGrammarStep();" value="Apply Grammar Step">
+					 <input type="button" name="bRemoveOverwrite" onclick="document.location.href='sourcetext.html';" value="Edit Source">
+					 <input type="button" name="bViewHTML" onclick="document.location.href='htmlview.html';" value="View HTML">
+					 <br/><hr/>
+					Count: <input type="text" name="tCount" value="0" size="3">
+					Count Cycles: <input type="text" name="tCycle" value="0" size="3">
+					NON-TERM: <input type="text" name="tNONTERM" value="" size="15">
+					Overwrite: <input type="checkbox" name="cOverwrite" onchange="mSwapOverwrite();"> 
+ 			        <input type="button" name="bInit" onclick="mInitText();" value="Init Generator">
+					 <!-- input type="button" name="bInitRules" onclick="mInitText();" value="Init Generation" -->
+					<hr/>
+					<textarea name="GenText" cols="125" rows="20" onchange="mUpdateOnChange() ">
+           		 	</textarea><br/>
+ 			        <input type="button" name="bInit" onclick="mInitText();" value="Reset">
+                    <input type="button" value="Check Grammar" onclick="document.location.href='checkgrammar.html'">
+ 			        <input type="button" name="bDebug" onclick="document.location.href='applydebug.html'" value="Debug">
+					<input type="button" value="Cancel" onclick="document.location.href='empty.html'">
+ 			        
+            	</form>
+            </font>
+            </center>
+            <center>
+            <p></p>
+            </center>
+            <br>
+ <script language="JavaScript1.2">
+	<!-- Begin Hiding
+	    //alert("displayobejct.html Start setting SourceText");
+	    mUpdateApply();
+	    with (top.vArticleGenerator.docgenerator) {
+			document.fInputForm.tLoopMax.value = aCount+aCycleMax-1;
+			if (aCount == 0) document.fInputForm.tLoopMax.value++;
+		}
+		//document.write("TEST");
+		//document.write(top.vArticleGenerator.rules.show());
+	// End Hiding -->
+        </script>
+            <br>
+            </td>
+            <td>&nbsp;&nbsp;
+<!--- inner input table ---></td>
+          </tr>
+        </tbody>
+      </table>
+<!--- outer table ---> </td>
+    </tr>
+  </tbody>
+</table>
+<font size="2" face="Arial,Helvetica"><b>It is recommended to use the Browser Firefox with this Application. It is necessary to enable Javascript.</font>
+</center>
+</body>
+</html>

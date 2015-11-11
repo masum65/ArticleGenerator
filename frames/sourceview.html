@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=utf8">
+</head>
+<body bgcolor="#DDDDDD">
+<table width="100%" border="0" background="backgroundimage.jpg">
+	<tr>
+		<td align="center">
+			<h2>SOURCE-View of Generated Text</h2>
+		</td>
+	</tr><tr>
+		<td align="center">
+			<button onclick="document.location.href='htmlview.html'">HTML-View of Generated Text</button>
+		</td>
+	</tr>
+</table>
+<hr/>
+<font face="Arial,Helvetica">
+<form name="fInputForm">
+<center>
+<textarea name="taOutput" cols="100" rows="35" border=3>
+</textarea>
+</center>
+</form>
+<hr/>
+</font>
+<script language="JavaScript1.2">
+	<!-- Begin Hiding
+	    //alert("displayobejct.html Start setting SourceText");
+	    if (top.vArticleGenerator) {
+	    	var vOutput = top.vArticleGenerator.docgenerator.export_text();
+	    	if (vOutput != "") {
+                document.fInputForm.taOutput.value = vOutput
+			} else {
+				alert("WARNING: No grammar loaded, please select a Grammar for Document Generation!\nhtmlview.html:17");
+		        top.vArticleGenerator.setTimeout("top.main.document.location.href = 'configload.html'",100);	
+				
+			}
+		} else {
+			document.write("ERROR: View Generated HTML Document! Docgenerator not found!");
+		}
+	// End Hiding -->
+</script>
+</body>
+</html>

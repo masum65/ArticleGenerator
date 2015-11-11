@@ -1,0 +1,229 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=utf8">
+</head>
+<body bgcolor="#ffffff" background="backgroundimage.jpg">
+<script language="JavaScript1.2">
+
+function removeComments()
+//###### removes Comments beginning with "#" in the column of line
+{
+	var vInput  = document.fInputForm.GenText.value;
+	var vTitle  = document.fInputForm.Title.value;
+	//alert("abstract.html:18 - removeComments()\nvTitle="+vTitle);
+	var vOutput = top.vArticleGenerator.import_grammar(vInput,vTitle);
+	top.vArticleGenerator.grammarfiles.set_loaded(top.vURL_Object.getName(document.location.href));
+	document.fInputForm.GenText.value = vOutput;
+	alert('Import Grammar "'+vTitle+'" done!');
+}	
+
+</script>
+<br>
+<br>
+<center>
+<table border="1">
+  <tbody>
+    <tr bgcolor="#ffffff">
+      <td>
+      <table border="0">
+        <tbody>
+          <tr bgcolor="#ffffff">
+            <td><br>
+            </td>
+            <td>
+            <center><br>
+            <br>
+            <font size="+2" face="Arial,Helvetica">
+            <b>Load 
+	<script language="JavaScript1.2">
+   	//----------------------------------------------------	
+         document.write(top.vURL_Object.getName(document.location.href).toUpperCase());
+	//----------------------------------------------------	
+    </script>
+            Grammar<br></b> <!-- action="#" -->
+	   			<form name="fInputForm"  onsubmit="document.location.href='showrules.html'">
+					<input type=button name="Import" value="Import Grammar" onchange="convertToUpperCase()" onclick="removeComments()"> 
+					<input type=text name="Title" value="abstract"> 
+        			<textarea name="GenText" cols="125" rows="50" >
+#############################################################################
+####### Phrases #######
+#############################################################################
+# (1) Define new Variables 
+#     - If you want to define a variable start you must start in the first column of the line
+#     - Use capital letters for the variables (Non-Terminal-Symbols) and underscore '_'
+#     - If you want to use Comments you must use '#' in the first column of the line not second col
+#     - As in LaTeX after '#' the rest of the line is a comment
+# (2) Multiline Variable Definitions start with the non-terminal Symbol SCI_OBJECTIVE in the first 
+#     column with "{" as an opening of the multiline defintion. The end of the multiline definition 
+#     is "}" in the first  line of the column, e.g.
+#SCI_OBJECTIVE {
+#   first line
+#   second line
+#   third line
+#}
+#     if the non-terminal symbol is not starting in the first column it will be used as a variable
+#     for replacing the symbol with rules of the grammar.
+# (3) End of Grammar File
+#     - there should be at least two empty lines at the end of each this file
+#     - this file will be concated to the grammar-File 'grammar.in' anytime you run createpaper.pl
+# (4) If you want to overwrite a definition of a non-terminal Symbol e.g. BIB_KEYWORDS
+#     use a starting ">" before non-terminal Symbol e.g
+#>BIB_KEYWORDS Risk, Resource
+#     overwriting should be used for the following non-terminal symbols
+#         - BIB_KEYWORDS
+#     
+#############################################################################
+
+IN_THIS_PART In this section 
+IN_THIS_PART In the field of SCI_MY_FIELD
+IN_THIS_PART According to previous results
+IN_THIS_PART For the improvement of SCI_IMPROVED_SYSTEM
+IN_THIS_PART To aacomplish PAPER_OBJECTIVE
+
+
+IN_THIS_PART In this section 
+IN_THIS_PART In the field of SCI_MY_FIELD
+IN_THIS_PART According to previous results
+IN_THIS_PART For the improvement of SCI_IMPROVED_SYSTEM
+IN_THIS_PART To accomplish PAPER_OBJECTIVE
+
+PAPER_ALL_OBJECTIVES {
+>LOOP_BEGIN  
+>LOOP_AFTER_FIRST , 
+>LOOP__ITEM , 
+>LOOP_BEFORE_LAST  WRD_AND
+>LOOP_END 
+ *PAPER_OBJECTIVE
+}
+XXX		. FILLER_SENTENCE.
+
+SCI_CAN+5	can
+SCI_CAN+5	cannot
+SCI_CAN		should not
+SCI_CAN		should
+SCI_CAN		might
+SCI_CAN		is able to
+SCI_CAN		may be able to
+SCI_NOT_CAN		is not able to
+SCI_NOT_CAN		will not able to
+SCI_CAN		will be able to
+
+SCI_SOLVE_CLAUSE SCI_PROBLEM_SOLVE this SCI_PROBLEM
+SCI_SOLVE_CLAUSE SCI_GOAL_ACHIEVE this SCI_GOAL
+
+SCI_IN_THIS_PAPER in this PAPER_TYPE
+# SCI_IN_THIS_PAPER in this paper
+# SCI_IN_THIS_PAPER in this position paper
+# SCI_IN_THIS_PAPER in this work
+# SCI_IN_THIS_PAPER in our research
+# SCI_IN_THIS_PAPER in this article
+
+
+
+SCI_REACTION well-received
+# SCI_REACTION adamantly opposed
+SCI_REACTION considered SCI_ADJ
+SCI_REACTION LIT_GOOD
+
+LIT_BASED_ON	based on
+LIT_BASED_ON	derived from
+LIT_BASED_ON	copied from
+LIT_BASED_ON	built on
+
+FILLER_SENTENCE+10	FILLER_SURPRISE
+FILLER_SENTENCE		our SCI_GOAL here is to set the record straight
+FILLER_SENTENCE		this is an important point to understand
+FILLER_SENTENCE		this is INSTRUMENTAL to the success of our work
+FILLER_SENTENCE		we LIT_OMIT SCI_WHAT_PL OMIT_WHY
+FILLER_SENTENCE		of course, this is not always the case
+FILLER_SENTENCE		this follows from the SCI_ACT CITATION_SOMETIMES
+
+FILLER_SURPRISE	LIT_ALTHOUGH WRD_SCI_WHAT FILLER_SURPRISE, it FILLER_SURPRISE
+FILLER_SURPRISE	SCI_WHAT FILLER_SURPRISE but FILLER_SURPRISE
+FILLER_SURPRISE might seem PERVERSE
+FILLER_SURPRISE	is LIT_OFTEN a SCI_ADJ SCI_GOAL
+FILLER_SURPRISE at first glance seems PERVERSE
+FILLER_SURPRISE	fell in line with our expectations
+FILLER_SURPRISE	is SUPPORTED by WRD_RELATED work in the field
+FILLER_SURPRISE	has ample historical precedence
+FILLER_SURPRISE	is derived from known results
+FILLER_SURPRISE	LIT_OFTEN conflicts with the need to provide SCI_THING to SCI_PEOPLE
+
+OMIT_WHY due to space constraints
+OMIT_WHY due to resource constraints
+OMIT_WHY for PAPER_OBJECTIVE
+OMIT_WHY for PAPER_OBJECTIVE
+OMIT_WHY for PAPER_OBJECTIVE
+OMIT_WHY for now
+OMIT_WHY until future work
+
+SCI_A_FACT	the SCI_COMPLEXNOUN of STAT_ADJ SCI_FIELD
+SCI_A_FACT	the work in SCI_COUNTRY can be SCI_APPLIED_TO PAPER_METHODOLOGY
+SCI_ACT+50	SCI_ACT_A SCI_MY_METHOD
+SCI_ACT		SCI_ACT_A SCI_THING that SCI_EFFECT
+SCI_ACT_A	understanding of
+SCI_ACT_A	SCI_ADJ unification of SCI_MY_RESULT and
+SCI_ACT_A+15	SCI_VERBION of
+SCI_ACH	SCI_VERBED SCI_THING
+SCI_ACH	SCI_VERBED SCI_THING (which SCI_EFFECT )
+SCI_ACH_PRES	SCI_VERBING PAPER_METHODOLOGY
+SCI_ACH_PRES	SCI_VERBING PAPER_THEORY (which SCI_EFFECT )
+
+SCI_RESPONSE	an agreement with PAPER_OBJECTIVE
+SCI_RESPONSE	absolutely
+SCI_RESPONSE	no consideration of SCI_SOLUTION
+SCI_RESPONSE	it is
+SCI_RESPONSE	unlikely
+SCI_RESPONSE	exactly so
+SCI_RESPONSE	it is not
+SCI_RESPONSE	the answer is yes
+SCI_RESPONSE	yes, but only in theory
+SCI_RESPONSE	yes, but with low probability
+SCI_EFFECT	made SCI_VERBING and possibly SCI_VERBING SCI_MY_TODO applied in pilot region (SCI_COUNTRY)
+SCI_EFFECT	would allow for further study into SCI_MY_METHOD
+SCI_EFFECT	paved the way for the SCI_ACT_A PAPER_THEORY
+SCI_EFFECT	would make SCI_VERBING SCI_THING a real possibility
+
+           		 	</textarea>
+		    	</form>
+            </font>
+            </center>
+            <center>
+            <p></p>
+            </center>
+            <br>
+            </td>
+            <td>&nbsp;&nbsp;
+<!--- inner input table ---></td>
+          </tr>
+        </tbody>
+      </table>
+<!--- outer table ---> </td>
+    </tr>
+  </tbody>
+</table>
+<script language="JavaScript1.2">
+	//----------------------------------------------------	
+	document.fInputForm.Title.value = top.vURL_Object.getName(document.location.href).toUpperCase();
+	var vInput  = document.fInputForm.GenText.value;
+	var vTitle  = document.fInputForm.Title.value;
+	document.fInputForm.Title.value = vTitle;
+	if (top.vArticleGenerator.grammarfiles.preload_index <= top.vArticleGenerator.grammarfiles.rows) {
+		var vOutput = top.vArticleGenerator.import_grammar(vInput,vTitle);
+		top.vArticleGenerator.setTimeout("top.vArticleGenerator.grammarfiles.preload()",100);
+	} else {
+		//alert("No preload");
+		if (top.vArticleGenerator.wizzard.active > 0) {
+			top.vArticleGenerator.wizzard.load(vInput,vTitle);
+		}
+	}
+	//----------------------------------------------------	
+</script>
+
+
+<font size="2" face="Arial,Helvetica"><b>It is recommended to use the Browser Firefox with this Application. It is necessary to enable Javascript.</font>
+</center>
+</body>
+</html>

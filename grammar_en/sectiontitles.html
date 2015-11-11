@@ -1,0 +1,344 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=utf8">
+ <title>Grammar: SECTIONS</title>
+</head>
+<body bgcolor="#ffffff" background="backgroundimage.jpg">
+<script language="JavaScript1.2">
+
+function removeComments()
+//###### removes Comments beginning with "#" in the column of line
+{
+	var vInput  = document.fInputForm.GenText.value;
+	var vTitle  = document.fInputForm.Title.value;
+	//alert("abstract.html:18 - removeComments()\nvTitle="+vTitle);
+	var vOutput = top.vArticleGenerator.import_grammar(vInput,vTitle);
+	top.vArticleGenerator.grammarfiles.set_loaded(top.vURL_Object.getName(document.location.href));
+	document.fInputForm.GenText.value = vOutput;
+	alert('Import Grammar "'+vTitle+'" done!');
+}	
+
+</script>
+<br>
+<br>
+<center>
+<table border="1">
+  <tbody>
+    <tr bgcolor="#ffffff">
+      <td>
+      <table border="0">
+        <tbody>
+          <tr bgcolor="#ffffff">
+            <td><br>
+            </td>
+            <td>
+            <center><br>
+            <br>
+            <font size="+2" face="Arial,Helvetica">
+            <b>Load 
+	<script language="JavaScript1.2">
+   	//----------------------------------------------------	
+         document.write(top.vURL_Object.getName(document.location.href).toUpperCase());
+	//----------------------------------------------------	
+    </script>
+            Grammar<br></b> <!-- action="#" -->
+	   			<form name="fInputForm"  onsubmit="document.location.href='showrules.html'">
+					<input type=button name="Import" value="Import Grammar" onchange="convertToUpperCase()" onclick="removeComments()"> 
+					<input type=text name="Title" value="abstract"> 
+        			<TEXTAREA name="GenText" cols="125" rows="50" >
+#############################################################################
+####### Grammar Definitions of SECTIONS ####### grammar_en/sections.html 
+#############################################################################
+# Copy this grammar in the HTML-textarea of a file /grammar_en/sections.html
+# If the file does not exist, create the Grammar as HTML-file and save as
+#    /grammar_en/sections.html.
+# A fully operational grammar consists of grammar modules defined in /configs/config_en.html 
+# This file is the grammar module "SECTIONS", which can be a grammar module for 
+# a certain section of an article e.g. the introduction has the section-ID INTRODUCTION in the rules
+# and it should be used for consistency for the grammar-ID and the 
+# grammar file e.g. "introduction.html" as well. For this grammar use filename "sections.html"
+# 
+# (1) Define new Variables
+#     - If you want to define a variable start you must start in the first column of the line
+#     - Use capital letters for the variables (Non-Terminal-Symbols) and underscore '_'
+#     - If you want to use Comments you must use '#' in the first column of the line not second col
+#     - As in LaTeX after '#' the rest of the line is a comment
+# (2) Multiline Variable Definitions start with the non-terminal Symbol SCI_OBJECTIVE in the first 
+#     column with "{" as an opening of the multiline defintion. The end of the multiline definition 
+#     is "}" in the first column of line, e.g.
+#SCI_OBJECTIVE {
+#   first line
+#   second line
+#   third line
+#}
+#     if the non-terminal symbol is not starting in the first column it will be used as a variable
+#     for replacing the symbol with rules of the grammar.
+# (3) End of Grammar File
+#     - there should be at least two empty lines at the end of each this file
+#     - this file will be concated to the grammar-File 'grammar.in' anytime you run createpaper.pl
+# (4) If you want to overwrite a definition of a non-terminal Symbol e.g. PAPER_KEYWORDS
+#     use a starting ">" before non-terminal Symbol e.g
+#>PAPER_KEYWORDS Risk, Resource
+#     overwriting should be used for the following non-terminal symbols
+#         - PAPER_KEYWORDS
+#         - LOOP-variables
+# (5) Multiline Variable Definitions can include overwrite definitions
+#SCI_LIST_OF_NAMES {
+#>MY_NAME Bert
+#   My name is MY_NAME
+#>MY_NAME Paul
+#   My name is MY_NAME 
+#   third line MY_NAME
+#}
+#    Overwriting a variable is persistent, i.e. after the replacement the last 
+#    overwrite definition is used for the next replacement  
+# (6) Select definitions: in general a non-terminal symbol/variable can have multiple definitions
+#WRD_IMPROVEMENT improvement
+#WRD_IMPROVEMENT optimization
+#WRD_IMPROVEMENT minimize errors
+#    In general WRD_IMPROVEMENT will be replaced randomly by one of the three options. 
+#    this leads to the fact that the document generated may look different when you create
+#    a document with the grammar the next time.
+#    If you want to select the replacement of WRD_IMPROVEMENT you can substitute the use 
+#    of WRD_IMPROVEMENT in a text by ?WRD_IMPROVEMENT. Then the generator will ask you which
+#    replacement of the non-term symbol you want to choose, e.g.
+#MY_NAME Bert
+#MY_NAME Mary
+#MY_NAME Paul
+#
+#WRITE_MY_NAME {
+#   My name is ?MY_NAME and
+#   I am living in London
+#}
+# (7) LOOP-Variables: if you have multiple variable definitions of a 
+#     single non-terminal Symbol/Variable, then you might want to use them all as a list   
+#MY_NAME Bert
+#MY_NAME Mary
+#MY_NAME Anna
+#MY_NAME Paul
+#     If you want to use them all as a list you use the asterisk "*" as LOOP-indicator 
+#     before the non-terminal symbol/variable e.g. *MY_NAME. 
+#     The replacement will generate for *MY_NAME
+#LOOP_DEF_COMMA_AND 
+#LOOP_BEGIN 
+#       Bert 
+#    LOOP_AFTER_FIRST 
+#       Mary 
+#    LOOP__ITEM
+#       Anna
+#    LOOP_BEFORE_LAST
+#       Paul
+#LOOP_END 
+#     If you want to have a comma list with an "and" at the end LOOP_DEF_COMMA_AND will lead to
+#     "Bert, Mary, Anna and Paul", See grammar LOOP for more details.
+#     LOOP_DEF_COMMA_AND will overwrite the LOOP-Variables
+#############################################################################
+
+TYPE_OF_PAPER research paper
+TYPE_OF_PAPER theoretical concept paper
+TYPE_OF_PAPER methodology paper
+TYPE_OF_PAPER research paper for an empirical study
+
+###### ARTICLE ##############################
+DOCTYPE_ARTICLE  {
+>TIT_SECTION TIT__ABSTRACT
+ SEC__ABSTRACT 
+>TIT_SECTION TIT__INTRODUCTION
+ SECTION_WITH_BODY
+ PAPER_ALL_OBJECTIVES
+>TIT_SECTION TIT__METHODS
+ SECTION_WITH_BODY
+>TIT_SECTION TIT__IMPLEMENTATION
+ SECTION_WITH_BODY
+>TIT_SECTION TIT__RESULTS
+ SECTION_WITH_BODY
+>TIT_SECTION TIT__CONCLUSION
+ SECTION_WITH_BODY
+>TIT_SECTION Acknowledgements
+ SECTION__HEADER
+ 
+ I want to thank the following Scientists for advice and support:
+ LOOP_ITEMIZE_BEGIN 
+ LOOP_ITEMIZE__ITEM 
+ LOOP_ITEMIZE__ITEM 
+ LOOP_ITEMIZE__ITEM 
+ LOOP_ITEMIZE_END  
+}
+#### COUNT ########################################################
+COUNT_SECTION  
+COUNT_SUBSECTION  
+COUNT_SUBSUBSECTION  
+
+SEC_SECTION_HEADER {
+>COUNT_SECTION+1 
+>COUNT_SUBSECTION=0  
+>COUNT_SUBSUBSECTION=0  
+>SECTION__TITLE TIT_SECTION
+ FMT_SECTION_BEGIN COUNT_SECTION  TIT_SECTION FMT_SECTION_END
+ 
+}
+SEC_SUBSECTION_HEADER {
+>COUNT_SUBSECTION+1  
+>COUNT_SUBSUBSECTION=0  
+>SECTION__TITLE TIT_SUBSECTION
+ FMT_SUBSECTION_BEGIN COUNT_SECTION.COUNT_SUBSECTION TIT_SUBSECTION FMT_SUBSECTION_END
+ 
+}
+SEC_SUBSUBSECTION_HEADER {
+>COUNT_SUBSUBSECTION+1  
+>SECTION__TITLE TIT_SUBSUBSECTION
+ FMT_SUBSUBSECTION_BEGIN COUNT_SECTION.COUNT_SUBSECTION.COUNT_SUBSUBSECTION TIT_SUBSUBSECTION FMT_SUBSUBSECTION_END
+ 
+}
+
+FMT_SECTION_BEGIN <h3> 
+FMT_SECTION_END  </h3>  
+FMT_SUBSECTION_BEGIN <h4> 
+FMT_SUBSECTION_END  </h4>  
+FMT_SUBSUBSECTION_BEGIN <b> 
+FMT_SUBSUBSECTION_END  </b>  
+FMT_IT_BEGIN <i>
+FMT_IT_END </i>
+
+SEC_LATEX_SECTION_HEADER \section{TIT_SECTION}
+SEC_LATEX_SUBSECTION_HEADER \subsection{TIT_SUBSECTION}
+SEC_LATEX_SUBSUBSECTION_HEADER \subsubsection{TIT_SUBSUBSECTION}
+
+#### SECTION ######################################################
+SECTION__HEADER SEC_SECTION_HEADER
+TIT_SECTION  Title of the Section
+TIT_SUBSECTION  Title of the Subsection
+TIT_SUBSUBSECTION  Title of the Subsubsection
+SECTION__TITLE Overwrite Definition of Section Title
+
+SECTION_WITH_BODY {
+ SECTION__HEADER
+ SECTION__BODY
+}
+SECTION__BODY {
+ SECTION__INTRODUCTION
+ SECTION__MIDDLE
+ SECTION__END
+}
+#### SEC ##########################################################
+SECTION__INTRODUCTION {
+ First of all we introduce the section FMT_IT_BEGIN TIT_SECTION FMT_IT_END. 
+}
+SECTION__MIDDLE {
+ In the middle part of the section FMT_IT_BEGIN TIT_SECTION FMT_IT_END we prepare the conclusion.
+}
+SECTION__END {
+ Finally we conlcude something in the section FMT_IT_BEGIN TIT_SECTION FMT_IT_END.
+}
+SEC_ACKNOWLEDGEMENTS  Acknowledgements
+
+#### STARTNODE ####################################################
+STARTNODE_SECTIONS  {
+
+ PAPER_ALL_AUTHORS
+ 
+ DOCTYPE_ARTICLE
+ 
+ SYS_REFERENCES
+
+}
+            	   
+
+
+#### AUTHOR #######################################################
+AUTHOR_AFFILIATION  University of Nowhere - Test
+AUTHOR_EMAIL  miller@example.com - Test
+AUTHOR_FIRSTNAME  Martin - Test
+AUTHOR_LASTNAME  Miller - Test
+
+
+#### PAPER ########################################################
+PAPER_ALL_AUTHORS  {
+
+>LOOP_BEGIN LOOP_ITEMIZE_BEGIN 
+>LOOP_AFTER_FIRST LOOP_ITEMIZE_AFTER_FIRST 
+>LOOP__ITEM LOOP_ITEMIZE__ITEM 
+>LOOP_BEFORE_LAST LOOP_ITEMIZE_BEFORE_LAST 
+>LOOP_END LOOP_ITEMIZE_END 
+ *PAPER_AUTHOR
+}
+
+PAPER_ALL_OBJECTIVES  {
+
+>LOOP_BEGIN LOOP_ENUMERATE_BEGIN
+>LOOP_AFTER_FIRST LOOP_DEF__ITEM
+>LOOP__ITEM LOOP__ITEM
+>LOOP_BEFORE_LAST LOOP__ITEM
+>LOOP_END LOOP_ENUMERATE_END
+ *PAPER_OBJECTIVE
+}
+
+
+#### SEC ##########################################################
+SEC_ALL_SECTIONS  all sections will be populated by loading the part of grammar.
+
+
+#### SYS ##########################################################
+SYS_AUTHOR  AUTHOR_LASTNAME, AUTHOR_FIRSTNAME, AUTHOR_AFFILIATION (AUTHOR_EMAIL)
+
+
+#### TIT ##########################################################
+TIT__ABSTRACT  Abstract
+TIT__ACKNOWLEDGEMENTS  Acknowledgements
+TIT__CONCLUSION  Conclusion
+TIT__CONSTRAINTS  Requirements and Constraints Analysis
+TIT__DISCUSSION  Discussion
+TIT__IMPLEMENTATION  Implementation
+TIT__INTRODUCTION  Introduction
+TIT__METHODS  Methods and Material
+TIT__OBJECTIVES  Objectives
+TIT__REQUIREMENTS  Requirements
+TIT__RESULTS  Results
+            		 	</TEXTAREA>
+		    	</form>
+            </font>
+            </center>
+            <center>
+            <p></p>
+            </center>
+            <br>
+            </td>
+            <td>  
+<!--- inner input table ---></td>
+          </tr>
+        </tbody>
+      </table>
+<!--- outer table ---> </td>
+    </tr>
+  </tbody>
+</table>
+<script language="JavaScript1.2">
+	//----------------------------------------------------	
+	document.fInputForm.Title.value = top.vURL_Object.getName(document.location.href).toUpperCase();
+	var vInput  = document.fInputForm.GenText.value;
+	var vTitle  = document.fInputForm.Title.value;
+	document.fInputForm.Title.value = vTitle;
+	//----------------------------------------------------
+	if (top.vArticleGenerator.grammarfiles.preload_index <= top.vArticleGenerator.grammarfiles.rows) {
+		var vOutput = top.vArticleGenerator.import_grammar(vInput,vTitle);
+		top.vArticleGenerator.setTimeout("top.vArticleGenerator.grammarfiles.preload()",100);
+	} else {
+		//alert("No preload");
+		if (top.vArticleGenerator.wizzard.active > 0) {
+			top.vArticleGenerator.wizzard.load(vInput,vTitle);
+		}
+	}
+	//----------------------------------------------------
+	
+</script>
+
+
+<font size="2" face="Arial,Helvetica"><b>lauffähig in
+JavaScript-fähigen Browsern:</b> Netscape 7.0, Internet Explorer
+5.0, Opera 7.21, Konqueror</font>
+</center>
+</body>
+</html>
+                 

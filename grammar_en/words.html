@@ -1,0 +1,1246 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=utf8">
+ <title>Grammar: WORDS</title>
+</head>
+<body bgcolor="#ffffff" background="backgroundimage.jpg">
+<script language="JavaScript1.2">
+
+function removeComments()
+//###### removes Comments beginning with "#" in the column of line
+{
+	var vInput  = document.fInputForm.GenText.value;
+	var vTitle  = document.fInputForm.Title.value;
+	//alert("abstract.html:18 - removeComments()\nvTitle="+vTitle);
+	var vOutput = top.vArticleGenerator.import_grammar(vInput,vTitle);
+	top.vArticleGenerator.grammarfiles.set_loaded(top.vURL_Object.getName(document.location.href));
+	document.fInputForm.GenText.value = vOutput;
+	alert('Import Grammar "'+vTitle+'" done!');
+}	
+
+</script>
+<br>
+<br>
+<center>
+<table border="1">
+  <tbody>
+    <tr bgcolor="#ffffff">
+      <td>
+      <table border="0">
+        <tbody>
+          <tr bgcolor="#ffffff">
+            <td><br>
+            </td>
+            <td>
+            <center><br>
+            <br>
+            <font size="+2" face="Arial,Helvetica">
+            <b>Load 
+	<script language="JavaScript1.2">
+   	//----------------------------------------------------	
+         document.write(top.vURL_Object.getName(document.location.href).toUpperCase());
+	//----------------------------------------------------	
+    </script>
+            Grammar<br></b> <!-- action="#" -->
+	   			<form name="fInputForm"  onsubmit="document.location.href='showrules.html'">
+					<input type=button name="Import" value="Import Grammar" onchange="convertToUpperCase()" onclick="removeComments()"> 
+					<input type=text name="Title" value="abstract"> 
+        			<TEXTAREA name="GenText" cols="125" rows="50" >
+#############################################################################
+####### Grammar Definitions of WORDS ####### grammar_en/words.html 
+#############################################################################
+# Copy this grammar in the HTML-textarea of a file /grammar_en/words.html
+# If the file does not exist, create the Grammar as HTML-file and save as
+#    /grammar_en/words.html.
+# A fully operational grammar consists of grammar modules defined in /configs/config_en.html 
+# This file is the grammar module "WORDS", which can be a grammar module for 
+# a certain section of an article e.g. the introduction has the section-ID INTRODUCTION in the rules
+# and it should be used for consistency for the grammar-ID and the 
+# grammar file e.g. "introduction.html" as well. For this grammar use filename "words.html"
+# 
+# (1) Define new Variables
+#     - If you want to define a variable start you must start in the first column of the line
+#     - Use capital letters for the variables (Non-Terminal-Symbols) and underscore '_'
+#     - If you want to use Comments you must use '#' in the first column of the line not second col
+#     - As in LaTeX after '#' the rest of the line is a comment
+# (2) Multiline Variable Definitions start with the non-terminal Symbol SCI_OBJECTIVE in the first 
+#     column with "{" as an opening of the multiline defintion. The end of the multiline definition 
+#     is "}" in the first column of line, e.g.
+#SCI_OBJECTIVE {
+#   first line
+#   second line
+#   third line
+#}
+#     if the non-terminal symbol is not starting in the first column it will be used as a variable
+#     for replacing the symbol with rules of the grammar.
+# (3) End of Grammar File
+#     - there should be at least two empty lines at the end of each this file
+#     - this file will be concated to the grammar-File 'grammar.in' anytime you run createpaper.pl
+# (4) If you want to overwrite a definition of a non-terminal Symbol e.g. PAPER_KEYWORDS
+#     use a starting ">" before non-terminal Symbol e.g
+#>PAPER_KEYWORDS Risk, Resource
+#     overwriting should be used for the following non-terminal symbols
+#         - PAPER_KEYWORDS
+#         - LOOP-variables
+# (5) Multiline Variable Definitions can include overwrite definitions
+#SCI_LIST_OF_NAMES {
+#>MY_NAME Bert
+#   My name is MY_NAME
+#>MY_NAME Paul
+#   My name is MY_NAME 
+#   third line MY_NAME
+#}
+#    Overwriting a variable is persistent, i.e. after the replacement the last 
+#    overwrite definition is used for the next replacement  
+# (6) Select definitions: in general a non-terminal symbol/variable can have multiple definitions
+#WRD_IMPROVEMENT improvement
+#WRD_IMPROVEMENT optimization
+#WRD_IMPROVEMENT minimize errors
+#    In general WRD_IMPROVEMENT will be replaced randomly by one of the three options. 
+#    this leads to the fact that the document generated may look different when you create
+#    a document with the grammar the next time.
+#    If you want to select the replacement of WRD_IMPROVEMENT you can substitute the use 
+#    of WRD_IMPROVEMENT in a text by ?WRD_IMPROVEMENT. Then the generator will ask you which
+#    replacement of the non-term symbol you want to choose, e.g.
+#MY_NAME Bert
+#MY_NAME Mary
+#MY_NAME Paul
+#
+#WRITE_MY_NAME {
+#   My name is ?MY_NAME and
+#   I am living in London
+#}
+# (7) LOOP-Variables: if you have multiple variable definitions of a 
+#     single non-terminal Symbol/Variable, then you might want to use them all as a list   
+#MY_NAME Bert
+#MY_NAME Mary
+#MY_NAME Anna
+#MY_NAME Paul
+#     If you want to use them all as a list you use the asterisk "*" as LOOP-indicator 
+#     before the non-terminal symbol/variable e.g. *MY_NAME. 
+#     The replacement will generate for *MY_NAME
+#LOOP_DEF_COMMA_AND 
+#LOOP_BEGIN 
+#       Bert 
+#    LOOP_AFTER_FIRST 
+#       Mary 
+#    LOOP__ITEM
+#       Anna
+#    LOOP_BEFORE_LAST
+#       Paul
+#LOOP_END 
+#     If you want to have a comma list with an "and" at the end LOOP_DEF_COMMA_AND will lead to
+#     "Bert, Mary, Anna and Paul", See grammar LOOP for more details.
+#     LOOP_DEF_COMMA_AND will overwrite the LOOP-Variables
+#############################################################################
+
+            	   
+
+
+#### CAN ##########################################################
+CAN_BE_CHARACTERIZED_BY    show a response that
+CAN_BE_CHARACTERIZED_BY    can be characterized by
+CAN_BE_CHARACTERIZED_BY    show the property that
+
+
+#### COMPILED #####################################################
+WRD_COMPILED compiled
+WRD_AND and 
+
+#### WRD_DISEASE ######################################################
+WRD_DISEASE+4 SCI_DISEASE 
+WRD_DISEASE vector-bourne diseases
+WRD_DISEASE non-communicable diseases
+
+
+#### WRD_EFFICIENCY ###################################################
+WRD_EFFICIENCY    efficiency
+WRD_EFFICIENCY    optimized procedures
+WRD_EFFICIENCY    maintenance
+WRD_EFFICIENCY    responsibility
+WRD_MOTIVATION motivation
+WRD_SOFTWARE software
+WRD_METHODOLOGY methodology
+WRD_METHODOLOGY concepts and methods
+#### EMULATING ####################################################
+EMULATING_IT    deploying it in THE_WILD
+EMULATING_THEM    simulating them in WRD_WARE
+EMULATING_THEM    emulating them in WRD_WARE
+EMULATING_THEM    deploying them in THE_WILD
+
+
+#### EVALUATION ###################################################
+WRD_EVALUATION     evaluation WRD_METHODOLOGY
+WRD_EVALUATION     evaluation
+WRD_EVALUATION     performance analysis
+
+
+#### EVAL #########################################################
+EVAL_VERBED    instrumented
+EVAL_VERBED    performed
+EVAL_VERBED    carried out
+EVAL_VERBED    ran
+EVAL_VERBED    executed
+EVAL_VERBED    scripted
+EVAL_WHO     SCI_PEOPLE
+EVAL_WHY_VERB    quantify
+EVAL_WHY_VERB    prove
+EVAL_WHY_VERB    measure
+
+
+#### FOLLOWS ######################################################
+FOLLOWS_SUIT     follows directly
+FOLLOWS_SUIT     inherits from this previous work
+FOLLOWS_SUIT     attempts to follow on
+
+
+#### HACK #########################################################
+HACK_VERBING     refactoring
+HACK_VERBING     reprogramming
+# HACK_VERBING  extreme programming
+# HACK_VERBING  exokernelizing
+# HACK_VERBING  microkernelizing
+HACK_VERBING     distributing
+HACK_VERBING     autogenerating
+HACK_VERBING     automating
+HACK_VERBING     making autonomous
+HACK_VERBING     instrumenting
+HACK_VERBING     rapid prototyping
+HACK_VERBING     monitoring
+HACK_VERBING     patching
+
+
+#### HARDWARE #####################################################
+HARDWARE_ITEMS    hardware
+HARDWARE_PROP_OR_MEASUREMENT     hardware property
+HARDWARE_PROP_OR_MEASUREMENT     effective hardware configuration
+HARDWARE_PROP_OR_MEASUREMENT     measurement of hardware efficency
+
+
+#### IMPROVE ######################################################
+IMPROVE_VERB    amplify
+IMPROVE_VERB    improve
+IMPROVE_VERB    increase
+
+
+#### INPUT ########################################################
+INPUT_DATA    input data
+INPUT_DATA    data used as input for PAPER_CLIENT_P
+INPUT_DATA    data used as input for PAPER_SERVER_S
+INPUT_DATA    data used as input for PAPER_SYSNAME_LONG
+
+
+#### INTERPOLATION ################################################
+INTERPOLATION    interpolation
+INTERPOLATION    spline interpolation
+INTERPOLATION    multidimensional spline interpolation
+INTERPOLATION_MEASUREMENT    MEASUREMENT of INTERPOLATION
+
+
+#### IN ###########################################################
+IN_CONTRADICTION_TO     counterintuitive
+IN_CONTRADICTION_TO     unexpected
+IN_CONTRADICTION_TO     in contradiction to
+IN_THIS_PART    in this part
+
+
+#### LIT ##########################################################
+LIT_ALTHOUGH    Although
+LIT_ALTHOUGH    even though
+LIT_ALTHOUGH    despite the fact that
+LIT_ALTHOUGH    Nevertheless
+LIT_ALTHOUGH    Furthermore
+LIT_ALTHOUGH    though
+LIT_ALTHOUGH    although
+LIT_ALTHOUGH    while
+LIT_BETTER    less well
+LIT_BETTER+3    better
+LIT_BETTER+2    more effectively
+LIT_CONCLUSION    thusly
+LIT_CONCLUSION    therefore
+LIT_CONCLUSION     as a result
+LIT_CONCLUSION    clearly
+LIT_CONCLUSION    obviously
+LIT_CONCLUSION    thus
+LIT_FIRST    First,
+LIT_FIRST    To begin with,
+LIT_FIRST+4    
+LIT_FIRST    To start off with,
+LIT_FIRST    Primarily, 
+LIT_FIRST    For starters, 
+LIT_GOOD    significant
+LIT_GOOD    encouraging
+LIT_GOOD    outdated
+LIT_GOOD    good
+LIT_GOOD    excellent
+LIT_GOOD    useful
+LIT_GOOD    satisfactory
+LIT_GOOD    numerous
+LIT_GOOD    promising
+LIT_GREAT    minimal
+LIT_GREAT    great
+LIT_GREAT    profound
+LIT_GREAT    tremendous
+LIT_GREAT    limited
+LIT_GREAT_ADV    improbably
+LIT_GREAT_ADV    greatly
+LIT_GREAT_ADV    profoundly
+LIT_GREAT_ADV    tremendously
+LIT_GREAT_ADV    minimally
+LIT_INCREASING    increasing
+LIT_INCREASING    rising
+LIT_INCREASING    decreasing
+LIT_LAST    Finally,
+LIT_LAST    Lastly,
+LIT_LAST    In the end,
+LIT_LAST_MAYBE    
+LIT_LAST_MAYBE     LIT_LAST
+LIT_LAST_OR_MIDDLE    LIT_MIDDLE
+LIT_LAST_OR_MIDDLE     LIT_LAST
+LIT_LEADIN    By comparison, 
+LIT_LEADIN    In the opinions of many, 
+LIT_LEADIN    Certainly, 
+LIT_LEADIN+7    LIT_MIDDLE
+LIT_LEADIN    But, 
+LIT_LEADIN    In addition, 
+LIT_LEADIN    SCI_ADJ_ADV enough, 
+LIT_LEADIN    Without a doubt, 
+LIT_LEADIN    In the opinion of SCI_PEOPLE, 
+LIT_LEADIN    Predictably, 
+LIT_MIDDLE    Further,
+LIT_MIDDLE    Furthermore,
+LIT_MIDDLE    Continuing with this rationale,
+LIT_MIDDLE    Along these same lines,
+LIT_MIDDLE    Similarly,
+LIT_MIDDLE    On a similar level,
+LIT_MIDDLE    Next,
+LIT_MIDDLE_MAYBE+2    
+LIT_MIDDLE_MAYBE    LIT_MIDDLE
+LIT_MIDDLE_THREE+3      LIT_MIDDLE
+LIT_MIDDLE_THREE+4    
+LIT_MIDDLE_THRESS     Third,
+LIT_MIDDLE_TWO+4    
+LIT_MIDDLE_TWO     Second,
+LIT_MIDDLE_TWO+3     LIT_MIDDLE
+LIT_OFTEN    never
+LIT_OFTEN    always
+LIT_OFTEN    mostly
+LIT_OFTEN    generally
+LIT_OFTEN    regularly
+LIT_OFTEN    continuously
+LIT_OFTEN    largely
+LIT_OFTEN    entirely
+LIT_OFTEN    often
+LIT_OFTEN    usually
+LIT_OFTEN    rarely
+LIT_OMIT    withhold
+LIT_OMIT    skip
+LIT_OMIT    leave out
+LIT_OMIT    omit
+LIT_REVERSAL    on the other hand
+LIT_REVERSAL    contrarily
+LIT_REVERSAL    unfortunately
+LIT_REVERSAL    nevertheless
+LIT_REVERSAL    however
+LIT_REVERSAL_MAYBE    
+LIT_REVERSAL_MAYBE    LIT_REVERSAL,
+
+
+#### MEASURABLE ###################################################
+MEASURABLE_SYSTEM    intelligent tutoring system ITS
+MEASURABLE_SYSTEM    Spatial Decision Support System SDSS
+MEASURABLE_SYSTEM    Decision Support System DSS
+MEASURABLE_SYSTEM    relation database with object oriented structures 
+MEASURABLE_SYSTEM    Hospital Information Systems
+MEASURABLE_SYSTEM    Web server with Online-Questionaires
+
+
+
+#### MORE #########################################################
+MORE_IMPORTANT_THAN    not as important as
+MORE_IMPORTANT_THAN    MORE important than
+
+
+#### MULTIPLE #####################################################
+MULTIPLE_VERBING    doubling
+MULTIPLE_VERBING    increasing
+MULTIPLE_VERBING    tripling
+MULTIPLE_VERBING    reducing
+MULTIPLE_VERBING    quadrupling
+
+
+#### NETWORK ######################################################
+NETWORK_TYPE    Internet
+NETWORK_TYPE    network of PAPER_CLIENT_P
+
+
+#### NOUN #########################################################
+NOUN_PROBLEM    SCI_A_PROBLEM_ADJ problem 
+
+
+#### OBJECTIVE ####################################################
+OBJECTIVE_MISC    SCI_OBJECTIVE of PAPER_OBJECTIVE
+OBJECTIVE_MISC    SCI_OPTIMIZATION of PAPER_OBJECTIVE
+OBJECTIVE_MISC    PAPER_OBJECTIVE
+
+
+#### OPTIMIZING ###################################################
+WRD_OPTIMIZING    using the advantages
+WRD_OPTIMIZING    removing difficulties
+WRD_OPTIMIZING    improving
+WRD_OPTIMIZING    optimizing
+
+
+#### OUTPUT #######################################################
+OUTPUT_DATA    data used as output for PAPER_CLIENT_P
+OUTPUT_DATA    data used as output for PAPER_SERVER_S
+OUTPUT_DATA    data used as output for PAPER_SYSNAME_LONG
+OUTPUT_DATA    output data
+
+
+#### PROBE ########################################################
+PROBE_VERB    discover
+PROBE_VERB    consider
+PROBE_VERB    better understand
+PROBE_VERB    understand
+PROBE_VERB    probe
+PROBE_VERB    test
+PROBE_VERB    examine
+PROBE_VERB    investigate
+PROBE_VERBED    discovered
+PROBE_VERBED    considered
+PROBE_VERBED    have a better understanding
+PROBE_VERBED    understood
+PROBE_VERBED    probed
+PROBE_VERBED    tested
+PROBE_VERBED    examined
+PROBE_VERBED    investigated
+
+
+#### PROCESSOR ####################################################
+PROCESSOR_ITEM     PROCESSOR_TYPE
+PROCESSOR_ITEMS     PROCESSOR_TYPEs
+
+
+#### PROVE ########################################################
+PROVE_THAT    exhibit that
+PROVE_THAT    show that
+PROVE_THAT    make manifest that
+PROVE_THAT    demonstrate that
+PROVE_THAT    prove that
+
+
+#### WRD_RELATED ######################################################
+WRD_RELATED    similar
+WRD_RELATED    related
+
+
+#### SCI ##########################################################
+# SCI_ADJ unfortunate
+SCI_ADJ    robust
+SCI_ADJ    typical
+SCI_ADJ    practical
+SCI_ADJ    unproven
+SCI_ADJ    extensive
+SCI_ADJ    appropriate
+SCI_ADJ    confirmed
+SCI_ADJ    theoretical
+SCI_ADJ    technical
+SCI_ADJ    structured
+SCI_ADJ    natural
+SCI_ADJ    essential
+SCI_ADJ    private
+SCI_ADJ    intuitive
+SCI_ADJ    important
+SCI_ADJ    significant
+SCI_ADJ    key
+SCI_ADJ_ADV    clearly
+SCI_ADJ_ADV    obviously
+SCI_ADJ_ADV    urgently
+# SCI_ADJ_ADV dubiously
+# SCI_ADJ_ADV daringly
+# SCI_ADJ_ADV shockingly
+# SCI_ADJ_ADV daringly
+# SCI_ADJ_ADV famously
+SCI_ADJ_ADV    predictably
+# SCI_ADJ compelling
+SCI_ADJ_ADV    particularly
+SCI_ADV    clearly
+SCI_ADV    apparently
+SCI_ADV    perhaps
+SCI_ADV    evidently
+# SCI_ADV ostensibly
+SCI_ADV    obviously
+WRD_AFFECT      has caused
+WRD_AFFECT      has an influence on
+WRD_AFFECT      affect
+SCI_ANALYZE     illuminate
+SCI_ANALYZE     analyze
+SCI_ANALYZE     explain
+SCI_ANALYZE     decompose
+SCI_APPLICATION    application
+SCI_APPLIED    applied
+SCI_APPLIED_TO applied to
+SCI_APPROACH    method
+SCI_APPROACH    solution
+SCI_APPROACH    approach
+SCI_APPROACH_PL    solutions
+SCI_APPROACH_PL    methods
+SCI_APPROACH_PL    approaches
+SCI_BUZZWORD_ADJ    secure
+# SCI_BUZZWORD_ADJ interposable
+# SCI_BUZZWORD_ADJ cacheable
+# SCI_BUZZWORD_ADJ perfect
+# SCI_BUZZWORD_ADJ electronic
+# SCI_BUZZWORD_ADJ pervasive
+SCI_BUZZWORD_ADJ    large-scale
+# SCI_BUZZWORD_ADJ Bayesian
+SCI_BUZZWORD_ADJ    multiplattform
+SCI_BUZZWORD_ADJ    authenticated
+# SCI_BUZZWORD_ADJ peer-to-peer
+# SCI_BUZZWORD_ADJ game-theoretic
+SCI_BUZZWORD_ADJ    knowledge-based
+SCI_BUZZWORD_ADJ    offline access on mobile device and online
+SCI_BUZZWORD_ADJ    relational
+SCI_BUZZWORD_ADJ    compact
+# SCI_BUZZWORD_ADJ ubiquitous
+SCI_BUZZWORD_ADJ    measurable
+SCI_BUZZWORD_ADJ    ``fuzzy''
+SCI_BUZZWORD_ADJ    embedded
+# SCI_BUZZWORD_ADJ constant-time
+SCI_BUZZWORD_ADJ    client-server
+SCI_BUZZWORD_ADJ    efficient
+SCI_BUZZWORD_ADJ    reliable
+SCI_BUZZWORD_ADJ    replicated
+# SCI_BUZZWORD_ADJ low-energy
+SCI_BUZZWORD_ADJ    low-cost
+SCI_BUZZWORD_ADJ    OpenSource
+SCI_BUZZWORD_ADJ    wireless
+SCI_BUZZWORD_ADJ    modular
+SCI_BUZZWORD_ADJ    autonomous
+SCI_BUZZWORD_ADJ    retrospective study related
+SCI_BUZZWORD_ADJ    distributed
+SCI_BUZZWORD_ADJ    flexible
+SCI_BUZZWORD_ADJ    extensible
+# SCI_BUZZWORD_ADJ amphibious
+# SCI_BUZZWORD_ADJ metamorphic
+# SCI_BUZZWORD_ADJ ambimorphic
+#SCI_BUZZWORD_ADJ permutable
+SCI_BUZZWORD_ADJ    generalisable
+SCI_BUZZWORD_ADJ    adaptive
+SCI_BUZZWORD_ADJ    self-learning
+SCI_BUZZWORD_ADJ    trainable
+# SCI_BUZZWORD_ADJ ``smart''
+SCI_BUZZWORD_ADJ    classical
+SCI_BUZZWORD_ADJ    user-driven
+SCI_BUZZWORD_ADJ    event-driven
+# SCI_BUZZWORD_ADJ read-write
+# SCI_BUZZWORD_ADJ encrypted profile access
+SCI_BUZZWORD_ADJ    highly-available decision support
+SCI_BUZZWORD_ADJ    secure
+# SCI_BUZZWORD_ADJ interposable
+# SCI_BUZZWORD_ADJ cacheable
+# SCI_BUZZWORD_ADJ perfect
+# SCI_BUZZWORD_ADJ electronic
+# SCI_BUZZWORD_ADJ pervasive
+SCI_BUZZWORD_ADJ    large-scale
+# SCI_BUZZWORD_ADJ Bayesian
+SCI_BUZZWORD_ADJ    multiplattform
+SCI_BUZZWORD_ADJ    authenticated
+SCI_BUZZWORD_ADJ    interactive
+SCI_BUZZWORD_ADJ    heterogeneous
+SCI_BUZZWORD_ADJ    homogeneous
+SCI_BUZZWORD_ADJ    collaborative
+SCI_BUZZWORD_ADJ    concurrent
+SCI_BUZZWORD_ADJ    probabilistic
+SCI_BUZZWORD_ADJ    mobile
+# SCI_BUZZWORD_ADJ wearable
+# SCI_BUZZWORD_ADJ semantic
+SCI_BUZZWORD_ADJ    real-time
+SCI_BUZZWORD_ADJ    cooperative
+SCI_BUZZWORD_ADJ    decentralized
+SCI_BUZZWORD_ADJ    scalable
+# SCI_BUZZWORD_ADJ certifiable
+SCI_BUZZWORD_ADJ    robust
+# SCI_BUZZWORD_ADJ signed
+# SCI_BUZZWORD_ADJ virtual
+# SCI_BUZZWORD_ADJ lossless
+# SCI_BUZZWORD_ADJ psychoacoustic
+# SCI_BUZZWORD_ADJ empathic
+SCI_BUZZWORD_ADJ    optimal
+SCI_BUZZWORD_ADJ    stable
+# SCI_BUZZWORD_ADJ peer-to-peer
+# SCI_BUZZWORD_ADJ game-theoretic
+SCI_BUZZWORD_ADJ    knowledge-based
+SCI_BUZZWORD_ADJ    offline access on mobile device and online
+SCI_BUZZWORD_ADJ    relational
+SCI_BUZZWORD_ADJ    compact
+# SCI_BUZZWORD_ADJ ubiquitous
+SCI_BUZZWORD_ADJ    measurable
+SCI_BUZZWORD_ADJ    ``fuzzy''
+SCI_BUZZWORD_ADJ    embedded
+# SCI_BUZZWORD_ADJ constant-time
+SCI_BUZZWORD_ADJ    client-server
+SCI_BUZZWORD_ADJ    efficient
+SCI_BUZZWORD_ADJ    reliable
+SCI_BUZZWORD_ADJ    replicated
+# SCI_BUZZWORD_ADJ low-energy
+SCI_BUZZWORD_ADJ    low-cost
+SCI_BUZZWORD_ADJ    OpenSource
+SCI_BUZZWORD_ADJ    wireless
+SCI_BUZZWORD_ADJ    modular
+SCI_BUZZWORD_ADJ    autonomous
+SCI_BUZZWORD_ADJ    retrospective study related
+SCI_BUZZWORD_ADJ    distributed
+SCI_BUZZWORD_ADJ    flexible
+SCI_BUZZWORD_ADJ    extensible
+# SCI_BUZZWORD_ADJ amphibious
+# SCI_BUZZWORD_ADJ metamorphic
+# SCI_BUZZWORD_ADJ ambimorphic
+#SCI_BUZZWORD_ADJ permutable
+SCI_BUZZWORD_ADJ    generalisable
+SCI_BUZZWORD_ADJ    adaptive
+SCI_BUZZWORD_ADJ    self-learning
+SCI_BUZZWORD_ADJ    trainable
+# SCI_BUZZWORD_ADJ ``smart''
+SCI_BUZZWORD_ADJ    classical
+SCI_BUZZWORD_ADJ    user-driven
+SCI_BUZZWORD_ADJ    event-driven
+# SCI_BUZZWORD_ADJ read-write
+# SCI_BUZZWORD_ADJ encrypted profile access
+SCI_BUZZWORD_ADJ    highly-available decision support
+SCI_BUZZWORD_ADJ_MULTI+5    SCI_BUZZWORD_ADJ
+SCI_BUZZWORD_ADJ_MULTI+10    SCI_BUZZWORD_ADJ, SCI_BUZZWORD_ADJ
+SCI_BUZZWORD_ADJ_MULTI    SCI_BUZZWORD_ADJ, SCI_BUZZWORD_ADJ, SCI_BUZZWORD_ADJ
+SCI_BUZZWORD_NOUN    ICT devices
+SCI_BUZZWORD_NOUN    communication
+SCI_BUZZWORD_NOUN    technology
+SCI_BUZZWORD_NOUN    algorithms
+SCI_BUZZWORD_NOUN    theory based approach
+SCI_BUZZWORD_NOUN    methodologies
+SCI_BUZZWORD_NOUN    information
+SCI_BUZZWORD_NOUN    models
+# SCI_BUZZWORD_NOUN archetypes
+SCI_BUZZWORD_NOUN    configurations
+SCI_BUZZWORD_NOUN    modalities
+SCI_B_LEADIN_C    Ultimately, 
+SCI_B_LEADIN_C    As a result, 
+SCI_B_LEADIN_C    Finally, 
+SCI_B_LEADIN_C    In the end, 
+SCI_COMPLEXNOUN    uncertainty
+SCI_COMPLEXNOUN    change
+SCI_COMPLEXNOUN    simplicity
+# SCI_COMPLEXNOUN paradox
+SCI_COMPLEXNOUN    incoherence
+SCI_COMPLEXNOUN    complexity
+SCI_COMPLEXNOUN    contradiction
+SCI_DEVELOPMENT development
+SCI_DISPROVE could characterize the limitations
+SCI_DISPROVE could disprove several assumptions for PAPER_OBJECTIVE  
+SCI_DISPROVE could disprove several assumptions for PAPER_OBJECTIVE  
+SCI_DISPROVE could identify problems
+SCI_DRAWBACK  shortcoming
+# SCI_DRAWBACK drawback
+SCI_DRAWBACK    disadvantage
+SCI_FIELD    fuzzy logic
+SCI_FIELD    stochastic networks
+SCI_FIELD    complexity theory
+SCI_FIELD    artificial intelligence
+SCI_FIELD    machine learning
+SCI_FIELD    SCI_BUZZWORD_ADJ SCI_MY_FIELD
+SCI_FIELD    SCI_MATH_ADJ SCI_MY_FIELD
+# SCI_FIELD hardware and architecture
+SCI_FIELD    networking of PAPER_SYSNAME nodes
+SCI_GENERIC_NOUN SCI_BUZZWORD_NOUN
+SCI_GENERIC_NOUN PAPER_PROBLEM
+SCI_GENERIC_NOUN SCI_MY_FIELD
+SCI_GENERIC_NOUN PAPER_THEORY
+SCI_GENERIC_NOUN SCI_SOLUTION
+SCI_GENERIC_NOUN SCI_MY_TODO
+SCI_GOAL    purpose
+SCI_GOAL    ambition
+SCI_GOAL    aim
+SCI_GOAL    intent
+SCI_GOAL    mutual benefit
+SCI_GOAL    goal
+SCI_GOAL    mission
+SCI_GOAL    objective
+SCI_GOAL_ACHIEVE    realize
+SCI_GOAL_ACHIEVE    fulfill
+SCI_GOAL_ACHIEVE    accomplish
+SCI_GOAL_ACHIEVE    achieve
+SCI_GOAL_OR_PROBLEM    SCI_GOAL
+SCI_GOAL_OR_PROBLEM    SCI_PROBLEM
+SCI_GOAL_PL    mutual benefits
+SCI_GOAL_PL    goals
+SCI_GOAL_PL    missions
+SCI_GOAL_PL    objectives
+SCI_GOAL_PL    purposes
+SCI_GOAL_PL    ambitions
+SCI_IDEAL    distinct
+SCI_IDEAL    ideal
+SCI_IDEAL    optimal
+SCI_IDEAL    perfect
+SCI_IDEAL    different
+SCI_IMPLEMENTATION    implementation
+SCI_IMPLEMENTATION    realization
+SCI_IMPLEMENTATION    application of PAPER_SYSTEM_VERSION
+SCI_IN_THIS_PAPER    SCI_MY_FIELD
+SCI_ABS_ACT lead to
+SCI_ABS_ACT assume
+SCI_ACT	understanding of
+SCI_ACT consideration of
+SCI_MATH_ADJ    integrable
+# SCI_MATH_ADJ wireless
+# SCI_MATH_ADJ wired
+SCI_MATH_ADJ    separated
+# SCI_MATH_ADJ saturated
+SCI_MATH_ADJ    replicated
+SCI_MATH_ADJ    mutually exclusive
+SCI_MATH_ADJ    noisy
+SCI_MATH_ADJ    fuzzy
+SCI_MATH_ADJ    random
+SCI_MATH_ADJ    stochastic
+SCI_MATH_ADJ    discrete
+SCI_MATH_ADJ    parallel
+SCI_MATH_ADJ    distributed
+SCI_MATH_ADJ    partitioned
+# SCI_MATH_ADJ exhaustive
+# SCI_MATH_ADJ Markov
+# SCI_MATH_ADJ Bayesian
+SCI_MATH_ADJ    randomized
+SCI_MATH_ADJ    measurable in a topological space as an input domain
+SCI_MATH_ADJ+3     SCI_MATH_ADV SCI_MATH_ADJ
+SCI_MATH_ADJ    SCI_MATH_ADJ, SCI_MATH_ADJ
+SCI_MATH_ADJ    disjoint
+SCI_MATH_ADJ    independent
+SCI_MATH_ADV    mutually
+SCI_MATH_ADV    collectively
+# SCI_MATH_ADV extremely
+SCI_MATH_ADV    stochastic independently
+SCI_MATH_ADV    topologically
+SCI_MATH_ADV    provably
+SCI_MATH_ADV    computationally
+SCI_MATH_ADV    randomly
+SCI_MATH_ADV    related to membership function
+SCI_MATH_NOUN    Backpropagation networks
+SCI_MATH_NOUN    artificial neural networks
+SCI_MATH_NOUN    stochastic network
+SCI_MATH_NOUN    probability measure
+SCI_MATH_NOUN    Kohonen networks
+SCI_MATH_VERBING    replicating
+SCI_MATH_VERBING    separating
+SCI_MATH_VERBING    decoupling
+SCI_MY_SYSTEM PAPER_SYSTYPE_LONG
+SCI_MY_SYSTEM PAPER_SYSNAME_LONG
+SCI_MATH_VERBING    composing
+SCI_OBJECTIVE    objective
+SCI_OBJECTIVE    aim
+SCI_OBJECTIVE    intended realization 
+SCI_OPTIMIZATION    improvement
+SCI_OPTIMIZATION    optimization
+SCI_OPTIMIZATION    iterative PAPER_METHODOLOGY 
+SCI_OPTIMIZE    optimize
+SCI_OPTIMIZE    improve
+SCI_OPTIMIZE    use the advantages 
+SCI_OPTIMIZE    remove difficulties 
+SCI_COULD_BE_OPTIMIZED    could be optimized
+SCI_COULD_BE_OPTIMIZED    could be improved
+SCI_COULD_BE_OPTIMIZED    could use the advantages 
+SCI_OPTIMIZE    remove difficulties 
+SCI_OUR_SYSTEM    PAPER_SYSNAME
+SCI_OUR_SYSTEM    our SCI_SYSTEM
+SCI_PROOF_PROP SCI_COULD_BE_OPTIMIZED for PAPER_OBJECTIVE 
+SCI_PRESENT_VERB    construct
+SCI_PRESENT_VERB    describe
+SCI_PRESENT_VERB    explore
+SCI_PRESENT_VERB    introduce
+SCI_PRESENT_VERB    propose
+SCI_PRESENT_VERB    motivate
+SCI_PRESENT_VERB    present
+SCI_PRESENT_VERBED    constructed
+SCI_PRESENT_VERBED    described
+SCI_PRESENT_VERBED    explored
+SCI_PRESENT_VERBED    introduced
+SCI_PRESENT_VERBED    proposed
+SCI_PRESENT_VERBED    motivated
+SCI_PRESENT_VERBED    presented
+SCI_PRESENT_VERBING    introducing
+SCI_PRESENT_VERBING    proposing
+SCI_PRESENT_VERBING    motivating
+SCI_PRESENT_VERBING    constructing
+SCI_PRESENT_VERBING    describing
+SCI_PRESENT_VERBING    exploring
+SCI_PRESENT_VERBING    presenting
+SCI_PROBLEM    challenge
+SCI_PROBLEM    question
+SCI_PROBLEM    problem
+SCI_PROBLEM    issue
+SCI_PROBLEM    obstacle
+SCI_PROBLEM    grand challenge
+SCI_PROBLEM_PL    challenges
+SCI_PROBLEM_PL    questions
+SCI_PROBLEM_PL    problems
+SCI_PROBLEM_PL    issues
+SCI_PROBLEM_PL    obstacles
+SCI_PROBLEM_PL    grand challenges
+SCI_PROBLEM_SOLVE    answer
+SCI_PROBLEM_SOLVE    fix
+SCI_PROBLEM_SOLVE    address
+SCI_PROBLEM_SOLVE    solve
+SCI_PROBLEM_SOLVE    overcome
+SCI_PROBLEM_SOLVE    surmount
+SCI_PROBLEM_SOLVED    surmounted
+SCI_PROBLEM_SOLVED    answered
+SCI_PROBLEM_SOLVED    addressed
+SCI_PROBLEM_SOLVED    fixed
+SCI_PROBLEM_SOLVED    solved
+SCI_PROBLEM_SOLVED    overcame
+SCI_PROVE_VERB    disprove
+SCI_PROVE_VERB    validate
+SCI_PROVE_VERB    demonstrate
+SCI_PROVE_VERB    verify
+SCI_PROVE_VERB    confirm
+SCI_PROVE_VERB    disconfirm
+SCI_PROVE_VERB    argue
+SCI_PROVE_VERB    prove
+SCI_PROVE_VERB    show
+SCI_PROVE_VERBED    disproved
+SCI_PROVE_VERBED    validated
+SCI_PROVE_VERBED    demonstrated
+SCI_PROVE_VERBED    verified
+SCI_PROVE_VERBED    confirmed
+SCI_PROVE_VERBED    disconfirmed
+SCI_PROVE_VERBED    argued
+SCI_PROVE_VERBED    proved
+SCI_PROVE_VERBED    showed
+SCI_PROVE_VERBING    disproving
+SCI_PROVE_VERBING    validating
+SCI_PROVE_VERBING    demonstrating
+SCI_PROVE_VERBING    verifying
+SCI_PROVE_VERBING    confirming
+SCI_PROVE_VERBING    disconfirming
+SCI_PROVE_VERBING    arguing
+SCI_PROVE_VERBING    proving
+SCI_PROVE_VERBING    showing
+SCI_PROVIDES    generates
+SCI_PROVIDES    delivers
+SCI_PROVIDES    provides
+SCI_PROVIDES    deploys
+# PAPER_SYSTEM_VERSION much-touted
+STAT_ADJ    foremost
+STAT_ADJ    well-known
+STAT_ADJ    little-known
+STAT_ADJ    acclaimed
+SCI_SYNTETIC_ADJ    symbiotic
+SCI_SYNTETIC_ADJ    combining
+SCI_SYNTETIC_ADJ    synergetic
+SCI_SYSTEM    SCI_APPROACH
+SCI_SYSTEM    algorithm
+SCI_SYSTEM    system
+SCI_SYSTEM    framework
+SCI_SYSTEM    heuristic
+SCI_SYSTEM    application
+SCI_SYSTEM    methodology
+SCI_SYSTEM_PL    applications
+SCI_SYSTEM_PL    methodologies
+SCI_SYSTEM_PL    SCI_APPROACH_PL
+SCI_SYSTEM_PL    algorithms
+SCI_SYSTEM_PL    systems
+SCI_SYSTEM_PL    frameworks
+SCI_SYSTEM_PL    heuristics
+SCI_SYS_VERB    manage
+SCI_SYS_VERB+10    SCI_VERB
+SCI_SYS_VERB    locate
+SCI_SYS_VERB    store
+SCI_SYS_VERB    prevent
+SCI_SYS_VERB    allow
+SCI_SYS_VERB    provide
+SCI_SYS_VERB    control
+SCI_SYS_VERB    request
+SCI_SYS_VERB    cache
+SCI_SYS_VERB    create
+SCI_SYS_VERB    learn
+SCI_SYS_VERB    observe
+SCI_SYS_VERBED    managed
+SCI_SYS_VERBED+10    SCI_VERBED
+SCI_SYS_VERBED    located
+SCI_SYS_VERBED    stored
+SCI_SYS_VERBED    prevented
+SCI_SYS_VERBED    allowed
+SCI_SYS_VERBED    provided
+SCI_SYS_VERBED    controlled
+SCI_SYS_VERBED    requested
+SCI_SYS_VERBED    cached
+SCI_SYS_VERBED    created
+SCI_SYS_VERBED    learned
+SCI_SYS_VERBED    observed
+SCI_SYS_VERBING+10    SCI_VERBING
+SCI_SYS_VERBING    locating
+SCI_SYS_VERBING    storing
+SCI_SYS_VERBING    preventing
+SCI_SYS_VERBING    allowing
+SCI_SYS_VERBING    providing
+SCI_SYS_VERBING    controlling
+SCI_SYS_VERBING    requesting
+SCI_SYS_VERBING    caching
+SCI_SYS_VERBING    creating
+SCI_SYS_VERBING    learning
+SCI_SYS_VERBING    observing
+SCI_SYS_VERBING    managing
+SCI_SYS_VERBION    provision
+SCI_SYS_VERBION    location
+SCI_SYS_VERBION    storage
+SCI_SYS_VERBION    creation
+SCI_SYS_VERBION    observation
+SCI_SYS_VERBION    management
+SCI_SYS_VERBION+10    SCI_VERBION
+SCI_SYS_VERBION    prevention
+SCI_SYS_VERBION    allowance
+SCI_SYS_VERBS    caches
+SCI_SYS_VERBS    creates
+SCI_SYS_VERBS    learns
+SCI_SYS_VERBS    observes
+SCI_SYS_VERBS    manages
+SCI_SYS_VERBS+10    SCI_VERBS
+SCI_SYS_VERBS    locates
+SCI_SYS_VERBS    stores
+SCI_SYS_VERBS    prevents
+SCI_SYS_VERBS    allows
+SCI_SYS_VERBS    provides
+SCI_SYS_VERBS    controls
+SCI_SYS_VERBS    requests
+SCI_THING+5    PAPER_OBJECTIVE 
+SCI_THING+5    PAPER_PRECONDITION 
+SCI_THING+5    PAPER_PROBLEM 
+SCI_THING+5    SCI_SOLUTION 
+SCI_THING+5    PAPER_METHOD_IMPROVEMENT
+SCI_THING+5    PAPER_CLIENT_P
+SCI_THING+5    PAPER_SERVER_S decision support server
+SCI_THING+5    PAPER_METHODOLOGY 
+SCI_THING+5    SCI_A_PROBLEM_ADJ approach
+SCI_THING+5    SCI_MY_TODO
+SCI_THING+5    SCI_MY_METHOD
+SCI_THING+5    SCI_MY_FIELD
+SCI_THING+5    PAPER_PROBLEM 
+SCI_THING+5    PAPER_THEORY
+SCI_THING+5    SCI_MY_RESULT 
+SCI_THING    SCI_THING_P
+SCI_THING    SCI_THING_S
+SCI_THING_HAS    SCI_THING_P have
+SCI_THING_HAS    SCI_THING_S has
+SCI_THING_P    systems for SCI_MY_TODO
+# P=Plural word S=Singular words
+SCI_THING_S    SCI_IMPROVED_SYSTEM
+SCI_THING_S    PAPER_SYSNAME_LONG
+SCI_VERB    synthesize
+SCI_VERB    visualize
+SCI_VERB    study
+SCI_VERB    emulate
+SCI_VERB    simulate
+SCI_VERB    construct
+SCI_VERB    evaluate
+SCI_VERB    deploy
+SCI_VERB    explore
+SCI_VERB    enable
+SCI_VERB    develop
+SCI_VERB    refine
+SCI_VERB    investigate
+SCI_VERB    analyze
+SCI_VERB    measure
+SCI_VERB    improve
+SCI_VERBED    synthesized
+SCI_VERBED    visualized
+SCI_VERBED    studied
+SCI_VERBED    emulated
+SCI_VERBED    simulated
+SCI_VERBED    constructed
+SCI_VERBED    evaluated
+SCI_VERBED    deployed
+SCI_VERBED    explored
+SCI_VERBED    enabled
+SCI_VERBED    harnessed
+SCI_VERBED    developed
+SCI_VERBED    refined
+SCI_VERBED    investigated
+SCI_VERBED    analyzed
+SCI_VERBED    improved
+SCI_VERBING    investigating
+SCI_VERBING    improving
+SCI_VERBING    analyzing
+SCI_VERBING    constructing
+SCI_VERBING    simulating
+SCI_VERBING    evaluating
+SCI_VERBING    emulating
+SCI_VERBING    deploying
+SCI_VERBING    synthesizing
+SCI_VERBING    visualizing
+SCI_VERBING    studying
+SCI_VERBING    harnessing
+SCI_VERBING    enabling
+SCI_VERBING    exploring
+SCI_VERBING    controlling
+SCI_VERBING    developing
+SCI_VERBING    refining
+SCI_VERBING    architecting
+SCI_VERBING_PL    interfering
+SCI_VERBING_PL    connecting
+SCI_VERBING_PL    agreeing
+SCI_VERBING_PL    colluding
+SCI_VERBING_PL    cooperating
+SCI_VERBING_PL    synchronizing
+SCI_VERBING_PL    interacting
+SCI_VERBING_PL    collaborating
+SCI_VERBION    construction
+SCI_VERBION    evaluation
+SCI_VERBION    deployment
+SCI_VERBION    synthesis
+SCI_VERBION    visualization
+SCI_VERBION    study
+SCI_VERBION    exploration
+SCI_VERBION    development
+SCI_VERBION    refinement
+SCI_VERBION    investigation
+SCI_VERBION    analysis
+SCI_VERBION    improvement
+# SCI_VERBION emulation
+SCI_VERBION    simulation
+SCI_VERBS    explores
+SCI_VERBS    enables
+SCI_VERBS    develops
+SCI_VERBS    refines
+SCI_VERBS    investigates
+SCI_VERBS    analyzes
+SCI_VERBS    improves
+SCI_VERBS    emulates
+SCI_VERBS    simulates
+SCI_VERBS    constructs
+SCI_VERBS    evaluates
+SCI_VERBS    deploys
+SCI_VERBS    synthesizes
+SCI_VERBS    visualizes
+SCI_VERBS    studies
+SCI_VERB_PL    collaborate
+SCI_VERB_PL    interfere
+SCI_VERB_PL    connect
+SCI_VERB_PL    agree
+SCI_VERB_PL    collude
+SCI_VERB_PL    cooperate
+SCI_VERB_PL    synchronize
+SCI_VERB_PL    interact
+
+
+#### SOFTWARE #####################################################
+SOFTWARE_ADJ     virtual
+SOFTWARE_ADJ     traditional
+SOFTWARE_ADJ     historical
+SOFTWARE_ADJ     effective
+SOFTWARE_ADJ     legacy
+SOFTWARE_SYSTEM     distributed system of WRD_SOFTWARE
+SOFTWARE_SYSTEM     operating system with WRD_SOFTWARE
+
+
+#### STAT #########################################################
+STAT_ADJ     mean
+STAT_ADJ     effective
+STAT_ADJ     average
+STAT_ADJ     expected
+
+
+#### THE ##########################################################
+THE_WILD    a partial chaotic spatio-temporal environment
+THE_WILD    a complex dynamic system
+THE_WILD    a controlled environment
+THE_WILD    a laboratory setting
+
+
+#### WRD ##########################################################
+WRD_ACCURATE    accurate
+WRD_ACCURATE    precise
+WRD_ACCURATE    clearly defined
+WRD_AMBITIOUS     overengineered
+WRD_AMBITIOUS     complex
+WRD_AMBITIOUS     experimental
+WRD_AMBITIOUS     novel
+WRD_AMBITIOUS     ambitious
+WRD_AMBITIOUS     unstable
+WRD_DIFFERENT    discreased
+# WRD_DIFFERENT degraded
+WRD_DIFFERENT    amplified
+WRD_DIFFERENT    exaggerated
+WRD_DIFFERENT    weakened
+# WRD_DIFFERENT muted
+# WRD_DIFFERENT duplicated
+WRD_DIFFERENT    improved
+WRD_DIFFICULT     WRD_DIFFICULT_X
+WRD_DIFFICULT     as DIFFICULT_X as EVAL_MODING
+WRD_DIFFICULT     more DIFFICULT_X than with previous systems
+WRD_DIFFICULT_X     difficult
+WRD_EMULATED    prototyped
+WRD_EMULATED    deployed
+WRD_EMULATED    emulated
+WRD_EMULATED    simulated
+WRD_EMULATING    emulating
+WRD_EMULATING    simulating
+WRD_EMULATING    deploying
+WRD_EMULATING    rolling out
+WRD_EMULATING_IT    simulating it in WRD_WARE
+WRD_EMULATING_IT    emulating it in WRD_WARE
+WRD_EMULATION     earlier deployment
+WRD_EMULATION     WARE emulation
+WRD_EMULATION     WARE ArticleGenerator
+WRD_EMULATION     WARE deployment
+WRD_EVALUATING     analyzing
+WRD_EVALUATING     evaluating
+WRD_EVALUATING     measuring
+WRD_FINDING      result
+WRD_FINDING      finding
+WRD_FINDING      outcome
+WRD_FINDING      discussion
+WRD_FINDING      technique
+WRD_HACKED      reprogrammed
+# HACKED   hacked
+WRD_HACKED       optimized
+WRD_HACKED      patched
+WRD_HACKED      distributed
+# WRD_HACKED   strengthened
+WRD_HACKED      autonomous
+WRD_HACKED      autogenerated
+WRD_HACKED      modified
+WRD_HACKED      refactored
+WRD_HARDWARE     processor
+WRD_HARDWARE      storage device
+WRD_HARDWARE     network type
+WRD_HARDWARE     memory
+WRD_HAS    has
+WRD_HAVE    have
+WRD_IMPACT      impact on
+WRD_IMPACT      effect on
+WRD_IMPACT      influence on
+WRD_IMPACT      inability to effect
+WRD_IMPACT      lack of influence on
+WRD_IMPROVED     improved
+WRD_IMPROVEMENT    degredation
+WRD_IMPROVEMENT    amplification
+WRD_IMPROVEMENT    improvement
+WRD_INSTRUMENTAL    essential
+WRD_INSTRUMENTAL    instrumental
+WRD_INSTRUMENTAL    crucial
+WRD_IN_ANALOGY_TO    in analogy to 
+WRD_LINKED      linked with a default interface
+WRD_LINKED      linked
+WRD_MAXIMIZING     minimizing
+WRD_MAXIMIZING     optimizing
+WRD_MAXIMIZING     improving
+WRD_MAXIMIZING     maximizing
+WRD_METHODOLOGY    methodology
+WRD_METHODOLOGY    approach
+WRD_METHODOLOGY    strategy
+WRD_METHODOLOGY    method
+WRD_MORE      even more
+WRD_MORE      more
+WRD_MORE      less
+WRD_NOTED     measured
+WRD_NOTED     characterized
+WRD_NOTED     noted
+WRD_NOTED     observed
+# WRD_PERFORMANCE throughput
+WRD_PERFORMANCE    latency
+WRD_PERFORMANCE    response time
+WRD_PERFORMANCE    performance
+WRD_PERSPECTIVE    perspective
+WRD_PERSPECTIVE    view
+WRD_PROVES     proves to the reader
+WRD_PROVES     illuminates
+WRD_PROVES     sheds light on 
+WRD_PROVES     proves
+WRD_PROVIDED      given
+WRD_PROVIDED      provided
+WRD_PROVIDES      gives
+WRD_PROVIDES      provides
+WRD_RAHMENBEDINGUNGEN    Rahmenbedingungen
+WRD_RELATED      previous
+WRD_RELATED      existing
+WRD_RELATED      prior
+WRD_RELATED      related
+WRD_REQUIRED    required
+WRD_REQUIRED    necessary
+WRD_REQUIRED    mandated
+WRD_SMOOTHER    smoother
+WRD_SMOOTHER    less discretized
+WRD_SMOOTHER    less jagged
+WRD_SMOOTHER    more jagged
+WRD_SUPPORTED     supported
+WRD_SUPPORTED     provides evidence
+WRD_TOOLCHAIN     a standard version of OSSYS_II
+WRD_TOOLCHAIN     OSSYS_I
+# TOOLCHAIN  GCC VERSION
+WRD_TOOLCHAIN     installation of OSSYS_III
+WRD_UNIQUE     expected
+WRD_UNIQUE     unique
+WRD_UNIQUE     conventional
+WRD_SOFTWARE OpenSource software
+WRD_WARE     interfaces between software components
+WRD_WARE     interfaces between OpenSource and commercial software
+WRD_WARE     software
+WRD_WARE     hardware
+WRD_WARE     GIS software
+SCI_WHAT      this WRD_FINDING
+SCI_WHAT      such a claim
+SCI_WHAT      such an approach
+SCI_WHAT such a problem solving strategy
+SCI_WHAT such a hypothesis
+SCI_WHAT_PL these algorithms
+SCI_WHAT_PL these applications of the problem solving strategy 
+SCI_WHAT_PL the discussion on this topic (see SYS_CITATION)
+SCI_WHAT_PL these results
+WRD_FINDING finding
+WRD_FINDING result
+</TEXTAREA>
+		    	</form>
+            </font>
+            </center>
+            <center>
+            <p></p>
+            </center>
+            <br>
+            </td>
+            <td>  
+<!--- inner input table ---></td>
+          </tr>
+        </tbody>
+      </table>
+<!--- outer table ---> </td>
+    </tr>
+  </tbody>
+</table>
+<script language="JavaScript1.2">
+	//----------------------------------------------------	
+	document.fInputForm.Title.value = top.vURL_Object.getName(document.location.href).toUpperCase();
+	var vInput  = document.fInputForm.GenText.value;
+	var vTitle  = document.fInputForm.Title.value;
+	document.fInputForm.Title.value = vTitle;
+	//----------------------------------------------------
+	if (top.vArticleGenerator.grammarfiles.preload_index <= top.vArticleGenerator.grammarfiles.rows) {
+		var vOutput = top.vArticleGenerator.import_grammar(vInput,vTitle);
+		top.vArticleGenerator.setTimeout("top.vArticleGenerator.grammarfiles.preload()",100);
+	} else {
+		//alert("No preload");
+		if (top.vArticleGenerator.wizzard.active > 0) {
+			top.vArticleGenerator.wizzard.load(vInput,vTitle);
+		}
+	}
+	//----------------------------------------------------
+	
+</script>
+
+
+<font size="2" face="Arial,Helvetica"><b>lauffähig in
+JavaScript-fähigen Browsern:</b> Netscape 7.0, Internet Explorer
+5.0, Opera 7.21, Konqueror</font>
+</center>
+</body>
+</html>
+                 

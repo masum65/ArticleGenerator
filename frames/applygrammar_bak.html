@@ -1,0 +1,44 @@
+<HTML>
+<HEAD>
+   <TITLE>Check Generate Document - ArticleGenerator</TITLE>
+<!-- 
+################################################# 
+# Check Generate Document- ArticleGenerator						
+# Javascript Software Package  				 
+# email: niehaus@uni-landau.de		
+# created               18.11.2013
+# last modifications    18.11.2013
+# Author:  My Name
+# GNU Public License 
+################################################# 
+-->
+</HEAD>
+<BODY bgcolor="#EEEEEE">
+<center>
+<font face="Arial,Helvetica">
+<!---Button: Start Wizzard ------- Button Link: startwizzard.html ----->
+<h1>Start Wizzard</h1>
+ <SCRIPT LANGUAGE="JavaScript">
+ 	var vMissingNonTerm = "";
+ 	var vRules = top.vArticleGenerator.rules;
+ 	vMissingNonTerm += vRules.missing_nonterm();
+ 	if (top.vArticleGenerator.textSource = "") {
+ 		top.vArticleGenerator.textSource = "% Generated File at SYS_DATE_NOW \n*STARTNODE_SECTIONS ";
+ 	}
+ 	vMissingNonTerm += vRules.parsenode.missing_nonterm(top.vArticleGenerator.textSource,vRules);
+ 	//alert("applygrammar0.html:29\nvMissingNonTerm="+vMissingNonTerm+"'");
+ 	if (vMissingNonTerm == "") {
+    	//top.main.document.location.href = "applygrammar.html";
+    	top.vArticleGenerator.setTimeout("top.main.document.location.href = 'frames/applygrammar.html'",100);	
+  
+    } else {
+        alert("GENERATOR WARNING: Some Non-Terminal Symbols are undefined - Please use Wizzard to define them!");
+        top.vArticleGenerator.wizzard.active = 1;
+ 		top.vArticleGenerator.wizzard.load(vMissingNonTerm,"MISSING");
+    }
+ </SCRIPT>
+	</font>
+</center>
+</BODY>
+</HTML>	
+	

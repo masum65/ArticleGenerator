@@ -1,0 +1,1177 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=utf8">
+</head>
+<body bgcolor="#ffffff" background="backgroundimage.jpg">
+<script language="JavaScript1.2">
+
+function removeComments()
+//###### removes Comments beginning with "#" in the column of line
+{
+ var vInput  = document.fInputForm.GenText.value;
+ var vTitle  = document.fInputForm.Title.value;
+ //alert(äbstract.html:18 - removeComments()\nvTitle="+vTitle);
+ var vOutput = top.vArticleGenerator.import_grammar(vInput,vTitle);
+ top.vArticleGenerator.grammarfiles.set_loaded(top.vURL_Object.getName(document.location.href));
+ document.fInputForm.GenText.value = vOutput;
+ alert('Import Grammar "'+vTitle+'" done!');
+} 
+
+</script>
+<br>
+<br>
+<center>
+<table border="1">
+  <tbody>
+    <tr bgcolor="#ffffff">
+      <td>
+      <table border="0">
+        <tbody>
+          <tr bgcolor="#ffffff">
+            <td><br>
+            </td>
+            <td>
+            <center><br>
+            <br>
+            <font size="+2" face="Arial,Helvetica">
+            <b>Load 
+ <script language="JavaScript1.2">
+    //---------------------------------------------------- 
+         document.write(top.vURL_Object.getName(document.location.href).toUpperCase());
+ //---------------------------------------------------- 
+    </script>
+            Grammar<br></b> <!-- action="#" -->
+       <form name="fInputForm"  onsubmit="document.location.href='showrules.html'">
+     <input type=button name="Import" value="Import Grammar" onchange="convertToUpperCase()" onclick="removeComments()"> 
+     <input type=text name="Title" value=äbstract"> 
+           <textarea name="GenText" cols="125" rows="50" >
+#############################################################################
+####### Words: Nouns Verbs Adjectives #######
+#############################################################################
+# (1) Define new Variables 
+#     - If you want to define a variable start you must start in the first column of the line
+#     - Use capital letters for the variables (Non-Terminal-Symbols) and underscore '_'
+#     - If you want to use Comments you must use '#' in the first column of the line not second col
+#     - As in LaTeX after '#' the rest of the line is a comment
+# (2) Multiline Variable Definitions start with the non-terminal Symbol SCI_OBJECTIVE in the first 
+#     column with "{" as an opening of the multiline defintion. The end of the multiline definition 
+#     is "}" in the first  line of the column, e.g.
+#SCI_OBJECTIVE {
+#   first line
+#   second line
+#   third line
+#}
+#     if the non-terminal symbol is not starting in the first column it will be used as a variable
+#     for replacing the symbol with rules of the grammar.
+# (3) End of Grammar File
+#     - there should be at least two empty lines at the end of each this file
+#     - this file will be concated to the grammar-File 'grammar.in' anytime you run createpaper.pl
+# (4) If you want to overwrite a definition of a non-terminal Symbol e.g. BIB_KEYWORDS
+#     use a starting ">" before non-terminal Symbol e.g
+#>BIB_KEYWORDS Risk, Resource
+#     overwriting should be used for the following non-terminal symbols
+#         - BIB_KEYWORDS
+#     
+#############################################################################
+
+WRD_HAVE haben
+WRD_HAS hat
+WRD_AND und
+IN_THIS_PART In diesem Abschnitt
+RELATED in Bezug auf
+WRD_IN_ANALOGY_TO in Analogie zu 
+
+LIT_ALTHOUGH Obwohl
+LIT_ALTHOUGH Ferner
+
+INPUT_DATA Eingabedaten
+INPUT_DATA Daten, die als Eingabe für PAPER_CLIENT_P
+INPUT_DATA Daten, die als Eingabe für PAPER_SERVER_S
+INPUT_DATA Daten, die als Eingabe für PAPER_SYSNAME_LONG
+
+OUTPUT_DATA Ausgabedaten
+OUTPUT_DATA Daten, die als Ausgabe für PAPER_CLIENT_P
+OUTPUT_DATA Daten, die als Ausgabe für PAPER_SERVER_S
+OUTPUT_DATA Daten, die als Ausgabe für PAPER_SYSNAME_LONG
+
+DISEASE+4 SCI_DISEASE 
+DISEASE vector-bourne diseases
+DISEASE non-communicable diseases
+
+SCI_PROVIDES bietet
+SCI_PROVIDES liefert
+SCI_PROVIDES erzeugt
+SCI_PROVIDES entfaltet
+
+SCI_ANALYSE ANALYSE
+ANALYZE  analysieren
+ANALYZE  erläutern
+ANALYZE  zerlegen
+ANALYZE  fokussieren
+
+SCI_APPLIED angewandte
+
+NOUN_PROBLEM SCI_A_PROBLEM_ADJ Problem 
+
+INTERPOLATION_MEASUREMENT MEASUREMENT of WRD_INTERPOLATION
+
+WRD_INTERPOLATION Interpolation
+WRD_INTERPOLATION Interpolation mit Splines
+WRD_INTERPOLATION multidimensionale Spline-Interpolation
+
+SCI_IN_THIS_PAPER SCI_MY_FIELD
+SCI_OBJECTIVE Ziel
+SCI_OBJECTIVE Zielsetzung
+OBJECTIVE_MISC PAPER_OBJECTIVE
+OBJECTIVE_MISC SCI_OBJECTIVE von PAPER_OBJECTIVE
+OBJECTIVE_MISC SCI_OPTIMIZATION von PAPER_OBJECTIVE
+
+
+SCI_OPTIMIZATION Verbesserung
+SCI_OPTIMIZATION Optimiearunge
+SCI_OPTIMIZATION iterative WRD_METHODOLOGY 
+
+WRD_OPTIMIZING improving
+WRD_OPTIMIZING optimizing
+WRD_OPTIMIZING removing difficulties
+WRD_OPTIMIZING using the advantages
+
+WRD_EFFICIENCY efficiency
+WRD_EFFICIENCY optimized procedures
+WRD_EFFICIENCY responsibility
+WRD_EFFICIENCY maintenance
+
+SCI_OPTIMIZE verbessern
+SCI_OPTIMIZE optimieren
+SCI_OPTIMIZE Schwierigkeiten reduzieren 
+SCI_OPTIMIZE zum Vorteil nutzen
+
+SCI_IMPLEMENTATION Implementation
+SCI_IMPLEMENTATION Realisation
+SCI_IMPLEMENTATION Anwendung von PAPER_SYSTEM_VERSION
+
+
+
+SCI_OBJECTIVE Zielsetzung
+SCI_OBJECTIVE Ziel
+SCI_OBJECTIVE intendierte Realisation 
+
+SCI_APPLICATION Anwendung
+
+METHODOLOGY Methodologie
+METHODOLOGY Methode
+METHODOLOGY Zugang
+METHODOLOGY Strategie
+
+ACCURATE genaue
+# ACCURATE wildly inaccurate
+ACCURATE präzise
+ACCURATE klar definierte
+
+REQUIRED gegegebene
+REQUIRED angeforderte
+REQUIRED notwendige
+
+WRD_PROVIDED   lieferte
+WRD_PROVIDED   gegebene
+
+WRD_PROVIDES   liefert
+WRD_PROVIDES   gibt
+
+WRD_PERSPECTIVE perspective
+WRD_PERSPECTIVE view
+
+CAN_BE_CHARACTERIZED_BY kann characterisiert werden über
+CAN_BE_CHARACTERIZED_BY zeigt die Eigenschaft, dass
+CAN_BE_CHARACTERIZED_BY liefert Antwortmechanismen, die
+
+FOLLOWS_SUIT  versucht den folgenden Anforderungen zu folgen
+FOLLOWS_SUIT  folgt direkt
+FOLLOWS_SUIT  liefert bisherige Arbeiten von
+
+Testen Sie einen neuen Browser mit automatischer Übersetzungsfunktion.Chrome herunterladenSchließen
+Übersetzer
+WRD_EMULATING emuliert
+WRD_EMULATING Simulation
+WRD_EMULATING Einsatz
+WRD_EMULATING Ausrollen
+
+WRD_EMULATING_IT Simulation in WRD_WARE
+WRD_EMULATING_IT emuliert es in WRD_WARE
+WRD_EMULATING_IT Einsatz von IT in THE_WILD
+
+WRD_EMULATING_THEM simulieren sie in WRD_WARE
+WRD_EMULATING_THEM emuliert sie in WRD_WARE
+WRD_EMULATING_THEM Bereitstellung in THE_WILD
+
+WRD_WARE Software
+WRD_WARE Hardware
+WRD_WARE GIS-Software
+WRD_WARE Opensource-Software
+WRD_WARE Schnittstellen zwischen Software-Komponenten
+WRD_WARE Schnittstellen zwischen Opensource und kommerzielle Software
+
+
+THE_WILD ein Labor Einstellung
+THE_WILD einer kontrollierten Umgebung
+THE_WILD eine teilweise chaotischen raum-zeitlichen Umfeld
+THE_WILD ein komplexes dynamisches System
+
+
+EVAL_WHO SCI_PEOPLE
+
+
+EVAL_VERBED instrumentierten
+EVAL_VERBED durchgeführt
+EVAL_VERBED durchgeführt
+EVAL_VERBED lief
+EVAL_VERBED ausgeführt
+EVAL_VERBED scripted
+
+EVAL_WHY_VERB beweisen
+EVAL_WHY_VERB Maßnahme
+EVAL_WHY_VERB quantifizieren
+
+SCI_DISPROVE könnte mehrere Annahmen widerlegen PAPER_OBJECTIVE
+SCI_DISPROVE könnte mehrere Annahmen widerlegen PAPER_OBJECTIVE
+SCI_DISPROVE könnte Probleme identifizieren
+SCI_DISPROVE könnten die Einschränkungen charakterisieren
+
+
+WRD_IMPACT Auswirkungen auf
+WRD_IMPACT Wirkung auf
+WRD_IMPACT Einfluss auf
+WRD_IMPACT Unfähigkeit, Wirkung
+WRD_IMPACT Mangel an Einfluss auf
+
+
+WRD_SMOOTHER glatter
+WRD_SMOOTHER weniger diskretisiert
+WRD_SMOOTHER mehr gezackte
+WRD_SMOOTHER weniger gezackt
+
+MEASURABLE_SYSTEM Web-Server mit Online-Fragen
+MEASURABLE_SYSTEM intelligenten Tutorensystem ITS
+MEASURABLE_SYSTEM Spatial Decision Support System SDSS
+MEASURABLE_SYSTEM Decision Support System DSS
+MEASURABLE_SYSTEM relationale Datenbank mit objektorientierten Strukturen
+MEASURABLE_SYSTEM Krankenhausinformationssysteme
+
+WRD_EMULATION WRD_WARE Emulation
+WRD_EMULATION WRD_WARE ArticleGenerator
+WRD_EMULATION WRD_WARE Einsatz
+WRD_EMULATION früher Einsatz
+
+WRD_PROVES beweist
+WRD_PROVES erweist sich der Lese
+WRD_PROVES leuchtet
+WRD_PROVES wirft ein Licht auf
+
+PROVE_THAT beweisen, dass
+PROVE_THAT zeigen, dass
+PROVE_THAT Ausstellung,
+PROVE_THAT zeigen, dass
+PROVE_THAT offenbaren, dass
+
+MORE_IMPORTANT_THAN wichtiger als
+MORE_IMPORTANT_THAN nicht so wichtig wie
+
+WRD_MAXIMIZING Maximierung
+WRD_MAXIMIZING Minimierung
+WRD_MAXIMIZING Optimierung
+WRD_MAXIMIZING Verbesserung
+
+WRD_IMPROVED verbessert
+
+WRD_MORE mehr
+WRD_MORE weniger
+WRD_MORE noch mehr
+
+WRD_AMBITIOUS ehrgeizig
+WRD_AMBITIOUS Roman
+WRD_AMBITIOUS experimentellen
+WRD_AMBITIOUS instabil
+WRD_AMBITIOUS komplexen
+WRD_AMBITIOUS overengineered
+
+WRD_NOTED merkt
+WRD_NOTED beobachtet
+WRD_NOTED gemessen
+WRD_NOTED gekennzeichnet
+
+WRD_EMULATED emuliert
+WRD_EMULATED simuliert
+WRD_EMULATED Prototyp
+WRD_EMULATED eingesetzt
+
+WRD_AFFECT beeinflussen
+WRD_AFFECT verursacht hat
+WRD_AFFECT hat einen Einfluss auf
+
+IMPROVE_VERB verbessern
+IMPROVE_VERB Anstieg
+# IMPROVE_VERB degradieren
+IMPROVE_VERB Amplify
+
+PROBE_VERB Sonde
+PROBE_VERB Test
+PROBE_VERB prüfen
+PROBE_VERB untersuchen
+PROBE_VERB entdecken
+PROBE_VERB betrachten
+PROBE_VERB besser zu verstehen
+PROBE_VERB verstehen
+PROBE_VERBED sondierten
+PROBE_VERBED getestet
+PROBE_VERBED sucht
+PROBE_VERBED sucht
+PROBE_VERBED entdeckt
+PROBE_VERBED als
+PROBE_VERBED haben ein besseres Verständnis
+PROBE_VERBED verstanden
+
+DIFFICULT_X schwierig
+# DIFFICULT_X beschwerliche
+# DIFFICULT_X belastende
+
+WRD_DIFFICULT DIFFICULT_X
+WRD_DIFFICULT als DIFFICULT_X als EVAL_MODING
+WRD_DIFFICULT DIFFICULT_X mehr als mit bisherigen Systemen
+
+SOFTWARE_SYSTEM Betriebssystem mit SOFTWARE
+SOFTWARE_SYSTEM verteilten System der SOFTWARE
+# SOFTWARE_SYSTEM Mesh-Netzwerk
+# SOFTWARE_SYSTEM SCI_THING
+
+WRD_EVALUATING Auswertung
+WRD_EVALUATING Mess
+WRD_EVALUATING Analyse
+
+HACK_VERBING Patching
+HACK_VERBING Refactoring
+HACK_VERBING Umprogrammierung
+# HACK_VERBING Extreme Programming
+# HACK_VERBING exokernelizing
+# HACK_VERBING microkernelizing
+HACK_VERBING Verteilung
+HACK_VERBING automatischen Generierung
+HACK_VERBING Automatisierung
+HACK_VERBING als autonome
+HACK_VERBING Instrumentierung
+HACK_VERBING Rapid Prototyping
+HACK_VERBING Überwachung
+
+# WRD_HACKED gehackt
+WRD_HACKED optimiert
+WRD_HACKED gepatcht
+WRD_HACKED umgestaltet
+WRD_HACKED umprogrammiert
+WRD_HACKED verteilt
+# WRD_HACKED gestärkt
+WRD_HACKED autonomen
+WRD_HACKED automatisch generierte
+WRD_HACKED geändert
+
+SOFTWARE_ADJ Erbe
+SOFTWARE_ADJ virtuellen
+SOFTWARE_ADJ traditionellen
+SOFTWARE_ADJ historischen
+SOFTWARE_ADJ wirksam
+
+MULTIPLE_VERBING verdoppelt
+MULTIPLE_VERBING Erhöhung
+MULTIPLE_VERBING Verdreifachung
+MULTIPLE_VERBING reduziert
+MULTIPLE_VERBING Vervierfachung
+
+WRD_EVALUATION Bewertung
+WRD_EVALUATION Performance-Analyse
+WRD_EVALUATION Auswertung PAPER_METHODOLOGY
+
+NETWORK_TYPE_N 2
+NETWORK_TYPE_N 10
+NETWORK_TYPE_N 100
+NETWORK_TYPE_N 1000
+
+NETWORK_TYPE Internet
+NETWORK_TYPE Netzwerk von PAPER_CLIENT_P
+
+
+SCI_BUZZWORD_NOUN Technologie
+SCI_BUZZWORD_NOUN Kommunikation
+SCI_BUZZWORD_NOUN Algorithmen
+SCI_BUZZWORD_NOUN Theorie basierenden Ansatz
+SCI_BUZZWORD_NOUN Methoden
+SCI_BUZZWORD_NOUN Informationen
+SCI_BUZZWORD_NOUN Modelle
+# SCI_BUZZWORD_NOUN Archetypen
+SCI_BUZZWORD_NOUN Konfigurationen
+SCI_BUZZWORD_NOUN Modalitäten
+SCI_BUZZWORD_NOUN IKT-Geräten
+# SCI_BUZZWORD_NOUN Erkenntnistheorien
+
+SCI_PROBLEM Problem
+SCI_PROBLEM Ausgabe
+SCI_PROBLEM Hindernis
+SCI_PROBLEM große Herausforderung
+SCI_PROBLEM Herausforderung
+SCI_PROBLEM Frage
+
+SCI_PROBLEM_PL Probleme
+SCI_PROBLEM_PL Fragen
+SCI_PROBLEM_PL Hindernisse
+SCI_PROBLEM_PL großen Herausforderungen
+SCI_PROBLEM_PL Herausforderungen
+SCI_PROBLEM_PL Fragen
+
+
+SCI_GOAL Ziel
+SCI_GOAL Mission
+SCI_GOAL Ziel
+SCI_GOAL Zweck
+SCI_GOAL Ehrgeiz
+SCI_GOAL Ziel
+SCI_GOAL Absicht
+SCI_GOAL gegenseitigen Nutzen
+
+SCI_GOAL_PL Ziele
+SCI_GOAL_PL Missionen
+SCI_GOAL_PL Ziele
+SCI_GOAL_PL Zwecke
+SCI_GOAL_PL Ambitionen
+SCI_GOAL_PL gegenseitigen Nutzen
+
+SCI_GOAL_OR_PROBLEM SCI_PROBLEM
+SCI_GOAL_OR_PROBLEM SCI_GOAL
+
+SCI_APPROACH Ansatz
+SCI_APPROACH Lösung
+SCI_APPROACH Verfahren
+SCI_APPROACH_PL Ansätze
+SCI_APPROACH_PL Lösungen
+SCI_APPROACH_PL Methoden
+
+# SCI_DRAWBACK Nachteil
+SCI_DRAWBACK Nachteil
+SCI_DRAWBACK Manko
+# SCI_DRAWBACK Fehler
+
+SCI_WHAT_PL diese Ergebnisse
+SCI_WHAT_PL diese Algorithmen
+SCI_WHAT_PL diese Anwendungen der Problemlösungsstrategie
+SCI_WHAT_PL die Diskussion zu diesem Thema (siehe)
+
+SCI_WHAT es
+Diese Feststellung SCI_WHAT
+SCI_WHAT solchen Anspruch
+SCI_WHAT solche Hypothese
+SCI_WHAT solchen Ansatz
+SCI_WHAT solchen Problemlösungsstrategie
+
+FINDEN Ergebnis
+FINDEN Befund
+FINDEN Ergebnis
+FINDEN Diskussion
+FINDEN Technik
+
+SCI_THING SCI_THING_P
+SCI_THING SCI_THING_S
+SCI_THING 5 PAPER_OBJECTIVE
+SCI_THING 5 PAPER_OBJECTIVE
+SCI_THING 5 PAPER_PRECONDITION
+SCI_THING 5 PAPER_PROBLEM
+SCI_THING 5 PAPER_METHODOLOGY
+SCI_THING 5 SCI_A_PROBLEM_ADJ Ansatz
+SCI_THING 5 SCI_MY_TODO
+SCI_THING 5 SCI_MY_METHOD
+SCI_THING 5 SCI_MY_FIELD
+SCI_THING 5 PAPER_PROBLEM
+SCI_THING 5 PAPER_THEORY
+SCI_THING 5 SCI_MY_RESULT
+SCI_THING 5 SCI_SOLUTION
+SCI_THING 5 PAPER_METHOD_IMPROVEMENT
+SCI_THING 5 PAPER_CLIENT_P
+SCI_THING 5 PAPER_SERVER_S Entscheidungsunterstützung Server
+
+SCI_THING_HAS SCI_THING_S hat
+SCI_THING_HAS SCI_THING_P haben
+
+# P = S = Plural Wort Singular Worte
+SCI_THING_S SCI_IMPROVED_SYSTEM
+SCI_THING_P Systeme für SCI_MY_TODO
+SCI_THING_S PAPER_SYSNAME_LONG
+
+SCI_SYSTEM Algorithmus
+SCI_SYSTEM System
+SCI_SYSTEM Rahmen
+SCI_SYSTEM heuristische
+SCI_SYSTEM Anwendung
+SCI_SYSTEM Methodik
+SCI_SYSTEM SCI_APPROACH
+SCI_OUR_SYSTEM unsere SCI_SYSTEM
+SCI_OUR_SYSTEM PAPER_SYSNAME
+SCI_SYSTEM_PL Algorithmen
+SCI_SYSTEM_PL Systeme
+SCI_SYSTEM_PL Frameworks
+SCI_SYSTEM_PL Heuristiken
+SCI_SYSTEM_PL Anwendungen
+SCI_SYSTEM_PL Methoden
+SCI_SYSTEM_PL SCI_APPROACH_PL
+
+
+SCI_FIELD SCI_BUZZWORD_ADJ SCI_MY_FIELD
+SCI_FIELD SCI_MATH_ADJ SCI_MY_FIELD
+# SCI_FIELD Hardware und Architektur
+SCI_FIELD Vernetzung der Knoten PAPER_SYSNAME
+SCI_FIELD Fuzzy-Logik
+SCI_FIELD stochastische Netzwerke
+SCI_FIELD Komplexitätstheorie
+SCI_FIELD künstliche Intelligenz
+SCI_FIELD maschinellen Lernens
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# # # # # # # Adjektive / Adverbien # # # # # # #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+SCI_BUZZWORD_ADJ_MULTI 5 SCI_BUZZWORD_ADJ
+SCI_BUZZWORD_ADJ_MULTI 10 SCI_BUZZWORD_ADJ, SCI_BUZZWORD_ADJ
+SCI_BUZZWORD_ADJ_MULTI SCI_BUZZWORD_ADJ, SCI_BUZZWORD_ADJ, SCI_BUZZWORD_ADJ
+# SCI_BUZZWORD_ADJ Peer-to-Peer-
+# SCI_BUZZWORD_ADJ spieltheoretischen
+SCI_BUZZWORD_ADJ Wissens
+SCI_BUZZWORD_ADJ Offline-Zugriff auf dem mobilen Gerät und Online-
+SCI_BUZZWORD_ADJ relationalen
+SCI_BUZZWORD_ADJ kompakt
+# SCI_BUZZWORD_ADJ allgegenwärtig
+SCI_BUZZWORD_ADJ messbare
+SCI_BUZZWORD_ADJ Fuzzy ``''
+SCI_BUZZWORD_ADJ eingebettet
+# SCI_BUZZWORD_ADJ konstanter Zeit
+SCI_BUZZWORD_ADJ Client-Server-
+SCI_BUZZWORD_ADJ effiziente
+SCI_BUZZWORD_ADJ zuverlässig
+SCI_BUZZWORD_ADJ repliziert
+# SCI_BUZZWORD_ADJ Niedrigenergie
+SCI_BUZZWORD_ADJ Low-Cost-
+SCI_BUZZWORD_ADJ Opensource
+SCI_BUZZWORD_ADJ Wireless
+SCI_BUZZWORD_ADJ modular
+SCI_BUZZWORD_ADJ autonomen
+SCI_BUZZWORD_ADJ retrospektiven Studie verwandten
+SCI_BUZZWORD_ADJ verteilt
+SCI_BUZZWORD_ADJ flexible
+SCI_BUZZWORD_ADJ erweiterbar
+# SCI_BUZZWORD_ADJ Amphibien
+# SCI_BUZZWORD_ADJ metamorphen
+# SCI_BUZZWORD_ADJ ambimorphic
+# SCI_BUZZWORD_ADJ permutierbar
+SCI_BUZZWORD_ADJ verallgemeinerbare
+SCI_BUZZWORD_ADJ adaptive
+SCI_BUZZWORD_ADJ Selbstlern
+SCI_BUZZWORD_ADJ trainierbar
+# SCI_BUZZWORD_ADJ `` intelligente''
+SCI_BUZZWORD_ADJ klassischen
+SCI_BUZZWORD_ADJ benutzergesteuerte
+SCI_BUZZWORD_ADJ ereignisgesteuerte
+# SCI_BUZZWORD_ADJ Schreib-Lese-
+# SCI_BUZZWORD_ADJ verschlüsselten Zugang Profil
+SCI_BUZZWORD_ADJ hoch verfügbaren Entscheidungsunterstützung
+SCI_BUZZWORD_ADJ sichern
+# SCI_BUZZWORD_ADJ zusammenstellbaren
+# SCI_BUZZWORD_ADJ cachebar
+# SCI_BUZZWORD_ADJ perfekt
+# SCI_BUZZWORD_ADJ elektronischen
+# SCI_BUZZWORD_ADJ allgegenwärtig
+SCI_BUZZWORD_ADJ Groß
+# SCI_BUZZWORD_ADJ Bayesian
+SCI_BUZZWORD_ADJ Multiplattform
+SCI_BUZZWORD_ADJ authentifiziert
+SCI_BUZZWORD_ADJ interaktive
+SCI_BUZZWORD_ADJ heterogene
+SCI_BUZZWORD_ADJ homogenen
+SCI_BUZZWORD_ADJ kollaborativen
+SCI_BUZZWORD_ADJ gleichzeitige
+SCI_BUZZWORD_ADJ probabilistischen
+SCI_BUZZWORD_ADJ Mobil
+# SCI_BUZZWORD_ADJ tragbar
+# SCI_BUZZWORD_ADJ semantische
+SCI_BUZZWORD_ADJ Echtzeit
+SCI_BUZZWORD_ADJ Genossenschaft
+SCI_BUZZWORD_ADJ dezentrale
+SCI_BUZZWORD_ADJ skalierbare
+# SCI_BUZZWORD_ADJ zertifizierbar
+SCI_BUZZWORD_ADJ robust
+# SCI_BUZZWORD_ADJ unterzeichnet
+# SCI_BUZZWORD_ADJ virtuellen
+# SCI_BUZZWORD_ADJ verlustfreie
+# SCI_BUZZWORD_ADJ psychoakustischen
+# SCI_BUZZWORD_ADJ empathische
+SCI_BUZZWORD_ADJ optimale
+SCI_BUZZWORD_ADJ stabil
+# SCI_BUZZWORD_ADJ instabil
+# SCI_BUZZWORD_ADJ Zufalls
+# SCI_BUZZWORD_ADJ Pseudozufalls
+
+SCI_SYNTETIC_ADJ symbiotische
+SCI_SYNTETIC_ADJ Kombination
+SCI_SYNTETIC_ADJ Synergie
+
+
+SCI_IDEAL ideal
+SCI_IDEAL optimale
+SCI_IDEAL perfekt
+SCI_IDEAL verschiedenen
+SCI_IDEAL deutliche
+
+LIT_GOOD gut
+LIT_GOOD ausgezeichnete
+LIT_GOOD nützlich
+LIT_GOOD zufriedenstellend
+LIT_GOOD zahlreiche
+LIT_GOOD verspricht
+LIT_GOOD signifikante
+LIT_GOOD ermutigend
+LIT_GOOD veraltet
+
+LIT_GREAT große
+LIT_GREAT tiefe
+LIT_GREAT enorme
+LIT_GREAT begrenzt
+LIT_GREAT minimal
+# LIT_GREAT unwahrscheinlich
+LIT_GREAT_ADV stark
+LIT_GREAT_ADV zutiefst
+LIT_GREAT_ADV enorm
+LIT_GREAT_ADV minimal
+LIT_GREAT_ADV unwahrscheinlich
+
+LIT_OFTEN oft
+LIT_OFTEN Regel
+LIT_OFTEN selten
+LIT_OFTEN nie
+LIT_OFTEN immer
+Meist LIT_OFTEN
+LIT_OFTEN weitgehend
+Ganz LIT_OFTEN
+LIT_OFTEN allgemein
+LIT_OFTEN regelmäßig
+LIT_OFTEN kontinuierlich
+
+LIT_BETTER 3 besser
+LIT_BETTER +2 effektiver
+LIT_BETTER weniger gut
+# LIT_BETTER nicht besser
+# LIT_BETTER schlimmer
+
+LIT_INCREASING Erhöhung
+LIT_INCREASING steigenden
+LIT_INCREASING abnehm
+# LIT_INCREASING Schwinden
+
+
+SCI_ADJ wichtig
+SCI_ADJ signifikante
+SCI_ADJ Schlüssel
+# SCI_ADJ unglücklichen
+SCI_ADJ robust
+SCI_ADJ typischen
+SCI_ADJ unbewiesen
+# SCI_ADJ verwirrend
+SCI_ADJ umfangreiche
+SCI_ADJ entsprechenden
+SCI_ADJ bestätigt
+SCI_ADJ theoretischen
+SCI_ADJ technischen
+SCI_ADJ strukturiert
+SCI_ADJ Natur
+SCI_ADJ wesentliche
+SCI_ADJ Privat
+SCI_ADJ intuitive
+SCI_ADJ praktische
+# SCI_ADJ zeug
+SCI_ADJ_ADV besonders
+# SCI_ADJ_ADV zweifelnd
+# SCI_ADJ_ADV kühn
+# SCI_ADJ_ADV erschreckend
+# SCI_ADJ_ADV kühn
+# SCI_ADJ_ADV berühmt
+SCI_ADJ_ADV vorhersehbar
+SCI_ADJ_ADV deutlich
+SCI_ADJ_ADV offensichtlich
+SCI_ADJ_ADV dringend
+# SCI_ADJ_ADV zwingend
+
+# SCI_ADV angeblich
+SCI_ADV offensichtlich
+SCI_ADV offenbar
+SCI_ADV deutlich
+SCI_ADV offenbar
+SCI_ADV vielleicht
+SCI_COMPLEXNOUN Komplexität
+SCI_COMPLEXNOUN Widerspruch
+SCI_COMPLEXNOUN Unsicherheit
+SCI_COMPLEXNOUN Wechsel
+# SCI_COMPLEXNOUN Paradox
+SCI_COMPLEXNOUN Inkohärenz
+SCI_COMPLEXNOUN Einfachheit
+
+PERVERSE im Widerspruch zu
+PERVERSE eingängig
+PERVERSE unerwartete
+
+VERBINDUNG vor
+Zusammenhang stehen
+RELATED früheren
+RELATED bestehenden
+
+# VERSCHIEDENE abgebaut
+VERSCHIEDENE verstärkt
+VERSCHIEDENE übertrieben
+VERSCHIEDENE geschwächten
+# VERSCHIEDENE gedämpften
+# VERSCHIEDENE dupliziert
+VERSCHIEDENE verbesserte
+VERSCHIEDENE discreased
+
+VERBESSERUNG Verbesserung
+VERBESSERUNG degredation
+VERBESSERUNG Verstärkung
+
+Performance Performance
+# Leistungsdurchsatz
+PERFORMANCE Latenz
+PERFORMANCE Reaktionszeit
+
+INSTRUMENTAL Instrumental
+INSTRUMENTAL entscheidend
+INSTRUMENTAL wesentliche
+
+UNIQUE einzigartig
+UNIQUE herkömmlichen
+UNIQUE erwarteten
+
+STAT_ADJ wirksam
+STAT_ADJ bedeuten
+# STAT_ADJ Median
+STAT_ADJ erwartet
+STAT_ADJ Durchschnitt
+# STAT_ADJ 10. Perzentil
+
+STAT_ADJ gut bekannten
+STAT_ADJ wenig bekannte
+STAT_ADJ gefeiert
+# SCI_STAT_ADJ viel beschworene
+STAT_ADJ Linie
+
+
+#
+# MK Addition 2/16/05 - mathematische Adjektive und Adverbien
+#
+SCI_MATH_ADJ 3 SCI_MATH_ADV SCI_MATH_ADJ
+SCI_MATH_ADJ SCI_MATH_ADJ, SCI_MATH_ADJ
+
+SCI_MATH_ADJ disjunkte
+SCI_MATH_ADJ unabhängigen
+SCI_MATH_ADJ gegenseitig aus
+SCI_MATH_ADJ laut
+SCI_MATH_ADJ Fuzzy
+SCI_MATH_ADJ Zufalls
+SCI_MATH_ADJ stochastischen
+SCI_MATH_ADJ diskreten
+SCI_MATH_ADJ parallel
+SCI_MATH_ADJ verteilt
+SCI_MATH_ADJ partitioniert
+# SCI_MATH_ADJ erschöpfend
+# SCI_MATH_ADJ Markov
+# SCI_MATH_ADJ Bayesian
+SCI_MATH_ADJ randomisiert
+SCI_MATH_ADJ messbar in einem topologischen Raum als Eingangs Domain
+SCI_MATH_ADJ integrierbar
+# SCI_MATH_ADJ Wireless
+# SCI_MATH_ADJ verdrahtet
+SCI_MATH_ADJ getrennt
+# SCI_MATH_ADJ gesättigt
+SCI_MATH_ADJ repliziert
+
+# SCI_MATH_ADV extrem
+SCI_MATH_ADV stochastischen unabhängig
+SCI_MATH_ADV zufällig
+SCI_MATH_ADV Mitgliedschaft Funktion beziehen
+SCI_MATH_ADV gegenseitig
+SCI_MATH_ADV kollektiv
+SCI_MATH_ADV topologisch
+SCI_MATH_ADV berechenbar
+SCI_MATH_ADV beweisbar
+
+SCI_MATH_NOUN stochastischen Netzwerk
+SCI_MATH_NOUN Kohonen-Netze
+SCI_MATH_NOUN Backpropagation-Netzwerke
+SCI_MATH_NOUN künstliche neuronale Netze
+SCI_MATH_NOUN Wahrscheinlichkeitsmaß
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# # # # # # # Stromregel # # # # # # #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+SCI_B_LEADIN_C Schließlich
+SCI_B_LEADIN_C Letztlich
+SCI_B_LEADIN_C Dadurch
+SCI_B_LEADIN_C Letztlich
+
+LIT_MIDDLE_TWO 4
+LIT_MIDDLE_TWO Zweitens,
+LIT_MIDDLE_TWO 3 LIT_MIDDLE
+
+LIT_MIDDLE_THREE 4
+LIT_MIDDLE_THRESS Drittens,
+LIT_MIDDLE_THREE 3 LIT_MIDDLE
+
+LIT_MIDDLE nächstes
+Weitere LIT_MIDDLE,
+LIT_MIDDLE Außerdem
+LIT_MIDDLE Weiterbildung mit dieser Begründung,
+LIT_MIDDLE Entlang dieser Linien gleichen,
+LIT_MIDDLE Ebenso
+LIT_MIDDLE auf einem ähnlichen Niveau,
+
+LIT_LEADIN Aber
+LIT_LEADIN Zusätzlich
+LIT_LEADIN SCI_ADJ_ADV genug,
+LIT_LEADIN Ohne Zweifel,
+LIT_LEADIN In der Stellungnahme des SCI_PEOPLE,
+LIT_LEADIN vorauszusehen war,
+LIT_LEADIN Demgegenüber
+LIT_LEADIN In den Meinungen von vielen,
+LIT_LEADIN Sicher,
+LIT_LEADIN 7 LIT_MIDDLE
+LIT_LEADIN +40
+
+LIT_FIRST Erstens,
+LIT_FIRST Zunächst
+LIT_FIRST Zu Beginn mit,
+LIT_FIRST erster Linie
+LIT_FIRST Für den Anfang
+LIT_FIRST 4
+
+LIT_LAST Schließlich
+LIT_LAST Schließlich
+LIT_LAST Letztlich
+
+LIT_ALTHOUGH obwohl
+LIT_ALTHOUGH obwohl
+LIT_ALTHOUGH während
+LIT_ALTHOUGH obwohl
+LIT_ALTHOUGH obwohl
+
+LIT_CONCLUSION somit
+LIT_CONCLUSION auf diese Weise
+LIT_CONCLUSION daher
+LIT_CONCLUSION deutlich
+LIT_CONCLUSION offensichtlich
+LIT_CONCLUSION als Ergebnis
+
+LIT_REVERSAL jedoch
+LIT_REVERSAL hingegen
+LIT_REVERSAL dennoch
+LIT_REVERSAL Gegensatz
+LIT_REVERSAL leider
+
+LIT_REVERSAL_MAYBE LIT_REVERSAL,
+LIT_REVERSAL_MAYBE
+LIT_MIDDLE_MAYBE LIT_MIDDLE
+LIT_MIDDLE_MAYBE 2
+LIT_LAST_MAYBE LIT_LAST
+LIT_LAST_MAYBE
+LIT_LAST_OR_MIDDLE LIT_LAST
+LIT_LAST_OR_MIDDLE LIT_MIDDLE
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# # # # # # # Verben # # # # # # #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+LIT_OMIT weglassen
+LIT_OMIT withhold
+LIT_OMIT überspringen
+LIT_OMIT weglassen
+
+Unterstützt unterstützt
+UNTERSTÜTZT belegt,
+
+SCI_PROVE_VERB zeigen
+SCI_PROVE_VERB argumentieren
+SCI_PROVE_VERB beweisen
+SCI_PROVE_VERB Show
+SCI_PROVE_VERB widerlegen
+SCI_PROVE_VERB validate
+SCI_PROVE_VERB überprüfen
+SCI_PROVE_VERB bestätigen
+SCI_PROVE_VERB entkräften
+
+SCI_PROVE_VERBED nachgewiesen
+SCI_PROVE_VERBED argumentiert
+SCI_PROVE_VERBED bewiesen
+SCI_PROVE_VERBED zeigte
+SCI_PROVE_VERBED widerlegt
+SCI_PROVE_VERBED validiert
+SCI_PROVE_VERBED prüft
+SCI_PROVE_VERBED bestätigt
+SCI_PROVE_VERBED nicht bestätigt
+
+SCI_PROVE_VERBING demonstrieren
+SCI_PROVE_VERBING streiten
+SCI_PROVE_VERBING Arzneimittelprüfung
+SCI_PROVE_VERBING zeigt
+SCI_PROVE_VERBING widerlegen
+SCI_PROVE_VERBING Validierung
+SCI_PROVE_VERBING Überprüfung
+SCI_PROVE_VERBING bestätigt
+SCI_PROVE_VERBING entkräften
+
+SCI_PRESENT_VERB vorhanden
+SCI_PRESENT_VERB vorstellen
+SCI_PRESENT_VERB vorschlagen
+SCI_PRESENT_VERB motivieren
+SCI_PRESENT_VERB Konstrukt
+SCI_PRESENT_VERB beschreiben
+SCI_PRESENT_VERB erkunden
+
+SCI_PRESENT_VERBING präsentiert
+SCI_PRESENT_VERBING Einführung
+SCI_PRESENT_VERBING vorschlag
+SCI_PRESENT_VERBING motivieren
+SCI_PRESENT_VERBING Bau
+SCI_PRESENT_VERBING beschreiben
+SCI_PRESENT_VERBING erkunden
+
+SCI_PRESENT_VERBED vorgestellt
+SCI_PRESENT_VERBED eingeführt
+SCI_PRESENT_VERBED vorgeschlagen
+SCI_PRESENT_VERBED motiviert
+SCI_PRESENT_VERBED gebaut
+SCI_PRESENT_VERBED beschrieben
+SCI_PRESENT_VERBED erforscht
+
+SCI_PROBLEM_SOLVE lösen
+SCI_PROBLEM_SOLVE überwinden
+SCI_PROBLEM_SOLVE überwinden
+SCI_PROBLEM_SOLVE Antwort
+SCI_PROBLEM_SOLVE fix
+SCI_PROBLEM_SOLVE Adresse
+SCI_PROBLEM_SOLVED gelöst
+SCI_PROBLEM_SOLVED wand
+SCI_PROBLEM_SOLVED überwunden
+SCI_PROBLEM_SOLVED beantwortet
+SCI_PROBLEM_SOLVED Fest
+SCI_PROBLEM_SOLVED angesprochen
+
+SCI_GOAL_ACHIEVE erreichen
+SCI_GOAL_ACHIEVE realisieren
+SCI_GOAL_ACHIEVE erfüllen
+SCI_GOAL_ACHIEVE erreichen
+
+SCI_VERB_PL interagieren
+SCI_VERB_PL zusammen
+SCI_VERB_PL stören
+SCI_VERB_PL verbinden
+SCI_VERB_PL einverstanden
+SCI_VERB_PL einander abstimmen
+SCI_VERB_PL kooperieren
+SCI_VERB_PL synchronisieren
+SCI_VERBING_PL Interaktion
+SCI_VERBING_PL Zusammenarbeit
+SCI_VERBING_PL störende
+SCI_VERBING_PL Verbindungs
+SCI_VERBING_PL Vereinbarung
+SCI_VERBING_PL kooperieren
+SCI_VERBING_PL Synchron
+SCI_VERB erkunden
+SCI_VERB ermöglichen
+SCI_VERB entwickeln
+SCI_VERB verfeinern
+SCI_VERB untersuchen
+SCI_VERB analysieren
+SCI_VERB Maßnahme
+SCI_VERB verbessern
+SCI_VERB emulieren
+SCI_VERB simulieren
+SCI_VERB Konstrukt
+SCI_VERB bewerten
+SCI_VERB deploy
+SCI_VERB synthetisieren
+SCI_VERB visualisieren
+SCI_VERB Studie
+
+SCI_VERBS erforscht
+SCI_VERBS ermöglicht
+SCI_VERBS entwickelt
+SCI_VERBS verfeinert
+SCI_VERBS sucht,
+SCI_VERBS Analysen
+SCI_VERBS verbessert
+SCI_VERBS emuliert
+SCI_VERBS simuliert
+SCI_VERBS Konstrukte
+SCI_VERBS wertet
+SCI_VERBS entfaltet
+SCI_VERBS synthetisiert
+SCI_VERBS visualisiert
+SCI_VERBS Studien
+SCI_VERBED erforscht
+SCI_VERBED aktiviert
+SCI_VERBED nutzbar
+SCI_VERBED entwickelt
+SCI_VERBED verfeinert
+SCI_VERBED sucht
+SCI_VERBED analysiert
+SCI_VERBED verbessert
+SCI_VERBED emuliert
+SCI_VERBED simuliert
+SCI_VERBED gebaut
+SCI_VERBED bewertet
+SCI_VERBED eingesetzt
+SCI_VERBED synthetisiert
+SCI_VERBED visualisiert
+SCI_VERBED studierte
+SCI_VERBING Nutzbarmachung
+SCI_VERBING ermöglicht
+SCI_VERBING erkunden
+SCI_VERBING Steuerung
+SCI_VERBING Entwicklung
+SCI_VERBING Raffination
+SCI_VERBING Architecting
+SCI_VERBING Untersuchung
+SCI_VERBING Verbesserung
+SCI_VERBING Analyse
+SCI_VERBING Bau
+SCI_VERBING Simulation
+SCI_VERBING Auswertung
+SCI_VERBING emuliert
+SCI_VERBING Einsatz
+SCI_VERBING Synthetisierung
+SCI_VERBING Visualisierung
+SCI_VERBING Studium
+SCI_VERBION Exploration
+SCI_VERBION Entwicklung
+SCI_VERBION Verfeinerung
+SCI_VERBION Untersuchung
+SCI_VERBION Analyse
+SCI_VERBION Verbesserung
+# SCI_VERBION Emulation
+SCI_VERBION Simulation
+SCI_VERBION Bau
+SCI_VERBION Bewertung
+SCI_VERBION Einsatz
+SCI_VERBION Synthese
+SCI_VERBION Visualisierung
+SCI_VERBION Studie
+SCI_SYS_VERB lokalisieren
+SCI_SYS_VERB Shop
+SCI_SYS_VERB Verhinderung
+SCI_SYS_VERB ermöglichen
+SCI_SYS_VERB bieten
+SCI_SYS_VERB Steuer
+SCI_SYS_VERB Anfrage
+SCI_SYS_VERB Cache
+SCI_SYS_VERB erstellen
+SCI_SYS_VERB lernen
+SCI_SYS_VERB beobachten
+SCI_SYS_VERB verwalten
+SCI_SYS_VERB 10 SCI_VERB
+SCI_SYS_VERBS ortet
+SCI_SYS_VERBS speichert
+SCI_SYS_VERBS verhindert
+SCI_SYS_VERBS erlaubt
+SCI_SYS_VERBS bietet
+SCI_SYS_VERBS Kontrollen
+SCI_SYS_VERBS Anfragen
+SCI_SYS_VERBS Caches
+SCI_SYS_VERBS schafft
+SCI_SYS_VERBS lernt
+SCI_SYS_VERBS beobachtet
+SCI_SYS_VERBS verwaltet
+SCI_SYS_VERBS 10 SCI_VERBS
+SCI_SYS_VERBING Ortungs
+SCI_SYS_VERBING Speicherung
+SCI_SYS_VERBING verhindern
+SCI_SYS_VERBING erlaubt
+SCI_SYS_VERBING Bereitstellung
+SCI_SYS_VERBING Steuerung
+SCI_SYS_VERBING Anfrage
+SCI_SYS_VERBING Caching
+SCI_SYS_VERBING Schaffung
+SCI_SYS_VERBING Lern
+SCI_SYS_VERBING Beobachtung
+SCI_SYS_VERBING Verwaltung
+SCI_SYS_VERBING SCI_VERBING
+SCI_SYS_VERBED befindet
+SCI_SYS_VERBED gespeichert
+SCI_SYS_VERBED verhindert
+SCI_SYS_VERBED erlaubt
+SCI_SYS_VERBED bereitgestellt
+SCI_SYS_VERBED gesteuert
+SCI_SYS_VERBED angefordert
+SCI_SYS_VERBED zwischengespeicherte
+SCI_SYS_VERBED erstellt
+SCI_SYS_VERBED gelernt
+SCI_SYS_VERBED beobachtet
+SCI_SYS_VERBED verwaltet
+SCI_SYS_VERBED+10 SCI_VERBED
+SCI_SYS_VERBION Lage
+SCI_SYS_VERBION Speicher
+SCI_SYS_VERBION Prävention
+SCI_SYS_VERBION Geld
+SCI_SYS_VERBION Bereitstellung
+SCI_SYS_VERBION Schöpfung
+SCI_SYS_VERBION Beobachtung
+SCI_SYS_VERBION Management
+SCI_SYS_VERBION+10 SCI_VERBION
+
+SCI_MATH_VERBING trennend
+SCI_MATH_VERBING entkopplet
+SCI_MATH_VERBING sättigend
+SCI_MATH_VERBING komponierend
+SCI_MATH_VERBING replizierenden
+
+
+               </textarea>
+       </form>
+            </font>
+            </center>
+            <center>
+            <p></p>
+            </center>
+            <br>
+            </td>
+            <td>&nbsp;&nbsp;
+<!--- inner input table ---></td>
+          </tr>
+        </tbody>
+      </table>
+<!--- outer table ---> </td>
+    </tr>
+  </tbody>
+</table>
+<script language="JavaScript1.2">
+ //---------------------------------------------------- 
+ document.fInputForm.Title.value = top.vURL_Object.getName(document.location.href).toUpperCase();
+ var vInput  = document.fInputForm.GenText.value;
+ var vTitle  = document.fInputForm.Title.value;
+ document.fInputForm.Title.value = vTitle;
+ if (top.vArticleGenerator.grammarfiles.preload_index <= top.vArticleGenerator.grammarfiles.rows) {
+  var vOutput = top.vArticleGenerator.import_grammar(vInput,vTitle);
+  top.vArticleGenerator.setTimeout("top.vArticleGenerator.grammarfiles.preload()",100);
+ } else {
+  //alert("No preload");
+  if (top.vArticleGenerator.wizzard.active > 0) {
+   top.vArticleGenerator.wizzard.load(vInput,vTitle);
+  }
+ }
+ //---------------------------------------------------- 
+</script>
+
+
+<font size="2" face="Arial,Helvetica"><b>It is recommended to use the Browser Firefox with this Application. It is necessary to enable Javascript.</font>
+</center>
+</body>
+</html>

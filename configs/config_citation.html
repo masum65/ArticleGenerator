@@ -1,0 +1,199 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=utf8">
+</head>
+<body bgcolor="#ffffff" background="backgroundimage.jpg">
+
+<br>
+<br>
+<center>
+<table border="1">
+  <tbody>
+    <tr bgcolor="#ffffff">
+      <td>
+      <table border="0">
+        <tbody>
+          <tr bgcolor="#ffffff">
+            <td><br>
+            </td>
+            <td>
+            <center><br>
+            <br>
+            <font size="+2" face="Arial,Helvetica">
+            <b>Config Javascript Grammar Creator<br>
+            </font> </b>
+       		<font  face="Arial,Helvetica">
+            	<form name="fConfig">
+  <hr/>
+  <b>Config:</b> <input type="text" name="ConfigFile" value="config_citation.thml">  
+  <hr/>
+  Folder of Grammar Files: <input type="text" name="GrammarFolder" value="grammar_en/">
+  <hr/>
+  Wizzard File for User Input: <input type="text" name="mainEditGrammar" value="paper">
+<hr/>
+  <!--------------------------------------------------------------------------------->
+  Grammar Files
+<!--------------------------------------------------------------------------------->
+<textarea name="GrammarFiles" cols="125" rows="3">
+|Paper Settings|paper|L|
+|Loop Replacements and Enumerate|loop|L|
+|Citations|citations|L|
+|Literature Database|literature|L|
+|Sections|sections|L|
+|Words|words|L|
+|FORMAT Latex Overwrite for Output|latex||
+
+</textarea>
+<!---
+|Words 1|words1|L|
+|Words 2|words2|L|
+|Words 3|words3|L|
+--->
+<hr/>
+  Text Source
+<textarea name="textSource" cols="125" rows="3">
+<h2>Generation of Citations</h2>
+The following file is generated at SYS_DATE_NOW.
+
+<h3>Create 1 CITATION</h3>
+>SYS_DEF_CITATION  RELCITE_BOOK_CITATION 
+>SYS_KEYWORDS=1 Generation,Simulation
+Now we create citation for the keywords <quote> SYS_KEYWORDS </quote>. 
+
+<h3>Output 1 CITATION</h3>
+
+SYS_CITATION
+
+<h3>Create 3 CITATIONS</h3>
+
+>SYS_KEYWORDS=3 Neural Network,Simulation
+It is possible to cite 3 citation at once for the provided keywords <i>"SYS_KEYWORDS"</i>. If
+the database contains 3 article that contain <i>"SYS_KEYWORDS"</i> the following
+non-terminal symbol creates three citations.
+
+<h3>Output of 3 CITATIONS</h3>
+
+SYS_CITATION. 
+
+
+Now we will list all the used references, that were used in the previous text.
+
+>SYS_TITLE_REFERENCES References
+>SYS_DEF_CITATION <li> [RELCITE_LABEL] RELCITE_AUTHORS, RELCITE_YEAR, RELCITE_TITLE, RELCITE_JOURNAL </li>
+>SYS_DEF_CITATION <li> <a name="RELCITE_LABEL">[RELCITE_NR]</a> RELCITE_AUTHORS, RELCITE_YEAR, RELCITE_TITLE, RELCITE_JOURNAL </li>
+
+<h3> SYS_TITLE_REFERENCES </h3>
+<ul>
+SYS_REFERENCES
+</ul>
+
+</textarea>
+  <hr/>
+<!--------------------------------------------------------------------------------->
+  Text Destination
+<!--------------------------------------------------------------------------------->
+<textarea name="textDestination" cols="125" rows="8">
+
+Ziel des Artikels ist es, eine Einf�hrung in Aspekte der 3D-Computergrafik 
+vorzustellen, die mit in Schulen vorhandener dynamischer Geometriesoftware (DGS) 
+durchgef�hrt werden kann. Sch�ler kennen aus Computerspielen aufwendige 
+3D-Simulationen. Durch die Perfektion dieser 3D-Graphiken sind allerdings 
+die Konstruktionsschritte von Gittermodellen �ber deren Interpolation bis zur 
+Berechnung von Texturen und Lichteffekten nicht mehr erkennbar. 
+Aus diesen Aspekten der 3D-Grafik wird die Generierung eines Gittermodells 
+f�r dreidimensionale Objekte herausgegriffen. 
+Ein zentraler Punkt ist dabei, dass Sch�ler reale Objekte (Quader, St�be) 
+vor dem Spiegel bewegen und deren 3D-Bild auf dem Spiegel beobachten. 
+Der Spiegel ist in diesem Zusammehang eine zweidimensionale Projektionsfl�che 
+des dreidimensionalen Raumes. Die Konstruktion bezieht sich auf Modellierung 
+der perspektivischen Effekte mit DGS in Analogie zur Bewegung realer Objekte 
+vor dem Spiegel (z.B. perspektivische Verk�rzung). Durch den Zugmodus in DGS 
+ist es m�glich, geometrische Objekte zu bewegen und das abh�ngige digitale  
+"Spiegelbild" in seinen abh�ngigen Bewegungen zu beobachten. 
+Der Kern des kursartigen Aufbaus des Artikels ist die Wechselwirkung 
+zwischen Konstruktion in der Geometriesoftware und der �berpr�fung mit dem Spiegel. 
+Dies soll den Weg von dem realen 3D-Objekt �ber den Spiegel zu einer 
+3D-Darstellung im Computer transparent machen.
+		
+
+</textarea>
+  <hr/>
+<!--------------------------------------------------------------------------------->
+  Text Grammar
+<!--------------------------------------------------------------------------------->
+<textarea name="textGrammar" cols="125" rows="8">
+SYS_CITATION sys citation
+SYS_DEF_CITATION sys def citation
+SYS_KEYWORDS sys keywords
+SYS_REFERENCES sys references
+SYS_TITLE_REFERENCES sys title references
+LOOP_AFTER_FIRST  
+LOOP_BEFORE_LAST  
+LOOP_BEGIN  
+LOOP_END  
+LOOP__ITEM  
+
+</textarea>
+            	</form>
+<!--------------------------------------------------------------------------------->
+<script language="JavaScript1.2">
+
+	function loadConfigVariables () {
+		top.vArticleGenerator.initGrammar();
+		top.title.document.fTitle.tConfigFile.value    	= document.fConfig.ConfigFile.value;
+		top.title.document.fTitle.tGrammarFolder.value 	= document.fConfig.GrammarFolder.value;
+		top.vArticleGenerator.mainEditGrammar			= document.fConfig.mainEditGrammar.value;
+		top.vArticleGenerator.textGrammar     			= document.fConfig.textGrammar.value;
+		top.vArticleGenerator.textSource      			= document.fConfig.textSource.value;
+		top.vArticleGenerator.textGenerated   			= document.fConfig.textSource.value;
+		top.vArticleGenerator.textDestination 			= document.fConfig.textDestination.value;
+		top.vArticleGenerator.grammarfiles.folder 		= document.fConfig.GrammarFolder.value;
+		top.vArticleGenerator.grammarfiles.split_grammarfiles(document.fConfig.GrammarFiles.value);
+		
+	};
+    top.vArticleGenerator.setTimeout("top.main.loadConfigVariables ();"+
+    			   "top.vArticleGenerator.grammarfiles.check_preload()",100);	
+	
+//    top.vArticleGenerator.setTimeout("top.main.loadConfigVariables ();"+
+//    			   "top.main.document.location='./frames/empty.html'",200);	
+</script>
+<!--------------------------------------------------------------------------------->
+            </font>
+            </center>
+            <center>
+            <p></p>
+            	<form action="empty.html"> 
+          		<table border=0>
+            		<tr>
+            		<td>
+            			<input type="button" 
+          					value="Load Config" 
+          					onclick="loadConfigVariables();alert('Config Variables loaded!')">
+          			</td>
+          			<td> 
+            			<input type="submit"
+ 							value="Cancel" 
+ 							onclick="alert('Load Config - Cancelled!')">
+ 					</td>
+ 					</tr> 
+ 				</table>
+ 				</form> 				
+            </center>
+            <br>
+            <br>
+            </td>
+            <td>&nbsp;&nbsp;
+<!--- inner input table ---></td>
+          </tr>
+        </tbody>
+      </table>
+<!--- outer table ---> </td>
+    </tr>
+  </tbody>
+</table>
+<font size="2" face="Arial,Helvetica"><b>It is recommended to use the Browser Firefox with this Application. It is necessary to enable Javascript.</font>
+</center>
+</body>
+</html>

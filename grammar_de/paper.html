@@ -1,0 +1,220 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=utf8">
+</head>
+<body bgcolor="#ffffff" background="backgroundimage.jpg">
+<script language="JavaScript1.2">
+
+function removeComments()
+//###### removes Comments beginning with "#" in the column of line
+{
+	var vInput  = document.fInputForm.GenText.value;
+	var vTitle  = document.fInputForm.Title.value.toUpperCase();
+	document.fInputForm.Title.value = vTitle;
+	//alert("abstract.html:18 - removeComments()\nvTitle="+vTitle);
+	var vOutput = top.vArticleGenerator.import_grammar(vInput,vTitle);
+	top.vArticleGenerator.grammarfiles.set_loaded(top.vURL_Object.getName(document.location.href));
+	document.fInputForm.GenText.value = vOutput;
+	alert('Import Grammar "'+vTitle+'" done!');
+}	
+
+</script>
+<br>
+<br>
+<center>
+<table border="1">
+  <tbody>
+    <tr bgcolor="#ffffff">
+      <td>
+      <table border="0">
+        <tbody>
+          <tr bgcolor="#ffffff">
+            <td><br>
+            </td>
+            <td>
+            <center><br>
+            <br>
+            <font size="+2" face="Arial,Helvetica">
+            <b>Load 
+	<script language="JavaScript1.2">
+   	//----------------------------------------------------	
+         document.write(top.vURL_Object.getName(document.location.href).toUpperCase());
+	//----------------------------------------------------	
+    </script>
+            Grammar<br></b> <!-- action="#" -->
+	   			<form name="fInputForm"  onsubmit="document.location.href='showrules.html'">
+					<input type=button name="Import" value="Import Grammar" onchange="convertToUpperCase()" onclick="removeComments()"> 
+					<input type=text name="Title" value="SECTIONID"> 
+        			<textarea name="GenText" cols="125" rows="50" >
+#############################################################################
+####### Paper Definitions #######
+#############################################################################
+# (1) Define new Variables 
+#     - If you want to define a variable start you must start in the first column of the line
+#     - Use capital letters for the variables (Non-Terminal-Symbols) and underscore '_'
+#     - If you want to use Comments you must use '#' in the first column of the line not second col
+#     - As in LaTeX after '#' the rest of the line is a comment
+# (2) Multiline Variable Definitions start with the non-terminal Symbol SCI_OBJECTIVE in the first 
+#     column with "{" as an opening of the multiline defintion. The end of the multiline definition 
+#     is "}" in the first  line of the column, e.g.
+#SCI_OBJECTIVE {
+#   first line
+#   second line
+#   third line
+#}
+#     if the non-terminal symbol is not starting in the first column it will be used as a variable
+#     for replacing the symbol with rules of the grammar.
+# (3) End of Grammar File
+#     - there should be at least two empty lines at the end of each this file
+#     - this file will be concated to the grammar-File 'grammar.in' anytime you run createpaper.pl
+# (4) If you want to overwrite a definition of a non-terminal Symbol e.g. BIB_KEYWORDS
+#     use a starting ">" before non-terminal Symbol e.g
+#>BIB_KEYWORDS Risk, Resource
+#     overwriting should be used for the following non-terminal symbols
+#         - BIB_KEYWORDS
+#     
+#############################################################################
+
+PAPER_KEYWORD Rules
+PAPER_KEYWORD Segmentation
+PAPER_KEYWORD Aquisition
+PAPER_KEYWORD Network
+PAPER_THEMA Thema des Artikels
+PAPER_METHODE die raumzeitliche Analyse
+PAPER_PRODUKT PAPER_PAPER_SYSNAME_LONG
+PAPER_OPTIMIERTES_SYSTEM public health service  
+PAPER_QUALITAET_DER_VEBESSERUNG klein
+PAPER_KLEINEN_GROSSEN_BEITRAG kleinen Beitrag
+PAPER_PAPER_SYSAREA Gebiet, aus dem das betrachtete System stammt,
+PAPER_PAPER_SYSNAME ANS abgek�rzter Name des Systems
+PAPER_PAPER_SYSTYPE AST abgek�rzter Systemtyp
+PAPER_LONG_PAPER_SYSNAME langer Systemname
+PAPER_LONG_PAPER_SYSTYPE langer Systemtyp
+PAPER_SYS_STATUS_ADJ vorl�ufige 
+PAPER_ZIELSETZUNG im Bereich PAPER_PAPER_SYSAREA mit PAPER_METHODE 
+PAPER_ZIEL mein erstes Ziel
+PAPER_ZIEL mein zweites Ziel
+PAPER_ZIEL mein drittes Ziel
+PAPER_SITUATION meine Ausgangssituation 
+PAPER_EIGENSCHAFT die erste Eigenschaft
+PAPER_EIGENSCHAFT die zweite Eigenschaft
+PAPER_METHODOLOGY application of low-cost technology PAPER_PAPER_SYSNAME
+SCI_A_PROBLEM_ADJ an ecotoxicological  
+SCI_MY_TODO decision making and resource distribution 
+SCI_MY_METHOD modelling of spatio-temporal distributions with PAPER_THEORY 
+SCI_MY_FIELD Fuzzy Logic for GUI-Design and spatio-temporal modelling of risk and resources
+PAPER_PROBLEM medical decision making under uncertainty in rural areas of SCI_COUNTRY
+PAPER_THEORY stochastic networks and mathematical measure theory
+#SCI_MY_RESULT didactic reduction
+SCI_MY_RESULT show usability of web based PAPER_SYSNAME_LONG
+SCI_SOLUTION integration of SCI_MY_TODO in SCI_IMPROVED_SYSTEM
+PAPER_METHOD_IMPROVEMENT an adaptive measure 
+PAPER_CLIENT_P mobile device as decision support clients
+PAPER_SERVER_S decision support server
+SCI_OUR_OS Linux Smartphone OS
+SCI_COUNTRY Latin America
+####### language and license ################################################
+
+LANGUAGE_UM		UML (Unified Modelling Language)
+# LANGUAGE_UM		Perl
+# LANGUAGE_UM		C++
+# LANGUAGE_UM		Python
+# LANGUAGE_UM		Lisp
+# LANGUAGE_UM		Scheme
+# LANGUAGE_UM		Java
+# LANGUAGE_UM		SQL
+# LANGUAGE_UM		PHP
+
+LICENSE_TYPE		GPL Version 2
+LICENSE_TYPE  		Creative Commons
+LICENSE_TYPE		Open Source
+LICENSE_TYPE 		the Gnu Public License
+
+PROP_LICENSE_TYPE		very restrictive
+PROP_LICENSE_TYPE		proprietary license
+
+
+
+###### Used Open Source Software ############################################
+
+OSSYS___I GRASS in Version 6.3
+OSTYPE___I Geographic Information System GIS
+OSSYS_DESCRIBE___I store and visualize properties in space and time
+
+# OSSYS_II Maxima and wxMaxima
+# OSTYPE_II Computer Algebra System CAS 
+# OSSYS_DESCRIBE_II perform algebraic solutions and algebraic calculation
+
+OSSYS__II Android 
+OSTYPE__II Linux Based Operating System for mobile Device
+OSSYS_DESCRIBE__II decision support client for risk and response support
+
+
+OSSYS_III R Statistic 
+OSTYPE_III programmable statistic software suite
+OSSYS_DESCRIBE_III a toolbox of statistic methods with a connection to GRASS
+
+PAPER_SOFTWARE OSSYS___I
+PAPER_SOFTWARE OSSYS__II
+PAPER_SOFTWARE OSSYS_III
+
+ALL_SOFTWARE_NAMES OSSYS___I, OSSYS__II and OSSYS_III
+ALL_SOFTWARE_TYPES a OSTYPE___I, a OSTYPE__II and a OSTYPE_III
+
+############# Header Evaluation #############################################
+
+EVAL_SEC_SUBHEAD	Hardware and Software Configuration
+EVAL_SEC_SUBEHAD	System Setup
+EVAL_SEC_SUBEHAD	Experimental Setup
+EVAL_SEC_SUBEHAD	Setup of Learning Environment
+
+EVAL_SEC_SUBHEAD	Experimental Results
+EVAL_SEC_SUBHEAD	Experiments and Results
+EVAL_SEC_SUBHEAD	Testing and Evaluation of SCI_OUR_SYSTEM
+
+############################################################################
+
+
+           		 	</textarea>
+		    	</form>
+            </font>
+            </center>
+            <center>
+            <p></p>
+            </center>
+            <br>
+            </td>
+            <td>&nbsp;&nbsp;
+<!--- inner input table ---></td>
+          </tr>
+        </tbody>
+      </table>
+<!--- outer table ---> </td>
+    </tr>
+  </tbody>
+</table>
+<script language="JavaScript1.2">
+	//----------------------------------------------------	
+	document.fInputForm.Title.value = top.vURL_Object.getName(document.location.href).toUpperCase();
+	var vInput  = document.fInputForm.GenText.value;
+	var vTitle  = document.fInputForm.Title.value;
+	document.fInputForm.Title.value = vTitle;
+	if (top.vArticleGenerator.grammarfiles.preload_index <= top.vArticleGenerator.grammarfiles.rows) {
+		var vOutput = top.vArticleGenerator.import_grammar(vInput,vTitle);
+		top.vArticleGenerator.setTimeout("top.vArticleGenerator.grammarfiles.preload()",100);
+	} else {
+		//alert("No preload");
+		if (top.vArticleGenerator.wizzard.active > 0) {
+			top.vArticleGenerator.wizzard.load(vInput,vTitle);
+		}
+	}
+	//----------------------------------------------------	
+</script>
+
+
+<font size="2" face="Arial,Helvetica"><b>It is recommended to use the Browser Firefox with this Application. It is necessary to enable Javascript.</font>
+</center>
+</body>
+</html>

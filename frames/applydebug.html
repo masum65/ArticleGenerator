@@ -1,0 +1,119 @@
+<HTML>
+<HEAD>
+   <TITLE>End Cylce Display - ArticleGenerator</TITLE>
+<!-- 
+################################################# 
+# End Cylce Display - ArticleGenerator						
+# Javascript Software Package  				 
+# email: niehaus@uni-landau.de		
+# created               18.11.2013
+# last modifications    18.11.2013
+# Author:  My Name
+# GNU Public License 
+################################################# 
+-->
+</HEAD>
+<body bgcolor="#ffffff" background="backgroundimage.jpg">
+<center>
+<font face="Arial,Helvetica">
+<!---Button: Start Wizzard ------- Button Link: startwizzard.html ----->
+<br>
+<br>
+<center>
+<table border="1">
+  <tbody>
+    <tr bgcolor="#ffffff">
+      <td>
+      <table border="0">
+        <tbody>
+          <tr bgcolor="#ffffff">
+            <td><br>
+            </td>
+            <td>
+<center>
+	<h2>
+ 		<script language="JavaScript1.2">
+ 			//top.vArticleGenerator.grammarfiles.fileindex++;
+			//document.write("("+top.vArticleGenerator.grammarfiles.fileindex+") ");       
+			top.vArticleGenerator.docgenerator.aCycle++;
+			var vCycle = top.vArticleGenerator.docgenerator.aCycle;
+    		var vLoopMax = top.vArticleGenerator.docgenerator.aLoopMax;
+    		document.write("("+vCycle+"/Max:"+vLoopMax+") ");
+		</script>
+		Application Debug - Generator
+	</h2>
+</center>
+<!--- <center>
+ <tt><a href="applygrammar.html">applygrammar.html</a></tt>
+  </center> --->
+  <hr/>
+<form name="fInputForm" action="applygrammar.html" ">
+ <center>
+	<input type="submit" name="bSubmit" value="Back to Generator"> 
+  </center>
+<!---
+<b>Exported Text</b> with Overwrite Definitions<br>
+	<textarea name="GenText" cols="125" rows="20">
+    </textarea><br/>
+--->
+</form>
+<table border="1"><tr><td>
+ <SCRIPT LANGUAGE="JavaScript">
+ 	var vString = top.vArticleGenerator.docgenerator.export_with_overwrite();
+ 	//document.fInputForm.GenText.value = vString;
+ 	top.vArticleGenerator.textGenerated = vString;
+    //--------------------
+    //alert("BEFORE load_text() in applygrammar4.html");
+    top.vArticleGenerator.docgenerator.find_citations();
+    top.vArticleGenerator.docgenerator.replace_citations();
+    var vCiteCount = top.vArticleGenerator.docgenerator.aCitations.length;
+    var vNontermCount = top.vArticleGenerator.docgenerator.aFoundNonterms.length;
+    top.vArticleGenerator.docgenerator.load_text(vString);
+    document.write("<h3>Citations Counter</h3>")
+    document.write("Citations="+ vCiteCount+"<br>");
+    document.write(top.vArticleGenerator.docgenerator.show_citations());
+    document.write("<h3>NON-TERM</h3>");
+    document.write("Replacements Non-Terms="+ vNontermCount+"<br>");
+    //top.vArticleGenerator.docgenerator.replace_scanner();
+    document.write(top.vArticleGenerator.docgenerator.show_nonterms());
+    document.write("<h3>Overwrite-Array</h3>");
+    document.write(top.vArticleGenerator.docgenerator.show());   
+    //alert("applygrammar1.html:31 docgenerator.rows="+top.vArticleGenerator.docgenerator.rows);
+    if (vCiteCount + vNontermCount >0) {
+    	//top.vArticleGenerator.setTimeout("top.main.document.location.href = 'frames/applygrammar.html'",100);	
+    	//alert("vCiteCount="+vCiteCount+"\nvNontermCount="+vNontermCount+"\napplyendcycle.html:73");
+    	//top.vArticleGenerator.docgenerator.apply_grammar();
+    	var lvCycle = top.vArticleGenerator.docgenerator.aCycle;
+    	var lvLoopMax = top.vArticleGenerator.docgenerator.aLoopMax;
+    	if (lvCycle <= lvLoopMax) { 	
+    		//top.vArticleGenerator.setTimeout("top.main.document.location.href = 'frames/applyendcycle.html'",100);	
+    	} else {
+			alert("MAXLOOP TERMINATION: Replacements terminated, because\nMaxLoop="+lvLoopMax+" exceeded!\napplyendcycle.html:92");
+			//top.vArticleGenerator.setTimeout("top.main.document.location.href = 'frames/applygrammar.html'",100);	
+    	}
+    } else {
+    	alert("APPLCIATION END: Replacements successfully finished - applyendcycle.html:99");
+    	//top.vArticleGenerator.setTimeout("top.main.document.location.href = 'frames/applygrammar.html'",100);	
+    }
+    //top.vArticleGenerator.setTimeout("top.main.document.location.href = 'frames/applygrammar.html'",100);	
+ </SCRIPT>
+ <hr/>
+ <center>
+ <tt><a href="applygrammar.html">applygrammar.html</a></tt>
+  </center>
+  </td>
+            <td>&nbsp;&nbsp;
+<!--- inner input table ---></td>
+          </tr>
+        </tbody>
+      </table>
+<!--- outer table ---> </td>
+    </tr>
+  </tbody>
+</table>
+</font>
+<font size="2" face="Arial,Helvetica"><b>It is recommended to use the Browser Firefox with this Application. It is necessary to enable Javascript.</font>
+</center>
+</BODY>
+</HTML>	
+	
