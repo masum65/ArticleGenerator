@@ -1,0 +1,16 @@
+-----------------------------
+TODO-List
+---------
+- 2014/01 when random_rule is called GrammarNode may not be defined pGrammarNode[k]
+- 2014/01 Unbalanced Tree in addrulesplit.html, addrule.html, selectrule.html 
+- 2014/01 Wizzard performs wrong additions to Rules Loading seems to be OK
+- 2014/01 general Check of Wizzard
+- 2014/01 negative Weights in Rules can be found DEBUG??
+- 2013 Clean up Menu on the left
+- 2013 multiple application of "Apply Grammar" with pre-defined number of RUNs
+- 2013 multiple application of "Apply Grammar" until no rule applications are possible
+- 2013 stop multiple application of "Apply Grammar" if max applications are exceeded
+- 2013 store maxGrammarApplication=50 int
+- 2013 Add: this.replace_count = 0
+- 2013 undefined Non-Terms are not working properly
+- 2013 COUNT_xxx will not replace by termial concat Weight

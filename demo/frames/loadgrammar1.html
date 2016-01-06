@@ -1,0 +1,41 @@
+<HTML>
+<HEAD>
+   <TITLE>Load Grammar Check - ArticleGenerator</TITLE>
+<!-- 
+################################################# 
+# Check Load Grammar- ArticleGenerator						
+# Javascript Software Package  				 
+# email: niehaus@uni-landau.de		
+# created               18.11.2013
+# last modifications    18.11.2013
+# Author:  My Name
+# GNU Public License 
+################################################# 
+-->
+</HEAD>
+<BODY bgcolor="#EEEEEE">
+<center>
+<font face="Arial,Helvetica">
+<!---Button: Start Wizzard ------- Button Link: startwizzard.html ----->
+<h1>Load Grammar</h1>
+ <SCRIPT LANGUAGE="JavaScript">
+ 	top.vArticleGenerator.wizzard.active = 0;
+ 	if (top.vArticleGenerator.grammarfiles.rows > 0) {
+    	//top.main.document.location.href = "loadgrammar.html";
+    	top.vArticleGenerator.setTimeout("top.main.document.location.href = 'frames/loadgrammar.html'",100);	
+
+    	
+    } else {
+        alert("WARNING: No Configuration for the  Grammar selected!\n"+
+        		"Please select a Grammar by using the Config Loader!\n"+
+        		"\nSTART: [Load Config]\n"+
+        		"\nloadgrammar1.html:29");
+        //top.main.document.location.href = "../configload.html";
+        top.vArticleGenerator.setTimeout("top.main.document.location.href = 'configload.html'",100);	
+    }
+ </SCRIPT>
+	</font>
+</center>
+</BODY>
+</HTML>	
+	

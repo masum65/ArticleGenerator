@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=utf8">
+</head>
+<body bgcolor="#ffffff" background="backgroundimage.jpg">
+<SCRIPT LANGUAGE="JavaScript" SRC="parsing.js">
+//-----PARSING.JS--------------------------------------------
+</SCRIPT>
+<br>
+<br>
+<center>
+<table border="1">
+  <tbody>
+    <tr bgcolor="#ffffff">
+      <td>
+      <table border="0">
+        <tbody>
+          <tr bgcolor="#ffffff">
+            <td><br>
+            </td>
+            <td>
+            <center><br>
+            <br>
+            <font size="+2" face="Arial,Helvetica">
+            <b>Parser Sentences<br>
+            </font>
+            <font face="Arial,Helvetica">
+            </b>
+	   			<form name="fInputForm" action="#" onsubmit="alert('Submit-Button')">
+                  	<table border=0>
+            		<tr>
+          			<!--
+            		<td align="center">
+            			<input type="button"
+          					value=" Parse Words "
+          					onclick="parseWords()">
+          			</td>
+          			<td align="center">
+            			 Word Length: 
+            			 Min <input type="text" name="MinWordLength" size=3 value="5">
+            			 Max <input type="text" name="MaxWordLength" size=3 value="15">
+          			</td>
+          			<td align="center">
+            			<input type="button"
+          					value="Parse Undefined Non-Term"
+          					onclick="parseUndefinedNonterms()">
+          			</td>
+            		-->
+            		<td align="center">
+            			 <input type="button"
+          					value=" Parse Sentence "
+          					onclick="parseSentences()"> 
+          			</td>
+            		<td align="center">
+          				   			Select Grammar-ID: 
+	   			<select name="tGrammarID" size="1" onchange="document.fInputForm.Title.value=document.fInputForm.tGrammarID.value">
+ <script language="JavaScript1.2">
+		var vGrammarIDs = top.vArticleGenerator.rules.getGrammarIDs(); 
+		for (var i=1;i<vGrammarIDs.length; i++) {
+			document.write("<option value='"+vGrammarIDs[i]+"'>"+vGrammarIDs[i]+"</option>")
+		}
+</script>      
+                </select> 
+          			</td>
+          			<td align="center">
+            			<input type="button"
+ 							value="Cancel "
+ 							onclick="alert('Cancel Edit');document.location.href='empty.html'">
+ 		  		</td>
+            		<tr/>
+            		<tr>
+          			<td align="center">
+            			<!--- input type="button"
+          					value="Parse Sections Header"
+          					onclick="parseSectionHeader()" -->
+            	<input type="button"
+ 							value=" BACK "
+ 							onclick="document.location.href='parsing1.html'">
+ 				<input type="button"
+          					value=" NEXT "
+          					onclick="document.location.href='editgrammar.html'">
+ 		 	</td>
+ 		  			<td align="center">
+            			Edit Grammar-ID: <input type="text" name="Title"
+          					value="ABSTRACT">
+          			</td>
+            		<td align="center">
+            		 	<input type="button"
+          					value=" Import Grammar "
+          					onclick="importGrammar()">
+          	
+            			<!-- input type="button"
+          					value=" Parse Sections "
+          					onclick="parseSections()" -->
+          			</td>
+            		<td align="center">
+            	 		<input type="button"
+          					value=" Apply Grammar "
+          					onclick="applyGrammar()">
+          				<!-- input type="button"
+          					value=" Parse Startnode "
+          					onclick="parseStartNode()" -->
+            			
+            		</td>
+        			</tr>
+ 				</table>
+
+					<textarea name="GenText" cols="125" rows="12">
+           		 	</textarea>
+           		 	<table>
+           		 	   <tr><td>
+           		 	   (1)
+           		 	   </td><td>
+           		 	   Import the rules into the grammar SENTENCES.
+           		 	   </td></tr>
+           		 	    <tr><td>
+           		 	   (2)
+           		 	   </td><td>
+           		 	   Apply Grammar on Text above - press [Apply Grammar].
+           		 	   </td></tr>
+           		 	</table>
+           		 	<hr/>
+			<font size="+2" face="Arial,Helvetica">
+            <b>Grammar Text<br>
+            </font>
+          			<!--
+          		 		<input type="button"
+          					value="Copy Grammar to Clipboard"
+          					onclick="copyGrammar2Clipboard()">
+          		 		<input type="button"
+          					value="Copy Clipboard to Parser Text"
+          					onclick="copyClipboard2Parser()"> -- 
+          		 		<input type="button"
+          					value="Copy Parser to Grammar"
+          					onclick="copyParser2Grammar()">
+          		 		<input type="button"
+          					value="Copy Grammar to Parser"
+          					onclick="copyGrammar2Parser()">
+          			-->
+          			<textarea name="GrammarText" cols="125" rows="12">
+           		 	</textarea>
+           		 	
+            	</form>
+            </font>
+            </center>
+            <center>
+            <p></p>
+            </center>
+            <br>
+ <script language="JavaScript1.2">
+	<!-- Begin Hiding
+	    //alert("displayobejct.html Start setting SourceText");
+		document.fInputForm.GenText.value = top.vArticleGenerator.textDestination;
+		document.fInputForm.Title.value = document.fInputForm.Title.value.toUpperCase();
+		//document.write("TEST");
+		// document.write(top.vArticleGenerator.rules.show());
+	// End Hiding -->
+           		 	</script>
+            <br>
+            </td>
+            <td>&nbsp;&nbsp;
+<!--- inner input table ---></td>
+          </tr>
+        </tbody>
+      </table>
+<!--- outer table ---> </td>
+    </tr>
+  </tbody>
+</table>
+<font size="2" face="Arial,Helvetica"><b>It is recommended to use the Browser Firefox with this Application. It is necessary to enable Javascript.</font>
+</center>
+</body>
+</html>

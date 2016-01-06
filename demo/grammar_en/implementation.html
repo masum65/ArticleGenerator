@@ -1,0 +1,269 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=utf8">
+</head>
+<body bgcolor="#ffffff" background="backgroundimage.jpg">
+<script language="JavaScript1.2">
+
+function removeComments()
+//###### removes Comments beginning with "#" in the column of line
+{
+	var vInput  = document.fInputForm.GenText.value;
+	var vTitle  = document.fInputForm.Title.value;
+	//alert("abstract.html:18 - removeComments()\nvTitle="+vTitle);
+	var vOutput = top.vArticleGenerator.import_grammar(vInput,vTitle);
+	top.vArticleGenerator.grammarfiles.set_loaded(top.vURL_Object.getName(document.location.href));
+	document.fInputForm.GenText.value = vOutput;
+	alert('Import Grammar "'+vTitle+'" done!');
+}	
+
+</script>
+<br>
+<br>
+<center>
+<table border="1">
+  <tbody>
+    <tr bgcolor="#ffffff">
+      <td>
+      <table border="0">
+        <tbody>
+          <tr bgcolor="#ffffff">
+            <td><br>
+            </td>
+            <td>
+            <center><br>
+            <br>
+            <font size="+2" face="Arial,Helvetica">
+            <b>Load 
+	<script language="JavaScript1.2">
+   	//----------------------------------------------------	
+         document.write(top.vURL_Object.getName(document.location.href).toUpperCase());
+	//----------------------------------------------------	
+    </script>
+            Grammar<br></b> <!-- action="#" -->
+	   			<form name="fInputForm"  onsubmit="document.location.href='showrules.html'">
+					<input type=button name="Import" value="Import Grammar" onchange="convertToUpperCase()" onclick="removeComments()"> 
+					<input type=text name="Title" value="abstract"> 
+        			<textarea name="GenText" cols="125" rows="50" >
+#############################################################################
+####### Implementation #######
+#############################################################################
+# (1) Define new Variables 
+#     - If you want to define a variable start you must start in the first column of the line
+#     - Use capital letters for the variables (Non-Terminal-Symbols) and underscore '_'
+#     - If you want to use Comments you must use '#' in the first column of the line not second col
+#     - As in LaTeX after '#' the rest of the line is a comment
+# (2) Multiline Variable Definitions start with the non-terminal Symbol SCI_OBJECTIVE in the first 
+#     column with "{" as an opening of the multiline defintion. The end of the multiline definition 
+#     is "}" in the first  line of the column, e.g.
+#SCI_OBJECTIVE {
+#   first line
+#   second line
+#   third line
+#}
+#     if the non-terminal symbol is not starting in the first column it will be used as a variable
+#     for replacing the symbol with rules of the grammar.
+# (3) End of Grammar File
+#     - there should be at least two empty lines at the end of each this file
+#     - this file will be concated to the grammar-File 'grammar.in' anytime you run createpaper.pl
+# (4) If you want to overwrite a definition of a non-terminal Symbol e.g. BIB_KEYWORDS
+#     use a starting ">" before non-terminal Symbol e.g
+#>BIB_KEYWORDS Risk, Resource
+#     overwriting should be used for the following non-terminal symbols
+#         - BIB_KEYWORDS
+#     
+#############################################################################
+
+IMPL_SEC_LATEX_HEADER	\section{Implementation}
+IMPL_SEC_LATEX_HEADER	\section{Implementation of PAPER_SYSNAME}
+# IMPL_SEC_LATEX_HEADER		\section{SCI_BUZZWORD_ADJ SCI_BUZZWORD_NOUN}
+
+SCI_IMPL {
+
+IMPL_SEC_LATEX_HEADER
+
+IMPL_INTRO_P
+
+IMPL_STEPS
+
+IMPL_SEC_LIST_INPUT
+
+}
+
+IMPL_INTRO_P	IMPL_INTRO IMPL_BODY_INSIDE IMPL_CONCL
+
+IMPL_BODY_INSIDE+3 	IMPL_MID IMPL_MID IMPL_MID IMPL_MID
+IMPL_BODY_INSIDE+3 	IMPL_MID IMPL_MID IMPL_MID
+IMPL_BODY_INSIDE+2 	IMPL_MID IMPL_MID
+IMPL_BODY_INSIDE 	IMPL_MID
+
+PROGRAMMING_VERBING	designing
+PROGRAMMING_VERBING	architecting
+PROGRAMMING_VERBING	implementing
+PROGRAMMING_VERBING	optimizing
+PROGRAMMING_VERBING	analyzing
+PROGRAMMING_VERBING	decomposing and recombining
+
+SCI_STEP_IMPL steps of implementation
+SCI_STEP_IMPL versions of the prototype
+
+IMPL_INTRO after several SCI_STEP_IMPL of DIFFICULT_X PROGRAMMING_VERBING, we finally have a working implementation of SCI_OUR_SYSTEM.
+IMPL_INTRO our implementation of SCI_OUR_SYSTEM creates an OpenSource version of PAPER_SYSTYPE_LONG.
+IMPL_INTRO though many versions are still in an $\alpha$-version of usability, we SCI_PRESENT_VERB a fully-working version of SCI_OUR_SYSTEM in terms of the mathematical modellingXXX
+IMPL_INTRO in this section, we SCI_PRESENT_VERB version VERSION of PAPER_SYSNAME, the culmination of TRACE_UNITs of PROGRAMMING_VERBING.
+IMPL_INTRO SCI_OUR_SYSTEM is implemented in an cycle of SCI_OPTIMIZATION and must be combined with an integrated mathematical measure for the quality.
+IMPL_INTRO IMPL_MID_X.
+
+IMPL_ITEM_STEPS {
+
+\begin{itemize}
+   \item SCI___I_STEP 
+   \item SCI__II_STEP 
+   \item SCI_III_STEP
+   \item SCI__IV_STEP
+\end{itemize}
+
+}
+IMPL_MID LIT_MIDDLE_MAYBE IMPL_MID_X.
+IMPL_MID_X SCI_OUR_SYSTEM is composed of a IMPL_COMPONENT, a IMPL_COMPONENT, and a IMPL_COMPONENT
+IMPL_MID_X {
+the IMPL_COMPONENT contains the following components, which can be described mathematically and in UML:
+ IMPL_ITEM_STEPS
+ 
+The following diagram in Unified Modelling Language is generated with ArgoUML (\cite{ArgoUML})
+DUMMY_LATEX_FIGURE
+}
+IMPL_ALL_STEPS (1) SCI___I_STEP, (2) SCI__II_STEP, (3) SCI_III_STEP and (4) SCI__IV_STEP
+
+IMPL_MID_X we have not yet implemented all the IMPL_COMPONENT, namely IMPL_ALL_STEPS. Only the core component (?) was implemented and tested for SCI_OUR_SYSTEM
+IMPL_MID_X since SCI_SYSTEM_PROP, PROGRAMMING_VERBING the IMPL_COMPONENT was relatively straightforward for
+IMPL_MID_X SCI_OUR_SYSTEM requires all steps to be performed for OBJECTIVE_MISC, namely IMPL_ALL_STEPS. 
+IMPL_MID_X LIT_ALTHOUGH we have not yet optimized all steps, namely IMPL_ALL_STEPS.  This should be accomplished once we finished and tested all the IMPL_COMPONENT
+IMPL_MID_X BIB_CITATION provides the frames for control over the IMPL_COMPONENT, which of course is necessary so that SCI_OVERALL_THESIS_PROVE. It will include all steps IMPL_ITEM_STEPS
+IMPL_MID_X it was necessary to establish the EVAL_MEASUREMENT_UM used for SCI_OUR_SYSTEM to show PAPER_OBJECTIVE and PAPER_OBJECTIVE
+IMPL_MID_X the IMPL_COMPONENT and the underlying implementation workflow must follow the steps: IMPL_ITEM_STEPS
+# IMPL_MID_X our IMPL_COMPONENT REQUIRED 
+
+IMPL_CONCL we plan to release all of this code under LICENSE_TYPE.
+IMPL_CONCL overall, SCI_OUR_SYSTEM adds only modest overhead and complexity to WRD_RELATED SCI_BUZZWORD_ADJ SCI_SYSTEM_PL.
+IMPL_CONCL one SCI_CAN imagine other SCI_APPROACH_PL to the implementation that would have made PROGRAMMING_VERBING it much simpler.
+IMPL_CONCL+3 IMPL_MID_X.
+
+
+IMPL_RUN_TYPE on PAPER_CLIENT_P
+IMPL_RUN_TYPE on PAPER_SERVER_S 
+IMPL_RUN_TYPE on PAPER_SERVER_S and on PAPER_CLIENT_P
+
+IMPL_COMPONENT client-side SCI_OPTIMIZATION of PAPER_SYSNAME_LONG
+IMPL_COMPONENT server daemon for PAPER_SYSTYPE_LONG
+IMPL_COMPONENT centralized service provided by PAPER_SERVER_S with the connectivity in a network of PAPER_CLIENT_P
+IMPL_COMPONENT manually optimized PAPER_SYSNAME_LONG with generic integration of adaptation in the next step 
+IMPL_COMPONENT web based online and offline support for clients of PAPER_SYSNAME
+IMPL_COMPONENT OpenSource operating system like Linux for easy replication without license issues
+# IMPL_COMPONENT codebase of NONZDIGIT LANGUAGE_UM files
+IMPL_COMPONENT componente decribed in Unified Modelling Language UML with ArgoUML as OpenSource UML-tool - see \cite{cArgoUML} -
+
+CODE_LINES	mathematical functions
+CODE_LINES	membership functions of Fuzzy Theory
+CODE_LINES	instructions
+
+IMPL_SEC_LIST_INPUT SEC_GIS_LAYER 
+
+SEC_GIS_LAYER {
+
+\subsection{Available expert knowledge for life cycle models of SCI_VECTOR for SCI_DISEASE}
+
+The following expert knowledge is available for life cycle models of SCI_VECTOR.
+\begin{itemize}
+   \item 
+   biological expert knowledge
+   \item 
+   environmental expert knowledge 
+   \item 
+   social expert knowledge 
+   \item 
+   mathematical expert knowledge 
+\end{itemize}
+This expert knowledge on SCI_VECTOR will be used for the life-cycle models in the GIS.
+
+\subsection{Available GIS-Layers Maps - Satellite images}
+
+The following satellite images were preprocessed with object detection (e.g. classification of vegetation, water body)  and converted into following 
+GIS-format . %...mention format...
+The GIS-Layers can be provided after preprocessing with % mention used software
+\begin{itemize}
+   \item   DIS_VAR___I
+   \item   DIS_VAR__II
+   \item   DIS_VAR_III
+\end{itemize}
+% The object detection of water bodies  will be used for
+Atkinson, P. M. and Lewis, P. provided in \cite{atkinsongeostatistical2000} 2000 an introduction for geostatistical classification for remote sensing.
+
+
+\subsection{Available GIS-Layers with preprocessing necessary}
+
+The following GIS-Layers can be provided after processing with statistical software R (see
+\begin{itemize}
+   \item   DIS_VAR___I
+   \item   DIS_VAR__II
+   \item   DIS_VAR_III
+\end{itemize}
+
+
+\subsection{Available GIS-Layers in a importable fornat}
+
+The following GIS-Layers can be imported without preprocessing
+% humidity, rainfall
+% temperature (temporal analysis) 
+\begin{itemize}
+   \item   DIS_VAR___I
+   \item   DIS_VAR__II
+   \item   DIS_VAR_III
+\end{itemize}
+
+}
+
+
+           		 	</textarea>
+		    	</form>
+            </font>
+            </center>
+            <center>
+            <p></p>
+            </center>
+            <br>
+            </td>
+            <td>&nbsp;&nbsp;
+<!--- inner input table ---></td>
+          </tr>
+        </tbody>
+      </table>
+<!--- outer table ---> </td>
+    </tr>
+  </tbody>
+</table>
+<script language="JavaScript1.2">
+	//----------------------------------------------------	
+	document.fInputForm.Title.value = top.vURL_Object.getName(document.location.href).toUpperCase();
+	var vInput  = document.fInputForm.GenText.value;
+	var vTitle  = document.fInputForm.Title.value;
+	document.fInputForm.Title.value = vTitle;
+	if (top.vArticleGenerator.grammarfiles.preload_index <= top.vArticleGenerator.grammarfiles.rows) {
+		var vOutput = top.vArticleGenerator.import_grammar(vInput,vTitle);
+		top.vArticleGenerator.setTimeout("top.vArticleGenerator.grammarfiles.preload()",100);
+	} else {
+		//alert("No preload");
+		if (top.vArticleGenerator.wizzard.active > 0) {
+			top.vArticleGenerator.wizzard.load(vInput,vTitle);
+		}
+	}
+	//----------------------------------------------------	
+</script>
+
+
+<font size="2" face="Arial,Helvetica"><b>It is recommended to use the Browser Firefox with this Application. It is necessary to enable Javascript.</font>
+</center>
+</body>
+</html>

@@ -1,0 +1,312 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=utf8">
+ <script language="JavaScript1.2">
+	<!-- Begin Hiding
+    function clearForm() {
+    	//alert("Clear Form - Demo");
+    	vDisplayMode = top.vArticleGenerator.wizzard.aNONTERM_Display;
+	    if (vDisplayMode>1) {
+			document.fInputForm.nonterm.value = "";
+    	}
+	    vDisplayMode = top.vArticleGenerator.wizzard.aWeight_Display;
+	    if (vDisplayMode>1) {
+	    	document.fInputForm.weight.value = "1";
+    	}
+	    vDisplayMode = top.vArticleGenerator.wizzard.aGrammarID_Display;
+    	if (vDisplayMode>1) {
+	    	document.fInputForm.grammarid.value = "";
+    	}
+	    document.fInputForm.ruletext.value = "";
+        //alert("Clear Form - Done!");
+    }
+
+    function checkRule() {
+    	//alert("addrule.html:18 - checkRule() - Call");
+    	var vReturnValue = 0;
+    	if (document.fInputForm.nonterm.value == "") {
+    		alert("Enter a Variable (non-terminal Symbol) like 'MYDEF' in capital letters!");
+    		vReturnValue += 1;
+    	} else {
+    	     if (document.fInputForm.nonterm.value != document.fInputForm.nonterm.value.toUpperCase()) {
+    	         alert("Variable '"+document.fInputForm.nonterm.value+"' corrected to UpperCase!");
+         	     document.fInputForm.nonterm.value = document.fInputForm.nonterm.value.toUpperCase();
+         	 }
+    	};
+    	if (document.fInputForm.grammarid.value == "") {
+    		alert("Enter a Grammar-ID like 'INTRODUCTION' in capital letters!");
+    		vReturnValue += 1;
+    	} else {
+    	     document.fInputForm.grammarid.value = document.fInputForm.grammarid.value.toUpperCase();
+    	};
+    	if (document.fInputForm.ruletext.value == "") {
+    		alert("Enter a Definition for '"+document.fInputForm.nonterm.value+"' in text area for the rule!");
+    		vReturnValue += 1;
+    	};
+        //alert("Clear Form - Done!");
+        return vReturnValue;
+    }
+
+   function addRuleNext() {
+       	var vURLnext = "empty.html";
+       	var vErrors = addRuleURL(vURLnext);
+        if (vErrors == 0) {
+			//alert("Add the rule is OK! selectrule.html:55");
+			top.vArticleGenerator.wizzard.next();
+	    	vURLnext = top.vArticleGenerator.wizzard.aURLnext;
+	    } else {
+	    	//alert("ERROR: Add the rule not performed! selectrule.html:59");
+		};
+   }
+
+   function addRule() {
+       	var vURLnext = "addrule.html";
+       	var vErrors = addRuleURL(vURLnext);
+        if (vErrors == 0) {
+			//alert("Add the rule is OK! selectrule.html:68");
+	    } else {
+	    	//alert("ERROR: Add the rule not performed! selectrule.html:70");
+		};
+   }
+   
+   function addRuleURL(pURLnext) {
+		var vErrors = checkRule();
+		var vRuleDefinition = document.fInputForm.ruletext.value;
+		document.fInputForm.ruletext.value = vRuleDefinition
+		if (vErrors == 0) {
+			var vInput  = document.fInputForm.nonterm.value;
+			vInput = vInput.toUpperCase();
+			if (document.fInputForm.weight.value != "") {
+				vInput  += "+"+document.fInputForm.weight.value;
+			}
+			vRuleDefinition = "__undefined__";
+		    rObj = document.fInputForm.ruletext;
+		    for (var i=0; i<rObj.length; i++) {
+		    	if (rObj[i].checked) {
+		    		vRuleDefinition = rObj[i].value;
+				}
+    		};
+    		vRuleDefinition = vRuleDefinition.replace(/\\n/g,"\n");
+    		vRuleDefinition = top.vArticleGenerator.rules.editform2ruledef(vRuleDefinition);
+			vInput += " {\n";
+    		vInput += vRuleDefinition;
+			vInput += " \n}\n";
+			//alert("addrule.html:80\nvInput=\n"+vInput);
+		    var vGrammarID  = document.fInputForm.grammarid.value;
+		    if (vRuleDefinition != "__undefined__") {
+		    	var vOutput = top.vArticleGenerator.import_grammar(vInput,vGrammarID);
+				alert("Rule for '"+ document.fInputForm.nonterm.value +"' added!\nselectrule.html:91");
+	    		//document.location.href = pURLnext;	
+	    		var vEval = "top.main.document.location.href = \"frames/"+pURLnext+"\"";
+	    		//alert("setTimeout: vEval="+vEval+"\nselectrule.html:94");
+	    		top.vArticleGenerator.setTimeout(vEval,100);	
+	    	} else {
+	    		alert("Please select a definition of the Rule '"+ document.fInputForm.nonterm.value +"'!\nselectrule.html:98")
+	    		vErrors++;
+	    	}
+
+		}
+		return vErrors;
+   }
+
+	function variable_Display(pVarTitle,pVariable,pContentSource,pDisplayMode) {
+	    var vReturn = "";
+	    if (pDisplayMode > 0) {
+	        document.write("<tr><td valign='top'><b>"+pVarTitle+"</b></td>");
+			document.write("<td valign='top'>");
+			if (pDisplayMode > 1) {
+				if (pVariable == "weight") {
+				    document.write("<select name='weight'> ");
+				    document.write("<option value=''> </option>");
+				    for (var i=1; i<=20; i++) {
+				        document.write("<option value='"+i+"'>"+i+"</option>");
+				    }
+					document.write("</select>");
+				} else if (pVariable == "ruletext") {
+					var vRules = top.vArticleGenerator.rules;
+					var vCount = 0;
+					var vContentHTML = "";
+					//document.write("<table border=0>");
+					document.write("<hr/>");
+					for (var i=1; i<=vRules.rows; i++) {
+						//alert("Compare/nRule: '"+vRules[i][1]+"'\n-----\n'"+pContentSource+"'");
+						if (vRules[i][1] == pContentSource) {
+							vContentHTML = "";
+							vCount += 1;
+							var vValue = vRules[i][2].replace(/\n/g, '\\n');
+							//document.write("<tr><td>");
+							//----Radio Button for Rule -----
+							vContentHTML += "<input type='radio' name='"+pVariable;
+							vContentHTML += "' value='"+vValue+"'>";
+							//alert("vValue="+vValue);
+							//document.write("</td><td>"); 
+				    		vContentHTML +=vRules[i][2];
+				    		vContentHTML +="<hr/>";
+				    		//alert("vContentHTML="+vContentHTML);
+				    		document.write(vContentHTML);
+				    		//document.write("</td></tr></table>");
+						}
+				    	//document.write("</table>");
+					}
+					if (vCount == 0) {
+						alert("ERROR: '"+pContentSource+"' is not defined in Grammar. Therefore selections item is impossibe\nselectrule.html:140");
+						document.write("<input type='text' name='"+pVariable+"' + value='"+pContentSource+"' />");
+					}
+				} else {
+					document.write("<input type='text' name='"+pVariable+"' + value='"+pContentSource+"' />");
+				}
+	        } else {
+				document.write(pContentSource);
+				document.write("<input type='hidden' name='"+pVariable+"' + value='"+pContentSource+"' />");
+	        }
+			document.write("</td></tr>");
+		} else {
+			vReturn = "<input type='hidden' name='"+pVariable+"' + value='"+pContentSource+"' />";
+			//document.write("<input type='hidden' name='"+pVariable+"' + value='"+pContentSource+"' />");
+		}
+		return vReturn;
+   }
+	// End Hiding -->
+           		 	</script>
+
+</head>
+<body bgcolor="#ffffff" background="backgroundimage.jpg">
+
+<br>
+<br>
+<center>
+<table border="1">
+  <tbody>
+    <tr bgcolor="#ffffff">
+      <td>
+      <table border="0">
+        <tbody>
+          <tr bgcolor="#ffffff">
+            <td><br>
+            </td>
+            <td>
+            <center><br>
+            <br>
+            <font size="+2" face="Arial,Helvetica">
+<script language="JavaScript1.2">
+	<!-- Begin Hiding
+	    //alert("displayobejct.html Start setting SourceText");
+	    if (top.vArticleGenerator) {
+	    	var vNONTERM = top.vArticleGenerator.wizzard.aNONTERM;
+	        if (vNONTERM != "") {
+					document.write("<b>Select Rule Definition for <font color=blue><tt>"+vNONTERM+"</tt></font></b><br/>");
+	        }
+		}
+	// End Hiding -->
+</script>
+            	<form name="fInputForm" action="#" onsubmit="alert('Submit-Button')">
+					<table border=0>
+ <script language="JavaScript1.2">
+	<!-- Begin Hiding
+	    //alert("displayobejct.html Start setting SourceText");
+	    if (top.vArticleGenerator) {
+	        if (top.vArticleGenerator.wizzard.aComment != "") {
+					document.write("<tr><td colspan=2><hr/>");
+					document.write(top.vArticleGenerator.wizzard.aComment);
+					document.write("<hr/></td></tr>");
+	        }
+		}
+	// End Hiding -->
+</script>
+ <script language="JavaScript1.2">
+	<!-- Begin Hiding
+	    //alert("displayobejct.html Start setting SourceText");
+	    var vVarTitle="VarTitle";
+	    var vVariable="MY_NONTERM";
+	    var vContentSource="My Definition of the variable "+vVariable;
+	    var vDisplayMode = 2;
+	    var vHiddenValues = "";    
+	    document.write("<tr><td></td><td></td></tr>");
+	    if (top.vArticleGenerator) {
+	        //-------------------------------
+	        vVarTitle="Variable:";
+	        vVariable="nonterm";
+	        vContentSource = top.vArticleGenerator.wizzard.aNONTERM;
+	        vDisplayMode = top.vArticleGenerator.wizzard.aNONTERM_Display;
+	        vHiddenValues += variable_Display(vVarTitle,vVariable,vContentSource,vDisplayMode);
+	        //-------------------------------
+	        vVarTitle="Weight:";
+	        vVariable="weight";
+	        vContentSource = top.vArticleGenerator.wizzard.aWeight;
+	        vDisplayMode = top.vArticleGenerator.wizzard.aWeight_Display;
+	        vHiddenValues += variable_Display(vVarTitle,vVariable,vContentSource,vDisplayMode);
+	        //-------------------------------
+	        vVarTitle="Grammar-ID:";
+	        vVariable="grammarid";
+	        vContentSource = top.vArticleGenerator.wizzard.aGrammarID;
+	        vDisplayMode = top.vArticleGenerator.wizzard.aGrammarID_Display;
+	        vHiddenValues += variable_Display(vVarTitle,vVariable,vContentSource,vDisplayMode);
+	        //-------------------------------
+	        vVarTitle="Select Def:";
+	        vVariable="ruletext";
+	        vContentSource = top.vArticleGenerator.wizzard.aTERM;
+            var vSelectRule = vContentSource.replace(/\s+/g,"");
+			vContentSource = vSelectRule.substr(vSelectRule.indexOf("?")+1,vSelectRule.length-1);
+			//alert("SelectRule=TRUE for "+$vSelectRule+"\nwizzard.js:503");
+		    //alert("vContentSource (wizzard.aTERM)='"+vContentSource+"'\nselectrule.html:236");
+	        vDisplayMode = 2;
+	        vHiddenValues += variable_Display(vVarTitle,vVariable,vContentSource,vDisplayMode);
+	        //-------------------------------
+	        document.write("<tr><td></td><td>"+vHiddenValues+"</td></tr>");
+	 	}
+	 	//alert("Diplay of Variables finished\nselectrule.html:242");
+	// End Hiding -->
+</script>
+           		 	<tr>
+					<td>
+					<input type="button" value="Add Rule + Next Variable" onclick="addRuleNext()">
+           		 	</td>
+           		 	<td>
+           		 	<!-- <input type="button" value="Add Rule" onclick="addRule()">
+           		 	<input type="button" value="Clear" onclick="clearForm()"> -->
+           		 	<input type="button" value="Cancel" onclick="document.location.href='empty.html'">
+           		 	<!--- input type="button" value="Test" onclick="top.vArticleGenerator.wizzard.stop()" --->
+           		 	</td>
+           		 	</tr>
+           		 	</table>
+
+            	</form>
+            </font>
+            </center>
+            <center>
+            <p></p>
+            </center>
+            <br>
+ <script language="JavaScript1.2">
+	<!-- Begin Hiding
+	    //alert("Select Rule last Javascript-Environment\nselectrule.html:267");
+	    if (top.vArticleGenerator) {
+	        //top.vArticleGenerator.wizzard.read_comment_def();
+	    	if (top.vArticleGenerator.wizzard.aNONTERM != "") {
+		   	 	document.fInputForm.nonterm.value = top.vArticleGenerator.wizzard.aNONTERM;
+		    	document.fInputForm.ruletext.value = top.vArticleGenerator.wizzard.aTERM;
+		    	document.fInputForm.grammarid.value = top.vArticleGenerator.wizzard.aGrammarID;
+            	document.fInputForm.weight.value = top.vArticleGenerator.wizzard.aWeight;
+            }
+            //alert("Select a Rule for aNONTERM='"+top.vArticleGenerator.wizzard.aNONTERM+"' with aTERM='"+top.vArticleGenerator.wizzard.aTERM+"'\nselectrule.html:277");
+    
+        }
+	// End Hiding -->
+           		 	</script>
+            <br>
+            </td>
+            <td>&nbsp;&nbsp;
+<!--- inner input table ---></td>
+          </tr>
+        </tbody>
+      </table>
+<!--- outer table ---> </td>
+    </tr>
+  </tbody>
+</table>
+<font size="2" face="Arial,Helvetica"><b>It is recommended to use the Browser Firefox with this Application. It is necessary to enable Javascript.</font>
+</center>
+</body>
+</html>

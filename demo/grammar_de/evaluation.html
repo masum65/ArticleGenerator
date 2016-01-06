@@ -1,0 +1,768 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=utf8">
+</head>
+<body bgcolor="#ffffff" background="backgroundimage.jpg">
+<script language="JavaScript1.2">
+
+function removeComments()
+//###### removes Comments beginning with "#" in the column of line
+{
+	var vInput  = document.fInputForm.GenText.value;
+	var vTitle  = document.fInputForm.Title.value;
+	//alert("abstract.html:18 - removeComments()\nvTitle="+vTitle);
+	var vOutput = top.vArticleGenerator.import_grammar(vInput,vTitle);
+	top.vArticleGenerator.grammarfiles.set_loaded(top.vURL_Object.getName(document.location.href));
+	document.fInputForm.GenText.value = vOutput;
+	alert('Import Grammar "'+vTitle+'" done!');
+}	
+
+</script>
+<br>
+<br>
+<center>
+<table border="1">
+  <tbody>
+    <tr bgcolor="#ffffff">
+      <td>
+      <table border="0">
+        <tbody>
+          <tr bgcolor="#ffffff">
+            <td><br>
+            </td>
+            <td>
+            <center><br>
+            <br>
+            <font size="+2" face="Arial,Helvetica">
+            <b>Load 
+	<script language="JavaScript1.2">
+   	//----------------------------------------------------	
+         document.write(top.vURL_Object.getName(document.location.href).toUpperCase());
+	//----------------------------------------------------	
+    </script>
+            Grammar<br></b> <!-- action="#" -->
+	   			<form name="fInputForm"  onsubmit="document.location.href='showrules.html'">
+					<input type=button name="Import" value="Import Grammar" onchange="convertToUpperCase()" onclick="removeComments()"> 
+					<input type=text name="Title" value="abstract"> 
+        			<textarea name="GenText" cols="125" rows="50" >
+#############################################################################
+####### Evaluation #######
+#############################################################################
+# (1) Define new Variables 
+#     - If you want to define a variable start you must start in the first column of the line
+#     - Use capital letters for the variables (Non-Terminal-Symbols) and underscore '_'
+#     - If you want to use Comments you must use '#' in the first column of the line not second col
+#     - As in LaTeX after '#' the rest of the line is a comment
+# (2) Multiline Variable Definitions start with the non-terminal Symbol SCI_OBJECTIVE in the first 
+#     column with "{" as an opening of the multiline defintion. The end of the multiline definition 
+#     is "}" in the first  line of the column, e.g.
+#SCI_OBJECTIVE {
+#   first line
+#   second line
+#   third line
+#}
+#     if the non-terminal symbol is not starting in the first column it will be used as a variable
+#     for replacing the symbol with rules of the grammar.
+# (3) End of Grammar File
+#     - there should be at least two empty lines at the end of each this file
+#     - this file will be concated to the grammar-File 'grammar.in' anytime you run createpaper.pl
+# (4) If you want to overwrite a definition of a non-terminal Symbol e.g. BIB_KEYWORDS
+#     use a starting ">" before non-terminal Symbol e.g
+#>BIB_KEYWORDS Risk, Resource
+#     overwriting should be used for the following non-terminal symbols
+#         - BIB_KEYWORDS
+#     
+#############################################################################
+
+STARTNODE_SECTIONS SCI_EVAL
+
+# eventually all of this, but for now...
+#
+#EVAL_SEC {
+#
+#EVAL_SEC_INTRO
+#
+#EVAL_SEC_BODY
+#
+#EVAL_SEC_CONCL
+#
+#}
+
+EVAL_SEC_LATEX_HEADER \ section {} EVAL_SEC_HEADER_T
+EVAL_SEC_HEADER_T Evaluation und Performance-Ergebnisse
+EVAL_SEC_HEADER_T Performance-Ergebnisse
+EVAL_SEC_HEADER_T 5 Bewertung
+EVAL_SEC_HEADER_T Experimentelle Bewertung
+EVAL_SEC_HEADER_T Experimentelle Auswertung und Analyse
+EVAL_SEC_HEADER_T Ergebnisse und Analyse
+EVAL_SEC_HEADER_T 5 Ergebnisse
+
+LATEX_FIGURE_MAYBE LATEX_FIGURE
+LATEX_FIGURE_MAYBE
+
+SCI_EVAL {
+
+ EVAL_SEC_LATEX_HEADER
+
+ EVAL_SEC_INTRO
+
+ EVAL_SEC_SUBHEAD_LTX
+
+ LATEX_FIGURE
+
+ EVAL_SEC_HARDWARE_P
+
+ LATEX_FIGURE
+
+ EVAL_SEC_SOFTWARE_P
+
+ LATEX_FIGURE_MAYBE
+
+ EVAL_SEC_SUBHEAD_LTX
+
+ LATEX_FIGURE_MAYBE
+
+ LATEX_FIGURE_MAYBE
+
+ EVAL_GUTS
+
+
+
+}
+
+
+
+EVAL_SEC_SUBHEAD_LTX \subsection{EVAL_SEC_SUBHEAD}
+
+EVAL_SEC_INTRO EVAL_SEC_INTRO_A EVAL_SEC_INTRO_BS EVAL_SEC_INTRO_C
+
+EVAL_SEC_INTRO_BS EVAL_SEC_HYP_SET
+EVAL_SEC_INTRO_BS EVAL_SEC_HYP_SET EVAL_SEC_INTRO_B
+EVAL_SEC_INTRO_BS EVAL_SEC_HYP_SET EVAL_SEC_INTRO_B LIT_MIDDLE_TWO EVAL_SEC_INTRO_B
+EVAL_SEC_INTRO_BS EVAL_SEC_HYP_SET EVAL_SEC_INTRO_B LIT_MIDDLE_TWO EVAL_SEC_INTRO_B LIT_MIDDLE EVAL_SEC_INTRO_B
+
+EVAL_SEC_INTRO_A In diesem Licht haben wir hart gearbeitet, um an einer geeigneten Auswertung PAPER_METHODOLOGY gelangen.
+EVAL_SEC_INTRO_A wir nicht ernst genug nehmen Problem der PAPER_METHODOLOGY.
+EVAL_SEC_INTRO_A Ziel ist es, nachzuweisen, dass die vorgestellten Ideen zur Verbesserung der SCI_ENVIRONMENT betrachtet, die trotz ihrer Komplexität in Kosten.
+EVAL_SEC_INTRO_A Nur mit präzisen Messungen könnten wir den Leser davon zu überzeugen, was zählt Leistung.
+
+SCI_ENVIRONMENT Lernumgebung der Schüler
+SCI_ENVIRONMENT Umgebung einer Living Lab für anwenderorientierte Innovationen
+
+EVAL_SEC_INTRO_A EVAL_SEC_INTRO_A1 EVAL_SEC_INTRO_A2
+
+EVAL_SEC_INTRO_A BEWERTUNG ein System, in SCI_ENVIRONMENT uns erwies sich als schwierig.
+EVAL_SEC_INTRO_A Auswertung komplexer dynamischer Systeme ist schwierig, weil Messungen.
+EVAL_SEC_INTRO_A Wie würde unser System verhalten sich in einem realen Szenario?
+EVAL_SEC_INTRO_A Systeme sind nur nützlich, wenn sie effizient genug, um ihre Ziele zu erreichen sind.
+EVAL_SEC_INTRO_A Eine gut gestaltete System, das die Grenze von einer akzeptablen Antwortzeiten überschreitet, wird von keinerlei Nutzen für den Kunden.
+EVAL_SEC_INTRO_A Building a PAPER_SYSNAME System ist in der Lage, reale Szenario der als SCI_IMPROVED_SYSTEM anzupassen hat, einen integrierten Ansatz der Bewertung haben.
+
+EVAL_SEC_INTRO_A Nach der SCI_ENVIRONMENT wir jetzt diskutieren, unsere BEWERTUNG.
+EVAL_SEC_INTRO_A unsere BEWERTUNG stellt einen Forschungsbeitrag zur Verbesserung der SCI_ENVIRONMENT.
+EVAL_SEC_INTRO_A als Folge des nachfolgenden Absatzes werden wir sehen, daß die Optimierung der SCI_ENVIRONMENT führt zur Anwendung PAPER_THEORY.
+
+PAPER_THEORY mathematisches Maß-Theorie
+
+EVAL_SEC_INTRO_B, der Grund dafür ist, dass Studien von PAPER_METHODOLOGY im Zitat, das EVAL_MEASUREMENT hat BETTER_EFFECT SCI_IMPROVED_SYSTEM, als wir durch die Anwendung in CITATION beschriebenen Standardverfahren erwartet werden gezeigt.
+EVAL_SEC_INTRO_B die implementierte Logik folgt ein räumliches Modell: Leistung Lernalgorithmen MATTERS nur solange CONSTRAINT_TAKES einen Rücksitz zu CONSTRAINT_OR_MEASUREMENT.
+EVAL_SEC_INTRO_B TAKE_NOTE_THAT haben wir bewusst auf SCI_VERB PROP_OR_MEASUREMENT vernachlässigt.
+EVAL_SEC_INTRO_B TAKE_NOTE_THAT wir haben beschlossen, nicht PROP_OR_MEASUREMENT SCI_VERB.
+EVAL_SEC_INTRO_B nur mit dem Vorteil unseres Systems PROP_OR_MEASUREMENT_2 könnten wir optimieren für CONSTRAINT_TYPE auf Kosten der CONSTRAINT_OR_MEASUREMENT.
+EVAL_SEC_INTRO_B wir sind dankbar für SCI_MATH_ADJ SCI_THING_P; ohne sie könnten wir nicht für CONSTRAINT_TYPE optimieren gleichzeitig mit CONSTRAINT_OR_MEASUREMENT.
+
+# BETTER_EFFECT etwa ANTEIL höher
+BETTER_EFFECT höheren Einfluss auf
+BETTER_EFFECT Wirkung om
+BETTER_EFFECT Einfluss auf
+
+WRD_MATTERS ist von Bedeutung
+WRD_MATTERS wirklich zählt
+WRD_MATTERS Angelegenheiten
+WRD_MATTERS könnte eine Reduzierung der Zuverlässigkeit führen
+
+CONSTRAINT_TYPE Leistung
+CONSTRAINT_TYPE Sicherheit
+CONSTRAINT_TYPE Usability
+CONSTRAINT_TYPE Skalierbarkeit
+CONSTRAINT_TYPE Komplexität
+CONSTRAINT_TYPE Einfachheit
+
+CONSTRAINT_P CONSTRAINT_TYPE Einschränkungen
+CONSTRAINT_TAKES CONSTRAINT_TYPE nimmt
+CONSTRAINT_TAKES CONSTRAINT_P nehmen
+
+CONSTRAINT_OR_MEASUREMENT EVAL_MEASUREMENT
+CONSTRAINT_OR_MEASUREMENT CONSTRAINT_TYPE
+CONSTRAINT_OR_MEASUREMENT CONSTRAINT_P
+
+ANTEIL DIGITDIGIT \%
+ANTEIL DIGITDIGIT \%
+
+
+
+TAKE_NOTE_THAT beachten Sie, dass
+TAKE_NOTE_THAT aus den vorliegenden Voraussetzungen würde nun folgern, dass aus offensichtlichen Gründen,
+TAKE_NOTE_THAT im Gegensatz zu anderen Autoren,
+
+VERNACHLÄSSIGTE vernachlässigt
+VERNACHLÄSSIGTE gescheitert
+
+# EVAL_SEC_HYP_SET unserer Gesamtbewertung versucht, drei Hypothesen zu beweisen: (1) EVAL_SEC_HYPOTHESIS; (2) EVAL_SEC_HYPOTHESIS; und schließlich (3) EVAL_SEC_HYPOTHESIS.
+EVAL_SEC_HYP_SET {
+unser Gesamtbewertung versucht nun die folgenden Hypothesen zu beweisen:
+\begin{enumerate}
+\item EVAL_SEC_HYPOTHESIS;
+\item EVAL_SEC_HYPOTHESIS; und schließlich
+\item EVAL_SEC_HYPOTHESIS.
+\end{enumerate}
+
+}
+
+WRD_AFFECT beeinflussen
+WRD_AFFECT Auswirkungen
+WRD_AFFECT Einfluss
+WRD_AFFECT Knie
+WRD_AFFECT einstellen
+
+LITTLE viel
+LITTLE wenig
+LITTLE eine ganze Menge
+
+EVAL_SEC_HYPOTHESIS dass PROP_OR_MEASUREMENT ist MORE_IMPORTANT_THAN PROP_OR_MEASUREMENT wenn MAXIMIERUNG EVAL_MEASUREMENT
+
+EVAL_SEC_HYPOTHESIS dass SCI_THING_HAS tatsächlich gezeigt VERSCHIEDENE EVAL_MEASUREMENT über die Zeit
+
+EVAL_SEC_HYPOTHESIS, die wir tun können, um WRD_LITTLE eines SCI_SYSTEM der PROP_OR_MEASUREMENT_NO_SYSTEM WRD_AFFECT
+
+EVAL_SEC_HYPOTHESIS dass die OLD_MACHINE von gestern zeigt tatsächlich besser als die heutigen EVAL_MEASUREMENT Hardware
+
+EVAL_SEC_HYPOTHESIS dass EVAL_MEASUREMENT blieb konstant über aufeinanderfolgende Generationen von OLD_MACHINEs
+
+EVAL_SEC_HYPOTHESIS dass HARDWARE_PROP verhält sich grundsätzlich anders auf unserer EXP_WHERE
+
+THINGS_NO_LONGER_INFLUENCE SCI_THING_P nicht mehr WRD_AFFECT
+THINGS_NO_LONGER_INFLUENCE SCI_THING_S nicht mehr WRD_AFFECTs
+
+EVAL_SEC_HYPOTHESIS dass THINGS_NO_LONGER_INFLUENCE PROP_OR_MEASUREMENT
+EVAL_SEC_HYPOTHESIS dass THINGS_NO_LONGER_INFLUENCE Leistung
+EVAL_SEC_HYPOTHESIS dass THINGS_NO_LONGER_INFLUENCE System-Design
+
+EVAL_SEC_HYPOTHESIS dass EVAL_MEASUREMENT ist ein schlechter Weg, um EVAL_MEASUREMENT messen
+WRD_BAD schlecht
+WRD_BAD gut
+WRD_BAD obsolet
+WRD_BAD holt
+
+EVAL_SEC_INTRO_C wir hoffen, deutlich zu machen, dass unsere EVAL_MODING ist der Schlüssel zu unserem BEWERTUNG.
+EVAL_SEC_INTRO_C unserer Arbeit in dieser Hinsicht ist ein neuartiges Beitrag, an und für sich.
+EVAL_SEC_INTRO_C unsere WRD_EVALUATION wird zeigen, dass EVAL_MODING ist entscheidend, um unsere Ergebnisse.
+EVAL_SEC_INTRO_C wir hoffen, dass dieser Abschnitt BEWEISEN SCI_A_FACT.
+EVAL_SEC_INTRO_C die Bewertung der PAPER_SYSNAME PROVE_THAT die SCI_SOLUTION Punkte Vorsprung.
+EVAL_SEC_INTRO_C unsere BEWERTUNG hält Ergebnisse für SCI_MY_METHOD.
+
+EVAL_MODING EVAL_MODING_HARDWARE
+EVAL_MODING EVAL_MODING_SOFTWARE
+
+EVAL_MODING_HARDWARE wandte die HARDWARE_PROP_OR_MEASUREMENT von EVAL_SYSTEM
+EVAL_MODING_SOFTWARE Messung der SOFTWARE_PROP_OR_MEASUREMENT unserer SOFTWARE_SYSTEM
+
+SOFTWARE_PROP_UNMOD die Komplexität des Codes
+# SOFTWARE_PROP_UNMOD ABI
+# SOFTWARE_PROP_UNMOD API
+SOFTWARE_PROP_UNMOD Grenze der Anwendung von PAPER_SYSNAME_LONG
+SOFTWARE_PROP_UNMOD Software-Architektur
+
+SOFTWARE_PROP SOFTWARE_PROP_UNMOD
+SOFTWARE_PROP SOFTWARE_ADJ SOFTWARE_PROP_UNMOD
+SOFTWARE_PROP SCI_BUZZWORD_ADJ SOFTWARE_PROP_UNMOD
+
+SOFTWARE_PROP_OR_MEASUREMENT SOFTWARE_PROP
+SOFTWARE_PROP_OR_MEASUREMENT EVAL_MEASUREMENT
+
+PROP_OR_MEASUREMENT eines SCI_SYSTEM der SOFTWARE_PROP
+PROP_OR_MEASUREMENT HARDWARE_PROP
+PROP_OR_MEASUREMENT EVAL_MEASUREMENT
+
+PROP_OR_MEASUREMENT SOFTWARE_PROP
+PROP_OR_MEASUREMENT HARDWARE_PROP
+PROP_OR_MEASUREMENT EVAL_MEASUREMENT
+
+PROP_OR_MEASUREMENT_NO_SYSTEM SOFTWARE_PROP
+PROP_OR_MEASUREMENT_NO_SYSTEM HARDWARE_PROP
+PROP_OR_MEASUREMENT_NO_SYSTEM EVAL_MEASUREMENT
+
+# NETWORK_TYPE NETWORK_TYPE_N-Knoten
+# NETWORK_TYPE NETWORK_TYPE_N-Knoten
+# NETWORK_TYPE NETWORK_TYPE_N-Knoten
+
+EXP_ADJ SCI_BUZZWORD_ADJ
+EXP_ADJ Echtzeit
+EXP_ADJ Paketebene
+EXP_ADJ quantisiert
+EXP_ADJ realen Welt
+EXP_ADJ Ad-hoc-
+EXP_ADJ Software
+EXP_ADJ Hardware
+EXP_TYPE EXP_ADJ EXP_TYPE_UM
+EXP_TYPE EXP_TYPE_UM
+EXP_TYPE_UM ArticleGenerator
+EXP_TYPE_UM Emulation
+EXP_TYPE_UM Einsatz
+EXP_TYPE_UM Prototyp
+
+EXP_WHERE_UM Cluster
+EXP_WHERE_UM Testbed
+EXP_WHERE_UM Overlay-Netzwerk
+
+# Gemeinplätze, Experimente laufen
+EXP_WHERE_CMN Desktop-Maschinen
+EXP_WHERE_CMN mobile Geräte
+EXP_WHERE_CMN System
+EXP_WHERE_CMN Netzwerk
+EXP_WHERE_CMN 4 EXP_WHERE_ADJ EXP_WHERE_UM
+
+# Seltenen Orte
+OLD_MACHINE Decision Support
+OLD_MACHINE PAPER_SYSNAME
+OLD_MACHINE Content Management Systeme
+# EXP_WHERE_RARE stillgelegt OLD_MACHINEs
+EXP_WHERE_RARE Netzwerk von PAPER_CLIENT_P verbunden, um die maßgeschneiderte Daten dem Benutzer PAPER_SERVER_S
+# EXP_WHERE_RARE Mensch-Maschine-
+
+EXP_WHERE EXP_WHERE_RARE
+EXP_WHERE 8 EXP_WHERE_CMN
+
+
+EXP_WHERE_ADJ SCI_BUZZWORD_ADJ
+EXP_WHERE_ADJ NETWORK_TYPE
+# EXP_WHOSE Tshwane University of Techology
+# EXP_WHOSE CSIR
+EXP_WHOSE fünf unserer
+EXP_WHOSE Linux
+
+EXP EXP_TYPE auf EXP_WHOSE EXP_WHERE
+
+
+EVAL_SEC_BODY EVAL_SEC_BODY_P_LIST
+EVAL_SEC_BODY_P_LIST EVAL_SEC_BODY_P
+EVAL_SEC_BODY_P_LIST 2 EVAL_SEC_BODY_P_LIST EVAL_SEC_BODY_P
+
+# EVAL_SEC_BODY_P EVAL_SEC_BODY_P_TOPIC EVAL_SEC_BODY_P_BODY EVAL_SEC_BODY_P_CLOSE
+EVAL_SEC_BODY_P_TOPIC EVAL_SEC_BODY_P_TOPIC_LEADIN EVAL_SEC_BODY_P_FINDING
+
+
+EVAL_SEC_BODY_P_FINDING eine SIMUL_ADJ SIMUL_TYPE SIMUL_VERB SIMUL_SYSTEM
+
+EVAL_SEC_BODY_P_TOPIC_LEADIN wir waren überrascht, dass entdecken
+EVAL_SEC_BODY_P_TOPIC_LEADIN wie bei
+
+EVAL_SEC_HARDWARE_P {
+ EVAL_HARDWARE_INTRO EVAL_ACTION EVAL_MOD_XXX LIT_FIRST EVAL_MOD EVAL_MOD_XXX LIT_MIDDLE_TWO EVAL_MOD
+ EVAL_MOD_XXX LIT_MIDDLE EVAL_MOD EVAL_MOD_XXX EVAL_SEC_BODY_P_REST
+}
+
+
+EVAL_HARDWARE_INTRO viele Hardware-Änderungen waren erforderlich, um SCI_OUR_SYSTEM messen.
+EVAL_HARDWARE_INTRO unsere ausführliche Auswertung erforderlichen viele Hardware-Änderungen.
+EVAL_HARDWARE_INTRO {
+Jetzt führen wir die Opensource-Software und erklären die Änderung der Standard-Opensource-Software-Komponenten, die notwendig waren:
+\begin{itemize}
+ \item OSSYS_I ist ein OSTYPE_I und es ist für OSSYS_I OSSYS_DESCRIBE_I verwendet
+ \item OSSYS_II ist ein OSTYPE_II und es ist für OSSYS_II OSSYS_DESCRIBE_II verwendet
+  \item OSSYS_III ist ein OSTYPE_III und es ist für OSSYS_III OSSYS_DESCRIBE_III verwendet
+\end{itemize}
+}
+EVAL_HARDWARE_INTRO eine gut abgestimmte Netzwerkkonfiguration ist der Schlüssel zu einem nützlichen BEWERTUNG.
+EVAL_HARDWARE_INTRO obwohl viele wichtige Details von BIB_CITATION VERFÜGUNG GESTELLT, können wir die PAPER_METHODOLOGY unter Berücksichtigung der folgenden Aspekte abzuleiten.
+EVAL_HARDWARE_INTRO {
+müssen wir betonen, dass in der Netzwerkkonfiguration und PAPER_CLIENT_P Replikation auf PAPER_SYSNAME Muss
+sein, ohne Probleme durch die Verwendung der Lizenzierung Opensource-Software und / oder Bibliotheken möglich.
+Dies bestimmt die Umgebung, um die Ergebnisse zu erhalten.
+}
+
+
+EVAL_SEC_BODY_P_REST
+EVAL_SEC_BODY_P_REST LIT_LAST_OR_MIDDLE EVAL_MOD EVAL_MOD_XXX
+EVAL_SEC_BODY_P_REST LIT_MIDDLE EVAL_MOD EVAL_MOD_XXX LIT_LAST EVAL_MOD EVAL_MOD_XXX
+EVAL_SEC_BODY_P_REST LIT_MIDDLE EVAL_MOD EVAL_MOD_XXX LIT_MIDDLE EVAL_MOD EVAL_MOD_XXX LIT_LAST EVAL_MOD EVAL_MOD_XXX
+
+EVAL_SEC_FILLER Diese Konfiguration Schritt war zeitaufwendig, aber es lohnt sich am Ende
+EVAL_SEC_FILLER Konfigurationen ohne diese Modifikation zeigten unterschiedliche EVAL_MEASUREMENT
+EVAL_SEC_FILLER Mit dieser Änderung haben wir festgestellt VERSCHIEDENE Performance-Verbesserung
+EVAL_SEC_FILLER Dieser Schritt liefert aus der Perspektive der konventionellen Weisheit, sondern ist maßgeblich auf unsere Ergebnisse
+
+
+EVAL_SEC_BODY_P_REST
+EVAL_SEC_BODY_P_REST LIT_LAST_OR_MIDDLE EVAL_MOD EVAL_MOD_XXX
+EVAL_SEC_BODY_P_REST LIT_MIDDLE EVAL_MOD EVAL_MOD_XXX LIT_LAST EVAL_MOD EVAL_MOD_XXX
+EVAL_SEC_BODY_P_REST LIT_MIDDLE EVAL_MOD EVAL_MOD_XXX LIT_MIDDLE EVAL_MOD EVAL_MOD_XXX LIT_LAST EVAL_MOD EVAL_MOD_XXX
+
+EVAL_SEC_FILLER Diese Konfiguration Schritt war zeitaufwendig, aber es lohnt sich am Ende
+EVAL_SEC_FILLER Konfigurationen ohne diese Modifikation zeigten unterschiedliche EVAL_MEASUREMENT
+EVAL_SEC_FILLER Mit dieser Änderung haben wir festgestellt VERSCHIEDENE Performance-Verbesserung
+EVAL_SEC_FILLER Dieser Schritt ein Schlag ins Gesicht der konventionellen Weisheit, sondern ist maßgeblich auf unsere Ergebnisse
+EVAL_SEC_FILLER Um die erforderlichen ALL_SOFTWARE_TYPES zu verbinden, kombiniert wir ALL_SOFTWARE_NAMES
+EVAL_SEC_FILLER wir gekämpft, um die notwendigen SOFTWARE_ITEMS sammeln
+EVAL_SEC_FILLER die Verbindung ALL_SOFTWARE_TYPES beschreiben Software-Infrastruktur, um unsere Ergebnisse abzurufen
+EVAL_SEC_FILLER beachten Sie, dass nur Experimente auf unserer EXP_WHERE (und nicht auf unserer EXP_WHERE) folgten diesem Muster
+EVAL_SEC_FILLER wir festgestellt, nur diese Ergebnisse, wenn EMULATING_IT
+EVAL_SEC_FILLER 3 EVAL_DONE_DIFFERENT
+
+EVAL_DONE_DIFFERENT hatten wir unsere EMULATED EXP_WHERE, im Gegensatz zu EMULATING_IT, würden wir andere Ergebnisse gesehen haben
+
+EVAL_MOD_XXX 3 XXX
+EVAL_MOD_XXX. EVAL_SEC_FILLER.
+
+SOFTWARE_ITEMS Software-Pakete
+SOFTWARE_ITEMS Software-Typen (OSTYPE_I, OSTYPE_II, OSTYPE_III)
+
+# 25 wir EVAL_WHO
+# EVAL_WHO SCI_COUNTRY SCI_PEOPLE
+
+
+# EVAL_SYSTEM SCI_BUZZWORD_NOUN
+EVAL_SYSTEM SCI_BUZZWORD_ADJ SCI_BUZZWORD_NOUN
+EVAL_SYSTEM SCI_MATH_ADV SCI_BUZZWORD_ADJ SCI_BUZZWORD_NOUN
+EVAL_SYSTEM PAPER_SYSNAME
+EVAL_SYSTEM PAPER_SYSNAME_LONG
+
+EVAL_FACT 2 der SCI_MY_METHOD
+EVAL_FACT EVAL_SYSTEM der WRD_IMPACT SCI_OPTIMIZATION von SCI_IMPROVED_SYSTEM
+EVAL_FACT die SCI_MATH_ADV SCI_BUZZWORD_ADJ Natur EVAL_SYSTEM
+EVAL_FACT die SCI_MATH_ADV SCI_BUZZWORD_ADJ Verhalten SCI_IMPROVED_SYSTEM
+# EVAL_FACT SCI_A_FACT
+
+EVAL_WHY EVAL_WHY_VERB EVAL_FACT
+
+EVAL_ACTION EVAL_WHO EVAL_VERBED einen EXP EVAL_WHY
+EVAL_MOD EVAL_WHO EVAL_MOD_ACTION EVAL_MOD_OBJECT
+EVAL_MOD EVAL_WHO EVAL_MOD_ACTION EVAL_MOD_OBJECT zu EVAL_MOD_WHY
+
+#
+# Passiv nicht durch war / waren Probleme zu arbeiten
+#
+# EVAL_MOD EVAL_MOD_PASSIVE_ACTION EVAL_MOD_OBJECT zu EVAL_MOD_WHY
+# EVAL_MOD EVAL_MOD_PASSIVE_ACTION EVAL_MOD_OBJECT
+
+EVAL_MOD_WHY EVAL_WHY
+EVAL_MOD_WHY PROBE_VERB die HARDWARE_PROP_OR_MEASUREMENT von EVAL_MOD_OBJECT
+EVAL_MOD_WHY PROBE_VERB EVAL_MOD_OBJECT
+EVAL_MOD_WHY PROBE_VERB SCI_BUZZWORD_NOUN
+
+EVAL_MOD_OBJECT unsere EXP_WHERE
+EVAL_MOD_OBJECT EXP_WHOSE EXP_WHERE
+
+# Dies scheint nicht gut zu funktionieren
+# EVAL_MOD_OBJECT SCI_BUZZWORD_NOUN
+
+EVAL_MOD_UNITS MB
+EVAL_MOD_UNITS GB
+EVAL_MOD_UNITS kb
+EVAL_MOD_UNITS Hz
+EVAL_MOD_UNITS GHz
+
+EVAL_MOD_N 10
+EVAL_MOD_N 25
+EVAL_MOD_N 100
+EVAL_MOD_N 2
+EVAL_MOD_N 3
+EVAL_MOD_N 7
+EVAL_MOD_N 8
+EVAL_MOD_N 300
+EVAL_MOD_N 200
+EVAL_MOD_N 150
+
+EVAL_MOD_AMOUNT mehr
+EVAL_MOD_AMOUNT einige
+
+EVAL_MOD_HARDWARE Festplattenspeicher
+EVAL_MOD_HARDWARE Speicher
+EVAL_MOD_HARDWARE Netzwerkbandbreite
+
+EVAL_MOD_PROPERTY Durchsatz
+EVAL_MOD_PROPERTY SCI_MATH_ADJ Durchsatz
+EVAL_MOD_PROPERTY Latenz
+
+HARDWARE_PROP Zuverlässigkeit
+HARDWARE_PROP Eigenschaften der Hardware unter extremen Wetter condidtions
+HARDWARE_PROP Verwendbarkeit von Hardware für SCI_IMPROVED_SYSTEM
+HARDWARE_PROP Verwendbarkeit von Hardware für SCI_MY_TODO
+HARDWARE_PROP Benutzerfreundlichkeit von mobilen Geräten für PAPER_CLIENT_P
+
+# HARDWARE_PROP Memory_Type Raum
+# HARDWARE_PROP Memory_Type Geschwindigkeit
+# HARDWARE_PROP Memory_Type Durchsatz
+# HARDWARE_PROP STORAGE_TYPE Raum
+# HARDWARE_PROP STORAGE_TYPE Geschwindigkeit
+# HARDWARE_PROP STORAGE_TYPE Durchsatz
+
+
+# EVAL_MOD_ACTION hinzugefügt HARDWARE
+# EVAL_MOD_ACTION entfernt HARDWARE aus
+# EVAL_MOD_ACTION MULTIPLE_VERBED die HARDWARE_PROP_OR_MEASUREMENT von
+# EVAL_MOD_PASSIVE_ACTION HARDWARE wurde zu
+# EVAL_MOD_PASSIVE_ACTION HARDWARE wurde aus entfernt
+
+EVAL_MOD_ACTION PAPER_SOFTWARE hinzugefügt zu
+EVAL_MOD_ACTION entfernt PAPER_SOFTWARE aus
+EVAL_MOD_ACTION wandte die HARDWARE_PROP_OR_MEASUREMENT von
+EVAL_MOD_PASSIVE_ACTION PAPER_SOFTWARE wurde zu
+EVAL_MOD_PASSIVE_ACTION PAPER_SOFTWARE wurde aus entfernt
+
+EVAL_SEC_SOFTWARE_P EVAL_SEC_SOFTWARE_INTRO. EVAL_SEC_SOFTWARE_MOD.EVAL_SEC_SOFTWARE_MOD.LIT_MIDDLE_TWO EVAL_SEC_SOFTWARE_REST
+
+EVAL_SEC_SOFTWARE_REST EVAL_SEC_SOFTWARE_END
+EVAL_SEC_SOFTWARE_REST LIT_MIDDLE EVAL_SEC_SOFTWARE_MOD.EVAL_SEC_SOFTWARE_END
+
+EVAL_SEC_SOFTWARE_MOD EVAL_WHO Unterstützung für SCI_IMPROVED_SYSTEM durch die Implementierung eines Prototyps
+EVAL_SEC_SOFTWARE_MOD alle Softwarekomponenten wurden mit Toolchain LINKER_SUFFIX KOMPILIERT
+EVAL_SEC_SOFTWARE_MOD alle Software wurde mit Toolchain LINKER_SUFFIX KOMPILIERT
+EVAL_SEC_SOFTWARE_MOD unseren Experimenten bewiesen, dass bald unsere HACK_VERBING EVAL_ITEMS_P war wirksamer als HACK_VERBING sie, wie in früheren Arbeiten vorgeschlagen
+EVAL_SEC_SOFTWARE_MOD wir SCI_THING_S Server in LANGUAGE_UM implementiert, mit SCI_MATH_ADV SCI_MATH_ADJ Erweiterungen ergänzt
+
+LINKER_SUFFIX mit SCI_BUZZWORD_ADJ SCI_MY_FIELD für SCI_VERBING SCI_IMPROVED_SYSTEM verbunden
+LINKER_SUFFIX mit Hilfe von SCI_MY_FIELD für SCI_MATH_ADV SCI_VERBING EVAL_ITEMS
+LINKER_SUFFIX gebaut auf Toolkit für PAPER_SYSNAME für SCI_MATH_ADV SCI_VERBING EVAL_ITEMS
+LINKER_SUFFIX Aufgabe betreffenden für SCI_MY_TODO in SCI_COUNTRY ein Toolkit für SCI_MATH_ADV SCI_VERBING EVAL_ITEMS
+
+EVAL_SEC_SOFTWARE_END PAPER_SYSNAME und alle notwendigen Software-Komponenten unter einer LICENSE_TYPE Lizenz verfügbar sein.
+EVAL_SEC_SOFTWARE_END beachten wir, dass Forscher haben versucht und sind gescheitert, diese Funktionalität zu aktivieren.
+EVAL_SEC_SOFTWARE_END dies schließt unsere Diskussion über notwendige Änderungen der vorgeschlagenen PAPER_SYSNAME für SCI_MY_TODO.
+EVAL_SEC_SOFTWARE_END alle der oben erwähnten Techniken sind von Bedeutung für SCI_MY_TODO. SCI_CITE_AUTHOR zeigt in \ cite {}, die untersucht cTECHNIK PAPER_METHODOLOGY in ein ähnliches Setup für SCI_MY_TODO verwendet werden.
+
+ALTERNATIVE verwandten
+ALTERNATIVE ähnlich
+ALTERNATIVE ganz andere
+ALTERNATIVE orthogonal
+
+WRD_SETUP Setup
+WRD_SETUPSetup-Konfiguration
+WRD_SETUP System
+# SETUP heuristische
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# # # # # # # # # Die folgenden nicht-terminalen Variablen in paper.in # # # # # # # # # # # # # definiert
+# LICENSE_TYPE GPL Version 2
+# LICENSE_TYPE sehr restriktiv
+# LICENSE_TYPE proprietären Lizenz
+# LICENSE_TYPE Open-Source-
+# LICENSE_TYPE CITE_INST
+# LICENSE_TYPE Nur-Schreib-
+
+# LANGUAGE_UM Perl
+# LANGUAGE_UM C + +
+# LANGUAGE_UM Python
+# LANGUAGE_UM Lisp
+# LANGUAGE_UM Schema
+# LANGUAGE_UM Java
+# LANGUAGE_UM SQL
+# LANGUAGE_UM PHP
+# LANGUAGE_UM UML
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+LANGUAGE_MOD verbessert
+LANGUAGE_MOD eingebettet
+
+WRD_LANGUAGE 2 LANGUAGE_UM
+WRD_LANGUAGE LANGUAGE_MOD LANGUAGE_UM
+
+EVAL_ITEMS_UM_P EXPANSION_ITEMs
+EVAL_ITEMS_UM_P SCI_THING_P
+EVAL_ITEMS_UM_P OLD_MACHINEs
+EVAL_ITEMS_P EVAL_ITEMS_UM_P
+EVAL_ITEMS_P SCI_MATH_ADJ EVAL_ITEMS_UM_P
+
+EVAL_ITEMS_UM_S HARDWARE_PROP
+EVAL_ITEMS_UM_S EVAL_MEASUREMENT
+
+EVAL_ITEMS_S EVAL_ITEMS_UM_S
+EVAL_ITEMS_S SCI_MATH_ADJ EVAL_ITEMS_UM_S
+EVAL_ITEMS_S SCI_THING_S
+
+EVAL_ITEMS EVAL_ITEMS_P
+EVAL_ITEMS EVAL_ITEMS_S
+
+
+
+EVAL_SEC_SOFTWARE_INTRO PAPER_SYSNAME nicht auf eine der Produkt-Betriebssystem laufen, sondern erfordert eine gehackte Version von SCI_MATH_ADV ALL_SOFTWARE_NAMES
+EVAL_SEC_SOFTWARE_INTRO PAPER_SYSNAME läuft auf Standard-Software HACKED
+EVAL_SEC_SOFTWARE_INTRO Wir liefen und getestet SCI_OUR_SYSTEM auf den verschiedenen Betriebssystemen und ALL_SOFTWARE_NAMES installiert
+EVAL_SEC_SOFTWARE_INTRO Gebäude eine ausreichend getestete Software-Umgebung braucht Zeit und muss vor einer Beta-Version von der Umwelt bewertet werden. Die aktuelle Version wird alle Bereiche der endgültigen Fassung in Bezug auf Funktionalität zu zeigen, auch wenn einige Features fehlen.
+EVAL_SEC_SOFTWARE_INTRO Die Software zum Testen ALL_SOFTWARE_NAMES SOFTWARE_PROP verwendet. Die endgültige Auswirkung auf die Leistung des Systems nicht so weit ausgewertet; unsere Arbeit hier folgt die grundlegende Konfiguration der Schnittstellen zwischen den verwendeten Software-Umgebungen.
+
+
+
+EVAL_GUTS {
+ 
+ EVAL_GUTS_INTRO EVAL_GUTS_EXP_SET EVAL_GUTS_EXP_SET_FOLLOWON
+
+ EVAL_GUTS_ANALYSIS
+
+}
+
+EVAL_GUTS_ANALYSIS_A analysieren wir zunächst WHICH_EXPERIMENTS EXP_FIG_REF
+Jetzt EVAL_GUTS_ANALYSIS_A für SCI_A_PROBLEM_ADJ Analyse SCI_MY_TODO
+Jetzt EVAL_GUTS_ANALYSIS_A für SCI_A_PROBLEM_ADJ Analyse WHICH_EXPERIMENTS
+Jetzt EVAL_GUTS_ANALYSIS_A für SCI_A_PROBLEM_ADJ Analyse SCI_MY_TODO
+EVAL_GUTS_ANALYSIS_A Schließlich diskutieren wir WHICH_EXPERIMENTS
+
+
+EXP_FIG_REF wie in EXP_FIG gezeigt
+EXP_FIG_REF
+
+EVAL_GUTS_ANALYSIS EVAL_GUTS_ANALYSIS_A.EVAL_GUTS_ANALYSIS
+
+EVAL_GUTS_ANALYSIS EVAL_ANALYZE_ONE.LIT_MIDDLE_TWO EVAL_ANALYZE_ONE.LIT_MIDDLE EVAL_ANALYZE_ONE.
+
+# EVAL_ANALYZE_ONE Kenntnis, dass die Anwendung auf PAPER_METHODOLOGY SCI_MY_TODO in EXP_FIG, die unterschiedliche EVAL_MEASUREMENT
+EVAL_ANALYZE_ONE Kenntnis, dass die Anwendung auf PAPER_METHODOLOGY SCI_MY_TODO, die unterschiedliche EVAL_MEASUREMENT
+EVAL_ANALYZE_ONE den gegebenen Punkten in der Domäne eine reelle Zahl zugeordnet und in den Graphen diese Punkte auf eine Oberfläche interpoliert. Die Interpolation stellt eine andere EVAL_MEASUREMENT mit der SCI_APPLICATION zu SCI_GOAL_ACHIEVE PAPER_OBJECTIVE und PAPER_OBJECTIVE eingeführt.
+EVAL_ANALYZE_ONE der Prototyp-Version des vorgeschlagenen Systems verursacht eine instabile Verhalten während der Experimente
+# EVAL_ANALYZE_ONE Gauß elektromagnetischen Störungen in unserem EXP_WHERE verursacht instabil experimentellen Ergebnisse
+# EVAL_ANALYZE_ONE Bedienfehler kann nicht allein für diese Ergebnisse berücksichtigen
+EVAL_ANALYZE_ONE diese EVAL_MEASUREMENT Beobachtungen Gegensatz zu denen in früheren Arbeiten in den BIB_CITATION gesehen.
+EVAL_ANALYZE_ONE beachten Sie, wie Optimierung der SCI_MY_TODO produziert zusammen mit dieser iterativen Prozess ein reproduzierbares Maß für die Qualität der Ergebnisse
+EVAL_ANALYZE_ONE kommen die Ergebnisse von Probefahrten eines Prototypen PAPER_SYSNAME reproduzierbar waren
+EVAL_ANALYZE_ONE Maßnahmen bei Fehlern PAPER_SYSNAME_LONG wird durch Anwendung PAPER_THEORY abgeleitet werden und das Fehlermaß für SCI_OPTIMIZATION verwendet Einstellen der Parameter von Baugruppen PAPER_SYSNAME.
+EVAL_ANALYZE_ONE Kenntnis, dass der folgende Absatz zeigt die \ textit {} STAT_ADJ und nicht \ textit {} STAT_ADJ SCI_MATH_ADJ HARDWARE_PROP_OR_MEASUREMENT
+EVAL_ANALYZE_ONE Kenntnis, dass zusätzlich zu den Fehlermaße die Standardabweichungen der erhobenen Daten aus der mathematischen Abbildung zeigt die Genauigkeit und Qualität der Vorhersage der PAPER_SYSNAME.
+EVAL_ANALYZE_ONE die Interpolation für SCI_MY_METHOD zeigt die Anwendung OSSYS_I die eine bekannte OSTYPE_I wir für die Auswertung verwendet wird, ist mit PAPER_THEORY
+EVAL_ANALYZE_ONE wir erwartet, die Ergebnisse von einem mathematischen Standpunkt aus durch die Modellierung Konvergenz in einem topologischen Raum. Dies hat jedoch gezeigt werden, dass die Implementierung der Methoden die gleichen Ergebnisse in dieser Phase des Bewertungs
+EVAL_ANALYZE_ONE wurde natürlich alle sensiblen Daten während der gesamten Test der PAPER_OBJECTIVE und PAPER_OBJECTIVE anonymisierte
+# EVAL_ANALYZE_ONE Kenntnis, dass SCI_OUR_SYSTEM hat SMOOTHER HARDWARE_PROP_OR_MEASUREMENT Kurven als tun HACKED SCI_THING_P
+# EVAL_ANALYZE_ONE der Schlüssel zum Schließen EXP_FIG ist die Rückkopplungsschleife; EXP_FIG zeigt, wie die SCI_OUR_SYSTEM HARDWARE_PROP_OR_MEASUREMENT ansonsten nicht konvergieren
+EVAL_ANALYZE_ONE die Daten in unserer Bewertung, insbesondere, beweist, dass die Anwendung der PAPER_THEORY bietet nur eine Verbesserung der QUALITY_OF_IMPROVEMENT PAPER_SYSNAME_LONG
+
+
+EVAL_MATH_EXPR $ f (x) = .... $
+
+
+EVAL_GUTS_ANALYSIS EVAL_GUTS_ANALYSIS_A.EVAL_GUTS_ANALYSIS
+
+EVAL_GUTS_ANALYSIS_A Wir haben ein Verhalten in Ergebnisse unserer anderen Experimenten gesehen (siehe folgende Abbildung) ein anderes Bild
+EVAL_GUTS_ANALYSIS_A neben WHICH_EXPERIMENTS, in EXP_FIG gezeigt drehen
+In EXP_FIG EVAL_GUTS_ANALYSIS_A gezeigt, WHICH_EXPERIMENTS Aufmerksamkeit auf die SCI_OUR_SYSTEM EVAL_MEASUREMENT
+
+EXP_FIG Abbildung ~ \ref{LATEX_FIG_LABEL_REF}
+EXP_FIGS Fakten ~ \ref{LATEX_FIG_LABEL_REF} und ~ \ref{LATEX_FIG_LABEL_REF}
+
+# WHICH_EXPERIMENTS Experimente (1) und (3) die oben aufgezählt
+WHICH_EXPERIMENTS die ersten durchgeführten Experimente
+# WHICH_EXPERIMENTS die zweite Hälfte unserer Experimente
+# WHICH_EXPERIMENTS Experimenten (3) und (4) oben aufgezählten
+# WHICH_EXPERIMENTS Experimente (1) und (4) oben aufgezählten
+# WHICH_EXPERIMENTS alle vier Experimente
+WHICH_EXPERIMENTS allen oben genannten Experimente 
+
+
+EVAL_GUTS_INTRO unsere Software emuliert modficiations PROVE_THAT SCI_OUR_SYSTEM ist nur der erste Schritt für SCI_OPTIMIZATION von SCI_MY_TODO EMULATING_IT und in der realen Welt Einstellung erhöht die Komplexität und damit eine ganz andere Einstellung.
+EVAL_GUTS_INTRO haben wir große Anstrengungen unternommen, um zu beschreiben, aus BEWERTUNG Setup für PAPER_OBJECTIVE genommen; jetzt können wir die Auswirkungen auf die SCI_OUR_SYSTEM ableiten und unsere Ergebnisse für PAPER_OBJECTIVE diskutieren.
+EVAL_GUTS_INTRO mit diesen mentionend Modifikationen für PAPER_OBJECTIVE für die Web-basierte Schnittstelle, experimentelle Ergebnisse des vorgeschlagenen Systems erzielten wir mit einem der folgenden Merkmale als Ergebnisse.
+
+EVAL_GUTS_INTRO unsere Software emuliert modficiations PROVE_THAT SCI_OUR_SYSTEM ist nur der erste Schritt für SCI_OPTIMIZATION von SCI_MY_TODO EMULATING_IT und in der realen Welt die Komplexität und ist daher eine ganz andere Einstellung.
+EVAL_GUTS_INTRO haben wir große Anstrengungen unternommen, um zu beschreiben, aus BEWERTUNG Setup; jetzt, die Auszahlung ist, um unsere Ergebnisse zu diskutieren.
+EVAL_GUTS_INTRO mit diesen mentionend Modifikationen der Web-basierte Schnittstelle, Nutzung von System erzielten wir mit viel Funktion als Ergebnisse.
+# EVAL_GUTS_INTRO ist es möglich, die große Mühe, die wir in unserer Implementierung nahm zu rechtfertigen? SCI_RESPONSE.
+# EVAL_GUTS_INTRO ist es möglich, zu rechtfertigen mit wenig Augenmerk auf unsere Implementierung und experimentelle Setup? SCI_RESPONSE.
+
+EVAL_GUTS_EXP_SET {
+   EXP_SET_LEADIN liefen wir die folgenden Versuche zur Darstellung der folgenden Variablen in einem GIS für SCI_IMPROVED_SYSTEM:
+\begin{enumerate}
+\item EVAL_EXP;
+\item EVAL_EXP;
+\item EVAL_EXP; und
+\item EVAL_EXP
+\end{enumerate}
+ .
+}
+
+EVAL_GUTS_EXP_SET_FOLLOWON
+EVAL_GUTS_EXP_SET_FOLLOWON wir verworfen die Ergebnisse einiger früherer Experimente, insbesondere wenn EVAL_EXP.
+EVAL_GUTS_EXP_SET_FOLLOWON all diesen Experimenten ohne RESOURCE_STARVATION oder RESOURCE_STARVATION abgeschlossen.
+
+RESOURCE_STARVATION Begrenzung der Ressourcen
+# RESOURCE_STARVATION LAN Staus
+RESOURCE_STARVATION Begrenzung der Prototyp PAPER_SYSNAME
+# RESOURCE_STARVATION Zugang Link-Staus
+# RESOURCE_STARVATION WAN-Überlastung
+RESOURCE_STARVATION Ausfall SCI_MY_METHOD
+RESOURCE_STARVATION Einschränkung der Ressourcen für PAPER_OBJECTIVE
+RESOURCE_STARVATION Einschränkung der Ressourcen für PAPER_OBJECTIVE
+# RESOURCE_STARVATION NETWORK_TYPE Staus
+# RESOURCE_STARVATION NETWORK_TYPE Staus
+RESOURCE_STARVATION spürbaren Engpässe bei Ressourcen
+RESOURCE_STARVATION bemerkbar Anforderungen und constroints für die Ressourcen
+# RESOURCE_STARVATION spürbaren Performance-Engpässe
+# RESOURCE_STARVATION ungewöhnliche Wärmeableitung
+
+
+
+EXP_SET_LEADIN dass gesagt wird,
+EXP_SET_LEADIN
+EXP_SET_LEADIN mit diesen Überlegungen im Hinterkopf,
+EXP_SET_LEADIN Fressen auf dieses IDEAL-Konfiguration,
+
+IDEAL ideal
+IDEAL ungefähre
+IDEAL gekünstelt
+
+EVAL_EXP wir umgesetzt PAPER_SERVER_S für SCI_MY_TODO, die während der NETWORK_TYPE zugegriffen werden kann, und verglichen die als System mit einem Offline-Zugriff zugeschnitten Bereichen GIS für den Anwender.
+
+EVAL_EXP wir implementierte eine Konzeption und Pilot für PAPER_CLIENT_P und getestet für unsere SCI_MY_METHOD PAPER_METHODOLOGY entsprechend für PAPER_OBJECTIVE
+EVAL_EXP wir implementierte eine Konzeption und Pilot für PAPER_CLIENT_P und getestet für unsere SCI_MY_METHOD PAPER_METHODOLOGY entsprechend für PAPER_OBJECTIVE
+
+EVAL_EXP wir beantwortet die gestellte Frage durch Analyse der mathematischen Eigenschaften, die PAPER_THEORY zeigt Verbesserungen im Vergleich zu herkömmlichen Ansätzen.
+
+EVAL_EXP wir gemessen PAPER_OBJECTIVE als Funktion für die Durchführung SCI_MY_TODO mit SCI_MY_METHOD
+
+EVAL_EXP verglichen wir EVAL_MEASUREMENT auf der OSSYS_I, OSSYS_II und OSSYS_III, die für die Umsetzung der PAPER_SYSNAME_LONG kombiniert wurden;
+
+EVAL_EXP wir gemessen MEASURABLE_SYSTEM und SCI_IMPROVED_SYSTEM PERFORMANCE auf unserer EXP_WHERE
+
+EVAL_EXP wir trainiert SCI_IMPROVED_SYSTEM mit Daten Maschinen, insbesondere analysiert die Abhängigkeit von HARDWARE_PROP_OR_MEASUREMENT
+
+EVAL_EXP haben wir überprüft die Leistung mit einem simulierten MEASURABLE_SYSTEM, definiert die maximale Arbeitsbelastung, und verglichen unsere Ergebnisse EMULATIONS
+
+           		 	</textarea>
+		    	</form>
+            </font>
+            </center>
+            <center>
+            <p></p>
+            </center>
+            <br>
+            </td>
+            <td>&nbsp;&nbsp;
+<!--- inner input table ---></td>
+          </tr>
+        </tbody>
+      </table>
+<!--- outer table ---> </td>
+    </tr>
+  </tbody>
+</table>
+<script language="JavaScript1.2">
+	//----------------------------------------------------	
+	document.fInputForm.Title.value = top.vURL_Object.getName(document.location.href).toUpperCase();
+	var vInput  = document.fInputForm.GenText.value;
+	var vTitle  = document.fInputForm.Title.value;
+	document.fInputForm.Title.value = vTitle;
+	if (top.vArticleGenerator.grammarfiles.preload_index <= top.vArticleGenerator.grammarfiles.rows) {
+		var vOutput = top.vArticleGenerator.import_grammar(vInput,vTitle);
+		top.vArticleGenerator.setTimeout("top.vArticleGenerator.grammarfiles.preload()",100);
+	} else {
+		//alert("No preload");
+		if (top.vArticleGenerator.wizzard.active > 0) {
+			top.vArticleGenerator.wizzard.load(vInput,vTitle);
+		}
+	}
+	//----------------------------------------------------	
+</script>
+
+
+<font size="2" face="Arial,Helvetica"><b>It is recommended to use the Browser Firefox with this Application. It is necessary to enable Javascript.</font>
+</center>
+</body>
+</html>

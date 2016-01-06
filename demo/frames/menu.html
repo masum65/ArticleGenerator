@@ -1,0 +1,97 @@
+<HTML>
+<HEAD>
+   <TITLE>Menu - ArticleGenerator</TITLE>
+   <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+<!-- 
+################################################# 
+# Menu - ArticleGenerator						
+# Javascript Software Package  				 
+# email: niehaus@uni-landau.de		
+# created               19.7.2013
+# last modifications    19.7.2013
+# Author:  Engelbert Niehaus
+# GNU Public License 
+################################################# 
+-->
+</HEAD>
+<BODY bgcolor="#EEEEEE" background="backgroundimage.jpg">
+<center>
+<font face="Arial,Helvetica">
+<b>Article Generator</b><br/>
+for Firefox<!-------BUTTON: Load Config ---- LINK: loadconfig.html ------------------->
+<form name="formLoad Config" action="../configload.html"  target="main">
+	<input type="submit" value="Load Config">
+</form>
+<hr/>	
+<!-------BUTTON: Load Grammar ---- LINK: loadgrammar.html ------------------->
+<form name="formLoad Grammar" action="loadgrammar1.html"  target="main" onclick="top.vArticleGenerator.wizzard.active=0">
+	<input type="submit" value="Load Grammar">
+</form>
+	
+<!-------BUTTON: Start Wizzard ---- LINK: startwizzard.html ------------------->
+<form name="formStart Wizzard" action="startwizzard.html"  target="main">
+	<input type="submit" value="Start Wizzard">
+</form>
+	
+	
+<!-------BUTTON: Edit Grammar ---- LINK: editgrammar.html ------------------->
+<form name="formEdit Grammar" action="grammarselect1.html"  target="main">
+	<input type="submit" value="Edit Grammar">
+</form>
+
+<!-------BUTTON: Add Rule ---- LINK: addrule.html ------------------->
+<!---
+<form name="formEdit Grammar" action="addrule1.html"  target="main">
+	<input type="submit" value="(+) Add Rule">
+</form>
+--->
+<!-------BUTTON: Add Rule Split ---- LINK: addrulesplit.html ------------------->
+<form name="formEdit Grammar" action="addrulesplit1.html"  target="main">
+	<input type="submit" value="  (+) Add Rule  ">
+</form>
+	
+<!-------BUTTON: Save Grammar	 ---- LINK: importgrammar.html ------------------->
+<form name="formImport Grammar	" action="importgrammar.html"  target="main">
+	<input type="submit" value=" Import Grammar ">
+</form>
+<!-------BUTTON: Save Grammar	 ---- LINK: savegrammar.html ------------------->
+<form name="formSave Grammar	" action="savegrammar.html"  target="main">
+	<input type="submit" value=" Save Grammar ">
+</form>
+
+<hr />
+<!-------BUTTON: Apply Grammar ---- LINK: applygrammar.html ------------------->
+<form name="formApply Grammar" action="applygrammar1.html"  target="main">
+	<input type="submit" value="Create Document">
+</form>
+<form name="formApply Grammar" action="htmlview.html"  target="main">
+	<input type="submit" value="View HTML Document">
+</form>
+<!---
+<form name="formApply Grammar" action="checkgrammar.html"  target="main">
+	<input type="submit" value="Check Grammar">
+</form>
+--->
+<hr />
+	
+<!-------BUTTON: Generate Grammar ---- LINK: generategrammar.html ------------------->
+<form name="formGenerate Grammar" action="parsing1.html"   target="main">
+	<input type="submit" value="Generate Grammar">
+</form>
+	
+<!-------BUTTON: Generate Grammar ---- LINK: options.html ------------------->
+<form name="formGenerate Grammar" action="options.html" >
+	<input type="submit" value=" Options ">
+</form>
+<hr/>
+ <font size="-1">
+<b>Download:</b> <br/>
+<a href="../../ArticleGenerator.zip" target="_blank">ArticleGenerator</a><br/>
+Context Dependent Grammar<br/>GPL-License<hr/>
+Based on <b><a href="http://pdos.csail.mit.edu/scigen/" target="_blank">SCIgen</a></b>
+with context-free grammar<hr/>
+</font>
+</center>
+</BODY>
+</HTML>	
+	

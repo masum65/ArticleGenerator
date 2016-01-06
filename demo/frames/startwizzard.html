@@ -1,0 +1,38 @@
+<HTML>
+<HEAD>
+   <TITLE>Check Generate Document - ArticleGenerator</TITLE>
+<!-- 
+################################################# 
+# Check Generate Document- ArticleGenerator						
+# Javascript Software Package  				 
+# email: niehaus@uni-landau.de		
+# created               18.11.2013
+# last modifications    18.11.2013
+# Author:  My Name
+# GNU Public License 
+################################################# 
+-->
+</HEAD>
+<BODY bgcolor="#EEEEEE">
+<center>
+<font face="Arial,Helvetica">
+<!---Button: Start Wizzard ------- Button Link: startwizzard.html ----->
+<h1>Start Wizzard</h1>
+ <SCRIPT LANGUAGE="JavaScript">
+ 	if (top.vArticleGenerator.grammarfiles.rows > 0) {
+	 	top.vArticleGenerator.wizzard.active = 1;
+    	//top.main.document.location.href = "loadgrammar.html";
+    	top.vArticleGenerator.setTimeout("top.main.document.location.href = 'frames/loadgrammar.html'",100);	
+
+    	
+    } else {
+        alert("WIZZARD-WARNING: No Grammar is loaded!");
+        //top.main.document.location.href = "../configload.html";
+        top.vArticleGenerator.setTimeout("top.main.document.location.href = 'configload.html'",100);	
+    }
+ </SCRIPT>
+	</font>
+</center>
+</BODY>
+</HTML>	
+	

@@ -1,0 +1,474 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf8">
+ <script language="JavaScript1.2">
+	<!-- Begin Hiding
+	var vParseArray = new Array();
+	var vParseNode = top.vArticleGenerator.wizzard.parsenode;
+	var vHTMLhidden = "";
+	
+	function splitRuleText(pText) {
+	    vParseArray = vParseNode.split_ruletext(pText);	
+	    //alert("pText="+pText+"\nvParseArray.length="+vParseArray.length+"\nselectrule.html:13");
+	    
+	}
+
+	function updateRuleText() {
+		document.fInputForm.ruletext.value = getRuleText();
+	}
+	
+	function editSource() {
+		top.vArticleGenerator.wizzard.aNONTERM   = document.fInputForm.nonterm.value;
+		top.vArticleGenerator.wizzard.aTERM      = getRuleText();
+		top.vArticleGenerator.wizzard.aGrammarID = document.fInputForm.grammarid.value;
+		top.vArticleGenerator.wizzard.aOperator  = document.fInputForm.operator.value;
+		top.vArticleGenerator.wizzard.aWeight    = document.fInputForm.weight.value;
+		//document.location.href="addrule.html";
+        top.vArticleGenerator.setTimeout("top.main.document.location.href = 'frames/addrule.html'",100);	
+		
+	}
+	
+	function getRuleText() {
+	    var vRuleText = "";
+	    var vNONTERM  = "";
+	    var vTerm     = "";
+	    var vOperator = "";
+	    var vWeight   = "";
+	    var vCR = "";
+	    var vEvalTerm     = "vTerm = document.fInputForm.rulesplit";
+	    var vEvalOperator = "vOperator = document.fInputForm.operator";
+	    var vEvalWeight   = "vWeight = document.fInputForm.weight";
+	    for (var i=0; i<vParseArray.length; i++) {
+			if (vParseArray[i].charAt(0)==">") {
+				vNONTERM   = vParseNode.parse_nonterm(vParseArray[i]);
+				vRuleText += vCR + vNONTERM;
+				vCR = "\n";
+				eval(vEvalTerm+i+".value");
+				eval(vEvalOperator+i+".value");
+				eval(vEvalWeight+i+".value");
+				if (vWeight != "") {
+					vRuleText += vOperator + vWeight;
+				};
+				vRuleText += " "+vTerm; 
+			} else {
+				eval(vEvalTerm+i+".value");
+				if (vTerm != "") {
+					vRuleText += vCR + vTerm;
+					vCR = "\n";
+				}
+			}
+		}
+		return vRuleText;
+	}
+	
+    function clearForm() {
+    	//alert("Clear Form - Demo");
+    	vDisplayMode = top.vArticleGenerator.wizzard.aNONTERM_Display;
+	    if (vDisplayMode>1) {
+			top.vArticleGenerator.wizzard.aNONTERM = "";
+    	}
+	    vDisplayMode = top.vArticleGenerator.wizzard.aWeight_Display;
+	    if (vDisplayMode>1) {
+	    	top.vArticleGenerator.wizzard.aWeight = "1";
+	    	top.vArticleGenerator.wizzard.aOperator = "";
+    	}
+	    vDisplayMode = top.vArticleGenerator.wizzard.aGrammarID_Display;
+    	if (vDisplayMode>1) {
+	    	top.vArticleGenerator.wizzard.aGrammarID = "";
+    	}
+	    top.vArticleGenerator.wizzard.aTERM = "";
+        //alert("Clear Form - Done!");
+        top.vArticleGenerator.setTimeout("top.main.document.location.href = 'frames/addrulesplit.html'",100);	
+    }
+
+    function checkRule() {
+    	//alert("addrule.html:18 - checkRule() - Call");
+    	var vReturnValue = 0;
+    	var lvNONTERM = document.fInputForm.nonterm.value;
+    	if (lvNONTERM == "") {
+    		alert("Enter a Variable (non-terminal Symbol) like 'MY_VARIABLE' in capital letters!");
+    		vReturnValue += 1;
+    	} else {
+    	     if (lvNONTERM != document.fInputForm.nonterm.value.toUpperCase()) {
+    	         alert("Variable '"+lvNONTERM+"' corrected to UpperCase!");
+         	     document.fInputForm.nonterm.value = lvNONTERM.toUpperCase();
+         	 }
+         	 if (lvNONTERM.indexOf("_")<0) {
+         	     alert("Variable '"+lvNONTERM+"' corrected to 'VAR_"+lvNONTERM+"'!");
+         	     document.fInputForm.nonterm.value = "VAR_"+lvNONTERM;
+         	 }
+    	};
+    	if (document.fInputForm.grammarid.value == "") {
+    		alert("Enter a Grammar-ID like 'INTRODUCTION' in capital letters!");
+    		vReturnValue += 1;
+    	} else {
+    	     document.fInputForm.grammarid.value = document.fInputForm.grammarid.value.toUpperCase();
+    	};
+    	document.fInputForm.ruletext.value = getRuleText();
+    	if (document.fInputForm.ruletext.value == "") {
+    		alert("Enter a Definition for '"+document.fInputForm.nonterm.value+"' in text area for the rule!");
+    		vReturnValue += 1;
+    	};
+        //alert("Clear Form - Done!");
+        return vReturnValue;
+    }
+
+   function addRuleNext() {
+       	var vURLnext = "empty.html";
+		if (top.vArticleGenerator) {
+			top.vArticleGenerator.wizzard.next();
+	    	vURLnext = top.vArticleGenerator.wizzard.aURLnext;
+	    };
+        addRuleURL(vURLnext);
+   }
+
+   function nextRule() {
+       	if (top.vArticleGenerator) {
+       		if (top.vArticleGenerator.wizzard.active>0) {
+				top.vArticleGenerator.wizzard.next();
+		    	vURLnext = top.vArticleGenerator.wizzard.aURLnext;
+		    } else {
+ 		      top.vArticleGenerator.setTimeout("top.main.document.location.href = 'frames/addrulesplit.html'",100);	
+ 		    }
+	    } else {
+	    	alert("ArticleGenerator not loaded!\naddrulesplit.html:135");
+	    };
+   }
+   
+   function updateRule() {
+       	if (top.vArticleGenerator) {
+			top.vArticleGenerator.wizzard.aTERM = getRuleText();
+	    };
+        //document.location.href = "addrulesplit.html";	
+        top.vArticleGenerator.setTimeout("top.main.document.location.href = 'frames/addrulesplit.html'",100);	
+   }
+
+   function addRule() {
+       	var vURLnext = "addrulesplit.html";
+        addRuleURL(vURLnext);
+   }
+   
+   function addRuleURL(pURLnext) {
+		var vRet = checkRule();
+		var vRuleDefinition = document.fInputForm.ruletext.value;
+		document.fInputForm.ruletext.value = vRuleDefinition
+		if (vRet == 0) {
+			var vInput  = document.fInputForm.nonterm.value;
+			vInput = vInput.toUpperCase();
+			if (document.fInputForm.operator.value == "") {
+				document.fInputForm.operator.value = "+";
+			}
+			if (document.fInputForm.weight.value != "") {
+				vInput  += document.fInputForm.operator.value+document.fInputForm.weight.value;
+			}
+			vRuleDefinition = top.vArticleGenerator.rules.editform2ruledef(vRuleDefinition)
+			vInput += " {\n";
+    		vInput += vRuleDefinition;
+			vInput += " \n}\n";
+			//alert("addrule.html:80\nvInput=\n"+vInput);
+		    var vGrammarID  = document.fInputForm.grammarid.value;
+		    //alert("addrulesplit.html:158 - vInput="+vInput);
+			var vOutput = top.vArticleGenerator.import_grammar(vInput,vGrammarID);
+		    //alert("addrulesplit.html:160 - vOutput="+vOutput);
+			alert("Rule for '"+ document.fInputForm.nonterm.value +"' added!\naddrulesplit.html:159");
+	    	//document.location.href = pURLnext;
+	    	if (top.vArticleGenerator.wizzard.active == 0) {
+		    	var vEval = "top.main.document.location.href = \"frames/"+pURLnext+"\"";
+	 		   	top.vArticleGenerator.setTimeout(vEval,100);	
+			}
+		}
+   }
+
+   function insertOperatorWeight(pNr,pOperator,pWeight) {
+   		//alert("addrulesplit.html:109 pNr="+pNr);
+   		var vReturn = "";
+		vReturn += "<select name='operator"+pNr+"' onchange='updateRuleText()'> ";
+		var vPlusSelected  = "";
+		var vEqualSelected = "";
+		var vMinusSelected = "";
+		if (pOperator == "+") {
+			vPlusSelected  = "selected";
+		} else if (pOperator == "=") {
+		 	vEqualSelected = "selected";
+		} else if (pOperator == "-") {
+		 	vMinusSelected = "selected";
+		};
+		vReturn += "<option value='+' "+vPlusSelected+">+</option>";
+		vReturn += "<option value='=' "+vEqualSelected+">=</option>";
+		vReturn += "</select> ";
+		vReturn += "<select name='weight"+pNr+"' onchange='updateRuleText()'> ";
+		vReturn += "<option value=''> </option>";
+		var vSelected = "";
+		for (var i=1; i<=20; i++) {
+		 	if (pWeight==""+i) {
+		 		vSelected  = "selected";
+		 	} else {
+		 		vSelected = "";
+		 	}
+			vReturn += "<option value='"+i+"' "+vSelected+">"+i+"</option>";
+		}
+		vReturn += "</select> ";
+		return vReturn; 
+   }
+
+	function variable_Display(pVarTitle,pVariable,pContentSource,pDisplayMode,pOperator,pWeight) {
+	    var vReturn = "";
+	    if (pDisplayMode > 0) {
+	        vReturn += "<tr><td valign='top'><b>";
+	        if (pVarTitle.indexOf(">") >= 0) {
+	        	pVarTitle=pVarTitle.replace(/_/g," ");
+				pVarTitle=pVarTitle.replace(/>/g," ");
+	        	vReturn += "<font color='blue' size='+1'><tt>"+pVarTitle+"</tt></font>";
+			} else {
+	        	vReturn += pVarTitle;
+	        }
+	        vReturn += "</b></td>";
+			vReturn += "<td valign='top'>";
+			if  (pDisplayMode > 2) {
+				if (pVariable.indexOf("rule") == 0) {
+					//alert("<textarea name=\""+pVariable+"\" cols='70' rows='3' onchange='updateRuleText()'>";
+					vReturn += "<textarea name=\""+pVariable+"\" cols='70' rows='3' onchange='updateRuleText()'>";
+					vReturn += pContentSource+"</textarea>";
+				} else {
+					vReturn += insertOperatorWeight(pVariable,pOperator,pWeight);
+					//alert("<input type='text' name='rulesplit"+pVariable+"' + value='"+pContentSource+"'  size='30' onchange='updateRuleText()'/>";
+					vReturn += "<input type='text' name='rulesplit"+pVariable+"' value='"+pContentSource+"'  size='30' onchange='updateRuleText()'/>";
+					// pVariable.indexOf("ruletext") == 0
+				}
+			} else if (pDisplayMode > 1) {
+				if (pVariable == "weight") {
+					vReturn += insertOperatorWeight("",pOperator,pWeight);
+				} else {
+					vReturn += "<input type='text' name='"+pVariable+"' value='"+pContentSource+"' />";
+				}
+	        } else {
+				vReturn += pContentSource;
+				vReturn += "<input type='hidden' name='"+pVariable+"'  value='"+pContentSource+"' />";
+				if (pVariable == "weight") {
+					vReturn += "<input type='hidden' name='operator' value='"+pOperator+"' />";
+				}
+	        }
+			vReturn += "</td></tr>";
+		} else {
+			//vHTMLhidden += "<input type='hidden' name='"+pVariable+"' + value='"+pContentSource+"' />";
+			vReturn += "<input type='hidden' name='"+pVariable+"' value='"+pContentSource+"' />";
+			//alert("addrulesplit.html:234 - vHTMLhidden=\n"+vHTMLhidden);
+			//document.write("<input type='hidden' name='"+pVariable+"' + value='"+pContentSource+"' />");
+		}
+		return vReturn;
+   }
+   
+   
+   function createButton(pLabel,pCallJS) {
+   		var vReturn = "<input type='button' value='"+pLabel+"' onclick=\""+pCallJS+"\">";   		 	
+   		//alert("addsplitrule.html:256 - createButton()\n"+vReturn);
+   		return vReturn;
+   }
+	// End Hiding -->
+           		 	</script>
+
+</head>
+<body bgcolor="#ffffff" background="backgroundimage.jpg">
+
+<br>
+<br>
+<center>
+<table border="1">
+  <tbody>
+    <tr bgcolor="#ffffff">
+      <td>
+      <table border="0">
+        <tbody>
+          <tr bgcolor="#ffffff">
+            <td><br>
+            </td>
+            <td>
+            <center><br>
+            <br>
+            <font size="+2" face="Arial,Helvetica">
+<script language="JavaScript1.2">
+	<!-- Begin Hiding
+	    //alert("displayobejct.html Start setting SourceText");
+	    if (top.vArticleGenerator) {
+	    	var vNONTERM = top.vArticleGenerator.wizzard.aNONTERM;
+			document.write("<b><font color=red><tt>["+top.vArticleGenerator.rules.rows+"]</tt></font></b>");
+	        if (vNONTERM != "") {
+					document.write("<b>Add Split Rule <font color=blue><tt>"+vNONTERM+"</tt></font> to Grammar</b><br/>");
+	        } else  {
+					document.write("<b>Add New Rule to Grammar</b><br/>");
+	        }
+		}
+	// End Hiding -->
+</script>
+            </font>
+            <font face="Arial,Helvetica">
+            <form name="fInputForm" action="#" onsubmit="alert('Submit-Button')">
+					<table border=0>
+ <script language="JavaScript1.2">
+	<!-- Begin Hiding
+	    //alert("displayobejct.html Start setting SourceText");
+	    if (top.vArticleGenerator) {
+	        if (top.vArticleGenerator.wizzard.aComment != "") {
+					document.write("<tr><td colspan=2><hr/>"
+						+ top.vArticleGenerator.wizzard.aComment
+						+ "<hr/></td></tr>");
+	        }
+		}
+	// End Hiding -->
+</script>
+ <script language="JavaScript1.2">
+	<!-- Begin Hiding
+	    //alert("displayobejct.html Start setting SourceText");
+	    var vVarTitle="VarTitle";
+	    var vVariable="MY_NONTERM";
+	    var vContentSource="My Definition of the variable "+vVariable;
+	    var vDisplayMode = 2;
+	    var vHTML_content = "";    
+	    var vHTML_part = "";    
+	    var vOperator = top.vArticleGenerator.wizzard.aOperator;    
+	    vHTML_content += "\n<tr><td></td><td></td></tr>";
+	    if (top.vArticleGenerator) {
+	        //-------------------------------
+	        vVarTitle="Variable:";
+	        vVariable="nonterm";
+	        vContentSource = top.vArticleGenerator.wizzard.aNONTERM;
+	        vDisplayMode = top.vArticleGenerator.wizzard.aNONTERM_Display;
+	        vHTML_content += "\n" + variable_Display(vVarTitle,vVariable,vContentSource,vDisplayMode,"","");
+	        //alert("addrulesplit.html:307\nvHTML_content="+vHTML_content+"");
+	        //-------------------------------
+	        vVarTitle="Weight:";
+	        vVariable="weight";
+	        vContentSource = top.vArticleGenerator.wizzard.aWeight;
+	        vDisplayMode = top.vArticleGenerator.wizzard.aWeight_Display;
+	        vHTML_part = "\n" + variable_Display(vVarTitle,vVariable,vContentSource,vDisplayMode,"","");
+	        //alert("addrulesplit.html:314\nvHTML_content="+vHTML_part);
+	        vHTML_content += vHTML_part;
+	        //-------------------------------
+	        vVarTitle="Grammar-ID:";
+	        vVariable="grammarid";
+	        vContentSource = top.vArticleGenerator.wizzard.aGrammarID;
+	        vDisplayMode = top.vArticleGenerator.wizzard.aGrammarID_Display;
+	        vHTML_part =  "\n" + variable_Display(vVarTitle,vVariable,vContentSource,vDisplayMode,"","");
+	        //alert("addrulesplit.html:324\nvHTML_content="+vHTML_part);
+	        vHTML_content += vHTML_part;
+	        //-------------------------------
+	        //vHTML_content += "\n<tr><td></td><td>"+vHTML_content+"</td></tr>";
+	        //alert("addrulesplit.html:323\nvHTML_content="+vHTML_content+"\naddrulesplit.html:323");
+	        //-------------------------------
+	        vVarTitle="ParseArray";
+	        vVariable="rulesplit";
+	        vDisplayMode = 3;
+			var vRuleTextNr = 1;
+			//alert("aTERM="+top.vArticleGenerator.wizzard.aTERM+"\naddrulesplit.html:319";
+		    splitRuleText(top.vArticleGenerator.wizzard.aTERM);
+			//alert("addrulesplit.html:287 - vParseArray.length="+vParseArray.length);
+			if ((vParseArray.length > 1) || (vParseArray[0].charAt(0)==">")) { 
+				vHTML_content += "\n<tr><td valign='top' colspan='2' align='center'><hr/><b>Definition of Rule:</b></td></tr>";
+				for (var i=0; i<vParseArray.length; i++) {
+					if (vParseArray[i].charAt(0)==">") {
+						var vNONTERM_Weight = vParseArray[i];
+						var vOperator  = vParseNode.parse_operator(vNONTERM_Weight);
+						var vWeight    = vParseNode.parse_weight(vNONTERM_Weight);
+						var vNONTERM   = vParseNode.parse_nonterm(vNONTERM_Weight);
+						vContentSource = vParseNode.parse_term_onliner(vParseArray[i]);
+						vVarTitle=""+vNONTERM;
+						vHTML_content += variable_Display(vVarTitle,""+i,vContentSource,vDisplayMode,vOperator,vWeight);
+					} else {
+						vVarTitle="Rule Part"+vRuleTextNr+":";
+						vContentSource = vParseArray[i];
+						vRuleTextNr += 1;
+						vHTML_content += variable_Display(vVarTitle,vVariable+i,vContentSource,vDisplayMode,"","");
+					}
+					//alert("addrulesplit.html:223 ("+i+") "+vParseArray[i]);
+				}
+				//vHTML_content += "<tr><td valign='top' colspan='2' align='center'><hr/></td></tr>";
+				vHTML_content += "\n<tr><td valign='top' colspan='2'><hr/></td></tr>";
+				//vHTML_content += "<td valign='top'><font color='#999999'><b>Definition of Rule:</b><br/>";
+				//vHTML_content += "Read Only<br/>";
+				//vHTML_content += "<input type='button' value='Edit Source' onclick='editSource()'>";
+				//vHTML_content += "</font></td>";
+				//vHTML_content += "<td><textarea name='ruletext' cols='70' rows='5' readonly></textarea></td></tr>";
+				vHTML_content += "\n<tr><td valign='top' colspan='2'>";
+				vHTML_content += "<input type='hidden' name='ruletext' value=''>";
+				vHTML_content += "</td></tr>";
+				
+			} else {
+				vHTML_content += "\n<tr><td valign='top'><b>Definition of Rule:</b></td>";
+				vHTML_content += "<td><textarea name='rulesplit0' cols='70' rows='5'></textarea>";
+				vHTML_content += "<input type='hidden' name='operator0'  value='' />";
+				vHTML_content += "<input type='hidden' name='weight0' value='' />";
+				vHTML_content += "<input type='hidden' name='ruletext' value='' />";
+				vHTML_content += "</td></tr>";
+			}
+		};
+		vHTML_content += "<tr><td>";
+		//alert("top.vArticleGenerator.wizzard.active="+top.vArticleGenerator.wizzard.active+"\naddrulesplit.html:395");
+		if (top.vArticleGenerator.wizzard.active > 0) {
+			vHTML_content += createButton("Add Rule - Next Variable","addRuleNext()");
+			vHTML_content += "</td><td>";
+			vHTML_content += createButton("Add Rule","addRule()");
+			vHTML_content += createButton("Next Rule","nextRule()");
+			vHTML_content += createButton("Edit Source","editSource()");
+			vHTML_content += createButton("Update Edit","updateRule()");
+			vHTML_content += createButton("Clear","clearForm()");
+			vHTML_content += createButton("Cancel Wizzard","top.vArticleGenerator.wizzard.stop()");
+			
+		} else {
+			vHTML_content += createButton("Add Rule","addRule()");
+			vHTML_content += "</td><td>";
+			vHTML_content += createButton("Edit Source","editSource()");
+			vHTML_content += createButton("Update Edit","updateRule()");
+			vHTML_content += createButton("Clear","clearForm()");
+			vHTML_content += createButton("Cancel","document.location.href='empty.html'");
+		}
+		vHTML_content += "</td></tr>";
+		//alert("addrulesplit.html:364 - vHTML_content=\n"+vHTML_content);
+		document.write(vHTML_content);
+	// End Hiding -->
+</script>
+           		 	</table>
+
+            	</form>
+            </font>
+            </center>
+            <center>
+            <p></p>
+            </center>
+            <br>
+ <script language="JavaScript1.2">
+	<!-- Begin Hiding
+	    //alert("displayobejct.html Start setting SourceText");
+	    if (top.vArticleGenerator) {
+	        //top.vArticleGenerator.wizzard.read_comment_def();
+	    	if (top.vArticleGenerator.wizzard.aNONTERM != "") {
+		   	 	document.fInputForm.nonterm.value = top.vArticleGenerator.wizzard.aNONTERM;
+		   	 	var vTerm = top.vArticleGenerator.wizzard.aTERM;
+		    	document.fInputForm.ruletext.value = vTerm;
+		    	if (vParseArray.length<=1) {
+		    		document.fInputForm.rulesplit0.value = vTerm;
+		    	};
+		    	//alert("aTERM="+top.vArticleGenerator.wizzard.aTERM+"\naddrulesplit.html:387");
+		    	document.fInputForm.grammarid.value = top.vArticleGenerator.wizzard.aGrammarID;
+            	document.fInputForm.operator.value = top.vArticleGenerator.wizzard.aOperator;
+            	document.fInputForm.weight.value = top.vArticleGenerator.wizzard.aWeight;
+            	
+            }
+        }
+	// End Hiding -->
+           		 	</script>
+            <br>
+            </td>
+            <td>&nbsp;&nbsp;
+<!--- inner input table ---></td>
+          </tr>
+        </tbody>
+      </table>
+<!--- outer table ---> </td>
+    </tr>
+  </tbody>
+</table>
+<font size="2" face="Arial,Helvetica"><b>It is recommended to use the Browser Firefox with this Application. It is necessary to enable Javascript.</font>
+</center>
+</body>
+</html>

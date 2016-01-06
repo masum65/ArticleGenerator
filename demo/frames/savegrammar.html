@@ -1,0 +1,380 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=utf8">
+</head>
+<body bgcolor="#ffffff" background="backgroundimage.jpg">
+ <script language="JavaScript1.2">
+ 		function exportGrammar() {
+ 			//alert("Export Grammar");
+ 				
+ 			var vSelected  = document.fInputForm.tGrammarID.selectedIndex;
+ 			var vSectionID = document.fInputForm.tGrammarID.options[vSelected].value;
+ 			document.fInputForm.GenText.value = "";
+ 			var vGrammar = "";
+ 			var vGrammarID = vSectionID;
+ 			var vGrammarFolder = top.vArticleGenerator.grammarfiles.folder;
+ 			var vHeader = document.fInputForm.HeaderGenText.value+"";
+ 			var vFilename = vSectionID.toLowerCase()+"";
+ 			if (vSectionID == "--ALL--") {
+ 				vGrammarID = "all rules";
+ 				vFilename = "fullgrammar";	
+ 			};
+ 			var vConfFile = replaceString(vGrammarFolder,"grammar_","config_");
+ 			vConfFile = replaceString(vConfFile,"/","");
+ 			if (vSectionID == "--ALL--") {
+ 			     vGrammarID = "ALL RULES"
+ 			};
+ 			//alert("Checked\n"+"Filename="+vFilename+"n"+vHeader);
+ 			var vMessage = "Copy and save the grammar in the textarea of a grammar file\n  '/"+
+ 							vGrammarFolder + "/"+ vFilename+".html'";
+ 			if (document.fInputForm.HTMLinclude.checked) {
+ 			     vMessage = "Copy and save the grammar to the grammar file\n  '"+
+  			                vGrammarFolder + "/"+ vFilename+".html'";
+  			     var vHTMLheader = document.fInputForm.tHTMLheader.value;
+  				 vHTMLheader = replaceString(vHTMLheader,"__GRAMMAR__ID__",vGrammarID);
+ 			     document.fInputForm.GenText.value += vHTMLheader;
+ 			}
+ 			if (document.fInputForm.HeaderInclude.checked) {
+ 				vHeader = replaceString(vHeader,"__GRAMMAR__ID__",vGrammarID);
+ 				vHeader = replaceString(vHeader,"__GRAMMAR__FOLDER__",vGrammarFolder);
+ 				vHeader = replaceString(vHeader,"__GRAMMAR__FILE__",vFilename);
+ 				vHeader = replaceString(vHeader,"__GRAMMAR__CONF__",vConfFile);
+ 				document.fInputForm.GenText.value += vHeader+"\n";
+  			};
+  			//alert("All Rules with GrammarID='"+vSectionID+"' were exported");
+  			if (vSectionID == "--ALL--") {
+ 				document.fInputForm.GenText.value += top.vArticleGenerator.rules.export_source();
+				alert("EXPORT:\nAll Rules were exported.\n"+vMessage);
+			} else {
+ 				document.fInputForm.GenText.value += top.vArticleGenerator.rules.export_source(vSectionID);
+				alert("EXPORT:\nAll Rules with GrammarID='"+vSectionID+"' were exported.\n"+vMessage);
+			};			
+ 			if (document.fInputForm.HTMLinclude.checked) {
+ 			     document.fInputForm.GenText.value += document.fInputForm.tHTMLtail.value;
+ 			}
+ 		}
+ 		
+ 		
+function replaceString(pString,pSearch,pReplace)
+//###### replaces in the string "pString" multiple substrings "pSearch" by "pReplace"
+{
+	//alert("cstring.js - replaceString() "+pString);
+	if (pString != '') {
+		var vHelpString = '';
+        var vN = pString.indexOf(pSearch);
+		var vReturnString = '';
+		while (vN >= 0)
+		{
+			if (vN > 0)
+				vReturnString += pString.substring(0, vN);
+			vReturnString += pReplace;
+            if (vN + pSearch.length < pString.length) {
+				pString = pString.substring(vN+pSearch.length, pString.length);
+			} else {
+				pString = ''
+			}
+			vN = pString.indexOf(pSearch);
+		};
+	};
+	return vReturnString + pString;
+}
+
+</script>
+<br>
+<br>
+<center>
+<table border="1">
+  <tbody>
+    <tr bgcolor="#ffffff">
+      <td>
+      <table border="0">
+        <tbody>
+          <tr bgcolor="#ffffff">
+            <td><br>
+            </td>
+            <td>
+            <center><br>
+            <br>
+            <font size="+2" face="Arial,Helvetica">
+            <b>Save Grammar<br>
+           </font>
+            <font face="Arial,Helvetica">
+            </b>
+	   			<form name="fInputForm" action="#" onsubmit="alert('Submit-Button')">
+	   			Grammar-ID: 
+	   			<select name="tGrammarID" size="1" onchange="top.main.exportGrammar()">
+ <script language="JavaScript1.2">
+		var vGrammarIDs = top.vArticleGenerator.rules.getGrammarIDs(); 
+		for (var i=0;i<vGrammarIDs.length; i++) {
+			document.write("<option value='"+vGrammarIDs[i]+"'>"+vGrammarIDs[i]+"</option>")
+		}
+</script>      
+                </select> 
+                <input type="checkbox" name="HeaderInclude" value="yes" onchange="top.main.exportGrammar()"> 
+                Include Grammar Header
+               <input type="checkbox" name="HTMLinclude" value="yes" onchange="top.main.exportGrammar()"> 
+                Create Grammar as HTML-File 
+ 		<br/>
+          			<textarea name="GenText" cols="125" rows="27">
+           		 	</textarea>
+        <hr/>
+        <p><br></p>
+		<p><br></p>
+		<p><br></p>
+		<p><br></p>
+        <p><br></p>
+		<p><br></p>
+		<p><br></p>
+		<p><br></p>
+        <p><br></p>
+		<p><br></p>
+		<p><br></p>
+		<p><br></p>
+        <p><br></p>
+		<p><br></p>
+		<p><br></p>
+		<p><br></p>
+<!-- ============================================================================= -->
+<!-- === Begin of Grammar Header =================================================== -->
+<!-- ============================================================================= -->
+		<textarea name="HeaderGenText" cols="125" rows="10">
+#############################################################################
+####### Grammar Definitions of __GRAMMAR__ID__ ####### __GRAMMAR__FOLDER____GRAMMAR__FILE__.html 
+#############################################################################
+# Copy this grammar in the HTML-textarea of a file /__GRAMMAR__FOLDER____GRAMMAR__FILE__.html
+# If the file does not exist, create the Grammar as HTML-file and save as
+#    /__GRAMMAR__FOLDER____GRAMMAR__FILE__.html.
+# A fully operational grammar consists of grammar modules defined in /configs/__GRAMMAR__CONF__.html 
+# This file is the grammar module "__GRAMMAR__ID__", which can be a grammar module for 
+# a certain section of an article e.g. the introduction has the section-ID INTRODUCTION in the rules
+# and it should be used for consistency for the grammar-ID and the 
+# grammar file e.g. "introduction.html" as well. For this grammar use filename "__GRAMMAR__FILE__.html"
+# 
+# (1) Define new Variables
+#     - If you want to define a variable start you must start in the first column of the line
+#     - Use capital letters for the variables (Non-Terminal-Symbols) and underscore '_'
+#     - If you want to use Comments you must use '#' in the first column of the line not second col
+#     - As in LaTeX after '#' the rest of the line is a comment
+# (2) Multiline Variable Definitions start with the non-terminal Symbol SCI_OBJECTIVE in the first 
+#     column with "{" as an opening of the multiline defintion. The end of the multiline definition 
+#     is "}" in the first column of line, e.g.
+#SCI_OBJECTIVE {
+#   first line
+#   second line
+#   third line
+#}
+#     if the non-terminal symbol is not starting in the first column it will be used as a variable
+#     for replacing the symbol with rules of the grammar.
+# (3) End of Grammar File
+#     - there should be at least two empty lines at the end of each this file
+#     - this file will be concated to the grammar-File 'grammar.in' anytime you run createpaper.pl
+# (4) If you want to overwrite a definition of a non-terminal Symbol e.g. PAPER_KEYWORDS
+#     use a starting ">" before non-terminal Symbol e.g
+#>PAPER_KEYWORDS Risk, Resource
+#     overwriting should be used for the following non-terminal symbols
+#         - PAPER_KEYWORDS
+#         - LOOP-variables
+# (5) Multiline Variable Definitions can include overwrite definitions
+#SCI_LIST_OF_NAMES {
+#>MY_NAME Bert
+#   My name is MY_NAME
+#>MY_NAME Paul
+#   My name is MY_NAME 
+#   third line MY_NAME
+#}
+#    Overwriting a variable is persistent, i.e. after the replacement the last 
+#    overwrite definition is used for the next replacement  
+# (6) Select definitions: in general a non-terminal symbol/variable can have multiple definitions
+#WRD_IMPROVEMENT improvement
+#WRD_IMPROVEMENT optimization
+#WRD_IMPROVEMENT minimize errors
+#    In general WRD_IMPROVEMENT will be replaced randomly by one of the three options. 
+#    this leads to the fact that the document generated may look different when you create
+#    a document with the grammar the next time.
+#    If you want to select the replacement of WRD_IMPROVEMENT you can substitute the use 
+#    of WRD_IMPROVEMENT in a text by ?WRD_IMPROVEMENT. Then the generator will ask you which
+#    replacement of the non-term symbol you want to choose, e.g.
+#MY_NAME Bert
+#MY_NAME Mary
+#MY_NAME Paul
+#
+#WRITE_MY_NAME {
+#   My name is ?MY_NAME and
+#   I am living in London
+#}
+# (7) LOOP-Variables: if you have multiple variable definitions of a 
+#     single non-terminal Symbol/Variable, then you might want to use them all as a list   
+#MY_NAME Bert
+#MY_NAME Mary
+#MY_NAME Anna
+#MY_NAME Paul
+#     If you want to use them all as a list you use the asterisk "*" as LOOP-indicator 
+#     before the non-terminal symbol/variable e.g. *MY_NAME. 
+#     The replacement will generate for *MY_NAME
+#LOOP_DEF_COMMA_AND 
+#LOOP_BEGIN 
+#       Bert 
+#    LOOP_AFTER_FIRST 
+#       Mary 
+#    LOOP__ITEM
+#       Anna
+#    LOOP_BEFORE_LAST
+#       Paul
+#LOOP_END 
+#     If you want to have a comma list with an "and" at the end LOOP_DEF_COMMA_AND will lead to
+#     "Bert, Mary, Anna and Paul", See grammar LOOP for more details.
+#     LOOP_DEF_COMMA_AND will overwrite the LOOP-Variables
+#############################################################################
+
+            	   </textarea>
+<!-- ============================================================================= -->
+<!-- === End of Grammar Header =================================================== -->
+<!-- ============================================================================= -->
+ 
+ <hr><b>HTML-Header</b><br/>
+<!-- ============================================================================= -->
+<!-- === Begin of HTML Header ==================================================== -->
+<!-- ============================================================================= -->
+<textarea name="tHTMLheader" cols="125" rows="10" >
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <metaxa http-equiv="Content-Type" content="text/html; charset=utf8">
+  <meta http-equiv="Content-Type" content="text/html; charset=utf8">
+ <title>Grammar: __GRAMMAR__ID__</title>
+</head>
+<body bgcolor="#ffffff" background="backgroundimage.jpg">
+<script language="JavaScript1.2">
+
+function removeComments()
+//###### removes Comments beginning with "#" in the column of line
+{
+	var vInput  = document.fInputForm.GenText.value;
+	var vTitle  = document.fInputForm.Title.value;
+	//alert("abstract.html:18 - removeComments()\nvTitle="+vTitle);
+	var vOutput = top.vArticleGenerator.import_grammar(vInput,vTitle);
+	top.vArticleGenerator.grammarfiles.set_loaded(top.vURL_Object.getName(document.location.href));
+	document.fInputForm.GenText.value = vOutput;
+	alert('Import Grammar "'+vTitle+'" done!');
+}	
+
+</script>
+<br>
+<br>
+<center>
+<table border="1">
+  <tbody>
+    <tr bgcolor="#ffffff">
+      <td>
+      <table border="0">
+        <tbody>
+          <tr bgcolor="#ffffff">
+            <td><br>
+            </td>
+            <td>
+            <center><br>
+            <br>
+            <font size="+2" face="Arial,Helvetica">
+            <b>Load 
+	<script language="JavaScript1.2">
+   	//----------------------------------------------------	
+         document.write(top.vURL_Object.getName(document.location.href).toUpperCase());
+	//----------------------------------------------------	
+    </script>
+            Grammar<br></b> <!-- action="#" -->
+	   			<form name="fInputForm"  onsubmit="document.location.href='showrules.html'">
+					<input type=button name="Import" value="Import Grammar" onchange="convertToUpperCase()" onclick="removeComments()"> 
+					<input type=text name="Title" value="abstract"> 
+        			<__TEXT__AREA__ name="GenText" cols="125" rows="50" >
+</textarea>
+<!-- ============================================================================= -->
+<!-- === End of HTML Header ====================================================== -->
+<!-- ============================================================================= -->
+<hr/><b>HTML-Tail</b><br/>
+<!-- ============================================================================= -->
+<!-- === Begin of HTML Tail ====================================================== -->
+<!-- ============================================================================= -->
+        			<textarea name="tHTMLtail" cols="125" rows="10" >
+            		 	</__TEXT__AREA__>
+		    	</form>
+            </font>
+            </center>
+            <center>
+            <p></p>
+            </center>
+            <br>
+            </td>
+            <td>&nbsp;&nbsp;
+<!--- inner input table ---></td>
+          </tr>
+        </tbody>
+      </table>
+<!--- outer table ---> </td>
+    </tr>
+  </tbody>
+</table>
+<script language="JavaScript1.2">
+	//----------------------------------------------------	
+	document.fInputForm.Title.value = top.vURL_Object.getName(document.location.href).toUpperCase();
+	var vInput  = document.fInputForm.GenText.value;
+	var vTitle  = document.fInputForm.Title.value;
+	document.fInputForm.Title.value = vTitle;
+	//----------------------------------------------------
+	if (top.vArticleGenerator.grammarfiles.preload_index <= top.vArticleGenerator.grammarfiles.rows) {
+		var vOutput = top.vArticleGenerator.import_grammar(vInput,vTitle);
+		top.vArticleGenerator.setTimeout("top.vArticleGenerator.grammarfiles.preload()",100);
+	} else {
+		//alert("No preload");
+		if (top.vArticleGenerator.wizzard.active > 0) {
+			top.vArticleGenerator.wizzard.load(vInput,vTitle);
+		}
+	}
+	//----------------------------------------------------
+	
+</script>
+
+
+<font size="2" face="Arial,Helvetica"><b>It is recommended to use the Browser Firefox with this Application. It is necessary to enable Javascript.</font>
+</center>
+</body>
+</html>
+                 </textarea>
+<!-- ============================================================================= -->
+<!-- === End of HTML Tail ======================================================== -->
+<!-- ============================================================================= -->
+              </form>
+            </font>
+            </center>
+            <center>
+            <p></p>
+            </center>
+            <br>
+ <script language="JavaScript1.2">
+	    //alert("displayobejct.html Start setting SourceText");
+	    var vHTMLheader = document.fInputForm.tHTMLheader.value;
+		var vHTMLtail = document.fInputForm.tHTMLtail.value;
+		vHTMLheader = replaceString(vHTMLheader,"__TEXT__AREA__","TEXTAREA");
+		vHTMLtail   = replaceString(vHTMLtail  ,"__TEXT__AREA__","TEXTAREA");
+		document.fInputForm.tHTMLheader.value = vHTMLheader;
+		document.fInputForm.tHTMLtail.value   = vHTMLtail;
+		top.vArticleGenerator.updateGrammar();
+		//top.vArticleGenerator.rules.sort();
+		document.fInputForm.GenText.value = top.vArticleGenerator.rules.export_source();
+           		 	</script>
+            <br>
+            </td>
+            <td>&nbsp;&nbsp;
+<!--- inner input table ---></td>
+          </tr>
+        </tbody>
+      </table>
+<!--- outer table ---> </td>
+    </tr>
+  </tbody>
+</table>
+<font size="2" face="Arial,Helvetica"><b>It is recommended to use the Browser Firefox with this Application. It is necessary to enable Javascript.</font>
+</center>
+</body>
+</html>

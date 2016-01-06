@@ -1,0 +1,1503 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf8">
+   <!---meta http-equiv="Content-Type"
+ content="text/html; charset=utf8"--->
+  <!---meta http-equiv="Content-Type"
+ content="text/html; UTF-8"--->
+</head>
+<body bgcolor="#ffffff" background="backgroundimage.jpg">
+            
+<script language="JavaScript1.2">
+	<!-- Begin Hiding
+
+function importBibliography()
+{
+	var vInput  = document.fInputForm.BibDatabase.value;
+	var vTitle  = document.fInputForm.Title.value;
+	//var vForm =document.fInputForm;
+	//vForm.GenText.value = top.vArticleGenerator.selectCitations(vForm.BibDatabase.value,vForm.Keywords.value);
+	//alert("literature.html:19 - importBibliography()\nvTitle="+vTitle);
+	//var vOutput = top.vArticleGenerator.import_grammar(vInput,vTitle);
+	top.vArticleGenerator.grammarfiles.set_loaded(top.vURL_Object.getName(document.location.href));
+	top.vArticleGenerator.citations.load_bibtex(vInput);
+	document.fInputForm.BibDatabase.value = top.vArticleGenerator.citations.export_bibtex();
+}
+
+function importBibliographyOK()
+{
+	importBibliography();
+	alert('Import Bibliography "'+vTitle+'" done!');
+}	
+
+
+
+function importGrammar()
+//###### removes Comments beginning with "#" in the column of line
+{
+	var vInput  = document.fInputForm.GenText.value;
+	var vTitle  = document.fInputForm.Title.value;
+	//alert("abstract.html:18 - removeComments()\nvTitle="+vTitle);
+	var vOutput = top.vArticleGenerator.import_grammar(vInput,vTitle);
+	top.vArticleGenerator.grammarfiles.set_loaded(top.vURL_Object.getName(document.location.href));
+	document.fInputForm.GenText.value = vOutput;
+	alert('Import Grammar "'+vTitle+'" done!');
+}	
+
+
+function selectCitations() {
+	var vForm =document.fInputForm;
+	//vForm.GenText.value = top.vArticleGenerator.selectCitations(vForm.BibDatabase.value,vForm.Keywords.value);
+	var vKeywords = vForm.Keywords.value;
+	var vTolerance = 100;
+	top.vArticleGenerator.citations.load_bibtex(vForm.BibDatabase.value);
+	top.vArticleGenerator.citations.search(vKeywords,vTolerance);
+	// top.vArticleGenerator.citations.save_bibtex();
+	vForm.GenText.value = top.vArticleGenerator.citations.save_bibtex();
+	document.fInputForm.BibDatabase.value = top.vArticleGenerator.citations.export_bibtex();
+	alert('Citations created')
+	//alert("selectCitations()");
+}
+
+function replaceUmlauteInCitations()
+//###### create Citations in the Text
+{
+	var vString = document.fInputForm.GenText.value;
+	//var vString = document.fInputForm.BibDatabase.value;
+	vString = convertToBracketUmlaute(vString);
+	vString = convertToSlashUmlaute(vString);
+	document.fInputForm.GenText.value = convertToUmlaute(vString);
+	//document.fInputForm.BibDatabase.value = convertToUmlaute(vString);
+
+}
+
+function replaceStringReverse(pString,pReplace,pSearch)
+//###### replaces in the string "pString" multiple substrings "pSearch" by "pReplace"
+{
+	return replaceString(pString,pSearch,pReplace);
+}
+
+function replaceString(pString,pSearch,pReplace) {
+	return pString.replace(pSearch,pReplace);
+}
+
+function convertToLatex(pString)
+{
+	pString = replaceString(pString,'�','"a');
+	pString = replaceString(pString,'�','"o');
+	pString = replaceString(pString,'�','"u');
+	pString = replaceString(pString,'�','"A');
+	pString = replaceString(pString,'�','"O');
+	pString = replaceString(pString,'�','"U');
+	pString = replaceString(pString,'�','"s');
+	return pString
+}
+
+function convertToUmlaute(pString)
+{
+	pString = replaceStringReverse(pString,'�','"a');
+	pString = replaceStringReverse(pString,'�','"o');
+	pString = replaceStringReverse(pString,'�','"u');
+	pString = replaceStringReverse(pString,'�','"A');
+	pString = replaceStringReverse(pString,'�','"O');
+	pString = replaceStringReverse(pString,'�','"U');
+	pString = replaceStringReverse(pString,'�','"s');
+	return pString
+}
+
+function convertToSlashUmlaute(pString)
+{
+	pString = replaceStringReverse(pString,'�','\\"a');
+	pString = replaceStringReverse(pString,'�','\\"o');
+	pString = replaceStringReverse(pString,'�','\\"u');
+	pString = replaceStringReverse(pString,'�','\\"A');
+	pString = replaceStringReverse(pString,'�','\\"O');
+	pString = replaceStringReverse(pString,'�','\\"U');
+	pString = replaceStringReverse(pString,'�','\\"s');
+	pString = replaceStringReverse(pString,'�','\\ss');
+	return pString
+}
+function convertToBracketUmlaute(pString)
+{
+	pString = replaceStringReverse(pString,'�','{\\"a}');
+	pString = replaceStringReverse(pString,'�','{\\"o}');
+	pString = replaceStringReverse(pString,'�','{\\"u}');
+	pString = replaceStringReverse(pString,'�','{\\"A}');
+	pString = replaceStringReverse(pString,'�','{\\"O}');
+	pString = replaceStringReverse(pString,'�','{\\"U}');
+	pString = replaceStringReverse(pString,'�','{\\"s}');
+	pString = replaceStringReverse(pString,'�','{\\ss}');
+	return pString
+}
+
+
+		//document.write("TEST");
+		//document.write(top.vArticleGenerator.rules.edit());
+	// End Hiding -->
+           		 	</script>
+<br>
+<br>
+<center>
+<table border="1">
+  <tbody>
+    <tr bgcolor="#ffffff">
+      <td>
+      <table border="0">
+        <tbody>
+          <tr bgcolor="#ffffff">
+            <td><br>
+            </td>
+            <td>
+            <center><br>
+            <br>
+            <font size="+2" face="Arial,Helvetica">
+            <b>Select Citation from BibTex-Database<br>
+            </font>
+            </b>
+            <font face="Arial,Helvetica">
+            
+	   			<form name="fInputForm" action="#" onsubmit="alert('Submit-Button')">
+					<input type=button name="Import" value="Import Bibliography" onclick="importBibliography()"> 
+					<input type=hidden name="Title" value="literature"> 
+        			for the following <br/>
+        			<b>Keywords:</b> <input type=text name="Keywords" size="60" value=""> <br/>
+        			seperate Keywords with Comma 
+        			<hr/>
+        			<b>Bibtex Database</b><br/>
+        			<textarea name="BibDatabase" cols="125" rows="50">
+   
+@INCOLLECTION {Sebag:88,
+  title = {Generation of Rules with Certainty and Confidence Factors from Incomplete and Incoherent Learning Bases},
+  author = {Sebag, M. and Schoenauer, M.},
+  editor = {Boose, J. and Gaines, B. and Linster, M.},
+  booktitle = {Proc.\ of the European Knowledge Acquisition Workshop (EKAW'88)},
+  year = {1988},
+  pages = {28-1 - 28-},
+  publisher = {Gesellschaft f\"ur Mathematik und Datenverarbeitung mbH},
+  address = {Sankt Augustin, Germany},
+  keywords = {know-acquisition},
+}
+@INCOLLECTION {Schroeder:88,
+  title = {Knowledge Acquisition for a Knowledge Based Image Analysis System},
+  author = {Schr\"oder, S. and Niemann, H. and Sagerer, G.},
+  editor = {Boose, J. and Gaines, B. and Linster, M.},
+  booktitle = {Proc.\ of the European Knowledge Acquisition Workshop (EKAW'88)},
+  year = {1988},
+  pages = {29-1 - 29-},
+  publisher = {Gesellschaft f\"ur Mathematik und Datenverarbeitung mbH},
+  address = {Sankt Augustin, Germany},
+  keywords = {know-acquisition},
+}
+@INCOLLECTION {Terpstra:88,
+  title = {INDE: A System for Knowledge Refinement and Machine Learning},
+  author = {Terpstra, P.P. and van Someren, M.W.},
+  editor = {Boose, J. and Gaines, B. and Linster, M.},
+  booktitle = {Proc.\ of the European Knowledge Acquisition Workshop (EKAW'88)},
+  year = {1988},
+  pages = {30-1 - 30-},
+  publisher = {Gesellschaft f\"ur Mathematik und Datenverarbeitung mbH},
+  address = {Sankt Augustin, Germany},
+  keywords = {know-acquisition},
+}
+@INCOLLECTION {Karbach:88,
+  title = {Filling in the Knowledge Acquisition Gap: Via KADS'Models of Expertise to ZDEST-2's Expert Systems},
+  author = {Karbach, W. and Vo\ss{}, A. and Tong, X.},
+  editor = {Boose, J. and Gaines, B. and Linster, M.},
+  booktitle = {Proc.\ of the European Knowledge Acquisition Workshop (EKAW'88)},
+  year = {1988},
+  pages = {31-1 - 31-},
+  publisher = {Gesellschaft f\"ur Mathematik und Datenverarbeitung mbH},
+  address = {Sankt Augustin, Germany},
+  keywords = {know-acquisition},
+}
+@INCOLLECTION {Martial:88,
+  title = {Collaborative Construction of an Office Knowledge Base: Experiences and Suggestions},
+  author = {von Martial, F. and Victor, F.},
+  editor = {Boose, J. and Gaines, B. and Linster, M.},
+  booktitle = {Proc.\ of the European Knowledge Acquisition Workshop (EKAW'88)},
+  year = {1988},
+  pages = {32-1 - 32-},
+  publisher = {Gesellschaft f\"ur Mathematik und Datenverarbeitung mbH},
+  address = {Sankt Augustin, Germany},
+  keywords = {know-acquisition},
+}
+@INCOLLECTION {Wetter:88,
+  title = {Knowledge Acquisition from Text-Based Think-Aloud Protocols: Situational Specifications for a Legal Expert System},
+  author = {Wetter, T. and Schmalhofer, F.},
+  editor = {Boose, J. and Gaines, B. and Linster, M.},
+  booktitle = {Proc.\ of the European Knowledge Acquisition Workshop (EKAW'88)},
+  year = {1988},
+  pages = {33-1 - 33-},
+  publisher = {Gesellschaft f\"ur Mathematik und Datenverarbeitung mbH},
+  address = {Sankt Augustin, Germany},
+  keywords = {know-acquisition},
+}
+@INCOLLECTION {Maulsby:88,
+  title = {Acquiring Graphical Know-How: An Apprenticeship Model},
+  author = {Maulsby, D.L. and Witten, I.H.},
+  editor = {Boose, J. and Gaines, B. and Linster, M.},
+  booktitle = {Proc.\ of the European Knowledge Acquisition Workshop (EKAW'88)},
+  year = {1988},
+  pages = {34-1 - 34-},
+  publisher = {Gesellschaft f\"ur Mathematik und Datenverarbeitung mbH},
+  address = {Sankt Augustin, Germany},
+  keywords = {know-acquisition},
+}
+@BOOK {ebooks13054,
+  title = {Intelligent Tutoring Systems},
+  author = {Ikeda, M. and Ashlay, K. and Chan, T.},
+  year = {2006},
+  edition = {e-Book UB Uni Muenchen},
+  publisher = {Springer-Verlag},
+  url = {http://ebooks.ub.uni-muenchen.de/13054/},
+}
+@BOOK {Jung2007,
+  title = {Entwurf einer Sprache f{\"u}r die Modellierung von Ressourcen im Kontext der Gesch{\"a}ftsprozessmodellierung},
+  author = {Jung, J.},
+  year = {2007},
+  publisher = {Logos},
+  address = {Berlin},
+  note = {zugleich: Dissertation, Universit{\"a}t Duisburg-Essen, 2007},
+  url = {http://www.wi-inf.uni-due.de/FGFrank/documents/Buecher/Jung-2007-MEMO-ResML.pdf},
+}
+@INCOLLECTION {,
+  title = {Tracking and Tracing Applications of 3G for SMEs - A vision for 3G Mobile Multimedia Services},
+  author = {Fraunholz, B. and Unnithan, C. and Jung, J.},
+  booktitle = {Mobile and Wireless Systems beyond 3G: Managing New Business Opportunities},
+  year = {2005},
+  publisher = {Idea Publishing},
+}
+@INCOLLECTION {Jung2005,
+  title = {Meta-Modelling Support for a General Process Modelling Tool},
+  author = {Jung, J.},
+  editor = {Tolvanen, J. and Sprinkle, J. and Rossi, M.},
+  booktitle = {5th OOPSLA Workshop on Domain-Specific Modeling (DSM''05)},
+  series = {Computer Science and Information Systems Reports},
+  year = {2005},
+  month = {October},
+  volume = {TR-36},
+  type = {Computer Science and Information Systems Reports},
+  number = {TR-36},
+  organization = {University of Jyv{\"a}skyl{\"a}},
+  address = {University of Jyv{\"a}skyl{\"a}},
+  abstract = {The paper at hand presents a research prototype for using a meta-modelling tool in the context of business process modelling. The prototype has been part of an e-commerce-related project and implements the mapping of business process models to workflow schemata. A meta-modelling tool has been used for implementing a modelling tool and the mapping. The analysis of the mapping is based on finding equivalent concepts in the source (MEMO-OrgML) and the target language (XPDL). Features which are not available in the source language have been added using special language elements. The paper also presents the idea of a generic mapping approach. Mappings from business process models to other process-oriented representations can be realised. The realisation of these mappings is similar to our approach. We will extend our tool with respect to support different target languages like BPEL4WS. The meta-modelling tool MetaEdit  has been used for the prototypes.},
+}
+@INPROCEEDINGS {Hoffmann2003,
+  title = {Evaluation of Mobile Frameworks - conceptual and technological aspects},
+  author = {Fraunholz, B. and Hoffmann, J. and Jung, J.},
+  booktitle = {Proceedings of the 10th European Conference on Information Technology Evaluation},
+  year = {2003},
+  month = {September},
+  address = {Instituto de Empresa, Madrid, Spain},
+}
+@INPROCEEDINGS {Jung2003,
+  title = {Basic Conceptualisation of a Resource Modelling Language},
+  author = {Jung, J.},
+  editor = {Khosrow-Pour, M.},
+  booktitle = {Information Technology and Organizations. Proceedings of the 2003 Information Resources Management Association International Conference Philadelphia, PA (USA), 18-21 May 2003},
+  year = {2003},
+  pages = {827--831},
+  publisher = {Idea Group Publishing},
+}
+@ARTICLE {1356480,
+  title = {Logistic support vector machines and their application to gene expression data},
+  author = {Liu, Z. and Chen, D. and Xu, Y. and Liu, J.},
+  journal = {Int. J. Bioinformatics Res. Appl.},
+  year = {2005},
+  volume = {1},
+  number = {2},
+  pages = {169--182},
+  issn = {1744-5485},
+  doi = {10.1504/ijbra.2005.007576},
+  abstract = {One important feature of the gene expression data is that the number of genes m far exceeds the number of samples n. When applied to analyse the gene expression data, standard statistical methods do not work well when n < m. Development of new methodologies or modification of existing methodologies is needed for the analysis of microarray data. Support vector machine (SVM) has been applied in gene expression data classification. In traditional SVM classification, a classifier is usually built by a small subset of samples called support vectors. This may cause a loss of available information since the number of samples in a gene expression dataset is usually very small. In this paper, we introduce a logistic support vector machine (LSVM) algorithm for the classification task. In LSVM, all the samples are used as support vectors and parameters are estimated via the maximum a posteriori (MAP) estimation procedure. The proposed algorithm also has the advantage of providing an estimate of the underlying probability. This algorithm was applied to five different gene expression datasets. Computational results show that compared with popular classification methods such as traditional SVM, our algorithm usually leads to an improvement in classification accuracy.},
+}
+@INPROCEEDINGS {1489829,
+  title = {Mobile Data Mining for Intelligent Healthcare Support},
+  author = {Haghighi, P. D. and Zaslavsky, A. B. and Krishnaswamy, S. and Gaber, M. M.},
+  booktitle = {HICSS '09: Proceedings of the 42nd Hawaii International Conference on System Sciences},
+  year = {2009},
+  pages = {1--10},
+  publisher = {IEEE Computer Society},
+  address = {Washington, DC, USA},
+  isbn = {978-0-7695-3450-3},
+  keywords = {application health-care},
+biburl={http://www.bibsonomy.org/bibtex/2786e628845bf7f5bece24c454c6f1c76/andrea.zanda},
+}
+@INCOLLECTION {citeulike:5856174,
+  title = {The Benefits of Embedded Intelligence Tasks and Applications for Ubiquitous Computing in Logistics},
+  author = {Jedermann, R. and Lang, W.},
+  journal = {The Internet of Things},
+  year = {2008},
+  pages = {105--122},
+  keywords = {application embedding_intelligence},
+biburl={http://www.bibsonomy.org/bibtex/2cbab13f1b74df82c0e4c4cb4b684e961/andrea.zanda},
+posted-at={2009-09-29 22:03:15},
+priority={5},
+}
+@INPROCEEDINGS {1409260,
+  title = {Mobile phones assisting with health self-care: a diabetes case study},
+  author = {Preuveneers, D. and Berbers, Y.},
+  booktitle = {MobileHCI '08: Proceedings of the 10th international conference on Human computer interaction with mobile devices and services},
+  year = {2008},
+  pages = {177--186},
+  publisher = {ACM},
+  location = {Amsterdam, The Netherlands},
+  address = {New York, NY, USA},
+  isbn = {978-1-59593-952-4},
+  keywords = {application health-care mobile},
+biburl={http://www.bibsonomy.org/bibtex/2d7d7e03267e85edeff37948de26a4374/andrea.zanda},
+}
+@ARTICLE {gusikhin2006ivs,
+  title = {{Intelligent Vehicle Systems: Applications and New Trends}},
+  author = {Gusikhin, O. and Filev, D. and Rychtyckyj, N.},
+  journal = {Proc. 3rd International Conf. Informatics, Control, and Robotics},
+  year = {2006},
+  publisher = {Springer},
+  keywords = {application intelligent_vehicles},
+biburl={http://www.bibsonomy.org/bibtex/20bab09c4c710cc2c8fb9e1fb7c0a8ea4/andrea.zanda},
+}
+@INPROCEEDINGS {1482933,
+  title = {Mobile Agents Using Data Mining for Diagnosis Support in Ubiquitous Healthcare},
+  author = {Mateo, R. M. and Cervantes, L. F. and Yang, H. and Lee, J.},
+  booktitle = {KES-AMSTA '07: Proceedings of the 1st KES International Symposium on Agent and Multi-Agent Systems},
+  year = {2007},
+  pages = {795--804},
+  publisher = {Springer-Verlag},
+  location = {Wroclaw, Poland},
+  address = {Berlin, Heidelberg},
+  isbn = {978-3-540-72829-0},
+  doi = {10.1007/978-3-540-72830-6_83},
+  keywords = {application health-care},
+biburl={http://www.bibsonomy.org/bibtex/2b8e0fca6597569166cc79dfc1916ae24/andrea.zanda},
+}
+@INPROCEEDINGS {1418449,
+  title = {A Distributed Data Mining System for a Novel Ubiquitous Healthcare Framework},
+  author = {Viswanathan, M. and Whangbo, T.K. and Lee, K.J. and Yang, Y.K.},
+  booktitle = {ICCS '07: Proceedings of the 7th international conference on Computational Science, Part III},
+  year = {2007},
+  pages = {701--708},
+  publisher = {Springer-Verlag},
+  location = {Beijing, China},
+  address = {Berlin, Heidelberg},
+  isbn = {978-3-540-72587-9},
+  doi = {10.1007/978-3-540-72588-6_117},
+  keywords = {application health-care},
+biburl={http://www.bibsonomy.org/bibtex/2146040232e746a5ec962cd4dc17a5e0c/andrea.zanda},
+}
+@ARTICLE {ZieglerHealthCare2008,
+  title = {{Einsatz mobiler Computing-Systeme in der pr{\"a}klinischen Schlaganfallversorgung}},
+  author = {Ziegler, V. and Rashid, A. and M{\"u}ller-Gorchs, M. and Kippnich, U. and Hiermann, E. and K\"ogerl, C. and Holtmann, C. and Siebler, M. and Griewing, B.},
+  journal = {Der Anaesthesist},
+  year = {2008},
+  volume = {57},
+  number = {7},
+  pages = {677--685},
+  note = {ISSN: 0003-2417 (Print) 1432-055X (Online)},
+  url = {http://www.springerlink.com/content/7lr2332n1r030574/},
+  abstract = {Background Telemedical networks that apply innovative mobile information technologies (IT) are an innovative approach to improve stroke care in community settings. Within the German Stroke Angel initiative and the research project PerCoMed (Pervasive Computing in Medical Care, funded by the Federal Ministry of Education and Research, http://www.percomed.de) the effects of such a solution were assessed by an interdisciplinary research approach. The main goal of the team of researchers and practitioners was to provide clear evidence of improvements in intersectional processes of the stroke chain survival, namely in the acute stroke processes between prehospital rescue services and hospital stroke units. Material and methods Between October 2005 and October 2007 the paramedical staff of five rescue service transporters in a rural area of northern Bavaria was included in a network with the stroke unit of the Neurological Clinic Bad Neustadt. Telemedical support by the Stroke Angel computing system &#8211; a software running on a personal digital assistant (PDA) to transmit patient data from the rescue team to the hospital during patient transporting time &#8211; was established. As procedural guidance, the Stroke Angel system suggests a predefined path through the necessary emergency procedures according to the structure of the mandatory protocol and the implemented Los Angeles Prehospital Stroke Screen (LAPSS). Results In the empirical study the authors obtained a complete data set of 226 consecutively admitted patients for analysis in Bad Neustadt and LAPSS data of 217 patients from a second scenario in D{\"u}sseldorf. Medical, economic and technical analyses were applied. The technological robustness of the Stroke Angel system could be proven and information entered was transmitted fully and correctly. Concerning medical research questions, for both scenario locations LAPSS with a sensitivity of 68.3% and a specificity of 85.1% has to be deemed insufficient. Hence, alternative algorithms will have to be used in the next steps of evaluation. The system significantly influenced the clinical process of acute stroke management more than the preclinical ones (door-to-CT: 32 min. before and 16 min. at the end of the project). Lysis treatment rose from 6.12% (2005) to 11.17% (2007) of patients with acute stroke. Conclusions From the set of perspectives taken, the study illustrates that mobile computing technologies offer new and innovative approaches to improve intersectional acute stroke care. It also teaches the participants that interdisciplinary research can significantly deepen the understanding of such technologies and projects, which can lead to better decision making concerning solution implementation, management and improvements. The approach will be brought into daily practice in Bad Neustadt/Saale within the next months.},
+}
+@ARTICLE {HealthCareHoltmann2008,
+  title = {{Sektoren\"ubergreifendes Informationsmanagement im Gesundheitswesen. Neue Wege durch Pervasive Computing}},
+  author = {Holtmann, C. and Rashid, A. and M{\"u}ller-Gorchs, M. and Griewing, B. and K\"ogerl, C. and Ziegler, V.},
+  journal = {Technikfolgenabsch\"atzung - Theorie und Praxis},
+  year = {2008},
+  month = {May},
+  volume = {1},
+  number = {17},
+  pages = {19--26},
+  url = {http://www.itas.fzk.de/tatup/081/houa08a.pdf},
+  abstract = {"'Stroke Angel"' ist die erste der Fallstudien im Forschungsprojekt PerCoMed, bei der der Einsatz von Pervasive-Computing-Technologien zur Verbesserung des Informationsmanagements an der pr\"aklinisch-klinischen Schnittstelle in der Schlaganfallversorgung evaluiert wird. Im Rahmen dieses Teilprojektes erfassten Rettungsassistenten bei Verdacht auf Schlaganfall die Patientendaten leitfadengest\"utzt mit mobilen Ger\"aten am Notfallort und versandten diese bereits vor dem Transport des Patienten an das Zielkrankenhaus. Die \"Arzte im Krankenhaus konnten sich durch diese Vorinformation auf den Notfall vorbereiten und eine reibungslose \"Ubernahme des Patienten sicherstellen. Die PerCoMed-Forschungspartner flankierten zwei Jahre lang das Stroke-Angel-Projekt mit wissenschaftlichen Untersuchungen und f\"uhrten sowohl technische als auch sozio\"okonomische und soziotechnische Analysen durch. In dieser Arbeit werden die Ergebnisse des Projektes vorgestellt und die Bedeutung von Pervasive Computing f\"ur ein sektoren\"ubergreifendes Informationsmanagement diskutiert.},
+}
+@ARTICLE {GIStailioredQuest1,
+  title = {GIS Tailored questionnaires for assisting health care management in distributing resources},
+  author = {Herselman, M. E. and Niehaus, E. and Ruxwana, N. and D'Souza-Niehaus, P. and Heyne, N. and Platz, M. and Wagner, R.},
+  journal = {IASTED Africa Health Informatics},
+  year = {2010},
+  month = {September},
+  keywords = {Geographic Information System (GIS) and GIS Tailored Questionnaire (GIST-Q), Resource Management System (RMS), decision support system, Health care Management, mathematical modeling},
+  abstract = {A tailored questionnaire focuses on dynamic generation of items and questions according to the location where the questionnaire is used. The approach is connected to the management of resources and the support of decision making processes which is based on collecting data for a certain geographical region. The article shows how Geographic Information Systems (GIS) can be used to tailor a questionnaire to match the risk and demands of specific areas where the questionnaire will be applied. The GIS based generation of a questionnaire is used to provide tailored information for informed decision making in health care systems. Resource Management can only be optimized if the ICT-based representation is based on tailored information according to the area in which the process of optimization should be performed. Areas with a lack of resources and with heterogeneous environmental and social conditions should get a tailored response based on tailored information, which can be provided by this type of questionnaire. The article will show how mathematical modeling can be applied to an appropriate temporal and spatial generation of questionnaires for deployment of human and medical resources according to risk and demand in rural health care.},
+}
+@ARTICLE {Oertli2009,
+  title = {Epidemiology of rabies in skunks in Texas},
+  author = {Oertli, E. H. and Wilson, P. J. and Hunt, P. R. and Sidwa, T. J. and Rohde, R. E.},
+  journal = {Journal of the American Veterinary Medical Association},
+  year = {2009},
+  month = {March},
+  volume = {234},
+  number = {5},
+  pages = {616--620},
+  url = {http://www.ncbi.nlm.nih.gov/pubmed/19250039},
+  doi = {10.2460/javma.234.5.616},
+  keywords = {epi imported lab_meeting printed},
+  abstract = {OBJECTIVE: To obtain epidemiologic information on rabies in skunks in Texas. DESIGN: Epidemiologic study. SAMPLE POPULATION: Reports of skunks that had been submitted for rabies testing in Texas from 1953 through 2007. PROCEDURES: Reports were reviewed to obtain information on seasonality of rabies in skunks, seasonality of human and domestic animal exposure to rabid skunks, commonly reported clinical signs of rabies in skunks, domestic animals frequently exposed to rabid skunks, common scenarios for exposure of domestic animals to rabid skunks, disposition of domestic animals exposed to rabid skunks, age and gender of humans exposed to rabid skunks, and usual routes of exposure of humans to rabid skunks. RESULTS: On a yearly basis, the number of rabid skunks peaked in 1961, 1979, and 2001. On a monthly basis, the number of rabid skunks peaked in March and April. Over the study period, the percentage of rabid skunks from urban areas increased and the percentage from rural areas decreased. Striped skunks were the most common species. Dogs and cats were the domestic animals most frequently exposed to rabid skunks. On average, the highest numbers of humans exposed to rabid skunks were between 36 and 50 years old. Most humans were exposed through means other than a bite. Typical behaviors of rabid skunks were entering a dog pen, appearing outside during daytime, and attacking pets. CONCLUSIONS AND CLINICAL RELEVANCE: Information on the epidemiology of rabies in skunks may be useful in planning and implementing local, state, and national rabies control and prevention campaigns.},
+interhash={325e6e34e5a1b9992ec93bba14ad05f9},
+intrahash={c5e935cc4d6a8a1c0eead140f5f0291e},
+pmid={19250039},
+description={Epidemiology of rabies in skunks in Texas. [J Am Vet Med Assoc. 2009] - PubMed Result},
+biburl={http://www.bibsonomy.org/bibtex/2c5e935cc4d6a8a1c0eead140f5f0291e/ebo},
+}
+@ARTICLE {MosquitoInfectRisk2004,
+  title = {The Risk of a Mosquito-Borne Infection in a Heterogeneous Environment},
+  author = {Smith, D. L. and Dushoff, J. and McKenzie, F.E.},
+  journal = {PLoS Biology},
+  year = {2004},
+  volume = {2},
+  number = {11},
+  pages = {1957--1964},
+  keywords = {Mosuqitos, GIS, mathematical model},
+  abstract = {A common assumption about malaria, dengue, and other mosquito-borne infections is that the two main components
+
+of the risk of human infection the rate at which people are bitten (human biting rate) and the proportion of
+
+mosquitoes that are infectious are positively correlated. In fact, these two risk factors are generated by different
+
+processes and may be negatively correlated across space and time in heterogeneous environments. Uneven
+
+distribution of blood-meal hosts and larval habitat creates a spatial mosaic of demographic sources and sinks.
+
+Moreover, mosquito populations fluctuate temporally, forced by environmental variables such as rainfall, temperature,
+
+and humidity. These sources of spatial and temporal heterogeneity in the distribution of mosquito populations
+
+generate variability in the human biting rate, in the proportion of mosquitoes that are infectious, and in the risk of
+
+human infection. To understand how heterogeneity affects the epidemiology of mosquito-borne infections, we
+
+developed a set of simple models that incorporate heterogeneity in a stepwise fashion. These models predict that the human biting rate is highest shortly after the mosquito densities peak, near breeding sites where adult mosquitoes emerge, and around the edges of areas where humans are aggregated. In contrast, the proportion of mosquitoes that are infectious reflects the age structure of mosquito populations; it peaks where old mosquitoes are found, far from mosquito breeding habitat, and when mosquito population density is declining. Finally, we show that estimates for the average risk of infection that are based on the average entomological inoculation rate are strongly biased in heterogeneous environments.},
+}
+@ARTICLE {Dengue2010,
+  title = {Eco-bio-social determinants of dengue vector breedin: a multicountry study in urban und periurban Asia},
+  author = {Arunachalam, N. and Tana, S. and Espino, F. and Kittayapong, P. and Abeyewickreme, W. and Wai, K. T. and Tyagi, B. K. and Kroeger, A. and Sommerfeld, J. and Petzold, M.},
+  journal = {Bull World Health Organ},
+  year = {2010},
+  volume = {88},
+  pages = {173--184},
+  keywords = {dengue, Asia, eco-bio-social, Mosquitos},
+  abstract = {Objective: To study dengue vector breeding patterns under a variety of conditions in public and private spaces; to explore the ecological, biological and social (eco-bio-social) factors involved in vector breeding and viral transmission, and to define the main implications for vector control.
+
+Methods: In each of six Asian cities or periurban areas, a team randomly selected urban clusters for conducting standardized household surveys, neighbourhood background surveys and entomological surveys. They collected information on vector breeding sites, people�s knowledge, attitudes and practices surrounding dengue, and the characteristics of the study areas. All premises were inspected; larval indices were used to quantify vector breeding sites, and pupal counts were used to identify productive water container types and as a proxy measure for adult vector abundance.
+
+Findings: The most productive vector breeding sites were outdoor water containers, particularly if uncovered, beneath shrubbery and unused for at least one week. Peridomestic and intradomestic areas were much more important for pupal production than commercial and public spaces other than schools and religious facilities. A complex but non-significant association was found between water supply and pupal counts, and lack of waste disposal services was associated with higher vector abundance in only one site. Greater knowledge about dengue and its transmission was associated with lower mosquito breeding and production. Vector control measures (mainly larviciding in one site) substantially reduced larval and pupal counts and �pushed� mosquito breeding to alternative containers.
+
+Conclusion: Vector breeding and the production of adult Aedes aegypti are influenced by a complex interplay of factors. Thus, to achieve effective vector management, a public health response beyond routine larviciding or focal spraying is essential.},
+}
+@ARTICLE {Bustamente2010,
+  title = {Sources of Error in the Estimation of Mosquito Infection Rates Used to Asses Risk of Arbovirus Transmission},
+  author = {Bustamante, D. M. and Lord, C. C.},
+  journal = {Am. J. Trop. Med. Hyg.},
+  year = {2010},
+  volume = {82},
+  number = {6},
+  pages = {1172--1184},
+  keywords = {Arbovirus, Mosquitos, measurement, Risk assesment},
+  abstract = {Infection rate is an estimate of the prevalence of arbovirus infection in a mosquito population. It is assumed that when infection rate increases, the risk of arbovirus transmission to humans and animals also increases. We examined some of the factors that can invalidate this assumption. First, we used a model to illustrate how the proportion of mosquitoes capable of virus transmission, or infectious, is not a constant fraction of the number of infected mosquitoes.
+
+Thus, infection rate is not always a straightforward indicator of risk. Second, we used a model that simulated the process
+
+of mosquito sampling, pooling, and virus testing and found that mosquito infection rates commonly underestimate the
+
+prevalence of arbovirus infection in a mosquito population. Infection rate should always be used in conjunction with other surveillance indicators (mosquito population size, age structure, weather) and historical baseline data when assessing the risk of arbovirus transmission.},
+}
+@ARTICLE {Sebasan2006,
+  title = {Delimitation of lymphatic filariasis transmission risk areas: a geo-environmental approach},
+  author = {Sabesan, S. and Raju, H. K. K. and Srividya, A. and Das, P. K.},
+  journal = {Filaria Journal},
+  year = {2006},
+  volume = {5},
+  number = {12},
+  abstract = {Background: The Global Programme to Eliminate Lymphatic Filariasis (GPELF) depends upon Mass Drug Administration (MDA) to interrupt transmission. Therefore, delimitation of
+
+transmission risk areas is an important step, and hence we attempted to define a geo-environmental risk model (GERM) for determining the areas of potential transmission of lymphatic filariasis.
+
+Methods: A range of geo-environmental variables has been selected, and customized on GIS platform to develop GERM for identifying the areas of filariasis transmission in terms of "risk" and "non-risk". The model was validated through a 'ground truth study' following standard procedure using GIS tools for sampling and Immuno-chromotographic Test (ICT) for screening the individuals.
+
+Results: A map for filariasis transmission was created and stratified into different spatial entities, "risk' and "non-risk", depending on Filariasis Transmission Risk Index (FTRI). The model estimation corroborated well with the ground (observed) data.
+
+Conclusion: The geo-environmental risk model developed on GIS platform is useful for spatial delimitation purpose on a macro scale.},
+}
+@ARTICLE {Obach2001,
+  title = {Modelling population dynamics of aquatic insects with artificial neural networks},
+  author = {Obach, M. and Wagner, R. and Werner, H. and Schmidt, H.},
+  journal = {Ecological Modelling},
+  year = {2001},
+  volume = {146},
+  pages = {207--217},
+  keywords = {Radial basis function neural network, self-organising maps, hybrid training, general regression neural network, visualisation of multdemensional data, reliability measure},
+  abstract = {We modelled the total number of individuals of selected water insects based on a 30-year data set of population
+
+dynamics and environmental variables (discharge, temperature, precipitation, abundance of parental generation) in a small stream in central Germany. For data exploration, visualisation of data, outlier detection, hypothesis generation, and to detect basic patterns in the data, we used Kohonen�s self organizing maps (SOM). They are comparable to statistical cluster analysis by ordinating data into groups. Based on annual abundance patterns of Ephemeroptera, Plecoptera and Trichoptera (EPT), species groups with similar ecological requirements were distinguished. Furthermore, we applied linear neural networks, general regression neural networks, modi&#64257;ed multi-layer perceptrons, and radial basis function networks combined with a SOM (RBFSOM) and successfully predicted the annual abundance of selected species from environmental variables. Results were visualised in three-dimensional plots. Relevance detection methods were sensitivity analysis, stepwise method and Genetic Algorithms. Instead of a sliding windows approach we computed the in- and output data of &#64257;xed periods for two caddis &#64258;ies. In order to assess the quality of the models we applied several reliability measures and compared the generalisation error with the long-term mean of the target variable. RBFSOMs were used to denominate and visualise local and general model accuracy. Results were interpreted on the basis of known species traits. We  onclude that it is possible to predict the abundance of aquatic insects based on relevant environmental factors using arti&#64257;cial neural networks.},
+}
+@ARTICLE {Chikungunya2009,
+  title = {Pan-European Chikungunya surveillance: designing risk stratified surveillance zones},
+  author = {Tilston, N. and Skelly, C. and Weinstein, P.},
+  journal = {International Journal of Health Geographics},
+  year = {2009},
+  volume = {6},
+  number = {61},
+}
+@ARTICLE {Baatz_Schaepe_2000,
+  title = {Multiresolution Segmentation: an optimization approach for high quality multi-scale image segmentation},
+  author = {Baatz, M. and Sch{\"a}pe, A.},
+  editor = {Strobl, J.},
+  journal = {Journal of Photogrammetry and Remote Sensing},
+  year = {2000},
+  volume = {58},
+  number = {3-4},
+  pages = {12--23},
+  url = {http://scholar.google.com/scholar?hl=en&btnG=Search&q=intitle:Multiresolution Segmentation: an optimization approach for high quality multi-scale image segmentation#0},
+  abstract = {A necessary prerequisite for object oriented image processing is successful image segmentation. The approach presented in this paper aims for an universal high-quality solution applicable and adaptable to many problems and data types. As each image analysis problem deals with structures of a certain spatial scale, the average image objects size must be free adaptable to the scale of interest. This is achieved by a general segmentation algorithm based on homogeneity definitions in combination with local and global optimizat ion techniques. A scale parameter is used to control the average image object size. Different homogeneity criteria for image objects based on spectral and/or spatial information are developed and compared.},
+abstractnote={A necessary prerequisite for object oriented image processing is successful image segmentation. The approach presented in this paper aims for an universal high-quality solution applicable and adaptable to many problems and data types. As each image analysis problem deals with structures of a certain spatial scale,
+ the average image objects size must be free adaptable to the scale of interest. This is achieved by a general segmentation algorithm based on homogeneity definitions in combination with local and global optimizat ion techniques. A scale parameter is used to control the average image object size. Different homogeneity criteria for image objects based on spectral and/or spatial information are developed and compared.},
+}
+@ARTICLE {Wu_David_2002,
+  title = {A spatially explicit hierarchical approach to modeling complex ecological systems: theory and applications},
+  author = {Wu, J. and David, J.},
+  journal = {Ecological Modelling},
+  year = {2002},
+  volume = {153},
+  number = {1-2},
+  pages = {7--26},
+  url = {http://linkinghub.elsevier.com/retrieve/pii/S0304380001004999},
+  abstract = {Ecological systems are generally considered among the most complex because they are characterized by a large number of diverse components, nonlinear interactions, scale multiplicity, and spatial heterogeneity. Hierarchy theory, as well as empirical evidence, suggests that complexity often takes the form of modularity in structure and functionality. Therefore, a hierarchical perspective can be essential to understanding complex ecological systems. But, how can such hierarchical approach help us with modeling spatially heterogeneous, nonlinear dynamic systems like landscapes, be they natural or human-dominated? In this paper, we present a spatially explicit hierarchical modeling approach to studying the patterns and processes of heterogeneous landscapes. We first discuss the theoretical basis for the modeling approach-the hierarchical patch dynamics (HPD) paradigm and the scaling ladder strategy, and then describe the general structure of a hierarchical urban landscape model (HPDM-PHX) which is developed using this modeling approach. In addition, we introduce a hierarchical patch dynamics modeling platform (HPD-MP), a software package that is designed to facilitate the development of spatial hierarchical models. We then illustrate the utility of HPD-MP through two examples: a hierarchical cellular automata model of land use change and a spatial multi-species population dynamics model.},
+}
+@ARTICLE {Yen1999,
+  title = {Rule selections in fuzzy expert systems},
+  journal = {Expert Systems with Applications},
+  year = {1999},
+  volume = {16},
+  number = {1},
+  pages = {79--84},
+  publisher = {PERGAMON PRESS},
+  url = {http://linkinghub.elsevier.com/retrieve/pii/S0957417498000244},
+  abstract = {A fuzzy expert system consists of a database of facts and a database of rules of the type: If x is A then y is B. When a fact `x is A{\^a}��{\^a}�� is given, a generalized modus ponens inference rule is applied to infer `y is B{\^a}��{\^a}��. If more than one rule is relevant, this paper suggests that a measure of nearness between A and A{\^a}�� should be used and a threshold point for invoking a rule be determined in advance. This paper surveys a number of measures of nearness between fuzzy sets and recommends a `better{\^a}�� one for implementation.},
+}
+@ARTICLE {Neuroemprism2007,
+  title = {Principles of Neuro-Empirism and Dynamic Models of Health Service Delivery},
+  author = {Niehaus, E.},
+  journal = {Proceedings of 19th International Conference on Systems Research, Informatics and Cybernetics},
+  year = {2007},
+  volume = {III},
+  number = {1},
+  issn = {978-1-897233-07-8},
+}
+@ARTICLE {BraunNiehaus2007,
+  title = {Application of Stochastic Networks to Decision Support for Health Service Delivery},
+  author = {Niehaus, E. and Braun, Th.},
+  journal = {Proceedings of 19th International Conference on Systems Research, Informatics and Cybernetics},
+  year = {2007},
+  volume = {III},
+  number = {1},
+  issn = {978-1-897233-07-8},
+  keywords = {stochastic network, GIS},
+}
+@ARTICLE {MeyerNiehaus2007,
+  title = {Sustainability by Application of Fuzzy Theory to Decision Support for Health Service Delivery},
+  author = {Niehaus, E. and Meyer, M.},
+  journal = {Proceedings of 19th International Conference on Systems Research, Informatics and Cybernetics},
+  year = {2007},
+  volume = {III},
+  number = {1},
+  issn = {978-1-897233-07-8},
+  keywords = {fuzzy theory,},
+}
+@ARTICLE {NiehausB2007,
+  title = {Application of Object Oriented Analysis to Sustainable Decision Support System for Health Service Delivery},
+  author = {Niehaus, D.},
+  journal = {Proceedings of 19th International Conference on Systems Research, Informatics and Cybernetics},
+  year = {2007},
+  volume = {III},
+  number = {1},
+  issn = {978-1-897233-07-8},
+  keywords = {object oriented analysis},
+}
+@ARTICLE {Herselman2007BIS,
+  title = {Business Information Management System for Substainable Health Information Retrieval in Rural Communities},
+  author = {Herselman, M. E.},
+  journal = {Proceedings of 19th International Conference on Systems Research, Informatics and Cybernetics},
+  year = {2007},
+  volume = {III},
+  number = {1},
+  issn = {978-1-897233-07-8},
+}
+@ARTICLE {GenderDiffMath2010,
+  title = {Gender differences in mathematics achievement in the year 10 students in Jordan},
+  author = {Mubark, M.},
+  year = {2010},
+  keywords = {Modellierung, Hochbegabung, Geschlechterunterschiede},
+}
+@ARTICLE {StudentsRanking2008,
+  title = {Students Ranking, based on their Abilities on Objective type test: Comparison of CTT and IRT},
+  author = {Zaman, A. and Kashmiri, A. and Farooq, R. and Mubark, M. and Arshad, A.},
+  year = {2008},
+}
+@ARTICLE {MathThinking2008,
+  title = {Mathematical thinking: Teacher views and students performance},
+  author = {Mubark, M.},
+  year = {2008},
+}
+@ARTICLE {DataAnaGenSLoc2007,
+  title = {Data Analysis for Gender and school location differences in mathematical thinking and mathematics achievement},
+  author = {Mubark, M.},
+  year = {2007},
+}
+@ARTICLE {Vanwambeke:2010:Trop-Med-Int-Health:21073638,
+  title = {Spatially disaggregated disease transmission risk: land cover, land use and risk of dengue transmission on the island of Oahu},
+  author = {Vanwambeke, S. O. and Bennett, S. N. and Kapan, D. D.},
+  journal = {Trop Med Int Health},
+  year = {2010},
+  month = {November},
+  url = {http://www.hubmed.org/display.cgi?uids=21073638},
+  doi = {10.1111/j.1365-3156.2010.02671.x},
+  abstract = {Vector-borne diseases persist in transmission systems that usually comprise heterogeneously distributed vectors and hosts leading to a highly heterogeneous case distribution. In this study, we build on principles of classical mathematical epidemiology to investigate spatial heterogeneity of disease risk for vector-borne diseases. Land cover delineates habitat suitability for vectors, and land use determines the spatial distribution of humans. We focus on the risk of exposure for dengue transmission on the Hawaiian island of Oahu, where the vector Aedes albopictus is well established and areas of dense human population exist. In Hawai'i, dengue virus is generally absent, but occasionally flares up when introduced. It is therefore relevant to investigate risk, but difficult to do based on disease incidence data. Based on publicly available data (land cover, land use, census data, surveillance mosquito trapping), we map the spatial distribution of vectors and human hosts and finally overlay them to produce a vector-to-host ratio map. The resulting high-resolution maps indicate a high spatial variability in vector-to-host ratio suggesting that risk of exposure is spatially heterogeneous and varies according to land cover and land use.},
+pmid={21073638},
+}
+@BOOK {ArgoUML,
+  title = {Intro to Object-Oriented Analysis and Design with UML CD},
+  author = {Schach, S. R.},
+  year = {2003},
+  publisher = {McGrawHill},
+  address = {New York},
+  isbn = {0072939842},
+  url = {http://argouml.tigris.org},
+  abstract = {Introduction to Object-Oriented Analysis and Design is the first book to introduce object-oriented methods without either requiring students to know Java or C$  $ or relying on classical methods to introduce key concepts. It focuses strictly on an objectoriented approach - instead of a hybrid - to view all phases of the Systems Development Life Cycle.},
+}
+
+%Crossreferenced publications:
+
+@PROCEEDINGS {CMSS94,
+  title = {Proceedings of the 1993 Connectionist Models Summer School},
+  editor = {Mozer, M. and others, },
+  booktitle = {Proceedings of the 1993 Connectionist Models Summer School},
+  year = {1994},
+  publisher = {Lawrence Erlbaum Associates, Inc.},
+  address = {Hillsdale, New Jersey},
+}
+@PROCEEDINGS {ML91,
+  title = {Machine Learning: Proceedings of the Eighth International Workshop},
+  editor = {Birnbaum, L.A. and Collins, G.C.},
+  booktitle = {Machine Learning: Proceedings of the Eighth International Workshop},
+  year = {1991},
+  publisher = {Morgan Kaufmann},
+  address = {San Mateo, CA},
+}
+@PROCEEDINGS {NIPS91,
+  title = {Advances in Neural Information Processing Systems 3: Proceedings of the 1990 Conference},
+  editor = {Lippmann, R.P. and Moody, J.E. and Touretzky, D.S.},
+  booktitle = {Advances in Neural Information Processing Systems 3: Proceedings of the 1990 Conference},
+  year = {1991},
+  publisher = {Morgan Kaufmann Publishers},
+  address = {San Mateo, Ca.},
+}
+@PROCEEDINGS {NIPS93,
+  title = {Advances in Neural Information Processing Systems 5: Proceedings of the 1992 Conference},
+  editor = {Hanson, S.J. and Cowan, J.D. and Giles, C.L.},
+  booktitle = {Advances in Neural Information Processing Systems 5: Proceedings of the 1992 Conference},
+  year = {1993},
+  publisher = {Morgan Kaufmann Publishers},
+  address = {San Mateo, Ca.},
+}
+@PROCEEDINGS {ismir:06,
+  title = {ISMIR 2006},
+  editor = {Dannenberg, R. and Lemstrom, K. and Tindale, A.},
+  booktitle = {Proceedings of the 7th International Conference on Music Information Retrieval},
+  year = {2006},
+  month = {October},
+  publisher = {University of Victoria},
+  organization = {University of Victoria},
+  address = {Victoria, BC, Canada},
+  isbn = {1-55058-349-2},
+}
+@ARTICLE {Chang2008139,
+  title = {Combining GIS with fuzzy multicriteria decision-making for landfill siting in a fast-growing urban region},
+  author = {Chang, Ni-Bin and Parvathinathan, G.  and Breeden, Jeff B. },
+  journal = {Journal of Environmental Management},
+  year = {2008},
+  volume = {87},
+  number = {1},
+  pages = {139--153},
+  issn = {0301-4797},
+  url = {http://www.sciencedirect.com/science/article/B6WJ7-4NC5T5R-1/2/d6494f8cc2bdc62c2d466e4de1f0b79a},
+  doi = {doi: 10.1016/j.jenvman.2007.01.011},
+  keywords = {Solid waste management},
+  abstract = {Landfill siting is a difficult, complex, tedious, and protracted process requiring evaluation of many different criteria. This paper presents a fuzzy multicriteria decision analysis alongside with a geospatial analysis for the selection of landfill sites. It employs a two-stage analysis synergistically to form a spatial decision support system (SDSS) for waste management in a fast-growing urban region, south Texas. The first-stage analysis makes use of the thematic maps in Geographical information system (GIS) in conjunction with environmental, biophysical, ecological, and socioeconomic variables leading to support the second-stage analysis using the fuzzy multicriteria decision-making (FMCDM) as a tool. It differs from the conventional methods of integrating GIS with MCDM for landfill selection because the approach follows two sequential steps rather than a full-integrated scheme. The case study was made for the city of Harlingen in south Texas, which is rapidly evolving into a large urban area due to its vantage position near the US-Mexico borderlands. The purpose of GIS was to perform an initial screening process to eliminate unsuitable land followed by utilization of FMCDM method to identify the most suitable site using the information provided by the regional experts with reference to five chosen criteria. Research findings show that the proposed SDSS may aid in recognizing the pros and cons of potential areas for the localization of landfill sites in any study region. Based on initial GIS screening and final FMCDM assessment, "site 1" was selected as the most suitable site for the new landfill in the suburban area of the City of Harlingen. Sensitivity analysis was performed using Monte Carlo Simulation where the decision weights associated with all criteria were varied to investigate their relative impacts on the rank ordering of the potential sites in the second stage. Despite variations of the decision weights within a range of 20%, it shows that "site 1" remains its comparative advantage in the final site selection process.},
+}
+@ARTICLE {tarantola2005uncert,
+  title = {Uncertainty and sensitivity analysis techniques as tools for the quality assessment of composite indicators},
+  author = {Saisana, M.  and Saltelli, A.  and Tarantola, Stefano},
+  journal = {Journal Of The Royal Statistical Society Series A},
+  year = {2005},
+  volume = {168},
+  number = {2},
+  pages = {307--323},
+  url = {http://ideas.repec.org/a/bla/jorssa/v168y2005i2p307-323.html},
+  keywords = {Multidimensional inequality; social welfare; human development},
+  abstract = {In this paper, we propose a new multidimensional inequality index that satisfies a fundamental set of desired properties. We discuss the case where the social evaluation function of welfare depends simultaneously on unidimensional and multidimensional forms of inequality. We show how this mixed social norm interferes with the most popular axioms conceived specifically for multidimensional indices of inequality. Illustrations of the proposed developments are made using the Cameroonian household surveys, conducted in 2001. It is shown that multidimensional inequality is more pronounced in the Cameroonian semi-urban and rural areas whereas the monetary inequality is more pronounced in urban area.},
+}
+@ARTICLE {Lilburne2009SensitivityAna,
+  title = {Sensitivity analysis of spatial models},
+  author = {Lilburne, Linda and Tarantola, Stefano},
+  journal = {International Journal of Geographical Information Science},
+  year = {2009},
+  volume = {23},
+  number = {2},
+  pages = {151--168},
+  publisher = {Taylor & Francis},
+  issn = {1365-8816},
+  note = {Sensitivity analysis is the study of how uncertainty in model predictions is determined by uncertainty in model inputs. A global sensitivity analysis considers the potential effects from the simultaneous variation of model inputs over their finite range of uncertainty. A number of techniques are available to carry out global sensitivity analysis from a set of Monte Carlo Simulations; some techniques are more efficient than others, depending on the strategy used to sample the uncertainty of model inputs and on the formulae employed for estimating sensitivity measures. The most common approaches are summarised in this paper by focusing on the limitations of each in the context of a sensitivity analysis of a spatial model. A novel approach for undertaking a spatial sensitivity analysis (based on the method of Sobol' and its related improvements) is proposed and tested. This method makes no assumptions about the model and enables the analysis of spatially distributed, uncertain inputs. The proposed approach is illustrated with a simple test model and a groundwater contaminant model.},
+  url = {http://www.informaworld.com/10.1080/13658810802094995}
+}
+@INPROCEEDINGS {Ligmann2008FSA,
+  key = {Spatial Decision Support System},
+  title = {A Framework for Sensitivity Analysis in Spatial Multiple Criteria Evaluation},
+  author = {Ligmann-Zielinska, Arika and Jankowski, Piotr},
+  booktitle = {Proceedings of the 5th international conference on Geographic Information Science},
+  series = {GIScience 2008},
+  year = {2008},
+  pages = {217--233},
+  publisher = {Springer-Verlag},
+  location = {Park City, UT, USA},
+  address = {Berlin, Heidelberg},
+  url = {http://dx.doi.org/10.1007/978-3-540-87473-7_14},
+  doi = {10.1007/978-3-540-87473-7_14},
+  keywords = {SDSS, Sensitivity Analysis, Spatial Multiple Criteria Evaluation},
+  abstract = {The paper presents a framework for sensitivity analysis (SA) in spatial multiple criteria evaluation (S-MCE). The framework focuses on three aspects of S-MCE: spatiality, scope, and cardinality. Spatiality stresses the importance of spatial criteria and spatial weights that should be explicitly considered in GIS-based MCE. Scope relates to the extent of SA, ranging from local one-at-a-time criterion examination to global testing of interdependencies among the multiple criteria model components. Cardinality addresses the duality of motivation for performing SA, namely, single-user learning and group consensus building. The framework organizes the existing SA techniques according to spatiality and scope and can be used as a conceptual guide in selecting SA techniques fitting a task at hand.},
+numpages={17},
+acmid={1434038}
+}
+@ARTICLE {SpatialOptiResource2001,
+  title = {Spatial Optimization of Resources Deployment for Forest-Fire Management},
+  author = {Dimopoulou, Maria and Giannikos, Ioannis},
+  journal = {International Transactions in Operational Research},
+  year = {2001},
+  volume = {8},
+  number = {5},
+  pages = {523--534},
+  publisher = {Blackwell Publishers Ltd},
+  issn = {1475-3995},
+  note = {The main objective of forest-fire management is to minimize the damage caused by forest fires. This may be achieved by deploying fire-fighting forces in critical locations so as to detect fires as early as possible and quickly dispatch an initial attack force that can control them while they are small. Empirical studies have identified several factors that affect the development of a forest fire. In the present study, a methodology is employed to classify regions within a forest area according to these factors. The classification is based on information provided by a Geographic Information System (GIS). This information is then passed on to a spatial optimization model that determines the optimal location of fire-fighting resources. A maximal covering model is employed that takes into account the classification of regions by varying coverage in regions of different class. The method has been applied to the area of Parnitha, near Athens.},
+  url = {http://dx.doi.org/10.1111/1475-3995.00330 10.1111/1475-3995.00330},
+  keywords = {forest-fire management, geographical information systems, mathematical programming},
+}
+@ARTICLE {Chikungunya2009Europe,
+  title = {Pan-European Chikungunya surveillance: designing risk stratified 
+surveillance zones},
+  author = {Tilston, N. and Skelly, C. and Weinstein, P.},
+  journal = {International Journal of Health 
+Geographics},
+  year = {2009},
+  volume = {8:61},
+  pages = {1--11},
+  url={http://www.ij-healthgeographics.com/content/8/1/61},
+  doi={10.1186/1476-072X-8-61},
+}
+@ARTICLE {AquaticInsect2001,
+  title = {Modelling population dynamics of aquatic insects with artificial neural networks},
+  author = {Obach, Michael and Wagner, R{\"u}diger and Werner, Heinrich and Schmidt, Hans-Heinrich},
+  journal = {Ecological Modelling},
+  year = {2001},
+  volume = {146},
+  pages = {207--217},
+  keywords = {Radial basis function neural network, self-organising maps, hybrid training, general regression neural network, visualisation of multdemensional data, reliability measure},
+  abstract = {We modelled the total number of individuals of selected water insects based on a 30-year data set of population
+dynamics and environmental variables (discharge, temperature, precipitation, abundance of parental generation) in a small stream in central Germany. For data exploration, visualisation of data, outlier detection, hypothesis generation, and to detect basic patterns in the data, we used Kohonens self organizing maps (SOM). They are comparable to statistical cluster analysis by ordinating data into groups. Based on annual abundance patterns of Ephemeroptera, Plecoptera and Trichoptera (EPT), species groups with similar ecological requirements were distinguished. Furthermore, we applied linear neural networks, general regression neural networks, modied multi-layer perceptrons, and radial basis function networks combined with a SOM (RBFSOM) and successfully predicted the annual abundance of selected species from environmental variables. Results were visualised in three-dimensional plots. Relevance detection methods were sensitivity analysis, stepwise method and Genetic Algorithms. Instead of a sliding windows approach we computed the in- and output data of xed periods for two caddis ies. In order to assess the quality of the models we applied several reliability measures and compared the generalisation error with the long-term mean of the target variable. RBFSOMs were used to denominate and visualise local and general model accuracy. Results were interpreted on the basis of known species traits. We  onclude that it is possible to predict the abundance of aquatic insects based on relevant environmental factors using articial neural networks.},
+}
+@ARTICLE {GeoEnvirApproach2006,
+  title = {Delimitation of lymphatic filariasis transmission risk areas: a geo-environmental approach},
+  author = {Sabesan, Shanmugavelu and Raju, Hari Kishan K.  and Srividya, AdiNarayanan and Das, Pradeep Kumar},
+  journal = {Filaria Journal},
+  year = {2006},
+  volume = {5},
+  number = {12},
+  abstract = {Background: The Global Programme to Eliminate Lymphatic Filariasis (GPELF) depends upon Mass Drug Administration (MDA) to interrupt transmission. Therefore, delimitation of
+transmission risk areas is an important step, and hence we attempted to define a geo-environmental risk model (GERM) for determining the areas of potential transmission of lymphatic filariasis.
+Methods: A range of geo-environmental variables has been selected, and customized on GIS platform to develop GERM for identifying the areas of filariasis transmission in terms of "risk" and "non-risk". The model was validated through a 'ground truth study' following standard procedure using GIS tools for sampling and Immuno-chromotographic Test (ICT) for screening the individuals.
+Results: A map for filariasis transmission was created and stratified into different spatial entities, "risk' and "non-risk", depending on Filariasis Transmission Risk Index (FTRI). The model estimation corroborated well with the ground (observed) data.
+Conclusion: The geo-environmental risk model developed on GIS platform is useful for spatial delimitation purpose on a macro scale.},
+}
+@ARTICLE {ErrorMosquito2010,
+  title = {Sources of Error in the Estimation of Mosquito Infection Rates Used to Asses Risk of Arbovirus Transmission},
+  author = {Bustamante, Dulce M.  and Lord, Cynthai C. },
+  journal = {Am. J. Trop. Med. Hyg.},
+  year = {2010},
+  volume = {82},
+  number = {6},
+  pages = {1172--1184},
+  keywords = {Arbovirus, Mosquitos, measurement, Risk assesment},
+  abstract = {Infection rate is an estimate of the prevalence of arbovirus infection in a mosquito population. It is assumed that when infection rate increases, the risk of arbovirus transmission to humans and animals also increases. We examined some of the factors that can invalidate this assumption. First, we used a model to illustrate how the proportion of mosquitoes capable of virus transmission, or infectious, is not a constant fraction of the number of infected mosquitoes.
+Thus, infection rate is not always a straightforward indicator of risk. Second, we used a model that simulated the process
+of mosquito sampling, pooling, and virus testing and found that mosquito infection rates commonly underestimate the
+prevalence of arbovirus infection in a mosquito population. Infection rate should always be used in conjunction with other surveillance indicators (mosquito population size, age structure, weather) and historical baseline data when assessing the risk of arbovirus transmission.},
+}
+@ARTICLE {EcoBioSocial2010,
+  title = {Eco-bio-social determinants of dengue vector breedin: a multicountry study in urban und periurban Asia},
+  author = {Arunachalam, Natarajan and Tana, Susilowati and Espino, Fe and Kittayapong, Pattamaporn and Abeyewickreme, Wimal and Wai, Khin Thet and Tyagi, Brij Kishore and Kroeger, Axel and Sommerfeld, Johannes and Petzold, Max},
+  journal = {Bull World Health Organ},
+  year = {2010},
+  volume = {88},
+  pages = {173--184},
+  keywords = {dengue, Asia, eco-bio-social, Mosquitos},
+  abstract = {Objective: To study dengue vector breeding patterns under a variety of conditions in public and private spaces; to explore the ecological, biological and social (eco-bio-social) factors involved in vector breeding and viral transmission, and to define the main implications for vector control.
+Methods: In each of six Asian cities or periurban areas, a team randomly selected urban clusters for conducting standardized household surveys, neighbourhood background surveys and entomological surveys. They collected information on vector breeding sites, peoples knowledge, attitudes and practices surrounding dengue, and the characteristics of the study areas. All premises were inspected; larval indices were used to quantify vector breeding sites, and pupal counts were used to identify productive water container types and as a proxy measure for adult vector abundance.
+Findings: The most productive vector breeding sites were outdoor water containers, particularly if uncovered, beneath shrubbery and unused for at least one week. Peridomestic and intradomestic areas were much more important for pupal production than commercial and public spaces other than schools and religious facilities. A complex but non-significant association was found between water supply and pupal counts, and lack of waste disposal services was associated with higher vector abundance in only one site. Greater knowledge about dengue and its transmission was associated with lower mosquito breeding and production. Vector control measures (mainly larviciding in one site) substantially reduced larval and pupal counts and pushed mosquito breeding to alternative containers.
+Conclusion: Vector breeding and the production of adult Aedes aegypti are influenced by a complex interplay of factors. Thus, to achieve effective vector management, a public health response beyond routine larviciding or focal spraying is essential.},
+}
+@ARTICLE {Risk2004Moskito,
+  title = {The Risk of a Mosquito-Borne Infection in a Heterogeneous Environment},
+  author = {Smith, David L.  and Dushoff, Jonathan and McKenzie, F. Ellis},
+  journal = {PLoS Biology},
+  year = {2004},
+  volume = {2},
+  number = {11},
+  pages = {1957--1964},
+  keywords = {Mosuqitos, GIS, mathematical model},
+  abstract = {A common assumption about malaria, dengue, and other mosquito-borne infections is that the two main components
+of the risk of human infectionthe rate at which people are bitten (human biting rate) and the proportion of
+mosquitoes that are infectiousare positively correlated. In fact, these two risk factors are generated by different
+processes and may be negatively correlated across space and time in heterogeneous environments. Uneven
+distribution of blood-meal hosts and larval habitat creates a spatial mosaic of demographic sources and sinks.
+Moreover, mosquito populations fluctuate temporally, forced by environmental variables such as rainfall, temperature,
+and humidity. These sources of spatial and temporal heterogeneity in the distribution of mosquito populations
+generate variability in the human biting rate, in the proportion of mosquitoes that are infectious, and in the risk of
+human infection. To understand how heterogeneity affects the epidemiology of mosquito-borne infections, we
+developed a set of simple models that incorporate heterogeneity in a stepwise fashion. These models predict that the human biting rate is highest shortly after the mosquito densities peak, near breeding sites where adult mosquitoes emerge, and around the edges of areas where humans are aggregated. In contrast, the proportion of mosquitoes that are infectious reflects the age structure of mosquito populations; it peaks where old mosquitoes are found, far from mosquito breeding habitat, and when mosquito population density is declining. Finally, we show that estimates for the average risk of infection that are based on the average entomological inoculation rate are strongly biased in heterogeneous environments.},
+}
+@ARTICLE {Oertli:2009:J-Am-Vet-Med-Assoc:19250039,
+  title = {Epidemiology of rabies in skunks in Texas},
+  author = {Oertli, E H and Wilson, P J and Hunt, P R and Sidwa, T J and Rohde, R E},
+  journal = {Journal of the American Veterinary Medical Association},
+  year = {2009},
+  month = {March},
+  volume = {234},
+  number = {5},
+  pages = {616--620},
+  url = {http://www.ncbi.nlm.nih.gov/pubmed/19250039},
+  doi = {10.2460/javma.234.5.616},
+  keywords = {epi imported lab_meeting printed},
+  abstract = {OBJECTIVE: To obtain epidemiologic information on rabies in skunks in Texas. DESIGN: Epidemiologic study. SAMPLE POPULATION: Reports of skunks that had been submitted for rabies testing in Texas from 1953 through 2007. PROCEDURES: Reports were reviewed to obtain information on seasonality of rabies in skunks, seasonality of human and domestic animal exposure to rabid skunks, commonly reported clinical signs of rabies in skunks, domestic animals frequently exposed to rabid skunks, common scenarios for exposure of domestic animals to rabid skunks, disposition of domestic animals exposed to rabid skunks, age and gender of humans exposed to rabid skunks, and usual routes of exposure of humans to rabid skunks. RESULTS: On a yearly basis, the number of rabid skunks peaked in 1961, 1979, and 2001. On a monthly basis, the number of rabid skunks peaked in March and April. Over the study period, the percentage of rabid skunks from urban areas increased and the percentage from rural areas decreased. Striped skunks were the most common species. Dogs and cats were the domestic animals most frequently exposed to rabid skunks. On average, the highest numbers of humans exposed to rabid skunks were between 36 and 50 years old. Most humans were exposed through means other than a bite. Typical behaviors of rabid skunks were entering a dog pen, appearing outside during daytime, and attacking pets. CONCLUSIONS AND CLINICAL RELEVANCE: Information on the epidemiology of rabies in skunks may be useful in planning and implementing local, state, and national rabies control and prevention campaigns.},
+interhash={325e6e34e5a1b9992ec93bba14ad05f9},
+intrahash={c5e935cc4d6a8a1c0eead140f5f0291e},
+pmid={19250039},
+description={Epidemiology of rabies in skunks in Texas. [J Am Vet Med Assoc. 2009] - PubMed Result},
+biburl={http://www.bibsonomy.org/bibtex/2c5e935cc4d6a8a1c0eead140f5f0291e/ebo},
+}
+@ARTICLE {GIStailioredQuest1,
+  title = {GIS Tailored questionnaires for assisting health care management in distributing resources},
+  author = {Herselman, M and Niehaus, E and Ruxwana, N  and D Souza-Niehaus, P  and Heyne, N  and Platz, M  and Wagner, R},
+  journal = {IASTED Africa Health Informatics},
+  year = {2010},
+  month = {September},
+  keywords = {Geographic Information System (GIS) and GIS Tailored Questionnaire (GIST-Q), Resource Management System (RMS), decision support system, Health care Management, mathematical modeling},
+  abstract = {A tailored questionnaire focuses on dynamic generation of items and questions according to the location where the questionnaire is used. The approach is connected to the management of resources and the support of decision making processes which is based on collecting data for a certain geographical region. The article shows how Geographic Information Systems (GIS) can be used to tailor a questionnaire to match the risk and demands of specific areas where the questionnaire will be applied. The GIS based generation of a questionnaire is used to provide tailored information for informed decision making in health care systems. Resource Management can only be optimized if the ICT-based representation is based on tailored information according to the area in which the process of optimization should be performed. Areas with a lack of resources and with heterogeneous environmental and social conditions should get a tailored response based on tailored information, which can be provided by this type of questionnaire. The article will show how mathematical modeling can be applied to an appropriate temporal and spatial generation of questionnaires for deployment of human and medical resources according to risk and demand in rural health care.},
+}
+@ARTICLE {HealthCareHoltmann2008,
+  title = {{Sektoren\"ubergreifendes Informationsmanagement im Gesundheitswesen. Neue Wege durch Pervasive Computing}},
+  author = {Holtmann, Carsten and Rashid, Asarnusch and M{\"u}ller-Gorchs, Merc{\`e} and Griewing, Bernd and K\"ogerl, Charlotte and Ziegler, Volker},
+  journal = {Technikfolgenabsch\"atzung - Theorie und Praxis},
+  year = {2008},
+  month = {May},
+  volume = {1},
+  number = {17},
+  pages = {19--26},
+  url = {http://www.itas.fzk.de/tatup/081/houa08a.pdf},
+  abstract = {"'Stroke Angel"' ist die erste der Fallstudien im Forschungsprojekt PerCoMed, bei der der Einsatz von Pervasive-Computing-Technologien zur Verbesserung des Informationsmanagements an der pr\"aklinisch-klinischen Schnittstelle in der Schlaganfallversorgung evaluiert wird. Im Rahmen dieses Teilprojektes erfassten Rettungsassistenten bei Verdacht auf Schlaganfall die Patientendaten leitfadengest\"utzt mit mobilen Ger\"aten am Notfallort und versandten diese bereits vor dem Transport des Patienten an das Zielkrankenhaus. Die \"Arzte im Krankenhaus konnten sich durch diese Vorinformation auf den Notfall vorbereiten und eine reibungslose \"Ubernahme des Patienten sicherstellen. Die PerCoMed-Forschungspartner flankierten zwei Jahre lang das Stroke-Angel-Projekt mit wissenschaftlichen Untersuchungen und f\"uhrten sowohl technische als auch sozio\"okonomische und soziotechnische Analysen durch. In dieser Arbeit werden die Ergebnisse des Projektes vorgestellt und die Bedeutung von Pervasive Computing f\"ur ein sektoren\"ubergreifendes Informationsmanagement diskutiert.},
+}
+@ARTICLE {ZieglerHealthCare2008,
+  title = {{Einsatz mobiler Computing-Systeme in der pr{\"a}klinischen Schlaganfallversorgung}},
+  author = {Ziegler, Volker and Rashid, Asarnusch and M{\"u}ller-Gorchs, Merc{\`e} and Kippnich, Uwe and Hiermann, Erich and K\"ogerl, Charlotte and Holtmann, Carsten and Siebler, Mario and Griewing, Bernd},
+  journal = {Der Anaesthesist},
+  year = {2008},
+  volume = {57},
+  number = {7},
+  pages = {677--685},
+  note = {ISSN: 0003-2417 (Print) 1432-055X (Online)},
+  url = {http://www.springerlink.com/content/7lr2332n1r030574/},
+  abstract = {Background Telemedical networks that apply innovative mobile information technologies (IT) are an innovative approach to improve stroke care in community settings. Within the German Stroke Angel initiative and the research project PerCoMed (Pervasive Computing in Medical Care, funded by the Federal Ministry of Education and Research, http://www.percomed.de) the effects of such a solution were assessed by an interdisciplinary research approach. The main goal of the team of researchers and practitioners was to provide clear evidence of improvements in intersectional processes of the stroke chain survival, namely in the acute stroke processes between prehospital rescue services and hospital stroke units. Material and methods Between October 2005 and October 2007 the paramedical staff of five rescue service transporters in a rural area of northern Bavaria was included in a network with the stroke unit of the Neurological Clinic Bad Neustadt. Telemedical support by the Stroke Angel computing system  a software running on a personal digital assistant (PDA) to transmit patient data from the rescue team to the hospital during patient transporting time  was established. As procedural guidance, the Stroke Angel system suggests a predefined path through the necessary emergency procedures according to the structure of the mandatory protocol and the implemented Los Angeles Prehospital Stroke Screen (LAPSS). Results In the empirical study the authors obtained a complete data set of 226 consecutively admitted patients for analysis in Bad Neustadt and LAPSS data of 217 patients from a second scenario in D{\"u}sseldorf. Medical, economic and technical analyses were applied. The technological robustness of the Stroke Angel system could be proven and information entered was transmitted fully and correctly. Concerning medical research questions, for both scenario locations LAPSS with a sensitivity of 68.3% and a specificity of 85.1% has to be deemed insufficient. Hence, alternative algorithms will have to be used in the next steps of evaluation. The system significantly influenced the clinical process of acute stroke management more than the preclinical ones (door-to-CT: 32 min. before and 16 min. at the end of the project). Lysis treatment rose from 6.12% (2005) to 11.17% (2007) of patients with acute stroke. Conclusions From the set of perspectives taken, the study illustrates that mobile computing technologies offer new and innovative approaches to improve intersectional acute stroke care. It also teaches the participants that interdisciplinary research can significantly deepen the understanding of such technologies and projects, which can lead to better decision making concerning solution implementation, management and improvements. The approach will be brought into daily practice in Bad Neustadt/Saale within the next months.},
+}
+@INPROCEEDINGS {1418449,
+  title = {A Distributed Data Mining System for a Novel Ubiquitous Healthcare Framework},
+  author = {Viswanathan, M.  and Whangbo, T. K.  and Lee, K. J.  and Yang, Y. K. },
+  booktitle = {ICCS '07: Proceedings of the 7th international conference on Computational Science, Part III},
+  year = {2007},
+  pages = {701--708},
+  publisher = {Springer-Verlag},
+  location = {Beijing, China},
+  address = {Berlin, Heidelberg},
+  isbn = {978-3-540-72587-9},
+  doi = {10.1007/978-3-540-72588-6_117},
+  keywords = {application health-care},
+biburl={http://www.bibsonomy.org/bibtex/2146040232e746a5ec962cd4dc17a5e0c/andrea.zanda},
+}
+@BOOK {Rumelhart86BOOK1,
+  title = {Parallel Distributed Processing. Explorations in the Microstructure of Cognition},
+  editor = {Rumelhart, D.  E.  and McClelland, J.  L. },
+  year = {1986},
+  volume = {I, II},
+  publisher = {MIT Press},
+  address = {Cambridge, MA},
+}
+@BOOK {Bellman57BOOK,
+  title = {Dynamic Programming},
+  author = {Bellman, R. E. },
+  year = {1957}, 
+  publisher = {Princeton University Press},
+  address = {Princeton, New Jersey},
+}
+@BOOK {Klaus69BOOK,
+  title = {W"orterbuch der Kybernetik, Band I},
+  author = {Klaus, G. },
+  year = {1969},
+  publisher = {Fischer B{\"u}cherei},
+  address = {Frankfurt am Main},
+}
+@BOOK {Tsetlin73BOOK,
+  title = {Automata theory and modeling of biological systems},
+  author = {Tsetlin, M. L. },
+  year = {1973},
+  publisher = {Academic Press},
+  address = {New York},
+}
+@BOOK {Haken83BOOK2,
+  title = {Synergetics. An Introduction},
+  author = {Haken, H. },
+  year = {1983},
+  publisher = {Springer},
+  address = {Berlin},
+}
+@BOOK {Grossberg87BOOK3,
+  title = {The Adaptive Brain I \& II},
+  editor = {Grossberg, S. },
+  year = {1987},
+  publisher = {North Holland},
+  address = {Amsterdam},
+}
+@BOOK {Kohonen84BOOK4,
+  title = {Self-Organization and Associative Memory},
+  author = {Kohonen, T. },
+  year = {1984},
+  publisher = {Springer},
+  address = {Berlin New York},
+}
+@BOOK {Kohonen88BOOK5,
+  title = {Self-Organization and Associative Memory, 2nd edition},
+  author = {Kohonen, T. },
+  year = {1988},
+  publisher = {Springer},
+  address = {Berlin NewYork},
+}
+@TECHREPORT {Schnelle88BOOK6,
+  title = {A Net-Linguistic ``Earley'' Chart-Parser},
+  author = {Schnelle, H.  and Doust, R. },
+  year = {1988},
+  number = {GENET-25},
+  institution = {Sprachwissenschaftliches Institut, Ruhr Universit\"at},
+  address = {Bochum},
+}
+@TECHREPORT {Derthick88BOOK7,
+  title = {Mundane Reasoning by Parallel Constraint Saticfaction},
+  author = {Derthick, M. },
+  year = {1988},
+  number = {CMU-CS-88-182},
+  institution = {Computer Science Dept. , Carnegie Mellon University},
+  address = {Pittsburgh, PA},
+}
+@TECHREPORT {Smythe88BOOK8,
+  title = {Temporal Computation in Connectionist Models},
+  author = {Smythe, E.  J. },
+  year = {1988},
+  number = {251},
+  institution = {CS Dept. Indiana University},
+  address = {Bloomington IN},
+}
+@TECHREPORT {Smythe86BOOK9,
+  title = {The Pleasures of SINN: A System for programming Connectionist Models},
+  author = {Smythe, E.  J. },
+  year = {1986},
+  number = {189},
+  institution = {CS Dept. Indiana University},
+  address = {Bloomington IN},
+}
+@TECHREPORT {Smythe88BOOK10,
+  title = {The Source Code for Syren: A Connectionist Model for Syllable Recognition},
+  author = {Smythe, E.  J. },
+  year = {1988},
+  number = {252},
+  institution = {CS Dept. Indiana University},
+  address = {Bloomington IN},
+}
+@BOOK {Athans66BOOK13,
+  title = {Optimal Control: An Introduction to the Theory and Its Applications},
+  author = {Athans, M.  and Falb, P.  L. },
+  year = {1966},
+  publisher = {McGraw-Hill},
+  address = {New York},
+}
+@BOOK {Rosenblatt62BOOK14,
+  title = {Principles of Neurodynamics},
+  author = {Rosenblatt, F. },
+  year = {1962},
+  publisher = {Spartan Books},
+  address = {Washington},
+}
+@BOOK {Kellermann86BOOK15,
+  title = {Perceptrons und Bildverstehen},
+  author = {Kellermann, G. },
+  year = {1986},
+  publisher = {Universit\"at Bonn, Inst.\ f.\ Informatik},
+  address = {R\"omerstr.\ 164, D-5300 Bonn 1},
+}
+@BOOK {Lakshmivarahan81BOOK16,
+  title = {Learning Algorithms Theory and Applications},
+  author = {Lakshmivarahan, S. },
+  year = {1981},
+  publisher = {Springer-Verlag},
+  address = {New York},
+}
+@BOOK {Duda73BOOK17,
+  title = {Pattern Classification and Scene Analysis},
+  author = {Duda, R. O.  and Hart, P. E. },
+  year = {1973},
+  publisher = {Wiley \& Sons},
+  address = {New York},
+}
+@BOOK {McClelland88BOOK18,
+  title = {Explorations in Parallel Distributed Processing. A Handbook of Models, Programs, and Exercises},
+  author = {McClelland, J. L.  and Rumelhart, D. E. },
+  year = {1988},
+  publisher = {MIT Press},
+  address = {Cambridge},
+}
+@BOOK {Arbib87BOOK19,
+  title = {Brains, Machines, and Mathematics},
+  author = {Arbib, M. A. },
+  year = {1987},
+  publisher = {Springer-Verlag},
+  address = {New York},
+}
+@BOOK {Wiener63BOOK20,
+  title = {Kybernetik},
+  author = {Wiener, N. },
+  year = {1963},
+  publisher = {Econ-Verlag},
+  address = {D\"usseldorf},
+}
+@TECHREPORT {Hollbach-Weber89BOOK21,
+  title = {A Structured Connectionist Approach to Direct Inferences and Figurative Adjective-Noun Combinations},
+  author = {Hollbach-Weber, S. },
+  year = {1989},
+  number = {289},
+  institution = {Dept. of Computer Science, University of Rochester},
+  address = {Rochester, NY},
+}
+@BOOK {HechtNielsen89BOOK22,
+  title = {Proceedings of the First International Joint Conference on Neural Networks},
+  author = {Hecht-Nielsen, R.},
+  year = {1989},
+  publisher = {IEEE},
+  address = {Washington},
+}
+@TECHREPORT {Dolan89BOOK23,
+  title = {Tensor Manipulation Networks: Approaches to Comprehension, Learning, and Planning},
+  author = {Dolan, C. P. },
+  year = {1989},
+  month = {June},
+  number = {UCLA-AI-89-06},
+  institution = {Artificial Intelligence Laboratory, Computer Science Dept., University of California},
+  address = {Los Angeles},
+  keywords = {tensor manipulation network | planning | learning},
+}
+@BOOK {Winograd88BOOK24,
+  title = {Understanding Computers and Cognition: A New Foundation for Design},
+  author = {Winograd, T.  and Flores, F. },
+  year = {1988},
+  publisher = {Ablex},
+  address = {Norwood, N.J., USA},
+}
+@BOOK {Holland86BOOK25,
+  title = {Induction},
+  author = {Holland, J. H.},
+  year = {1986},
+  publisher = {MIT Press},
+  address = {Cambridge, MA},
+  keywords = {genetic algorithms | classifier systems},
+}
+@BOOK {Minsky85BOOK26,
+  title = {The Society of Mind},
+  author = {Minsky, M. },
+  year = {1985},
+  publisher = {Simon and Schuster},
+  address = {New York},
+}
+@BOOK {Wiener63BOOK27,
+  title = {Kybernetik},
+  author = {Wiener, N. },
+  year = {1963},
+  edition = {2.},
+  publisher = {Econ-Verlag},
+  address = {D\"usseldorf -- Wien},
+}
+@BOOK {Bronstein87BOOK28,
+  title = {Taschenbuch der Mathematik},
+  author = {Bronstein, I. N.  and Semendjajew, K. A. },
+  year = {1987},
+  edition = {23.},
+  pages = {840},
+  publisher = {Thun (u.\ a.) : Deutsch},
+}
+@BOOK {Braitenberg86BOOK29,
+  title = {K{\"u}nstliche Wesen: Verhalten kybernetischer Vehikel},
+  author = {Braitenberg, V. },
+  year = {1986},
+  publisher = {Vieweg--Verlag},
+}
+@BOOK {McClelland88BOOK30,
+  title = {Explorations in Parallel Distributed Processing},
+  author = {Mc{C}lelland, J. L.  and Rumelhart, D. E. },
+  year = {1988},
+  publisher = {MIT Press},
+  address = {Cambridge, Massachusetts},
+}
+@BOOK {Minsky88BOOK31,
+  title = {Perceptrons},
+  author = {Minsky, M. L.  and Papert, S. A. },
+  year = {1988},
+  edition = {second},
+  publisher = {MIT Press},
+  address = {Cambridge, Massachusetts},
+}
+@BOOK {Press86BOOK32,
+  title = {Numerical Recipes: The Art of Scientific Computing},
+  author = {Press, H. W.  and Flannery, B. P and Teukolsky, S. A.  and Vetterling, W. T. },
+  year = {1986},
+  publisher = {Cambridge University Press},
+}
+@UNPUBLISHED {Antweiler89BOOK33,
+  title = {Ans\"atze f\"ur konnektionistische Expertensysteme},
+  author = {Antweiler, W. },
+  year = {1989},
+  note = {Diplomarbeit an der Wirtschafts- und Sozialwissenschaftlichen Fakult\"at der Universit\"at K\"oln},
+  keywords = {backpropagation, connectionist expert systems, expert systems},
+}
+@BOOK {DARPA89BOOK34,
+  title = {DARPA Neural Network Study},
+  author = {Widrow, B.  and others, },
+  year = {1989},
+  publisher = {AFCEA International Press},
+}
+@BOOK {Goldberg89BOOK35,
+  title = {Genetic Algorithms in Search, Optimization, and Machine Learning},
+  author = {Goldberg, D. E. },
+  year = {1989},
+  publisher = {Addison-Wesley},
+}
+@BOOK {Lenk78BOOK36,
+  title = {Einf\"uhrung in die Statistische Mechanik},
+  author = {Lenk, R. },
+  year = {1978},
+  publisher = {VEB Deutscher Verlag der Wissenschaften},
+  address = {Berlin},
+}
+@BOOK {Personnaz89BOOK36,
+  title = {Neural Networks from Modells to Applications},
+  author = {Personnaz, L.  and Dreufus, G. },
+  year = {1989},
+  publisher = {I.D.S.E.T.},
+  address = {Paris},
+}
+@BOOK {Alexander86BOOK37,
+  title = {Adaptive Signal Processing},
+  author = {Alexander, S. T. },
+  year = {1986},
+  publisher = {Springer-Verlag},
+  address = {New York},
+}
+@BOOK {Eckmiller88BOOK38,
+  title = {Neural Computers},
+  author = {Eckmiller, R.  and von der Malsburg, C. },
+  year = {1988},
+  publisher = {Springer-Verlag},
+  address = {Berlin},
+}
+@BOOK {Palm82BOOK39,
+  title = {Neural Assemblies},
+  author = {Palm, G. },
+  year = {1982},
+  publisher = {Springer-Verlag},
+  address = {Berlin},
+}
+@BOOK {Johnson88BOOK40,
+  title = {Cognizers: Neural Networks and Machines That Think},
+  author = {Johnson, R. C. },
+  year = {1988},
+  publisher = {John Wiley and Son},
+  address = {New York},
+}
+@BOOK {Denker86BOOK41,
+  title = {Neural Networks for Computing},
+  author = {Denker, J. S. },
+  year = {1986},
+  publisher = {American Institute of Physics},
+  address = {New York},
+serie={AIP Conference Proceedings 151},
+}
+@BOOK {Michalski86BOOK42,
+  title = {Machine Learning Vol. II},
+  author = {Michalski, R. S.  and Carbonell, J. G.  and Mitchell, T. M. },
+  year = {1986},
+  publisher = {Morgan Kaufmann Publishers},
+  address = {Los Altos, Cal.},
+}
+@BOOK {Touretzky89BOOK43,
+  title = {Advances in Neural Information Processing Systems Vol. I},
+  author = {Touretzky, D. S. },
+  year = {1989},
+  publisher = {Morgan Kaufmann Publishers},
+  address = {San Mateo, Cal.},
+}
+@BOOK {Basar83BOOK44,
+  title = {Synergetics of the Brain},
+  author = {Basar, E.  and Flohr, H.  and Haken, H.  and Mandell, A. J. },
+  year = {1983},
+  publisher = {Springer-Verlag},
+  address = {Berlin},
+ref={BOOK44},
+}
+@BOOK {Thompson86BOOK45,
+  title = {Nonlinear Dynamics and Chaos},
+  author = {Thompson, J. M. T.  and Stewart, HH. B. },
+  year = {1986},
+  publisher = {John Wiley and Sons},
+  address = {Chichester},
+ref={BOOK45},
+}
+@BOOK {Arbib72BOOK46,
+  title = {The Metaphorical Brain},
+  author = {Arbib, M. A. },
+  year = {1972},
+  publisher = {John Whiley and Sons},
+  address = {New York},
+ref={BOOK46},
+}
+@BOOK {Miller87BOOK47,
+  title = {Neural Networks: Implementing Associative Memory Models in Neurocomputers},
+  author = {Miller, R. K. },
+  year = {1987},
+  publisher = {SEAI Technical Publications},
+  address = {Madison, GA},
+ref={BOOK47},
+}
+@BOOK {Davis87BOOK48,
+  title = {Genetic Algorithms and Simulated Annealing},
+  author = {Davis, L. },
+  year = {1987},
+  publisher = {Morgan Kaufmann Publishers},
+  address = {Los Altos, Ca.},
+ref={BOOK48},
+}
+@BOOK {Rosen85BOOK49,
+  title = {Anticipatory Systems},
+  author = {Rosen, R. },
+  year = {1985},
+  publisher = {Pergamon Press},
+  address = {Oxford},
+ref={BOOK49},
+}
+@BOOK {Canny88BOOK50,
+  title = {The Complexity of Robot Motion Planning},
+  author = {Canny, J. },
+  editor = {Cambridge, Mass. },
+  year = {1988},
+  publisher = {The MIT Press},
+ref={BOOK50},
+}
+@BOOK {Babloyantz86BOOK51,
+  title = {Molecules, Dynamics, and Life},
+  author = {Babloyantz, A. },
+  year = {1986},
+  publisher = {John Wiley and Sons},
+  address = {New York},
+ref={BOOK51},
+}
+@BOOK {Schwab86BOOK52,
+  title = {Pattern Recognition by Humans and Machines},
+  author = {Schwab, E. C.  and Nusbaum, H. C. },
+  year = {1986},
+  volume = {Volume 1: Speech},
+  publisher = {Acadamic Press},
+  address = {Orlando},
+ref={BOOK52},
+}
+@BOOK {Hinton81BOOK53,
+  title = {Parallel Models of Associative Memory},
+  author = {Hinton, G. E.  and Anderson, J. A. },
+  year = {1981},
+  publisher = {Lawrence Erlbaum Associates},
+  address = {Hillsdale, New Jersey},
+ref={BOOK53},
+}
+@BOOK {Adams81BOOK54,
+  title = {The Hitchhiker's Guide to the Galaxy},
+  author = {Adams, D. },
+  year = {1981},
+  publisher = {POCKET BOOKS},
+  address = {New York},
+ref={BOOK54},
+}
+@BOOK {Kanerva86BOOK55,
+  title = {Sparse Distributed Memory},
+  author = {Kanerva, P. },
+  year = {1986},
+  publisher = {The MIT Press},
+  address = {Cambridge, Massachusetts},
+ref={BOOK55},
+}
+@BOOK {Chen73BOOK56,
+  title = {Statistical Pattern Recognition},
+  author = {Chen, C. -h. },
+  year = {1973},
+  publisher = {Spartan Books},
+  address = {New Jersey},
+  keywords = {Pattern Recognition},
+ref={BOOK56},
+}
+@BOOK {Young74BOOK57,
+  title = {Classification, Estimation and Pattern Recognition},
+  author = {Young, T. Y.  and Calvert, T. W. },
+  year = {1974},
+  publisher = {Elsevier},
+  address = {New York},
+  keywords = {Pattern Recognition},
+ref={BOOK57},
+}
+@BOOK {Hampson90BOOK58,
+  title = {Connectionistic Problem Solving},
+  author = {Hampson, S. E. },
+  year = {1990},
+  publisher = {Birkh"auser},
+  address = {Boston},
+  keywords = {Controlling, Autonomous Vehicle},
+ref={BOOK58},
+}
+@BOOK {Miller90BOOK59,
+  title = {Neural Networks for Control},
+  editor = {Miller, W. T.  and Sutton, R. S.  and Werbos, P. J. },
+  year = {1990},
+  publisher = {MIT Press},
+  address = {Cambridge},
+  keywords = {Controlling},
+ref={BOOK59},
+}
+@BOOK {Thorndike11BOOK60,
+  title = {Animal Intelligence},
+  author = {Thorndike, E. L. },
+  year = {1911},
+  publisher = {Hafner},
+  address = {Darien, CT},
+  keywords = {Reinforcement},
+ref={BOOK60},
+}
+@BOOK {Skinner53BOOK,
+  title = {Science and Human Behavior},
+  author = {Skinner, B. F. },
+  year = {1953},
+  publisher = {Macmillan},
+  address = {New York},
+ref={BOOK},
+}
+@BOOK {Weller85BOOK,
+  title = {Lernende Steuerungen},
+  author = {Weller, W. },
+  year = {1985},
+  publisher = {R. Oldenbourg Verlag},
+  address = {M{\"u}nchen, Wien},
+ref={BOOK},
+}
+@MASTERSTHESIS {Wolf88Diplom,
+  title = {Werkzeuge zur Simulation neuronaler Netze auf Parallelrechnern},
+  author = {Wolf, K. },
+  year = {1988},
+  school = {Univ. Bonn},
+  note = {Diplomarbeit},
+}
+@MASTERSTHESIS {Almassy90Condela,
+  title = {A Compiler for {Condela III}},
+  author = {Almassy, N. },
+  year = {1990},
+  month = {April},
+  school = {Technical University Vienna},
+}
+@UNPUBLISHED {Becker89assign,
+  title = {Ein paralleler {A}nsatz zur {L}oesung des {Q}uadratischen {Z}uordnungsproblems},
+  author = {Becker, U. },
+  year = {1989},
+  note = {Diplomarbeit Universit\"at Bonn},
+  keywords = {quadratic assignment},
+ref={assign},
+}
+@UNPUBLISHED {Napierala89genetic,
+  title = {{E}in paralleler {E}volutionsalgorithmus zur {L}\"osung des {T}ravelling {S}alesman {P}roblems},
+  author = {Napierala, G. },
+  year = {1989},
+  note = {Diplomarbeit Universit\"at Bonn},
+  keywords = {parallel genetic algorithms},
+ref={genetic},
+}
+@INPROCEEDINGS {Almeida87ICNN,
+  title = {A Learning Rule for Asynchronous Perceptrons with Feedback in a Combinatorial Environment},
+  author = {Almeida, L. B. },
+  booktitle = {Proceedings of ICNN-87, Vol.\ II, San Diego},
+  year = {1987},
+  pages = {609--618},
+}        			
+% End of Bibtex File
+           		 	</textarea>
+           		 	<!--
+        			-->
+        			<hr/>
+        			<b>Selected Citations</b><br/>
+        			<textarea name="GenText" cols="125" rows="10">
+        			</textarea>
+        			<input type='hidden' name="GenText2" value="">
+		    	</form>
+            </font>
+            </center>
+            <center>
+            <p></p>
+            </center>
+            <br>
+            </td>
+            <td>&nbsp;&nbsp;
+<!--- inner input table ---></td>
+          </tr>
+        </tbody>
+      </table>
+<!--- outer table ---> </td>
+    </tr>
+  </tbody>
+</table>
+<font size="2" face="Arial,Helvetica">
+<script language="JavaScript1.2">
+	<!-- Begin Hiding
+	document.fInputForm.Title.value = top.vURL_Object.getName(document.location.href).toUpperCase();
+	document.fInputForm.Keywords.value = top.vArticleGenerator.rules.nonterm2commalist("PAPER_KEYWORD");
+	//alert("Select Citations\nliterature.html:1481");
+	//selectCitations();
+	//top.vArticleGenerator.citations.load_bibtex(vForm.BibDatabase.value);
+	//document.write("Replace Umlaute in Citations");
+	//alert("aBibliography[1]="+aBibliography[1]+"\nliterature.html:1483");
+	//document.write(top.vArticleGenerator.citations.show());
+	if (top.vArticleGenerator.grammarfiles.preload_index <= top.vArticleGenerator.grammarfiles.rows) {
+		with(top.vArticleGenerator.citations) {
+			load_bibtex(document.fInputForm.BibDatabase.value);
+		};	
+		top.vArticleGenerator.setTimeout("top.vArticleGenerator.grammarfiles.preload()",100);
+	} else {
+		//alert("No preload");
+	}
+	//----------------------------------------------------	
+    // End Hiding -->
+ </script>
+<b>It is recommended to use the Browser Firefox with this Application. It is necessary to enable Javascript.</font>
+</center>
+</body>
+</html>

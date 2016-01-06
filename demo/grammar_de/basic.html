@@ -1,0 +1,344 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=utf8">
+</head>
+<body bgcolor="#ffffff" background="backgroundimage.jpg">
+    <script language="JavaScript1.2">
+	<!-- Begin Hiding
+
+
+function removeComments()
+//###### removes Comments beginning with "#" in the column of line
+{
+	var vInput  = document.fInputForm.GenText.value;
+	var vTitle  = document.fInputForm.Title.value.toUpperCase();
+	document.fInputForm.Title.value = vTitle;
+	//alert("abstract.html:18 - removeComments()\nvTitle="+vTitle);
+	var vOutput = top.vArticleGenerator.import_grammar(vInput,vTitle);
+	document.fInputForm.GenText.value = vOutput;
+	alert('Import Grammar "'+vTitle+'"');
+}	
+
+	// End Hiding -->
+    </script>
+<br>
+<br>
+<center>
+<table border="1">
+  <tbody>
+    <tr bgcolor="#ffffff">
+      <td>
+      <table border="0">
+        <tbody>
+          <tr bgcolor="#ffffff">
+            <td><br>
+            </td>
+            <td>
+            <center><br>
+            <br>
+            <font size="+2" face="Arial,Helvetica">
+            <b>Load 
+	<script language="JavaScript1.2">
+   	//----------------------------------------------------	
+         document.write(top.vURL_Object.getName(document.location.href).toUpperCase());
+	//----------------------------------------------------	
+    </script>
+            Grammar<br>
+            </b> <!-- action="#" -->
+	   			<form name="fInputForm"  onsubmit="document.location.href='showrules.html'">
+					<input type=button name="Import" value="Import Grammar" onchange="convertToUpperCase()" onclick="removeComments()"> 
+					<input type=text name="Title" value="SECTIONID"> 
+        			<textarea name="GenText" cols="125" rows="50" >
+
+
+##### Define the Document/Article Type #######
+# STARTNODE_SECTIONS SEC___PROJEKTBESCHREIBUNG
+STARTNODE_SECTIONS SEC___ARTICLE
+#####Titles ##################################
+TIT__ABSTRACT Abstract
+TIT__ZIELE Ziele
+TIT__EINFUEHRUNG Einf�hrung
+TIT__VORAUSSETZUNG Voraussetzungen
+TIT__IMPLEMENTATION Implementation
+TIT__RESULTATE Resultate
+TIT__FAZIT Fazit
+TIT__METHODEN Methoden
+TIT__SACHMITTEL Sachmittel
+TIT__ERWARTETE_RESULTATE Erwartete Resultate
+
+###### ARTICLE ##############################
+SEC___ARTICLE {
+ SEC__ABSTRACT
+ SEC__ZIELE
+ SEC__EINFUEHRUNG
+ SEC__VORAUSSETZUNG
+ SEC__IMPLEMENTATION
+ SEC__RESULTATE
+ SEC__FAZIT
+}
+
+###### REPORT ###############################
+SEC___REPORT {
+ SEC__ZIELE
+ SEC__EINFUEHRUNG
+ SEC__VORAUSSETZUNG
+ SEC__IMPLEMENTATION
+ SEC__RESULTATE
+ SEC__FAZIT
+}
+
+###### PROJEKTBESCHREIBUNG ##################
+SEC___PROJEKTBESCHREIBUNG {
+ SEC__ZIELE
+ SEC__EINFUEHRUNG
+ SEC__VORAUSSETZUNG
+ SEC__METHODEN
+ SEC__IMPLEMENTATION
+ SEC__SACHMITTEL
+ SEC__ERWARTETE_RESULTATE
+ SEC__FAZIT
+}
+
+
+################################
+#### Section Structure #########
+SECTION__HEADER FMT_SECTION_BEGIN SECTION__TITLE FMT_SECTION_END
+SECTION__TITLE Title of the Section
+
+
+SEC__ABSTRACT {
+>SECTION__TITLE TIT__ABSTRACT
+ SECTION__HEADER
+ 
+ BODY__ABSTRACT
+  
+}
+
+
+BODY__ABSTRACT {
+ SEN_INTRO_SECTION
+ SEN_MIDDLE_SECTION 
+ SEN_END_SECTION
+}
+
+BODY__ABSTRACT {
+ SEN_INTRO_ABSTRACT
+ SEN_MIDDLE_ABSTRACT
+ SEN_END_ABSTRACT
+}
+
+
+SEN_INTRO_ABSTRACT {
+ 	WRD_ZIELSETZUNG dieses Artikels ist es, PAPER_ZIELSETZUNG zu WRD_BEARBEITEN.
+}
+SEN_INTRO_ABSTRACT {
+ 	PAPER_ZIELSETZUNG liefert als WRD_AUSGANGSPUNKT den Rahmen f�r die Analyse von PAPER_PAPER_SYSAREA.
+}
+WRD_ZIELSETZUNG Zielsetzung
+WRD_ZIELSETZUNG Ausgangspunkt
+WRD_BEARBEITEN bearbeiten
+WRD_BEARBEITEN analysieren
+WRD_BEARBEITET bearbeitet
+WRD_BEARBEITET analysiert
+WRD_AUSGANGSPUNKT Ausgangspunkt
+WRD_AUSGANGSPUNKT Startpunkt
+
+
+SEN_MIDDLE_ABSTRACT {
+ Das PAPER_PRODUKT hat dabei die folgenden WRD_EIGENSCHAFTEN
+ LOOP_DEF_COMMA
+ *PAPER_PRODUKTEIGENSCHAFTEN
+}
+SEN_MIDDLE_ABSTRACT {
+ Das PAPER_PRODUKT erf�llt dabei die folgenden WRD_RAHMENBEDINGUNGEN:
+ LOOP_DEF_COMMA
+ *PAPER_PRODUKT_EIGENSCHAFTEN
+}
+
+WRD_EIGENSCHAFTEN Eigenschaften
+WvRD_RAHMENBEDINGUNGEN Rahmenbedingungen
+
+SEN_END_ABSTRACT {
+ Damit konnte gezeigt werden, dass die WRD_ZIELSETZUNG der PAPER_ZIELSETZUNG �ber die Anwendung der
+ PAPER_METHODE einen PAPER_KLEIN_GROSSEN_BEITRAG leisten konnte.
+}
+
+SEN_END_ABSTRACT {
+ Die Anwendung der Methode PAPER_METHODE hat f�r die Erreich der WRD_ZIELSETZUNG der PAPER_ZIELSETZUNG 
+ einen PAPER_KLEINEN_GROSSEN_BEITRAG leisten k�nnen.
+}
+
+########
+SEC__ZIELE {
+>SECTION__TITLE TIT__ZIELE
+ SECTION__HEADER
+  
+ SEN_INTRO_ZIELE
+ SEN_MIDDLE_ZIELE 
+ SEN_END_ZIELE
+  
+}
+
+SEN_INTRO_ZIELE {
+ Im Rahmen der Behandlung von PAPER_THEMA werden folgende Ziele definiert.
+ LOOP_DEF_ITEMIZE
+ *PAPER_ZIEL
+}
+
+SEN_MIDDLE_ZIELE {
+ Ausgehend von dieser Zielsetzung ergeben sich die weiteren methodischen �berlegungen,
+ die in den folgenden Abschnitten genauer im Kontext von
+ LOOP_DEF_AND_COMMA
+  *PAPER_KEYWORD
+ WRD_BEARBEITET werden.
+}
+
+SEN_END_ZIELE {
+  Damit k�nnen vorab die folgenden intendierten Eigenschaften von PAPER_PAPER_SYSNAME_LONG abgeleitet werden. 
+}
+
+SEC__EINFUEHRUNG {
+>SECTION__TITLE TIT__EINFUEHRUNG
+ SECTION__HEADER
+ 
+ SEN_INTRO_SECTION
+ SEN_MIDDLE_SECTION 
+ SEN_END_SECTION
+   
+}
+
+
+SEC__VORAUSSETZUNG {
+>SECTION__TITLE TIT__VORAUSSETZUNG
+ SECTION__HEADER
+ 
+ SEN_INTRO_SECTION
+ SEN_MIDDLE_SECTION 
+ SEN_END_SECTION
+   
+}
+
+SEC__METHODEN {
+>SECTION__TITLE TIT__METHODEN
+ SECTION__HEADER
+ 
+ SEN_INTRO_SECTION
+ SEN_MIDDLE_SECTION 
+ SEN_END_SECTION
+   
+}
+
+SEC__IMPLEMENTATION {
+>SECTION__TITLE TIT__IMPLEMENTATION
+ SECTION__HEADER
+ 
+ SEN_INTRO_SECTION
+ SEN_MIDDLE_SECTION 
+ SEN_END_SECTION
+   
+}
+
+SEC__RESULTATE {
+>SECTION__TITLE TIT__RESULTATE
+ SECTION__HEADER
+ 
+ SEN_INTRO_SECTION
+ SEN_MIDDLE_SECTION 
+ SEN_END_SECTION
+   
+}
+
+SEC__ERWARTETE_RESULTATE {
+>SECTION__TITLE TIT__ERWARTETE_RESULTATE
+ SECTION__HEADER
+ 
+ SEN_INTRO_SECTION
+ SEN_MIDDLE_SECTION 
+ SEN_END_SECTION
+   
+}
+
+
+SEC__SACHMITTEL {
+>SECTION__TITLE TIT__SACHMITTEL
+ SECTION__HEADER
+ 
+ SEN_INTRO_SECTION
+ SEN_MIDDLE_SECTION 
+ SEN_END_SECTION
+   
+}
+
+SEC__FAZIT {
+>SECTION__TITLE TIT__FAZIT
+ SECTION__HEADER
+  
+ SEN_INTRO_SECTION
+ SEN_MIDDLE_SECTION 
+ SEN_END_SECTION
+ 
+}
+##########################
+SEN_INTRO_SECTION { 
+ Zun�chst betrachten wir 
+
+}
+
+SEN_MIDDLE_SECTION { 
+ Damit haben wir die folgende Situation 
+
+}
+
+SEN_END_SECTION { 
+ Insgesamt gilt damit die folgende Behauptung. 
+
+}
+##########################
+SOFTWARE_NAME Name of the Software
+SOFTWARE_TYPE Type of the Software
+SODFTWARE_USED_TO performs this tasks
+##########################
+
+
+           		 	</textarea>
+		    	</form>
+            </font>
+            </center>
+            <center>
+            <p></p>
+            </center>
+            <br>
+            </td>
+            <td>&nbsp;&nbsp;
+<!--- inner input table ---></td>
+          </tr>
+        </tbody>
+      </table>
+<!--- outer table ---> </td>
+    </tr>
+  </tbody>
+</table>
+<script language="JavaScript1.2">
+	//----------------------------------------------------	
+	document.fInputForm.Title.value = top.vURL_Object.getName(document.location.href).toUpperCase();
+	var vInput  = document.fInputForm.GenText.value;
+	var vTitle  = document.fInputForm.Title.value;
+	document.fInputForm.Title.value = vTitle;
+	if (top.vArticleGenerator.grammarfiles.preload_index <= top.vArticleGenerator.grammarfiles.rows) {
+		var vOutput = top.vArticleGenerator.import_grammar(vInput,vTitle);
+		top.vArticleGenerator.setTimeout("top.vArticleGenerator.grammarfiles.preload()",100);
+	} else {
+		//alert("No preload");
+		if (top.vArticleGenerator.wizzard.active > 0) {
+			top.vArticleGenerator.wizzard.load(vInput,vTitle);
+		}
+	}
+		//----------------------------------------------------	
+</script>
+
+<font size="2" face="Arial,Helvetica"><b>It is recommended to use the Browser Firefox with this Application. It is necessary to enable Javascript.</font>
+</center>
+</body>
+</html>

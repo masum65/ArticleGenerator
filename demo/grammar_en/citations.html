@@ -1,0 +1,380 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=utf8">
+</head>
+<body bgcolor="#ffffff" background="backgroundimage.jpg">
+<script language="JavaScript1.2">
+
+function importGrammar()
+//###### removes Comments beginning with "#" in the column of line
+{
+	var vInput  = document.fInputForm.GenText.value;
+	var vTitle  = document.fInputForm.Title.value;
+	//alert("abstract.html:18 - removeComments()\nvTitle="+vTitle);
+	var vOutput = top.vArticleGenerator.import_grammar(vInput,vTitle);
+	top.vArticleGenerator.grammarfiles.set_loaded(top.vURL_Object.getName(document.location.href));
+	document.fInputForm.GenText.value = vOutput;
+	alert('Import Grammar "'+vTitle+'" done!');
+}	
+
+</script>
+<br>
+<br>
+<center>
+<table border="1">
+  <tbody>
+    <tr bgcolor="#ffffff">
+      <td>
+      <table border="0">
+        <tbody>
+          <tr bgcolor="#ffffff">
+            <td><br>
+            </td>
+            <td>
+            <center><br>
+            <br>
+            <font size="+2" face="Arial,Helvetica">
+            <b>Load 
+	<script language="JavaScript1.2">
+   	//----------------------------------------------------	
+         document.write(top.vURL_Object.getName(document.location.href).toUpperCase());
+	//----------------------------------------------------	
+    </script>
+            Grammar<br></b> <!-- action="#" -->
+	   			<form name="fInputForm"  onsubmit="document.location.href='showrules.html'">
+					<input type=button name="Import" value="Import Grammar" onclick="importGrammar()"> 
+					<input type=text name="Title" value="abstract"> 
+        			<textarea name="GenText" cols="125" rows="50" >
+#############################################################################
+####### Citations #######
+#############################################################################
+# (1) Define new Variables 
+#     - If you want to define a variable start you must start in the first column of the line
+#     - Use capital letters for the variables (Non-Terminal-Symbols) and underscore '_'
+#     - If you want to use Comments you must use '#' in the first column of the line not second col
+#     - As in LaTeX after '#' the rest of the line is a comment
+# (2) Multiline Variable Definitions start with the non-terminal Symbol SCI_OBJECTIVE in the first 
+#     column with "{" as an opening of the multiline defintion. The end of the multiline definition 
+#     is "}" in the first  line of the column, e.g.
+#SCI_OBJECTIVE {
+#   first line
+#   second line
+#   third line
+#}
+#     if the non-terminal symbol is not starting in the first column it will be used as a variable
+#     for replacing the symbol with rules of the grammar.
+# (3) End of Grammar File
+#     - there should be at least two empty lines at the end of each this file
+#     - this file will be concated to the grammar-File 'grammar.in' anytime you run createpaper.pl
+# (4) If you want to overwrite a definition of a non-terminal Symbol e.g. BIB_KEYWORDS
+#     use a starting ">" before non-terminal Symbol e.g
+#>BIB_KEYWORDS Risk, Resource
+#     overwriting should be used for the following non-terminal symbols
+#         - BIB_KEYWORDS
+#     
+#############################################################################
+
+
+WRD_ARTICLE article
+WRD_PROCEEDINGS proceedings
+WRD_INPROCEEDINGS article in proceedings RELCITE_BOOKTITLE
+WRD_TECHREPORT technical report
+WRD_BOOK book
+WRD_INBOOK article in book RELCITE_BOOKTITLE by editors RELCITE_EDITORS
+WRD_UNPUBLISHED unpublished article
+WRD_UNPUBLISHED unpublished document
+WRD_UNPUBLISHED unpublished work
+WRD_INCOLLECTION article in the collection RELCITE_BOOKTITLE by RELCITE_EDITORS
+WRD_CONFERENCE article of the conference RELCITE_BOOKTITLE
+WRD_MANUAL manual
+WRD_MISC the article RELCITE_HOWPUBLISHED
+WRD_MASTERSTHESIS master thesis at RELCITE_SCHOOL
+WRD_VOL Vol.
+WRD_PP pp.
+WRD_EDS Eds.
+
+# PAPER_KEYWORD Rules,Segmentation,Aquisition,Network
+
+RELCITE_OVERWRITE_DEFINITION RELCITE_BOOK_CITATION
+RELCITE_NR nr  
+RELCITE_LABEL  
+RELCITE_TYPE citation type
+RELCITE_KEYWORDS keywords
+RELCITE_AUTHOR author
+RELCITE_AUTHORS author
+RELCITE_EDITOR editor
+RELCITE_EDITORS editor
+RELCITE_HAVE editor
+RELCITE_TITLE title
+RELCITE_HAVE have
+RELCITE_YEAR year
+RELCITE_MONTH month
+RELCITE_INSTITUTION institution
+RELCITE_NOTE note
+RELCITE_ISSN issn
+RELCITE_DOI doi
+RELCITE_JOURNAL journal
+RELCITE_VOLUME volume 
+RELCITE_NUMBER number
+RELCITE_BOOKTITLE booktitle
+RELCITE_HOWPUBLISHED url with last check date 
+RELCITE_PAGES pages
+RELCITE_REF ref
+RELCITE_URL url
+RELCITE_SERIE serie
+RELCITE_SCHOOL school/uni of masterthesis
+RELCITE_PUBLISHER publishes  
+RELCITE_ADDRESS address
+RELCITE_ABSTRACT the abstract of the publication
+RELCITE_CLASSICAL_OR_RECENT classical or recent
+RELCITE__CLASSICAL classical
+RELCITE__CLASSICAL since RELCITE_YEAR well-known
+RELCITE__RECENT recent
+
+RELCITE_CLEAR_OVERWRITE {
+
+>RELCITE_KEYWORDS  
+>RELCITE_NR  
+>RELCITE_LABEL  
+>RELCITE_TYPE  
+>RELCITE_TITLE  
+>RELCITE_AUTHOR 
+>RELCITE_HAVE    
+>RELCITE_AUTHOR
+>RELCITE_EDITOR 
+>RELCITE_EDITORS
+>RELCITE_SERIE 
+>RELCITE_SCHOOL  
+>RELCITE_NOTE 
+>RELCITE_REF  
+>RELCITE_JOURNAL 
+>RELCITE_BOOKTITLE  
+>RELCITE_HOWPUBLISHED  
+>RELCITE_YEAR
+>RELCITE_MONTH  
+>RELCITE_VOLUME
+>RELCITE_INSTITUTION  
+>RELCITE_ISSN  
+>RELCITE_DOI  
+>RELCITE_NUMBER  
+>RELCITE_PAGES  
+>RELCITE_URL  
+>RELCITE_PUBLISHER  
+>RELCITE_ADDRESS  
+}
+
+DEF_CITE_LATEX \cite{RELCITE_LABEL}....
+DEF_CITE_HTML <a href="#RELCITE_LABEL">[RELCITE_LABEL]</a>
+DEF_CITE_NR <a href="#RELCITE_LABEL">[RELCITE_NR]</a>
+# CITE_COMMAND DEF_CITE_HTML
+CITE_COMMAND DEF_CITE_NR
+
+RELCITE_BOOK_CITATION+6 RELCITE_INTRO RELCITE_MID_X. In the next step it is important to show the link form RELCITE_TITLE to SCI_OBJECTIVE.
+
+RELCITE_BOOK_CITATION {
+  Considering the research of RELCITE_AUTHORS CITE_COMMAND in RELCITE_YEAR the RELCITE_TYPE on the topic of RELCITE_TITLE is showing several efforts on PAPER_METHODOLOGY .
+
+} 
+
+RELCITE_BOOK_CITATION {
+  The area of RELCITE_KEYWORDS was investigated by RELCITE_AUTHORS CITE_COMMAND in RELCITE_YEAR. RELCITE_TITLE is used as a foundation for the further development of SCI_IN_THIS_PAPER.
+
+}
+
+RELCITE_BOOK_CITATION {
+  IN_THIS_PART we discuss WRD_RELATED research of RELCITE_AUTHORS on 
+  RELCITE_TITLE CITE_COMMAND related to PAPER_METHODOLOGY with
+  RELCITE_TITLE in RELCITE_YEAR for SCI_OBJECTIVE.
+
+}
+
+RELCITE_BOOK_CITATION {
+  IN_THIS_PART we consider alternative approach for RELCITE_TITLE of RELCITE_AUTHORS CITE_COMMAND in RELCITE_YEAR as well as other WRD_RELATED work of RELCITE_KEYWORDS mentioned below in the context of SCI_OBJECTIVE.
+
+}
+
+RELCITE_BOOK_CITATION {
+ In designing SCI_OUR_SYSTEM, we took the WRD_RELATED work CITE_COMMAND 
+ of RELCITE_AUTHORS as one starting point because the RELCITE_TYPE focuses 
+ on RELCITE_TITLE.
+
+}
+
+RELCITE_BOOK_CITATION {
+ While RELCITE_AUTHORS CITE_COMMAND in RELCITE_YEAR worked in the 
+ studies on RELCITE_KEYWORDS by making efforts in the field of PAPER_PROBLEM by dealing the with RELCITE_TITLE.
+
+}
+
+RELCITE_BOOK_CITATION {
+ We now compare our SCI_APPROACH for SCI_IMPROVED_SYSTEM to WRD_RELATED work 
+ considering RELCITE_TITLE in SCI_MY_FIELD of RELCITE_AUTHORS 
+ CITE_COMMAND (RELCITE_YEAR).
+
+}
+
+RELCITE_BOOK_CITATION {
+ Our SCI_APPROACH to PAPER_METHODOLOGY is related to research on RELCITE_KEYWORDS. 
+ Especially RELCITE_AUTHORS RELCITE_HAVE studied SCI_MY_METHOD in CITE_COMMAND in RELCITE_YEAR 
+ by looking at RELCITE_TITLE.
+
+}
+
+RELCITE_BOOK_CITATION { 
+  LIT_ALTHOUGH RELCITE_AUTHORS also SCI_PRESENT_VERBED this 
+  SCI_APPROACH, we SCI_VERBED it based on the ideas in 
+ the RELCITE_TYPE (CITE_COMMAND) that focusses 
+ on RELCITE_TITLE in RELCITE_YEAR.
+
+}
+
+RELCITE_BOOK_CITATION {
+ SCI_MY_METHOD needs the consideration of RELCITE_TITLE, that is related 
+ to research on RELCITE_KEYWORDS. Especially RELCITE_AUTHORS RELCITE_HAVE 
+ studied SCI_MY_METHOD in CITE_COMMAND in RELCITE_YEAR. This contributes 
+ to the objectives PAPER_ALL_OBJECTIVES leads to the application of 
+ SCI_A_PROBLEM_ADJ SCI_MY_METHOD.
+
+}
+
+
+###################################
+RELCITE_INTRO {
+ LIT_ALTHOUGH we are the first to SCI_PRESENT_VERB RELCITE_KEYWORDS with this 
+ approacch of PAPER_METHODOLOGY, much WRD_RELATED work has been devoted to the SCI_MY_METHOD.
+}
+RELCITE_INTRO SCI_MY_SYSTEM builds on WRD_RELATED work of RELCITE_AUTHORS in RELCITE_YEAR CITE_COMMAND about RELCITE_TITLE.
+RELCITE_INTRO The concept of SCI_MY_METHOD has been SCI_VERBED before in the literature by RELCITE_AUTHORS.
+RELCITE_INTRO {
+ A number of WRD_RELATED publication for RELCITE_KEYWORDS have shown, either for SCI_OPTIMIZATION for the SCI_MY_TODO or 
+ as a foundation for the development of PAPER_SYSTYPE_LONG. Especially RELCITE_AUTHORS showed RELCITE_TITLE in CITE_COMMAND 
+ in RELCITE_YEAR, that SCI_MY_TODO could benefit from SCI_MY_METHOD.
+}
+RELCITE_INTRO Several SCI_APPROACH have been proposed in the literature for SCI_MY_TODO. SYS_CITATION contributs to that area of SCI_MY_FIELD.
+###################################
+
+RELCITE_MID_X RELCITE_AUTHORS SCI_PRESENT_VERBED a comparable implementation of SCI_GENERIC_NOUN to the proposed system for SCI_MY_TODO and SCI_OBJECTIVE
+RELCITE_MID_X RELCITE_AUTHORS SCI_PRESENT_VERBED several SCI_BUZZWORD_ADJ SCI_APPROACH_PL CITE_COMMAND, and reported that they have LIT_GREAT WRD_IMPACT  SCI_GENERIC_NOUN by working on RELCITE_TITLE
+RELCITE_MID_X the results in this paper are making a contribution to SCI_APPROACH for SCI_MY_TODO building upon the results of RELCITE_AUTHORS published the RELCITE_TYPE on RELCITE_TITLE in RELCITE_YEAR
+RELCITE_MID_X PAPER_OBJECTIVE RELCITE_AUTHORS proposed a solution for RELCITE_KEYWORDS which fails to address several key issues that SCI_OUR_SYSTEM has to SCI_PROBLEM_SOLVE. The following section will show our results in detail.
+RELCITE_MID_X the PAPER_SYSTEM_VERSION of PAPER_SYSNAME_LONG RELCITE_AUTHORS does not fullfill all the issues for PAPER_OBJECTIVE and PAPER_OBJECTIVE. According to PAPER_PROBLEM SCI_SYS_VERB SCI_GENERIC_NOUN the presented SCI_MY_RESULT contribute to SCI_SOLUTION 
+
+##########################################
+# Special Citation on Decision Support
+##########################################
+
+BIB_LONG_SDSS {
+   The area of decision support system was investigated by Turban, Efraim
+   and Aronson, Jay E.  \cite{DecisionSupport1} in 2000. Decision Support
+   Systems and Intelligent Systems is used as a foundation for the further
+   development of in this article.
+
+}
+
+BIB_RESULT_SDSS {
+   SCI_TEMPORAL SCI_RESULTS in the area of decision support system was investigated by Turban, Efraim
+   and Aronson, Jay E.  \cite{DecisionSupport1} in 2000. Decision Support
+   Systems and Intelligent Systems is used as a foundation for the further
+   development of in this article.
+
+}
+
+BIB_SDSS_CITATION {
+ The article with the title Decision Support Systems and Intelligent Systems by Turban, Efraim and Aronson, Jay E.  \cite{DecisionSupport1} in 2000
+
+}
+
+RELWORK_SDSS_MID_X {
+  The results in this paper are making a contribution to methods that are mentioned
+  before by Turban and Aronson published the article \cite{DecisionSupport1} on
+  Decision Support Systems and Intelligent Systems in 2000.
+
+}
+
+BIB_WEATHER_CITATION {
+  Although the resolution of the variables DIS_VAR___I, DIS_VAR__II and DIS_VAR_III is not very high,
+  the constructed solution for PAPER_OBJECTIVE and PAPER_OBJECTIVE can be explored with prelimenary data
+  from http://www.worldweather.org .
+
+}
+
+BIB_MOBILE_PHONES_CITATION {
+ SCI_RECENT SCI_RESULTS in 2008 have shown how mobile phones could assist the health self-care. A diabetes case study 
+ was explored Preuveneers and Berbers (\cite{1409260})
+ based on the idea that mobile phones are available for a high percentage of patients. The development of PAPER_SYSNAME_LONG for 
+ SCI_MY_TODO in rural areas could benefit from the availablity of IT-devices.
+
+}
+
+BIB_VECTOR_CONTROL_CITATION {
+ Looking on response measures for SCI_DISEASE one option is spraying of insecticides. 
+ The determinations areas that require indoor insecticide spraying is an risk and response problem as part of a decision support system.
+ For malaria vector control Raktotmanana (\cite{Raktotmanana}) has shown in 2008 how programmes in the Central Highland of Madagascar can 
+ provide support for the selection of high priority response areas.
+
+}
+ 
+RELWORK_MID_X {
+ The results in this paper are making a contribution to methods of SCI_MY_TODO
+ and the determination of temporal and spatial zones for an potential outbreaks of WRD_DISEASE.
+ Contribution are based on Tilston, Skelly and Weinstein who focused (\cite{Chikungunya2009Europe}) on Chikungunya surveillance
+ and classification of  risk stratified surveillance zones in 2009.
+
+}
+
+BIB_LONG_CITATION {
+  For the improvement of SCI_IMPROVED_SYSTEM  we consider alternative
+  well as other existing work mentioned below.
+  Remote sensing can provide temporal and spatial maps for environmental conditions that are relevant for the spreading of WRD_DISEASE.
+  Geographic information systems (GIS) are used increasingly to process pre-processed satelite images and collected 
+  ground data to analyze the geography of environmental variables like DIS_VAR___I, DIS_VAR__II and DIS_VAR_III 
+  that is relevant for the disease SCI_DISEASE.
+  Cromley \cite{Cromley2003} has shown in 2003 how the relationships between pathological factors 
+  in GIS applications can be mapped and analyse geographical distributions of disease agents.
+
+}
+
+
+           		 	</textarea>
+		    	</form>
+            </font>
+            </center>
+            <center>
+            <p></p>
+            </center>
+            <br>
+            </td>
+            <td>&nbsp;&nbsp;
+<!--- inner input table ---></td>
+          </tr>
+        </tbody>
+      </table>
+<!--- outer table ---> </td>
+    </tr>
+  </tbody>
+</table>
+<script language="JavaScript1.2">
+	//----------------------------------------------------	
+	document.fInputForm.Title.value = top.vURL_Object.getName(document.location.href).toUpperCase();
+	var vInput  = document.fInputForm.GenText.value;
+	var vTitle  = document.fInputForm.Title.value;
+	document.fInputForm.Title.value = vTitle;
+	if (top.vArticleGenerator.grammarfiles.preload_index <= top.vArticleGenerator.grammarfiles.rows) {
+		var vOutput = top.vArticleGenerator.import_grammar(vInput,vTitle);
+		top.vArticleGenerator.setTimeout("top.vArticleGenerator.grammarfiles.preload()",100);
+	} else {
+		//alert("No preload");
+		if (top.vArticleGenerator.wizzard.active > 0) {
+			top.vArticleGenerator.wizzard.load(vInput,vTitle);
+		}
+	}
+	//----------------------------------------------------	
+</script>
+
+
+<font size="2" face="Arial,Helvetica"><b>It is recommended to use the Browser Firefox with this Application. It is necessary to enable Javascript.</font>
+</center>
+</body>
+</html>

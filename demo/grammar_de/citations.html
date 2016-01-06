@@ -1,0 +1,358 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=utf8">
+</head>
+<body bgcolor="#ffffff" background="backgroundimage.jpg">
+<script language="JavaScript1.2">
+
+function importGrammar()
+//###### removes Comments beginning with "#" in the column of line
+{
+	var vInput  = document.fInputForm.GenText.value;
+	var vTitle  = document.fInputForm.Title.value;
+	//alert("abstract.html:18 - removeComments()\nvTitle="+vTitle);
+	var vOutput = top.vArticleGenerator.import_grammar(vInput,vTitle);
+	top.vArticleGenerator.grammarfiles.set_loaded(top.vURL_Object.getName(document.location.href));
+	document.fInputForm.GenText.value = vOutput;
+	alert('Import Grammar "'+vTitle+'" done!');
+}	
+
+</script>
+<br>
+<br>
+<center>
+<table border="1">
+  <tbody>
+    <tr bgcolor="#ffffff">
+      <td>
+      <table border="0">
+        <tbody>
+          <tr bgcolor="#ffffff">
+            <td><br>
+            </td>
+            <td>
+            <center><br>
+            <br>
+            <font size="+2" face="Arial,Helvetica">
+            <b>Load 
+	<script language="JavaScript1.2">
+   	//----------------------------------------------------	
+         document.write(top.vURL_Object.getName(document.location.href).toUpperCase());
+	//----------------------------------------------------	
+    </script>
+            Grammar<br></b> <!-- action="#" -->
+	   			<form name="fInputForm"  onsubmit="document.location.href='showrules.html'">
+					<input type=button name="Import" value="Import Grammar" onclick="importGrammar()"> 
+					<input type=text name="Title" value="abstract"> 
+        			<textarea name="GenText" cols="125" rows="50" >
+#############################################################################
+####### Citations #######
+#############################################################################
+# (1) Define new Variables 
+#     - If you want to define a variable start you must start in the first column of the line
+#     - Use capital letters for the variables (Non-Terminal-Symbols) and underscore '_'
+#     - If you want to use Comments you must use '#' in the first column of the line not second col
+#     - As in LaTeX after '#' the rest of the line is a comment
+# (2) Multiline Variable Definitions start with the non-terminal Symbol SCI_OBJECTIVE in the first 
+#     column with "{" as an opening of the multiline defintion. The end of the multiline definition 
+#     is "}" in the first  line of the column, e.g.
+#SCI_OBJECTIVE {
+#   first line
+#   second line
+#   third line
+#}
+#     if the non-terminal symbol is not starting in the first column it will be used as a variable
+#     for replacing the symbol with rules of the grammar.
+# (3) End of Grammar File
+#     - there should be at least two empty lines at the end of each this file
+#     - this file will be concated to the grammar-File 'grammar.in' anytime you run createpaper.pl
+# (4) If you want to overwrite a definition of a non-terminal Symbol e.g. BIB_KEYWORDS
+#     use a starting ">" before non-terminal Symbol e.g
+#>BIB_KEYWORDS Risk, Resource
+#     overwriting should be used for the following non-terminal symbols
+#         - BIB_KEYWORDS
+#     
+#############################################################################
+
+WRD_ARTICLE Artikel
+WRD_PROCEEDINGS Tagungsband
+WRD_INPROCEEDINGS Artikel in WRD_PROCEEDINGS RELCITE_BOOKTITLE
+WRD_TECHREPORT technischen Bericht
+WRD_BOOK Buch
+WRD_INBOOK Artikel in Buch RELCITE_BOOKTITLE von Redakteuren RELCITE_EDITORS
+WRD_UNPUBLISHED unveröffentlichten Artikel
+WRD_UNPUBLISHED unveröffentlichtes Dokument
+WRD_UNPUBLISHED unveröffentlichte Arbeiten
+WRD_INCOLLECTION Artikel in der Sammlung von RELCITE_BOOKTITLE RELCITE_EDITORS
+WRD_CONFERENCE Artikel der Konferenz RELCITE_BOOKTITLE
+WRD_MANUAL Hand
+WRD_MISC der Artikel RELCITE_HOWPUBLISHED
+WRD_MASTERSTHESIS Masterarbeit an RELCITE_SCHOOL
+WRD_VOL Vol.
+WRD_PP S.
+
+# PAPER_KEYWORD Regeln, Segmentierung, Erfassung, Netzwerk
+
+RELCITE_OVERWRITE_DEFINITION RELCITE_BOOK_CITATION
+RELCITE_LABEL relcite_label
+RELCITE_TYPE Zitat Typ
+RELCITE_KEYWORDS Stichworte
+RELCITE_AUTHOR Autor
+RELCITE_AUTHORS Autor
+RELCITE_EDITOR Editor
+RELCITE_EDITORS Editor
+RELCITE_HAVE Editor
+RELCITE_TITLE Titel
+RELCITE_HAVE haben
+RELCITE_YEAR Jahr
+RELCITE_MONTH Monat
+RELCITE_INSTITUTION Institution
+RELCITE_NOTE Note
+RELCITE_ISSN issn
+RELCITE_JOURNAL Zeitschrift
+RELCITE_VOLUME Volumen
+RELCITE_NUMBER Nummer
+RELCITE_BOOKTITLE Buchtitel
+RELCITE_HOWPUBLISHED url letzten Prüfung mit Datum
+RELCITE_PAGES Seiten
+RELCITE_REF ref
+RELCITE_URL url
+RELCITE_SERIE serie
+RELCITE_SCHOOL Schule / Uni der Masterthesis
+RELCITE_PUBLISHER veröffentlicht
+RELCITE_ADDRESS Adresse
+RELCITE_ABSTRACT die Zusammenfassung der Veröffentlichung
+RELCITE_CLASSICAL_OR_RECENT klassischen oder kürzlich
+RELCITE__CLASSICAL klassischen
+RELCITE__CLASSICAL seit RELCITE_YEAR gut bekannten
+RELCITE__RECENT letzten
+
+RELCITE_CLEAR_OVERWRITE {
+
+> RELCITE_KEYWORDS
+> RELCITE_LABEL
+> RELCITE_TYPE
+> RELCITE_TITLE
+> RELCITE_AUTHOR
+> RELCITE_HAVE
+> RELCITE_AUTHOR
+> RELCITE_EDITOR
+> RELCITE_EDITORS
+> RELCITE_SERIE
+> RELCITE_SCHOOL
+> RELCITE_NOTE
+> RELCITE_REF
+> RELCITE_JOURNAL
+> RELCITE_BOOKTITLE
+> RELCITE_HOWPUBLISHED
+> RELCITE_YEAR
+> RELCITE_MONTH
+> RELCITE_VOLUME
+> RELCITE_INSTITUTION
+> RELCITE_ISSN
+> RELCITE_NUMBER
+> RELCITE_PAGES
+> RELCITE_URL
+> RELCITE_PUBLISHER
+> RELCITE_ADDRESS
+}
+
+RELCITE_BOOK_CITATION 6 RELCITE_INTRO RELCITE_MID_X. Im nächsten Schritt ist es wichtig, die Verbindung zu SCI_OBJECTIVE RELCITE_TITLE Form zu zeigen.
+
+RELCITE_BOOK_CITATION {
+  Betrachtet man die Forschung von RELCITE_AUTHORS \ cite {} RELCITE_LABEL in RELCITE_YEAR die RELCITE_TYPE zum Thema RELCITE_TITLE zeigt einige Anstrengungen auf PAPER_METHODOLOGY.
+
+}
+
+RELCITE_BOOK_CITATION {
+  Der Bereich wurde von RELCITE_KEYWORDS RELCITE_AUTHORS \ sucht cite {} RELCITE_LABEL in RELCITE_YEAR. RELCITE_TITLE wird als Grundlage für die weitere Entwicklung der SCI_IN_THIS_PAPER verwendet.
+
+}
+
+RELCITE_BOOK_CITATION {
+  IN_THIS_PART wir diskutieren WRD_RELATED Forschung RELCITE_AUTHORS
+  RELCITE_TITLE \ cite {} RELCITE_LABEL WRD_RELATED mit PAPER_METHODOLOGY
+  RELCITE_TITLE in RELCITE_YEAR für SCI_OBJECTIVE.
+
+}
+
+RELCITE_BOOK_CITATION {
+  IN_THIS_PART wir als alternativer Ansatz zur RELCITE_TITLE von RELCITE_AUTHORS \ cite {} RELCITE_LABEL in RELCITE_YEAR sowie andere WRD_RELATED Arbeit von unten im Rahmen der genannten SCI_OBJECTIVE RELCITE_KEYWORDS.
+
+}
+
+RELCITE_BOOK_CITATION {
+ Bei der Gestaltung SCI_OUR_SYSTEM, nahmen wir die WRD_RELATED Arbeit \ cite {} RELCITE_LABEL
+ von RELCITE_AUTHORS als ein Ausgangspunkt, weil der RELCITE_TYPE konzentriert sich
+ auf RELCITE_TITLE.
+
+}
+
+RELCITE_BOOK_CITATION {
+ Während RELCITE_AUTHORS \ cite {} RELCITE_LABEL in RELCITE_YEAR arbeitete in der
+ Studien über RELCITE_KEYWORDS durch Anstrengungen im Bereich der PAPER_PROBLEM durch den Umgang mit der RELCITE_TITLE.
+
+}
+
+RELCITE_BOOK_CITATION {
+ Wir vergleichen nun unsere SCI_APPROACH für SCI_IMPROVED_SYSTEM zu WRD_RELATED Arbeit
+ Berücksichtigung RELCITE_TITLE in SCI_MY_FIELD von RELCITE_AUTHORS
+ \ Cite {} RELCITE_LABEL (RELCITE_YEAR).
+
+}
+
+RELCITE_BOOK_CITATION {
+ Unsere SCI_APPROACH für PAPER_OBJECTIVE ist die SCI_APPLICATION von PAPER_METHODOLOGY. Dies ist im Zusammenhang mit Forschung auf RELCITE_KEYWORDS.
+ Besonders RELCITE_AUTHORS RELCITE_HAVE studierte SCI_MY_METHOD in \ cite {} RELCITE_LABEL in RELCITE_YEAR
+ Dazu suchen Sie in RELCITE_TITLE.
+
+}
+
+RELCITE_BOOK_CITATION {
+  LIT_ALTHOUGH RELCITE_AUTHORS auch diese SCI_PRESENT_VERBED
+  SCI_APPROACH, SCI_VERBED wir sie auf der Grundlage der Ideen
+ die RELCITE_TYPE (\ cite {RELCITE_LABEL}), die konzentriert
+ auf RELCITE_TITLE in RELCITE_YEAR.
+
+}
+
+RELCITE_BOOK_CITATION {
+ SCI_MY_METHOD muss die Berücksichtigung von RELCITE_TITLE, ist, dass ähnliche
+ auf RELCITE_KEYWORDS Forschung. Besonders RELCITE_AUTHORS RELCITE_HAVE
+ studierte SCI_MY_METHOD in \ cite {} RELCITE_LABEL in RELCITE_YEAR. Dies trägt
+ die Ziele PAPER_OBJECTIVE und führt zu der Anwendung von
+ SCI_A_PROBLEM_ADJ SCI_MY_METHOD.
+
+}
+
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+RELCITE_INTRO LIT_ALTHOUGH wir die ersten, RELCITE_KEYWORDS mit diesem approacch von PAPER_METHODOLOGY SCI_PRESENT_VERB sind, hat viel Arbeit in die WRD_RELATED SCI_MY_METHOD gewidmet.
+RELCITE_INTRO SCI_MY_SYSTEM baut auf WRD_RELATED Arbeit RELCITE_AUTHORS in RELCITE_YEAR \ cite {} RELCITE_LABEL über RELCITE_TITLE.
+RELCITE_INTRO Der Begriff SCI_MY_METHOD wurde zuvor in der Literatur durch RELCITE_AUTHORS SCI_VERBED worden.
+RELCITE_INTRO Eine Reihe von WRD_RELATED Veröffentlichung RELCITE_KEYWORDS gezeigt haben, entweder für die Optimierung für die SCI_MY_TODO oder als Grundlage für die Entwicklung von PAPER_SYSTYPE_LONG. Besonders RELCITE_AUTHORS zeigte RELCITE_TITLE in \ cite {} RELCITE_LABEL in RELCITE_YEAR, dass SCI_MY_TODO könnten von SCI_MY_MET profitieren
+RELCITE_INTRO Mehrere SCI_APPROACH wurden in der Literatur für SCI_MY_TODO vorgeschlagen. SYS_CITATION an diesem Bereich der SCI_MY_FIELD bei.
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+RELCITE_MID_X RELCITE_AUTHORS BIB_CITATION SCI_PRESENT_VERBED das erste bekannte Beispiel SCI_GENERIC_NOUN
+RELCITE_MID_X RELCITE_AUTHORS SCI_PRESENT_VERBED mehrere SCI_BUZZWORD_ADJ SCI_APPROACH_PL \ cite {} RELCITE_LABEL, und berichtete, dass sie LIT_GREAT WRD_IMPACT SCI_GENERIC_NOUN durch die Arbeit an RELCITE_TITLE
+RELCITE_MID_X die Ergebnisse in dieser Arbeit leisten einen Beitrag für die SCI_MY_TODO aufbauend auf den Ergebnissen der RELCITE_AUTHORS SCI_APPROACH veröffentlichte die RELCITE_TYPE auf RELCITE_TITLE in RELCITE_YEAR
+RELCITE_MID_X SCI_OVERALL_THESIS_THING RELCITE_AUTHORS vorgeschlagen, eine Lösung für RELCITE_KEYWORDS, die auf mehrere zentrale Fragen, die SCI_OUR_SYSTEM muss SCI_PROBLEM_SOLVE nicht lösen wird. Im folgenden Abschnitt werden unsere Ergebnisse im Detail zu zeigen.
+RELCITE_MID_X die PAPER_SYSTEM_VERSION von PAPER_SYSNAME_LONG RELCITE_AUTHORS nicht alle Fragen für PAPER_OBJECTIVE und PAPER_OBJECTIVE nicht erfüllen. Nach PAPER_PROBLEM SCI_SYS_VERB SCI_GENERIC_NOUN das vorgestellt SCI_MY_RESULT beitragen, SCI_SOLUTION
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# Spezial Citation auf Decision Support
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+BIB_LONG_SDSS {
+   Der Bereich der Entscheidungsunterstützungssystem wurde von Turban, Efraim sucht
+   und Aronson, Jay E. \ cite {} DecisionSupport1 im Jahr 2000. Decision Support
+   Systeme und Intelligente Systeme als Grundlage für die weitere verwendet
+   Entwicklung der in diesem Artikel.
+
+}
+
+BIB_RESULT_SDSS {
+   SCI_TEMPORAL SCI_RESULTS in der Gegend von Entscheidungsunterstützungssystem wurde von Turban, Efraim sucht
+   und Aronson, Jay E. \ cite {} DecisionSupport1 im Jahr 2000. Decision Support
+   Systeme und Intelligente Systeme als Grundlage für die weitere verwendet
+   Entwicklung der in diesem Artikel.
+
+}
+
+BIB_SDSS_CITATION {
+ Der Artikel mit dem Titel Decision Support Systems und Intelligente Systeme durch Turban, Efraim und Aronson, Jay E. \ cite {} DecisionSupport1 im Jahr 2000
+
+}
+
+RELWORK_SDSS_MID_X {
+  Die Ergebnisse in dieser Arbeit leisten einen Beitrag zu Verfahren, die erwähnt werden,
+  zuvor von Turban und Aronson veröffentlichte die Artikel \ cite {} DecisionSupport1 auf
+  Decision Support Systems und Intelligente Systeme im Jahr 2000.
+
+}
+
+BIB_WEATHER_CITATION {
+  Obwohl die Auflösung der Variablen DIS_VAR___I, DIS_VAR__II und DIS_VAR_III ist nicht sehr hoch,
+  die konstruierte Lösung für PAPER_OBJECTIVE und PAPER_OBJECTIVE mit prelimenary Daten erforscht werden
+  von http://www.worldweather.org.
+
+}
+
+BIB_MOBILE_PHONES_CITATION {
+ SCI_RECENT SCI_RESULTS im Jahr 2008 haben gezeigt, wie Mobiltelefone könnte die Gesundheitsselbsthilfe zu unterstützen. Ein Diabetes-Fallstudie
+ wurde erforscht Preuveneers und Berber (\ cite {1409260})
+ basierend auf der Idee, dass Mobiltelefone für einen hohen Prozentsatz der Patienten zur Verfügung. Die Entwicklung der PAPER_SYSNAME_LONG für
+ SCI_MY_TODO in ländlichen Gebieten könnten von der availablity von IT-Geräten profitieren.
+
+}
+
+BIB_VECTOR_CONTROL_CITATION {
+ Blick auf die Antwortmaßnahmen für SCI_DISEASE eine Option ist das Sprühen von Insektiziden.
+ Die Bestimmungen Bereiche, die Innen Insektizid Spritzen benötigen, ist ein Risiko-und Antwort Problem als Teil eines Entscheidungsunterstützungssystems.
+ Für Malaria Vektorregelung Raktotmanana (\ cite {} Raktotmanana) hat im Jahr 2008, wie Programme in zentralen Hochland von Madagaskar gezeigt, kann
+ Unterstützung bei der Auswahl von Reaktionsbereichen mit hoher Priorität.
+
+}
+ 
+RELWORK_MID_X {
+ Die Ergebnisse in dieser Arbeit leisten einen Beitrag zur Methoden SCI_MY_TODO
+ und die Bestimmung der zeitlichen und räumlichen Zonen für eine potenzielle Ausbrüche WRD_DISEASE.
+ Beitrag auf Tilston, Skelly und Weinstein, die (\ cite {} Chikungunya2009Europe) konzentrierte sich auf Chikungunya-Überwachung auf der Grundlage
+ und Klassifizierung von Risikoschichtüberwachungszonen im Jahr 2009.
+
+}
+
+BIB_LONG_CITATION {
+  Für die Verbesserung der SCI_IMPROVED_SYSTEM wir alternative betrachten
+  sowie andere bestehende Arbeits unten erwähnt.
+  Fernerkundung zeitliche und räumliche Karten für Umgebungsbedingungen, die für die Ausbreitung des WRD_DISEASE relevanten bereitzustellen.
+  Geografische Informationssysteme (GIS) werden zunehmend genutzt, um vorverarbeiteten Satellitenbilder verarbeiten und gesammelt
+  Bodendaten, um die Geographie der Umweltvariablen wie DIS_VAR___I, DIS_VAR__II DIS_VAR_III und analysieren
+  das ist für die Krankheit SCI_DISEASE relevant.
+  Cromley \ cite {} Cromley2003 hat im Jahr 2003 gezeigt, wie die Beziehungen zwischen pathologischen Faktoren
+  in GIS-Anwendungen abgebildet werden können und zu analysieren, die geographische Verteilung von Krankheitserregern.
+
+           		 	</textarea>
+		    	</form>
+            </font>
+            </center>
+            <center>
+            <p></p>
+            </center>
+            <br>
+            </td>
+            <td>&nbsp;&nbsp;
+<!--- inner input table ---></td>
+          </tr>
+        </tbody>
+      </table>
+<!--- outer table ---> </td>
+    </tr>
+  </tbody>
+</table>
+<script language="JavaScript1.2">
+	//----------------------------------------------------	
+	document.fInputForm.Title.value = top.vURL_Object.getName(document.location.href).toUpperCase();
+	var vInput  = document.fInputForm.GenText.value;
+	var vTitle  = document.fInputForm.Title.value;
+	document.fInputForm.Title.value = vTitle;
+	if (top.vArticleGenerator.grammarfiles.preload_index <= top.vArticleGenerator.grammarfiles.rows) {
+		var vOutput = top.vArticleGenerator.import_grammar(vInput,vTitle);
+		top.vArticleGenerator.setTimeout("top.vArticleGenerator.grammarfiles.preload()",100);
+	} else {
+		//alert("No preload");
+		if (top.vArticleGenerator.wizzard.active > 0) {
+			top.vArticleGenerator.wizzard.load(vInput,vTitle);
+		}
+	}
+	//----------------------------------------------------	
+</script>
+
+
+<font size="2" face="Arial,Helvetica"><b>It is recommended to use the Browser Firefox with this Application. It is necessary to enable Javascript.</font>
+</center>
+</body>
+</html>

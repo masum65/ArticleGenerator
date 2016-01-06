@@ -1,0 +1,303 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=utf8">
+</head>
+<body bgcolor="#ffffff" background="backgroundimage.jpg">
+<script language="JavaScript1.2">
+
+function removeComments()
+//###### removes Comments beginning with "#" in the column of line
+{
+	var vInput  = document.fInputForm.GenText.value;
+	var vTitle  = document.fInputForm.Title.value;
+	//alert("abstract.html:18 - removeComments()\nvTitle="+vTitle);
+	var vOutput = top.vArticleGenerator.import_grammar(vInput,vTitle);
+	top.vArticleGenerator.grammarfiles.set_loaded(top.vURL_Object.getName(document.location.href));
+	document.fInputForm.GenText.value = vOutput;
+	alert('Import Grammar "'+vTitle+'" done!');
+}	
+
+</script>
+<br>
+<br>
+<center>
+<table border="1">
+  <tbody>
+    <tr bgcolor="#ffffff">
+      <td>
+      <table border="0">
+        <tbody>
+          <tr bgcolor="#ffffff">
+            <td><br>
+            </td>
+            <td>
+            <center><br>
+            <br>
+            <font size="+2" face="Arial,Helvetica">
+            <b>Load 
+	<script language="JavaScript1.2">
+   	//----------------------------------------------------	
+         document.write(top.vURL_Object.getName(document.location.href).toUpperCase());
+	//----------------------------------------------------	
+    </script>
+            Grammar<br></b> <!-- action="#" -->
+	   			<form name="fInputForm"  onsubmit="document.location.href='showrules.html'">
+					<input type=button name="Import" value="Import Grammar" onchange="convertToUpperCase()" onclick="removeComments()"> 
+					<input type=text name="Title" value="abstract"> 
+        			<textarea name="GenText" cols="125" rows="50" >
+#############################################################################
+####### Related Work #######
+#############################################################################
+# (1) Define new Variables 
+#     - If you want to define a variable start you must start in the first column of the line
+#     - Use capital letters for the variables (Non-Terminal-Symbols) and underscore '_'
+#     - If you want to use Comments you must use '#' in the first column of the line not second col
+#     - As in LaTeX after '#' the rest of the line is a comment
+# (2) Multiline Variable Definitions start with the non-terminal Symbol SCI_OBJECTIVE in the first 
+#     column with "{" as an opening of the multiline defintion. The end of the multiline definition 
+#     is "}" in the first  line of the column, e.g.
+#SCI_OBJECTIVE {
+#   first line
+#   second line
+#   third line
+#}
+#     if the non-terminal symbol is not starting in the first column it will be used as a variable
+#     for replacing the symbol with rules of the grammar.
+# (3) End of Grammar File
+#     - there should be at least two empty lines at the end of each this file
+#     - this file will be concated to the grammar-File 'grammar.in' anytime you run createpaper.pl
+# (4) If you want to overwrite a definition of a non-terminal Symbol e.g. BIB_KEYWORDS
+#     use a starting ">" before non-terminal Symbol e.g
+#>BIB_KEYWORDS Risk, Resource
+#     overwriting should be used for the following non-terminal symbols
+#         - BIB_KEYWORDS
+#     
+#############################################################################
+
+RELWORK_SEC_LATEX_HEADER	\section{Related Work}
+RELWORK_SUBSEC_LATEX_HEADER	\subsection{SCI_MY_TODO}
+RELWORK_SUBSEC_LATEX_HEADER	\subsection{SCI_MY_FIELD}
+RELWORK_SUBSEC_LATEX_HEADER	\subsection{PAPER_THEORY}
+
+SCI_RELWORK {
+
+ RELWORK_SEC_LATEX_HEADER
+
+ RELWORK_INTRO_P
+ 
+% \input{relwork.tex} 
+
+ RELWORK_BODY_P
+ # RELWORK_BODY_P_MANY
+
+}
+
+SCI_START_RELWORK {
+
+ RELWORK_SEC_LATEX_HEADER
+
+
+} 
+# RELWORK_INTRO RELWORK_MID 
+
+SCI_END_RELWORK {
+   RELWORK_INTRO RELWORK_MID RELWORK_CONCL
+}
+
+
+# RELWORK_CITATION BIB_CITATION
+# RELWORK_CITATION+2 BIB_CITATION
+# RELWORK_CITATION CITATION_MULTI
+RELWORK_CITATION as published in the ....
+
+# RELWORK_XXX+2 RELWORK_CITATION.
+RELWORK_XXX . RELWORK_FILLER
+RELWORK_XXX . 
+
+RELWORK_INTRO_P RELWORK_INTRO_I RELWORK_BODY_INSIDE RELWORK_CONCL
+
+RELWORK_BODY_P_FEW+3	RELWORK_BODY_P
+RELWORK_BODY_P_FEW	RELWORK_BODY_P
+
+RELWORK_BODY_P_MANY	RELWORK_BODY_P RELWORK_BODY_P RELWORK_BODY_P
+RELWORK_BODY_P_MANY+2	RELWORK_BODY_P RELWORK_BODY_P
+RELWORK_BODY_P_MANY	RELWORK_BODY_P
+
+
+RELWORK_BODY_P RELWORK_INTRO RELWORK_BODY_INSIDE RELWORK_CONCL
+
+RELWORK_BODY_INSIDE 	RELWORK_MID RELWORK_MID RELWORK_MID RELWORK_MID
+RELWORK_BODY_INSIDE+2 	RELWORK_MID RELWORK_MID RELWORK_MID
+RELWORK_BODY_INSIDE+3 	RELWORK_MID RELWORK_MID
+RELWORK_BODY_INSIDE 	RELWORK_MID
+
+RELWORK_INTRO In this section, we discuss WRD_RELATED research into SCI_MY_FIELD for PAPER_PROBLEM RELWORK_XXX
+RELWORK_INTRO In this section, we consider alternative SCI_SYSTEM_PL as well as WRD_RELATED work.
+RELWORK_INTRO We now consider WRD_RELATED work.
+RELWORK_INTRO In designing SCI_OUR_SYSTEM, we based the conceptual work on WRD_RELATED work from a number of distinct areas of PAPER_SYSAREA and PAPER_THEORY.
+
+RELWORK_INTRO while we know of no other studies on PAPER_TITLE, several efforts have been made to SCI_VERB SCI_MY_FIELD
+RELWORK_INTRO we now compare our SCI_APPROACH to WRD_RELATED SCI_A_PROBLEM_ADJ SCI_APPROACH_PL RELWORK_XXX
+RELWORK_INTRO our SCI_APPROACH is related to research into SCI_MY_TODO with PAPER_PROBLEM RELWORK_XXX
+RELWORK_INTRO the SCI_VERBION of SCI_GENERIC_NOUN has been widely studied RELWORK_XXX
+RELWORK_INTRO LIT_ALTHOUGH we are the first to SCI_PRESENT_VERB SCI_GENERIC_NOUN in this light, much WRD_RELATED work has been devoted to the SCI_ACT 
+RELWORK_INTRO SCI_OUR_SYSTEM builds on WRD_RELATED work in area of  PAPER_SYSAREA with PAPER_PROBLEM RELWORK_XXX
+RELWORK_INTRO the concept of PAPER_PROBLEM has been SCI_VERBED before in the literature RELWORK_XXX
+RELWORK_INTRO a major source of our inspiration is early work of ........ mentioned below RELWORK_XXX
+RELWORK_INTRO a number of WRD_RELATED SCI_SYSTEM_PL have SCI_VERBED SCI_GENERIC_NOUN, either for the SCI_ACT REL_EMPTY_CITATION or for the SCI_ACT
+RELWORK_INTRO Several SCI_A_PROBLEM_ADJ SCI_SYSTEM_PL have been proposed in the literature RELWORK_XXX
+RELWORK_INTRO RELWORK_MID_X RELWORK_XXX
+
+RELWORK_MID LIT_MIDDLE_MAYBE RELWORK_MID_X RELWORK_XXX
+RELWORK_MID_X LIT_ALTHOUGH SCI_BY_WHO also SCI_PRESENT_VERBED this SCI_APPROACH, we SCI_VERBED it independently and simultaneously
+RELWORK_MID_X SCI_BY_WHO REL_EMPTY_CITATION and SCI_BY_WHO REL_EMPTY_CITATION SCI_PRESENT_VERBED the first known instance of SCI_GENERIC_NOUN
+RELWORK_MID_X a recent published results ........... SCI_PRESENT_VERBED a similar idea for SCI_GENERIC_NOUN for PAPER_SYSNAME_LONG
+RELWORK_MID_X recent work ......... suggests a SCI_SYSTEM for PAPER_OBJECTIVE, but does not offer an implementation
+RELWORK_MID_X SCI_BY_WHO SCI_PRESENT_VERBED several SCI_BUZZWORD_ADJ SCI_APPROACH_PL for PAPER_PRECONDITION, and reported that they have LIT_GREAT WRD_IMPACT  on SCI_IMPROVED_SYSTEM
+RELWORK_MID_X we had our SCI_APPROACH for SCI_IMPROVED_SYSTEM derived from BIB_CITATIONS before SCI_BY_WHO published the recent STAT_ADJ work on SCI_GENERIC_NOUN
+RELWORK_MID_X SCI_OVERALL_THESIS_THING the following published work proposed by SCI_BY_WHO fails to address several key issues that SCI_OUR_SYSTEM does SCI_PROBLEM_SOLVE
+RELWORK_MID_X the STAT_ADJ SCI_SYSTEM SCI_BY_WHO_SOMETIMES does not SCI_SYS_VERB SCI_GENERIC_NOUN as well as our SCI_APPROACH
+RELWORK_MID_X unlike many WRD_RELATED SCI_APPROACH_PL REL_EMPTY_CITATION, we do not attempt to SCI_SYS_VERB or SCI_SYS_VERB SCI_GENERIC_NOUN
+RELWORK_MID_X instead of SCI_VERBING SCI_GENERIC_NOUN REL_EMPTY_CITATION, we SCI_SOLVE_CLAUSE simply by SCI_VERBING SCI_GENERIC_NOUN
+RELWORK_MID_X the choice of SCI_MY_FIELD in REL_EMPTY_CITATION differs from ours in that we SCI_VERB only SCI_ADJ SCI_BUZZWORD_NOUN in SCI_OUR_SYSTEM
+RELWORK_MID_X SCI_BY_WHO REL_EMPTY_CITATION originally articulated the need for SCI_GENERIC_NOUN
+RELWORK_MID_X the original SCI_APPROACH to this SCI_PROBLEM SCI_BY_WHO_SOMETIMES was SCI_REACTION; LIT_REVERSAL, SCI_WHAT did not completely SCI_SOLVE_CLAUSE
+RELWORK_MID_X SCI_BY_WHO REL_EMPTY_CITATION suggested a scheme for SCI_VERBING SCI_GENERIC_NOUN, but did not fully realize the implications of SCI_GENERIC_NOUN at the time
+RELWORK_MID_X SCI_OUR_SYSTEM is broadly related to work in the field of SCI_MY_FIELD SCI_BY_WHO_SOMETIMES, but we view it from a new perspective for PAPER_OBJECTIVE
+RELWORK_MID_X SCI_BY_WHO REL_EMPTY_CITATION developed a similar SCI_SYSTEM, LIT_REVERSAL we SCI_PROVE_VERBED that SCI_OUR_SYSTEM SCI_PROOF_PROP. 
+RELWORK_MID_X a collection of WRD_RELATED work supports the implementation of our selected features of PAPER_SYSNAME_LONG
+REL_EMPTY_CITATION (Cite here)
+
+SCI_BY_WHO other authors like ....
+
+RELWORK_XXX .
+
+SCI_FAIR	unreasonable
+
+SCI_EXPENSIVE	expensive
+SCI_EXPENSIVE	costly
+SCI_EXPENSIVE	cheap
+SCI_EXPENSIVE	fragile
+
+SCI_GROWTH_ADV	linearly
+SCI_GROWTH_ADV	quadratically
+SCI_GROWTH_ADV	sublinearly
+SCI_GROWTH_ADV	inversely
+SCI_GROWTH_ADV	logarithmically
+SCI_GROWTH_ADV	exponentially
+
+RELWORK_FILLER LIT_CONCLUSION, comparisons to PAPER_OBJECTIVE we will consider PAPER_PRECONDITION.
+RELWORK_FILLER LIT_REVERSAL, without concrete evidence, there is no reason to believe these claims.
+RELWORK_FILLER SCI_OUR_SYSTEM represents a significant advance above this work.
+RELWORK_FILLER it remains to be seen how valuable this research is to the SCI_FIELD community.
+RELWORK_FILLER this SCI_APPROACH is MORE SCI_EXPENSIVE than ours.
+RELWORK_FILLER without using SCI_GENERIC_NOUN, it is hard to imagine that SCI_OVERALL_THESIS_PROVE.
+RELWORK_FILLER our design avoids this overhead.
+RELWORK_FILLER a comprehensive survey CITATION is available in this space.
+RELWORK_FILLER this work follows a long line of WRD_RELATED SCI_SYSTEM_PL, all of which have failed REL_EMPTY_CITATION.
+RELWORK_FILLER this is arguably SCI_FAIR.
+RELWORK_FILLER the only other noteworthy work in this area suffers from SCI_FAIR assumptions about SCI_GENERIC_NOUN REL_EMPTY_CITATION.
+RELWORK_FILLER SCI_OUR_SYSTEM also SCI_SYSTEM_ACTION, but without all the unnecssary complexity.
+RELWORK_FILLER CONSTRAINT_TYPE aside, SCI_OUR_SYSTEM SCI_VERBS MORE accurately.
+RELWORK_FILLER we believe there is room for both schools of thought within the field of SCI_FIELD.
+RELWORK_FILLER LIT_ALTHOUGH this work was published before ours, we came up with the SCI_APPROACH first but could not publish it until now due to red tape. 
+RELWORK_FILLER SCI_IN_THIS_PAPER, we SCI_PROBLEM_SOLVED all of the SCI_PROBLEM_PL inherent in the WRD_RELATED work.
+RELWORK_FILLER LIT_REVERSAL, the complexity of their SCI_APPROACH grows SCI_GROWTH_ADV as SCI_GENERIC_NOUN grows.
+RELWORK_FILLER LIT_CONCLUSION, if PERFORMANCE is a concern, SCI_OUR_SYSTEM has a clear advantage.
+
+RELWORK_CONCL in general, SCI_OUR_SYSTEM outperformed all WRD_RELATED SCI_SYSTEM_PL in this area 
+RELWORK_CONCL LIT_CONCLUSION, the class of SCI_SYSTEM_PL enabled by SCI_OUR_SYSTEM is fundamentally different from WRD_RELATED SCI_APPROACH_PL 
+RELWORK_CONCL LIT_LAST note that SCI_SYSTEM_PROP; LIT_CONCLUSION, SCI_OUR_SYSTEM SCI_PROOF_PROP. 
+RELWORK_CONCL LIT_REVERSAL, these SCI_APPROACH_PL are entirely orthogonal to our efforts.
+RELWORK_CONCL we plan to adopt many of the ideas from this WRD_RELATED work in future versions of SCI_OUR_SYSTEM.
+RELWORK_CONCL all of these SCI_APPROACH_PL conflict with our assumption that SCI_GENERIC_NOUN and SCI_GENERIC_NOUN are SCI_ADJ SCI_MY_TODO
+RELWORK_CONCL our SCI_APPROACH to SCI_GENERIC_NOUN differs from that of SCI_BY_WHO REL_EMPTY_CITATION as well as PAPER_OBJECTIVE
+RELWORK_CONCL LIT_ALTHOUGH we have nothing against the WRD_RELATED SCI_APPROACH SCI_BY_WHO_SOMETIMES, we do not believe that SCI_APPROACH is applicable to SCI_MY_FIELD 
+RELWORK_CONCL these SCI_SYSTEM_PL typically require that SCI_OVERALL_THESIS_PROVE REL_EMPTY_CITATION, and we SCI_PROVE_VERBED SCI_IN_THIS_PAPER that this, indeed, is the case.
+RELWORK_CONCL SCI_B_LEADIN_C the SCI_SYSTEM of SCI_BY_WHO REL_EMPTY_CITATION is a SCI_ADJ choice for SCI_GENERIC_NOUN 
+RELWORK_CONCL LIT_CONCLUSION, despite substantial work in this area, our SCI_APPROACH is SCI_ADV the SCI_SYSTEM of choice among SCI_PEOPLE for PAPER_OBJECTIVE
+RELWORK_CONCL RELWORK_MID_X RELWORK_XXX
+
+#############################################################################
+# This NON-terminal Symbol RELWORK_START will be used to create the 
+# START sentence for a citation.
+#############################################################################
+
+RELWORK_START LIT_CONCLUSION, comparisons to PAPER_OBJECTIVE we will consider
+RELWORK_START LIT_REVERSAL, without having concrete evidence, the following results remain to be basic foundation for SCI_A_PROBLEM_ADJ approach for SCI_MY_TODO 
+RELWORK_START SCI_OUR_SYSTEM represents a significant advance above the following results provided by .....
+RELWORK_START It remains to be proved that previous results mentioned below can be extended to valuable contributions ta research is to the SCI_MY_FIELD community.
+RELWORK_START The SCI_APPROACH needs a foundation that is based on 
+RELWORK_START Without using PAPER_THEORY, it is hard to quantify the benefits for PAPER_OBJECTIVE. Nevertheless the following results contribute to PAPER_OBJECTIVE, because 
+RELWORK_START our design avoids this overhead.
+RELWORK_START a comprehensive survey CITATION is available in this space.
+RELWORK_START this work follows a long line of WRD_RELATED first pilot studies, that failed to reach a full SCI_SOLUTION. The following work contributed at to ....
+RELWORK_START Major contributions of the following authors were necessary to reach SCI_MY_RESULT. Especially the follwing 
+RELWORK_START the only other noteworthy work in this area suffers from well-defined assumptions about PAPER_PROBLEM .
+RELWORK_START SCI_MY_METHOD also SCI_MY_FIELD needs scientific evidence for PAPER_OBJECTIVE, but without all the taking all the variables into account. Basically the following work provided the main steps ...
+RELWORK_START CONSTRAINT_TYPE aside, SCI_MY_SYSTEM covers MORE accurately the SCI_MY_TODO the results provided by
+RELWORK_START We believe there is the possibility to accomplish both objectives PAPER_OBJECTIVE and PAPER_OBJECTIVE of thought within the field of SCI_MY_FIELD. Evidence provided by the following authors can prove the feasibility
+RELWORK_START LIT_ALTHOUGH this work was published for PAPER_PRECONDITION and we derived from the SCI_APPROACH the first analysis for PAPER_SYSAREA.  
+RELWORK_START SCI_IN_THIS_PAPER, we SCI_PROBLEM_SOLVED a major part of the SCI_PROBLEM_PL inherent in the WRD_RELATED work. Especially ....
+RELWORK_START LIT_REVERSAL, the complexity of their PAPER_METHODOLOGY grows SCI_GROWTH_ADV as more variables are considered in the system. 
+RELWORK_START LIT_CONCLUSION, if PERFORMANCE is a concern, SCI_OUR_SYSTEM has a clear advantage for PAPER_OBJECTIVE.
+
+#############################################################################
+# This NON-terminal Symbol RELWORK_END will be used to create the 
+# END sentence for a citation.
+#############################################################################
+
+RELWORK_END in general, SCI_MY_SYSTEM outperformed all WRD_RELATED SCI_SYSTEM_PL in this area RELWORK_XXX
+RELWORK_END LIT_CONCLUSION, the class of PAPER_SYSTYPE_LONG enabled to perform SCI_MY_TODO. Our approach for PAPER_METHODOLOGY is fundamentally different from WRD_RELATED SCI_APPROACH_PL. It shows the additional properties that will be shown in our results, that extend ....
+RELWORK_END LIT_LAST note that SCI_SYSTEM_PROP; LIT_CONCLUSION, SCI_OUR_SYSTEM SCI_PROOF_PROP RELWORK_XXX
+RELWORK_END LIT_REVERSAL, these SCI_APPROACH_PL are entirely orthogonal to our efforts.
+RELWORK_END We plan to adopt many of the ideas from this WRD_RELATED work in future versions of SCI_OUR_SYSTEM.
+RELWORK_END All of these SCI_APPROACH_PL conflict with our assumption that PAPER_PROBLEM is a complex dynamic system, that changes in space and time.
+RELWORK_END Our SCI_APPROACH to PAPER_PRECONDITION differs from the previous mentioned approach by .....
+RELWORK_END LIT_ALTHOUGH we cannot extend the WRD_RELATED SCI_APPROACH SCI_BY_WHO_SOMETIMES, we could at least apply the results of ... for SCI_MY_TODO and show that methodologx is applicable to SCI_MY_FIELD.
+RELWORK_END these SCI_SYSTEM_PL typically require that SCI_OVERALL_THESIS_PROVE REL_EMPTY_CITATION, and we SCI_PROVE_VERBED SCI_IN_THIS_PAPER that this, indeed, is the case.
+RELWORK_END LIT_CONCLUSION, despite substantial work in the area of SCI_A_PROBLEM_ADJ modelling, our SCI_APPROACH is additionla option among the work mentioned before. A comparison of these different approaches is needed.
+
+           		 	</textarea>
+		    	</form>
+            </font>
+            </center>
+            <center>
+            <p></p>
+            </center>
+            <br>
+            </td>
+            <td>&nbsp;&nbsp;
+<!--- inner input table ---></td>
+          </tr>
+        </tbody>
+      </table>
+<!--- outer table ---> </td>
+    </tr>
+  </tbody>
+</table>
+<script language="JavaScript1.2">
+	//----------------------------------------------------	
+	document.fInputForm.Title.value = top.vURL_Object.getName(document.location.href).toUpperCase();
+	var vInput  = document.fInputForm.GenText.value;
+	var vTitle  = document.fInputForm.Title.value;
+	document.fInputForm.Title.value = vTitle;
+	if (top.vArticleGenerator.grammarfiles.preload_index <= top.vArticleGenerator.grammarfiles.rows) {
+		var vOutput = top.vArticleGenerator.import_grammar(vInput,vTitle);
+		top.vArticleGenerator.setTimeout("top.vArticleGenerator.grammarfiles.preload()",100);
+	} else {
+		//alert("No preload");
+		if (top.vArticleGenerator.wizzard.active > 0) {
+			top.vArticleGenerator.wizzard.load(vInput,vTitle);
+		}
+	}
+	//----------------------------------------------------	
+</script>
+
+
+<font size="2" face="Arial,Helvetica"><b>It is recommended to use the Browser Firefox with this Application. It is necessary to enable Javascript.</font>
+</center>
+</body>
+</html>

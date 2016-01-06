@@ -1,0 +1,188 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type"
+ content="text/html; charset=utf8">
+</head>
+<body bgcolor="#ffffff" background="backgroundimage.jpg">
+<script language="JavaScript1.2">
+
+function removeComments()
+//###### removes Comments beginning with "#" in the column of line
+{
+	var vInput  = document.fInputForm.GenText.value;
+	var vTitle  = document.fInputForm.Title.value;
+	//alert("abstract.html:18 - removeComments()\nvTitle="+vTitle);
+	var vOutput = top.vArticleGenerator.import_grammar(vInput,vTitle);
+	top.vArticleGenerator.grammarfiles.set_loaded(top.vURL_Object.getName(document.location.href));
+	document.fInputForm.GenText.value = vOutput;
+	alert('Import Grammar "'+vTitle+'" done!');
+}	
+
+</script>
+<br>
+<br>
+<center>
+<table border="1">
+  <tbody>
+    <tr bgcolor="#ffffff">
+      <td>
+      <table border="0">
+        <tbody>
+          <tr bgcolor="#ffffff">
+            <td><br>
+            </td>
+            <td>
+            <center><br>
+            <br>
+            <font size="+2" face="Arial,Helvetica">
+            <b>Load 
+	<script language="JavaScript1.2">
+   	//----------------------------------------------------	
+         document.write(top.vURL_Object.getName(document.location.href).toUpperCase());
+	//----------------------------------------------------	
+    </script>
+            Grammar<br></b> <!-- action="#" -->
+	   			<form name="fInputForm"  onsubmit="document.location.href='showrules.html'">
+					<input type=button name="Import" value="Import Grammar" onchange="convertToUpperCase()" onclick="removeComments()"> 
+					<input type=text name="Title" value="abstract"> 
+        			<textarea name="GenText" cols="125" rows="50" >
+#############################################################################
+####### Global Definitions #######
+#############################################################################
+# (1) Define new Variables 
+#     - If you want to define a variable start you must start in the first column of the line
+#     - Use capital letters for the variables (Non-Terminal-Symbols) and underscore '_'
+#     - If you want to use Comments you must use '#' in the first column of the line not second col
+#     - As in LaTeX after '#' the rest of the line is a comment
+# (2) Multiline Variable Definitions start with the non-terminal Symbol SCI_OBJECTIVE in the first 
+#     column with "{" as an opening of the multiline defintion. The end of the multiline definition 
+#     is "}" in the first  line of the column, e.g.
+#SCI_OBJECTIVE {
+#   first line
+#   second line
+#   third line
+#}
+#     if the non-terminal symbol is not starting in the first column it will be used as a variable
+#     for replacing the symbol with rules of the grammar.
+# (3) End of Grammar File
+#     - there should be at least two empty lines at the end of each this file
+#     - this file will be concated to the grammar-File 'grammar.in' anytime you run createpaper.pl
+# (4) If you want to overwrite a definition of a non-terminal Symbol e.g. BIB_KEYWORDS
+#     use a starting ">" before non-terminal Symbol e.g
+#>BIB_KEYWORDS Risk, Resource
+#     overwriting should be used for the following non-terminal symbols
+#         - BIB_KEYWORDS
+#     
+#############################################################################
+
+SCIDEF_INTRO_DEFINTION Jetzt werden wir SCIDEF_KEYWORD, die im Rahmen der SCI_IMPROVED_SYSTEM verwendet definieren.
+SCIDEF_INTRO_DEFINTION Bevor wir weiterhin die Analyse der PAPER_PROBLEM müssen wir SCIDEF_KEYWORD definieren.
+SCIDEF_MISSING_DEFINITION SCI_DEFBEGIN [SCIDEF_KEYWORD] ... Lassen Sie ein ... und ... die Eigenschaft hat, ... dann ... wird als SCIDEF_KEYWORD SCI_DEFEND
+
+SCI_DEF_HEALTHSERVICEDELIVERY {
+
+ Health Service Delivery wird in der folgenden breite Definition für SCI_MY_TODO verwendet werden.
+
+ SCI_DEFBEGIN [Gesundheit Service Delivery] \label{label:HealthServiceDelivery} Lassen
+ R eine Menge von Ressourcen, die zur Erfüllung einer Reihe von geokodierten Anforderungen verwendet werden kann
+ D für medizinische oder gesundheitsbezogenen Waren oder Dienstleistungen.
+  Health Service Delivery ist eine Methode, um die verfügbaren Ressourcen R verwenden, um den Anforderungen abdecken
+ D.
+ SCI_DEFEND
+
+}
+
+SCI_DEF_LIVINGLABS {
+
+ In Living Labs werden die Benutzer oder Bürger als Quelle von Innovationen gesehen, als Co-Schöpfer der neuen Dienstleistungen und Produkte, in der Regel auf die Schaffung oder die Anwendung von IKT und IKT-gestützten Dienstleistungen verbunden. Der Begriff Living Lab wurde parallel von der Ambient Intelligence Forschungsgemeinschaften Zusammenhang und aus der Diskussion über die Erfahrungs-und Anwendungsforschung (EAR), basierend auf dem Konzept der Benutzererfahrung entstanden und Ambient Intelligence (AmI) [de Ruyter et al., 2007]. Doch die Theorie und Praxis hinter Living Labs wurde von Prof. William Mitchell, Media Lab und Schule für Architektur und Stadtplanung, MIT Boston, der argumentierte, dass ein Living Lab stellt eine benutzerorientierte Forschungs-Methodik zur Erfassung, Prototyping, Validierung und entwickelt Raffination komplexe Lösungen in vielfältigen sich wandelnden Kontexten wirklichen Leben (Corelabs, 2006).
+ In den letzten Jahren wurde der Begriff wurde von der EU gefördert worden und implementiert, die in der Gründung des European Network of Living Labs (ENoLL), die im Jahr 2008 hat sich auch über die europäischen Grenzen (ENoLL, 2010) erweitert geführt hat. Seine Aufgabe ist es zu helfen, schaffen erstklassige Innovation Umgebungen für IKT-basierte Produkte, Dienstleistungen und soziale Innovationen und Innovation und Zusammenarbeit zwischen Anwendern, Industrie und Forschung Beteiligten zu erleichtern.
+ 
+ SCI_DEFBEGIN [Living Labs] \ label {label: LivingLab}
+ Fünf Schlüsseldimensionen des Living Labs, die von ENoLL (2008) zu sehen sind
+ \begin{enumerate}
+   \item
+   Innovation Einstellungen (Open Innovation-Umgebung),
+   \item
+   Betriebsumgebungen (Alltagsleben),
+   \item
+   Innovationsprozesse zu beeinflussen, ist, dass im Zusammenhang mit User-Engagement (User Driven Innovation und Co-Creation-Prozess) und
+   \item
+   aus dem Innovationsergebnisse werden erwartet (neue Dienstleistungen, Produkte und gesellschaftlichen Infrastrukturen).
+ \end{enumerate}
+ 
+ Heute sind mehrere Living Lab Beschreibungen und Definitionen aus verschiedenen Quellen (Corelabs, 2006; Niitamo, et al 2006;. Pallot, et al, 2008;. Schumacher \ & Feurstein, 2008; Europäische Kommission Informationsgesellschaft und Medien, 2009). Es ist ein Konzept, das zu einem Forschungs-und Entwicklungsmethodik, wo Innovationen wie Dienstleistungen, Produkte und Anwendungserweiterungen werden in Zusammenarbeit, Multi-Kontext-empirischen realen Einstellungen (Eriksson, Niitamo \ & Kulkki, 2005) erstellt und validiert verweist. Konzepte aus verschiedenen Definitionen von LL auch offensichtlich sind Open Innovation Ökosysteme, der territorialen Kontexten gleichzeitig Forschungs-und Innovationsprozessen (Følstad, 2008).
+ Living Labs werden in der Regel die folgenden Innovationslebenszyklus, wie unten dargestellt (ENoLL, 2008) gelten
+
+ SCI_DEFEND
+
+}
+
+SCI_DEF_DECISIONSUPPORTSYSTEM {
+ Decision Support Systeme sind im Bereich der PAPER_PRECONDITION betrachtet.
+
+ SCI_DEFBEGIN [Decision Support System] \label{label:DecisionSupportSystem} Let D die verfügbaren Daten für eine Entscheidungsfindung und \ textit {S} eine Entscheidung Raum, mit den möglichen Optionen für einen Entscheidungsträger eine Entscheidung treffen basierend auf Daten D.
+ Ein System, das die Eigenschaft, den Entscheidungsraum \ textit {S} auf eine Teilmenge S' der Option zu reduzieren hat, wird Decision Support System bezeichnet.
+ SCI_DEFEND
+
+ Decision Support Systeme sind in komplexen dynamischen Systemen wie SCI_MY_TODO mit SCI_MY_METHOD verwendet und
+ die DSS nicht Entscheidungen auf seine eigene es unterstützt die Entscheidungsträger bei der Verringerung der Entscheidungsraum \ textit {S}, um textit {S '} der die Vorverarbeitung der Daten \, so dass es einfacher, eine bessere Entscheidung zu finden
+ Entscheidungen von \ textit {S} als ohne die DSS.
+ Wir müssen SCI_MY_RESULT.
+
+}
+
+SCI_DEF_GISTAILOREDQUESTIONAIRE {
+ Spatial Decision Support Systems bestehen aus einem Geographischen Informationssystem (GIS) und Decision Support System (DSS). Die Decision Support muss Daten für die Aktualisierung und Auswertung der Entscheidungsunterstützung.
+ Für PAPER_PRECONDITION Datenerfassung ist teuer, so reduziert die Zeit für das Ausfüllen des Fragebogens und weiter auf die Bereitschaft der Nutzer mit Zeitdruck, um die Daten zu liefern.
+
+
+ SCI_DEFBEGIN [GIS zugeschnitten Fragebogen] \label{label:GIStailorQuest} Let Q sein Domain die Fragen für einen Fragebogen getroffen werden können.
+ Q' ist Teil der Fragen, die in einem Fragebogen verwendet wird. Ein GIS zugeschnittene Fragebogen ist mit dem Einsatz von Geographischen Informations erzeugt
+ System (GIS), wobei die Auswahl
+ wählt, dass Q' als Teilmenge von Q wird durch räumliche Objekte im GIS bestimmt.
+ 
+ SCI_DEFEND
+ 
+}
+           		 	</textarea>
+		    	</form>
+            </font>
+            </center>
+            <center>
+            <p></p>
+            </center>
+            <br>
+            </td>
+            <td>&nbsp;&nbsp;
+<!--- inner input table ---></td>
+          </tr>
+        </tbody>
+      </table>
+<!--- outer table ---> </td>
+    </tr>
+  </tbody>
+</table>
+<script language="JavaScript1.2">
+	//----------------------------------------------------	
+	document.fInputForm.Title.value = top.vURL_Object.getName(document.location.href).toUpperCase();
+	var vInput  = document.fInputForm.GenText.value;
+	var vTitle  = document.fInputForm.Title.value;
+	document.fInputForm.Title.value = vTitle;
+	if (top.vArticleGenerator.grammarfiles.preload_index <= top.vArticleGenerator.grammarfiles.rows) {
+		var vOutput = top.vArticleGenerator.import_grammar(vInput,vTitle);
+		top.vArticleGenerator.setTimeout("top.vArticleGenerator.grammarfiles.preload()",100);
+	} else {
+		//alert("No preload");
+		if (top.vArticleGenerator.wizzard.active > 0) {
+			top.vArticleGenerator.wizzard.load(vInput,vTitle);
+		}
+	}
+	//----------------------------------------------------	
+</script>
+
+
+<font size="2" face="Arial,Helvetica"><b>It is recommended to use the Browser Firefox with this Application. It is necessary to enable Javascript.</font>
+</center>
+</body>
+</html>
